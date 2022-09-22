@@ -438,12 +438,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1 &1461414011 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7830833791469576104, guid: 230649b42c757e0458759834001b3a4a,
-    type: 3}
-  m_PrefabInstance: {fileID: 7845676942388612815}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2003346464
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,11 +560,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5362894636171920216, guid: 2b85d00c97a8f554a8a19b816e1ef558,
-        type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 1461414011}
     - target: {fileID: 5362894636171920228, guid: 2b85d00c97a8f554a8a19b816e1ef558,
         type: 3}
       propertyPath: m_Name
@@ -653,7 +642,7 @@ PrefabInstance:
     - target: {fileID: 2355984350806378186, guid: 230649b42c757e0458759834001b3a4a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 2355984350806378186, guid: 230649b42c757e0458759834001b3a4a,
         type: 3}
@@ -699,6 +688,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830833791469576104, guid: 230649b42c757e0458759834001b3a4a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230649b42c757e0458759834001b3a4a, type: 3}
