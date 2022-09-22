@@ -1,30 +1,26 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Player;
+using TMPro;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
-
-    private float _speed = 20f;
-    
-    private Rigidbody2D rb;
-
-    private void Start()
+    public class Bullet : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
-    private void FixedUpdate()
-    {
-        rb.velocity = Vector2.up * _speed;
-    }
+        private float _speed = 30f;
+        [SerializeField] private PlayerController pC;
+        private Rigidbody2D rb;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
+        private void Start()
         {
-            gameObject.SetActive(false);
+            rb = GetComponent<Rigidbody2D>();
+            pC = FindObjectOfType<PlayerController>();
+            rb.velocity = pC.aimDirection * _speed;
+        }
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                gameObject.SetActive(false);
+            }        
         }
     }
-}

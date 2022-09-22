@@ -1,4 +1,3 @@
-using System;
 using Objects;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +9,7 @@ namespace Player
         
         #region Variables
 
-        private Rigidbody2D rb;
+        private Rigidbody2D _rb;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform bulletPosition;
         
@@ -18,8 +17,11 @@ namespace Player
         
         private InputAction _move;
         private InputAction _fire;
+        private InputAction _look;
         
         private Vector2 _moveDirection = Vector2.zero;
+        public Vector2 aimDirection;
+        
 
         public float moveSpeed;
 
@@ -28,7 +30,7 @@ namespace Player
         private void Awake()
         {
             playerControls = new PlayerInputActions();
-            rb = GetComponent<Rigidbody2D>();
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         private void OnEnable()
@@ -38,12 +40,16 @@ namespace Player
 
             _fire = playerControls.Player.Fire;
             _fire.Enable();
+            
+            _look = playerControls.Player.Look;
+            _look.Enable();
         }
 
         private void OnDisable()
         {
             _move.Disable();
             _fire.Disable();
+            _look.Disable();
         }
 
         void Update()
@@ -53,7 +59,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            rb.velocity = new Vector2(_moveDirection.x * moveSpeed, _moveDirection.y * moveSpeed);
+            _rb.velocity = new Vector2(_moveDirection.x * moveSpeed, _moveDirection.y * moveSpeed);
         }
 
         void OnFire()
@@ -67,6 +73,8 @@ namespace Player
 
             if (bullet != null)
             {
+                aimDirection = _look.ReadValue<Vector2>();
+                
                 bullet.transform.position = bulletPosition.position;
                 bullet.SetActive(true);
             }
