@@ -1,4 +1,5 @@
 using System;
+using Objects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ namespace Player
         #region Variables
 
         private Rigidbody2D rb;
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private Transform bulletPosition;
         
         public PlayerInputActions playerControls;
         
@@ -32,11 +35,15 @@ namespace Player
         {
             _move = playerControls.Player.Move;
             _move.Enable();
+
+            _fire = playerControls.Player.Fire;
+            _fire.Enable();
         }
 
         private void OnDisable()
         {
             _move.Disable();
+            _fire.Disable();
         }
 
         void Update()
@@ -47,6 +54,22 @@ namespace Player
         private void FixedUpdate()
         {
             rb.velocity = new Vector2(_moveDirection.x * moveSpeed, _moveDirection.y * moveSpeed);
+        }
+
+        void OnFire()
+        {
+            Fire();
+        }
+
+        void Fire()
+        {
+            GameObject bullet = ObjectPooling.instance.GetPooledObject();
+
+            if (bullet != null)
+            {
+                bullet.transform.position = bulletPosition.position;
+                bullet.SetActive(true);
+            }
         }
     }
 

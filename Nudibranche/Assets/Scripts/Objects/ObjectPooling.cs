@@ -1,51 +1,52 @@
-
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooling : MonoBehaviour
+namespace Objects
 {
-    public static ObjectPooling instance;
-    private List<GameObject> _pooledObjects = new List<GameObject>();
-    private int _amountToPool = 20;
-
-    [SerializeField] private GameObject bulletPrefab;
-
-    private void Awake()
+    public class ObjectPooling : MonoBehaviour
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
+        public static ObjectPooling instance;
+        private List<GameObject> _pooledObjects = new List<GameObject>();
+        private int _amountToPool = 20;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        for (int i = 0; i < _amountToPool; i++)
-        {
-            GameObject obj = Instantiate(bulletPrefab);
-            obj.SetActive(false);
-            _pooledObjects.Add(obj);
-        }
-    }
+        [SerializeField] private GameObject bulletPrefab;
 
-    public GameObject GetPooledObject()
-    {
-        for (int i = 0; i < _pooledObjects.Count; i++)
+        private void Awake()
         {
-            if (!_pooledObjects[i].activeInHierarchy)
+            if (instance == null)
             {
-                return _pooledObjects[i];
+                instance = this;
             }
         }
 
-        return null;
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            for (int i = 0; i < _amountToPool; i++)
+            {
+                GameObject obj = Instantiate(bulletPrefab);
+                obj.SetActive(false);
+                _pooledObjects.Add(obj);
+            }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        public GameObject GetPooledObject()
+        {
+            for (int i = 0; i < _pooledObjects.Count; i++)
+            {
+                if (!_pooledObjects[i].activeInHierarchy)
+                {
+                    return _pooledObjects[i];
+                }
+            }
+
+            return null;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
         
+        }
     }
 }
