@@ -33,7 +33,7 @@ public class IAMoule : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("UpdatePath", 0, .5f);
+        InvokeRepeating("UpdatePath", 0, .5f);  // à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
 
     }
@@ -106,7 +106,7 @@ public class IAMoule : MonoBehaviour
         }
         else
         {
-            cac = false;
+            cac = false;    // rajouter une condition pour ne pas relancer le pathfinding trop vite
         }
 
         if (cac)
@@ -118,6 +118,8 @@ public class IAMoule : MonoBehaviour
             pathUpdated = false;
         }
     }
+    
+    // faire une coroutine: attaque puis attente
 
     void Flip()
     {
