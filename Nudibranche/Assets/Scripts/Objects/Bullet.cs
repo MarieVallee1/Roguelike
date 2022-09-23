@@ -1,30 +1,21 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Player;
+using TMPro;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
-
-    private float _speed = 20f;
-    
-    private Rigidbody2D rb;
-
-    private void Start()
+namespace Objects
+{ 
+    public class Bullet : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = Vector2.up * _speed;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
+        private Rigidbody2D _rb;
+        
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            gameObject.SetActive(false);
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                gameObject.SetActive(false);
+            }        
         }
     }
 }
+
