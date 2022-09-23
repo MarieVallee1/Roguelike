@@ -1,83 +1,96 @@
+using System;
 using Objects;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
-        
         #region Variables
 
+        private Camera _cam;
+        
         private Rigidbody2D _rb;
-        [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform bulletPosition;
-        
-        public PlayerInputActions playerControls;
-        
-        private InputAction _move;
-        private InputAction _fire;
-        private InputAction _look;
-        
-        private Vector2 _moveDirection = Vector2.zero;
-        public Vector2 aimDirection;
-        
 
+        private PlayerInputActions _playerControls;
+        private InputAction _shoot;
+        private Vector2 _movement;
+        private Vector2 _aim;
+
+        public float rightStickDeadzone; 
         public float moveSpeed;
-
+        public float projectileSpeed;
         #endregion
 
         private void Awake()
         {
-            playerControls = new PlayerInputActions();
+            _playerControls = new PlayerInputActions();
+
             _rb = GetComponent<Rigidbody2D>();
         }
 
         private void OnEnable()
         {
-            _move = playerControls.Player.Move;
-            _move.Enable();
+            _playerControls.Enable();
 
-            _fire = playerControls.Player.Fire;
-            _fire.Enable();
+            _playerControls.Player.Movement.performed += OnMovement;
+            _playerControls.Player.Movement.canceled += OnMovement;
+            _playerControls.Player.Aim.performed += OnAim;
+
+            _shoot = _playerControls.Player.Shoot;
+            _shoot.performed += ctx => OnShoot();
             
-            _look = playerControls.Player.Look;
-            _look.Enable();
-        }
+            }
 
         private void OnDisable()
         {
-            _move.Disable();
-            _fire.Disable();
-            _look.Disable();
-        }
-
-        void Update()
-        {
-            _moveDirection = _move.ReadValue<Vector2>();
+            _playerControls.Disable();
         }
 
         private void FixedUpdate()
         {
-            _rb.velocity = new Vector2(_moveDirection.x * moveSpeed, _moveDirection.y * moveSpeed);
+            HandleMovement();
+            HandleRotation();
         }
 
-        void OnFire()
-        {
-            Fire();
-        }
-
-        void Fire()
+        void OnShoot()
         {
             GameObject bullet = ObjectPooling.instance.GetPooledObject();
 
-            if (bullet != null)
+            if (Mathf.Abs(_aim.x) > rightStickDeadzone && Mathf.Abs(_aim.y) > rightStickDeadzone)
             {
-                aimDirection = _look.ReadValue<Vector2>();
-                
-                bullet.transform.position = bulletPosition.position;
-                bullet.SetActive(true);
+                if (bullet != null)
+                {
+                    bullet.transform.position = bulletPosition.position;
+                    bullet.SetActive(true);
+                    bullet.GetComponent<Rigidbody2D>().velocity = _aim * projectileSpeed;
+                }
             }
+        }
+        
+        void OnMovement(InputAction.CallbackContext context)
+        {
+            _movement = context.ReadValue<Vector2>();
+        }
+
+        void OnAim(InputAction.CallbackContext context)
+        {
+            _aim = (context.ReadValue<Vector2>());
+        }
+
+        void HandleMovement()
+        {
+            _rb.velocity = new Vector2(_movement.x * moveSpeed, _movement.y * moveSpeed);
+        }
+
+        void HandleRotation()
+        {
+            float a = Mathf.Atan2(_aim.x, _aim.y) * Mathf.Rad2Deg;
+            _rb.MoveRotation(-a);
         }
     }
 
