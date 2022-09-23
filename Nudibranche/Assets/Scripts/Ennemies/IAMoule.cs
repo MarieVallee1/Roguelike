@@ -24,7 +24,7 @@ public class IAMoule : MonoBehaviour
     public float cacDistanceMax = 1;
     private float cacDistance;
 
-    private bool pathUpdated = false;
+    private bool pathUpdated = true;
 
     private void Start()
     {
@@ -57,8 +57,15 @@ public class IAMoule : MonoBehaviour
     }
     void FixedUpdate()
     {
+        
         Flip();
 
+        if (!pathUpdated && !cac)
+        {
+            InvokeRepeating("UpdatePath", 0, .5f);
+            pathUpdated = true;
+        }
+        
         if (path == null)
         {
             return;
@@ -79,14 +86,8 @@ public class IAMoule : MonoBehaviour
 
         if (!cac)
         {
-            if (!pathUpdated)
-            {
-                Debug.Log("Relancer pathfinding");
-                //pathUpdated = true;
-            }
             rb.AddForce(force);
         }
-        
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -116,8 +117,6 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
-        
-        Debug.Log(cac);
     }
 
     void Flip()
