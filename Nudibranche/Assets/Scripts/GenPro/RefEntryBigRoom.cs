@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class RefEntryBigRoom : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject entreeNord;
+    public GameObject entreeSud;
+    public GameObject entreeEst;
+    public GameObject entreeOuest;
 }
