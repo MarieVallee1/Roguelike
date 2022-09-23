@@ -40,11 +40,9 @@ namespace Player
             _playerControls.Player.Movement.performed += OnMovement;
             _playerControls.Player.Movement.canceled += OnMovement;
             _playerControls.Player.Aim.performed += OnAim;
-
-            _shoot = _playerControls.Player.Shoot;
-            _shoot.performed += ctx => OnShoot();
-            
-            }
+            _playerControls.Player.Shoot.performed += ctx => OnShoot();
+            _playerControls.Player.Shoot.canceled += ctx => OnShoot();
+        }
 
         private void OnDisable()
         {
@@ -57,18 +55,20 @@ namespace Player
             HandleRotation();
         }
 
+        private void Update()
+        {
+            Debug.Log(_aim);
+        }
+
         void OnShoot()
         {
             GameObject bullet = ObjectPooling.instance.GetPooledObject();
-
-            if (Mathf.Abs(_aim.x) > rightStickDeadzone && Mathf.Abs(_aim.y) > rightStickDeadzone)
+            
+            if (bullet != null)
             {
-                if (bullet != null)
-                {
-                    bullet.transform.position = bulletPosition.position;
-                    bullet.SetActive(true);
-                    bullet.GetComponent<Rigidbody2D>().velocity = _aim * projectileSpeed;
-                }
+                bullet.transform.position = bulletPosition.position;
+                bullet.SetActive(true);
+                bullet.GetComponent<Rigidbody2D>().velocity = _aim.normalized * projectileSpeed;
             }
         }
         

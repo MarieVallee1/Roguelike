@@ -148,7 +148,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6936a2b5-46b6-4ac9-b0a7-f42f7202ef4a"",
                     ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Shoot"",
