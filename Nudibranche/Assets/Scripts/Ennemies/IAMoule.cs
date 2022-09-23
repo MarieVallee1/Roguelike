@@ -10,6 +10,7 @@ public class IAMoule : MonoBehaviour
 
     public Transform target;
     public float speed = 200;
+    private Vector2 force;
     private float nextWaypointDistance = 1;
 
     private Path path;
@@ -19,6 +20,12 @@ public class IAMoule : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
 
+    private bool cac = false;
+    public float cacDistanceMax = 1;
+    private float cacDistance;
+
+    private bool pathUpdated = false;
+
     private void Start()
     {
         mouleSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -27,7 +34,8 @@ public class IAMoule : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0, .5f);
-        
+        pathUpdated = true;
+
     }
 
     void UpdatePath()
@@ -67,9 +75,18 @@ public class IAMoule : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position);
-        Vector2 force = direction * speed * Time.deltaTime;
+        force = direction * speed * Time.deltaTime;
+
+        if (!cac)
+        {
+            if (!pathUpdated)
+            {
+                Debug.Log("Relancer pathfinding");
+                //pathUpdated = true;
+            }
+            rb.AddForce(force);
+        }
         
-        rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -77,6 +94,30 @@ public class IAMoule : MonoBehaviour
         {
             currentWaypoint++;
         }
+    }
+
+    private void Update()
+    {
+        cacDistance = Vector2.Distance(gameObject.transform.position, target.transform.position);
+        if (cacDistance<= cacDistanceMax)
+        {
+            cac = true;
+        }
+        else
+        {
+            cac = false;
+        }
+
+        if (cac)
+        {
+            CancelInvoke("UpdatePath");
+            seeker.CancelCurrentPathRequest();
+            rb.velocity = new Vector2(0, 0);
+            path = null;
+            pathUpdated = false;
+        }
+        
+        Debug.Log(cac);
     }
 
     void Flip()

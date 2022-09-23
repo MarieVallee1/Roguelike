@@ -649,6 +649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 2049953311}
   speed: 300
+  cacDistanceMax: 2
 --- !u!50 &1004536109
 Rigidbody2D:
   serializedVersion: 4
@@ -709,7 +710,7 @@ GameObject:
   - component: {fileID: 2049953312}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,7 +795,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0000011920929, y: 0.0067071915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -805,5 +806,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.0263515, y: 6.395624}
   m_EdgeRadius: 0
