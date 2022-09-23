@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5362894634619154346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 5362894636171920231}
   - component: {fileID: 5362894636171920216}
   - component: {fileID: 5362894636171920217}
-  - component: {fileID: 1529406178}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -153,9 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44b5aa3dd6309444a11acbd98aa687a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
   bulletPosition: {fileID: 5362894634619154348}
+  rightStickDeadzone: 0
   moveSpeed: 20
+  projectileSpeed: 20
 --- !u!50 &5362894636171920217
 Rigidbody2D:
   serializedVersion: 4
@@ -175,39 +175,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1529406178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5362894636171920228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5e62318ba7b831741b7b7829bc057d9e,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &5362894636220218090
 GameObject:
   m_ObjectHideFlags: 0
