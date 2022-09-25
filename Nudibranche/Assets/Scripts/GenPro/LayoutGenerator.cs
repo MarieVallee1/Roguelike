@@ -10,28 +10,9 @@ namespace GenPro
 {
     public class LayoutGenerator : MonoBehaviour
     {
-        private Object[] _startRoom;
-        private Object[] _bossRoom;
-        private Object[] _characterRoom;
-        private Object[] _secretRoom;
-        private Object[] _shopRoom;
-        //4Room
-        private Object[] _4Room;
-        //3Room
-        private Object[] _neoRoom;
-        private Object[] _nseRoom;
-        private Object[] _nsoRoom;
-        private Object[] _seoRoom;
-        //2Room
-        private Object[] _eoRoom;
-        private Object[] _neRoom;
-        private Object[] _noRoom;
-        private Object[] _nsRoom;
-        private Object[] _seRoom;
-        private Object[] _soRoom;
-        //larger 2Room
-        private Object[] _bigRoom;
-        
+        private Object[] _currentRoomPool;
+        private int _chosenRoom;
+        private Transform _newRoom;
         public List<GameObject> listSalle;
         
         private enum Side
@@ -54,79 +35,95 @@ namespace GenPro
 
         private void TestLayout()
         {
-            Place3RoomNse(1,Side.Left);
+            Place4Room(1,Side.Left);
             PlaceBossRoom(2,Side.Up);
             Place2RoomNo(2,Side.Down);
             Place2RoomNe(4,Side.Left);
             Place2RoomSe(5,Side.Up);
         }
 
-        private void InstantiateRoom(IReadOnlyList<Object> salle,int indexOldRoom,Side side)
+        private void InstantiateRoom(int indexOldRoom,Side side,bool big)
         {
             Debug.Log(indexOldRoom);
-            var chosenRoom = Random.Range(0, salle.Count);
-            var newRoom = salle[chosenRoom].GameObject().transform;
+            _newRoom = _currentRoomPool[_chosenRoom].GameObject().transform; 
+            
             switch (side)
             {
                 case Side.Up:
-                    UpPlacement(listSalle[indexOldRoom].transform,newRoom);
+                    UpPlacement(listSalle[indexOldRoom].transform,_newRoom,big);
                     break;
                 case Side.Right:
-                    RightPlacement(listSalle[indexOldRoom].transform,newRoom);
+                    RightPlacement(listSalle[indexOldRoom].transform,_newRoom,big);
                     break;
                 case Side.Down:
-                    DownPlacement(listSalle[indexOldRoom].transform,newRoom);
+                    DownPlacement(listSalle[indexOldRoom].transform,_newRoom,big);
                     break;
                 case Side.Left:
-                    LeftPlacement(listSalle[indexOldRoom].transform,newRoom);
+                    LeftPlacement(listSalle[indexOldRoom].transform,_newRoom,big);
                     break;
-                default:
+                case Side.Start:
                     _newPos = startPos;
                     break;
             }
-            listSalle.Add( Instantiate(salle[chosenRoom].GameObject(),_newPos,quaternion.identity,transform));
+            listSalle.Add( Instantiate(_currentRoomPool[_chosenRoom].GameObject(),_newPos,quaternion.identity,transform));
         }
         
-        private void UpPlacement(Transform oldRoom,Transform newRoom)
+        private void UpPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
             var tempX = oldRoom.position.x;
             var tempY = oldRoom.position.y + oldRoom.lossyScale.y / 2 + newRoom.lossyScale.y / 2;
-            if (oldRoom.gameObject.GetComponent<RefEntryBigRoom>())
+            if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
-                tempX = oldRoom.gameObject.GetComponent<RefEntryBigRoom>().entreeSud.transform.position.x;
+                tempX = oldRoom.gameObject.GetComponent<RefEntry>().entreeNord.transform.position.x;
+            }
+            if (big)
+            {
+                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud.transform.position.x;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
         
-        private void RightPlacement(Transform oldRoom,Transform newRoom)
+        private void RightPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
             var tempX = oldRoom.position.x+ oldRoom.lossyScale.x / 2 + newRoom.lossyScale.x / 2;
             var tempY = oldRoom.position.y;
-            if (oldRoom.gameObject.GetComponent<RefEntryBigRoom>())
+            if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
-                tempY = oldRoom.gameObject.GetComponent<RefEntryBigRoom>().entreeOuest.transform.position.y;
+                tempY = oldRoom.gameObject.GetComponent<RefEntry>().entreeEst.transform.position.y;
+            }
+            if (big)
+            {
+                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest.transform.position.x;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
         
-        private void DownPlacement(Transform oldRoom,Transform newRoom)
+        private void DownPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
             var tempX = oldRoom.position.x;
             var tempY = oldRoom.position.y - oldRoom.lossyScale.x / 2 - newRoom.lossyScale.x / 2;
-            if (oldRoom.gameObject.GetComponent<RefEntryBigRoom>())
+            if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
-                tempX = oldRoom.gameObject.GetComponent<RefEntryBigRoom>().entreeNord.transform.position.x;
+                tempX = oldRoom.gameObject.GetComponent<RefEntry>().entreeSud.transform.position.x;
+            }
+            if (big)
+            {
+                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord.transform.position.x;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
         
-        private void LeftPlacement(Transform oldRoom,Transform newRoom)
+        private void LeftPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
             var tempX = oldRoom.position.x - oldRoom.lossyScale.x / 2 - newRoom.lossyScale.x / 2;
             var tempY = oldRoom.position.y;
-            if (oldRoom.gameObject.GetComponent<RefEntryBigRoom>())
+            if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
-                tempY = oldRoom.gameObject.GetComponent<RefEntryBigRoom>().entreeEst.transform.position.y;
+                tempY = oldRoom.gameObject.GetComponent<RefEntry>().entreeOuest.transform.position.y;
+            }
+            if (big)
+            {
+                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst.transform.position.x;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
@@ -134,104 +131,172 @@ namespace GenPro
         #region PlaceRoom
         private void PlaceStartRoom()
         {
-            _startRoom = Resources.LoadAll("StartRoom", typeof(GameObject));
-            InstantiateRoom(_startRoom, 0,Side.Start);
+            _currentRoomPool = Resources.LoadAll("StartRoom", typeof(GameObject));
+            InstantiateRoom(0,Side.Start,false);
         }
         private void PlaceSecondRoom()
         {
-            _seoRoom = Resources.LoadAll("3Room/SEO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,0,Side.Up);
+            _currentRoomPool = Resources.LoadAll("3Room/SEO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(0,Side.Up,false);
         }
         
         private void PlaceBossRoom(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("BossRoom", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("BossRoom", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void PlaceCharacterRoom(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("BossRoom", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("CharacterRoom", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void PlaceSecretRoom(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("BossRoom", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("SecretRoom", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void PlaceShopRoom(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("BossRoom", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("ShopRoom", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place4Room(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("4Room", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("4Room", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place3RoomNeo(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("3Room/NEO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("3Room/NEO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place3RoomNse(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("3Room/NSE", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("3Room/NSE", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place3RoomNso(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("3Room/NSO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("3Room/NSO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place3RoomSeo(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("3Room/SEO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("3Room/SEO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place2RoomEo(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("2Room/EO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("2Room/EO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place2RoomNe(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("2Room/NE", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("2Room/NE", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place2RoomNo(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("2Room/NO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("2Room/NO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place2RoomNs(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("2Room/NS", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("2Room/NS", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place2RoomSe(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("2Room/SE", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("2Room/SE", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
         }
         
         private void Place2RoomSo(int indexOldRoom,Side side)
         {
-            _seoRoom = Resources.LoadAll("2Room/SO", typeof(GameObject));
-            InstantiateRoom(_seoRoom,indexOldRoom,side);
+            _currentRoomPool = Resources.LoadAll("2Room/SO", typeof(GameObject));
+            PickARoomAtRandom();
+            InstantiateRoom(indexOldRoom,side,false);
+        }
+        
+        private void PlaceBigRoom(int indexOldRoom,Side side)
+        {
+            _currentRoomPool = Resources.LoadAll("BigRoom", typeof(GameObject));
+            ChooseSpecialRoom(side);
+            InstantiateRoom(indexOldRoom,side,true);
         }
         #endregion
+
+        private void PickARoomAtRandom()
+        {
+            _chosenRoom = Random.Range(0, _currentRoomPool.Length);
+        }
+
+        private void ChooseSpecialRoom(Side side)
+        {
+            var entrySide = Side.Start;
+            switch (side)
+            {
+                case Side.Up:
+                    while (entrySide!=Side.Down)
+                    {
+                        PickARoomAtRandom();
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud)
+                            entrySide = Side.Down;
+                    }
+                    break;
+                case Side.Right:
+                    while (entrySide!=Side.Left)
+                    {
+                        PickARoomAtRandom();
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest)
+                            entrySide = Side.Left;
+                    }
+                    break;
+                case Side.Down:
+                    while (entrySide!=Side.Up)
+                    {
+                        PickARoomAtRandom();
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord)
+                            entrySide = Side.Up;
+                    }
+                    break;
+                case Side.Left:
+                    while (entrySide!=Side.Right)
+                    {
+                        PickARoomAtRandom();
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst)
+                            entrySide = Side.Right;
+                    }
+                    break;
+            }
+        }
     }
 }
