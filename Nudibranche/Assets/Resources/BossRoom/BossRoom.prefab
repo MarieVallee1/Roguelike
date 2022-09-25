@@ -350,8 +350,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1448626075917169022}
   - component: {fileID: 1965866107102166522}
+  - component: {fileID: 685868460678149464}
   m_Layer: 0
-  m_Name: 4Room1
+  m_Name: BossRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,3 +430,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &685868460678149464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798991289533041945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc7567a84e639b4485e2a4a94079e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entreeNord: {fileID: 5909119137766675870}
+  entreeSud: {fileID: 5356405474359740444}
+  entreeEst: {fileID: 4440202135283749739}
+  entreeOuest: {fileID: 7258610828469679957}

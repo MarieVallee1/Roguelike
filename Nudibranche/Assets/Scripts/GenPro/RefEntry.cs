@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GenPro
 {
-    public class RefEntryBigRoom : MonoBehaviour
+    public class RefEntry : MonoBehaviour
     {
         public GameObject entreeNord;
         public GameObject entreeSud;
