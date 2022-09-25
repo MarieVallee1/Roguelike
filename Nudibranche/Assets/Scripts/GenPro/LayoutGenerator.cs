@@ -13,6 +13,7 @@ namespace GenPro
         private Object[] _currentRoomPool;
         private int _chosenRoom;
         private Transform _newRoom;
+        private int _lastRoomIndex;
         public List<GameObject> listSalle;
         
         private enum Side
@@ -26,11 +27,20 @@ namespace GenPro
 
         [SerializeField] private Vector3 startPos;
         private Vector3 _newPos;
+
+        [SerializeField] private int firstLoopFiller2RoomApparitionDenominator;
+        [SerializeField] private int firstLoopFiller2RoomBigVersionDenominator;
         private void Start()
         {
             PlaceStartRoom();
-            PlaceSecondRoom();
-            TestLayout();
+            if (PlaceSecondRoom()) //4Room
+            {
+                TestLayout();
+            }
+            else //3RoomSEO
+            {
+                TestLayout();
+            }
         }
 
         private void TestLayout()
@@ -40,6 +50,24 @@ namespace GenPro
             Place2RoomNo(2,Side.Down);
             Place2RoomNe(4,Side.Left);
             Place2RoomSe(5,Side.Up);
+        }
+        
+        private void CheckFirstLoopFiller2Room(Side side)
+        {
+            if (Random.Range(0,firstLoopFiller2RoomApparitionDenominator)==0)
+                AddFirstLoopFiller2Room(side);
+        }
+
+        private void AddFirstLoopFiller2Room(Side side)
+        {
+            if (side == Side.Left)
+            {
+                if (Random.Range(0,firstLoopFiller2RoomBigVersionDenominator)==0)
+                {
+                    PlaceBigRoom(_lastRoomIndex,Side.Left);
+                    return;
+                }
+            }
         }
 
         private void InstantiateRoom(int indexOldRoom,Side side,bool big)
@@ -134,11 +162,20 @@ namespace GenPro
             _currentRoomPool = Resources.LoadAll("StartRoom", typeof(GameObject));
             InstantiateRoom(0,Side.Start,false);
         }
-        private void PlaceSecondRoom()
+        
+        private bool PlaceSecondRoom()
         {
-            _currentRoomPool = Resources.LoadAll("3Room/SEO", typeof(GameObject));
+            if (Random.Range(0,2)==0)
+            {
+                _currentRoomPool = Resources.LoadAll("3Room/SEO", typeof(GameObject));
+                PickARoomAtRandom();
+                InstantiateRoom(0,Side.Up,false);
+                return false;
+            }
+            _currentRoomPool = Resources.LoadAll("4Room", typeof(GameObject));
             PickARoomAtRandom();
             InstantiateRoom(0,Side.Up,false);
+            return true;
         }
         
         private void PlaceBossRoom(int indexOldRoom,Side side)
