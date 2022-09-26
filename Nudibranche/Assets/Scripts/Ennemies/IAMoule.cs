@@ -37,6 +37,8 @@ public class IAMoule : MonoBehaviour
         pathUpdated = true;
 
     }
+    
+    // faire quelque chose avec un Physics2D.CircleCast qui détecte uniquement la layer Player
 
     void UpdatePath()
     {
