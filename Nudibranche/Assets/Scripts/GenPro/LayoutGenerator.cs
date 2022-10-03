@@ -308,9 +308,8 @@ namespace GenPro
         }
         private void InstantiateRoom(int indexOldRoom,Side side,bool big)
         {
-            Debug.Log(indexOldRoom);
-            _newRoom = _currentRoomPool[_chosenRoom].GameObject().transform; 
-            
+            _newRoom = _currentRoomPool[_chosenRoom].GameObject().transform;
+
             switch (side)
             {
                 case Side.Up:
@@ -342,7 +341,7 @@ namespace GenPro
             }
             if (big)
             {
-                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud.transform.position.x;
+                tempX += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud.transform.position.x;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
@@ -356,7 +355,7 @@ namespace GenPro
             }
             if (big)
             {
-                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest.transform.position.x;
+                tempY += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest.transform.position.y;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
@@ -370,7 +369,7 @@ namespace GenPro
             }
             if (big)
             {
-                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord.transform.position.x;
+                tempX += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord.transform.position.x;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
@@ -384,7 +383,7 @@ namespace GenPro
             }
             if (big)
             {
-                tempX = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst.transform.position.x;
+                tempY += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst.transform.position.y;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
