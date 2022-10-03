@@ -6,39 +6,42 @@ using Pathfinding;
 
 public class IAMoule : MonoBehaviour
 {
-    private SpriteRenderer mouleSprite;
-
-    public Transform target;
+    // Pathfinding //
+    public Transform target;    //TO DO: trouver une autre manière de lui assigner le player que à la main (vraiment utile ?)
     public float speed = 200;
     private Vector2 force;
     private float nextWaypointDistance = 1;
-
     private Path path;
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
-
     private Seeker seeker;
     private Rigidbody2D rb;
-
-    private bool cac = false;
-    public float cacDistanceMax = 1;
-    private float cacDistance;
-
     private bool pathUpdated = true;
+    private bool stopPathfinding;
+    
+    // Graph //
+    private SpriteRenderer mouleSprite;
+    
+    // Combat //
+    private bool cac;
+    private float cacDistance;
+    public float timeBetwennAttacks = 1;
+    public float timePrepAttack = 1;
+    public int damage = 1;
+    private TestPlayerEtIA testPlayerEtIa;  //TO DO: à remplacer par le vrai script du player
+
 
     private void Start()
     {
         mouleSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
-
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        testPlayerEtIa = target.gameObject.GetComponent<TestPlayerEtIA>(); 
 
-        InvokeRepeating("UpdatePath", 0, .5f);  // à mettre ailleurs pour lui donner une conditions de lancement 
+        InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
 
     }
-    
-    // faire quelque chose avec un Physics2D.CircleCast qui détecte uniquement la layer Player
 
     void UpdatePath()
     {
@@ -62,7 +65,7 @@ public class IAMoule : MonoBehaviour
         
         Flip();
 
-        if (!pathUpdated && !cac)
+        if (!pathUpdated && !stopPathfinding)
         {
             InvokeRepeating("UpdatePath", 0, .5f);
             pathUpdated = true;
@@ -86,7 +89,7 @@ public class IAMoule : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position);
         force = direction * speed * Time.deltaTime;
 
-        if (!cac)
+        if (!stopPathfinding)
         {
             rb.AddForce(force);
         }
@@ -101,17 +104,7 @@ public class IAMoule : MonoBehaviour
 
     private void Update()
     {
-        cacDistance = Vector2.Distance(gameObject.transform.position, target.transform.position);
-        if (cacDistance<= cacDistanceMax)
-        {
-            cac = true;
-        }
-        else
-        {
-            cac = false;    // rajouter une condition pour ne pas relancer le pathfinding trop vite
-        }
-
-        if (cac)
+        if (stopPathfinding)
         {
             CancelInvoke("UpdatePath");
             seeker.CancelCurrentPathRequest();
@@ -120,8 +113,42 @@ public class IAMoule : MonoBehaviour
             pathUpdated = false;
         }
     }
-    
-    // faire une coroutine: attaque puis attente
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            cac = true;
+            stopPathfinding = true;
+            StartCoroutine(Attaque());
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        cac = false;
+    }
+
+    private IEnumerator Attaque()
+    {
+        mouleSprite.color = Color.yellow;
+        yield return new WaitForSeconds(timePrepAttack);
+        mouleSprite.color = Color.red;
+        if (cac)
+        {
+            testPlayerEtIa.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
+        }
+        yield return new WaitForSeconds(0.1f);
+        mouleSprite.color = Color.white;
+        yield return new WaitForSeconds(timeBetwennAttacks);
+        if (cac)                          // relance une attaque si le joueur est toujours au CaC
+        {
+            StartCoroutine(Attaque());
+        }
+        else
+        {
+            stopPathfinding = false;
+        }
+    }
 
     void Flip()
     {
