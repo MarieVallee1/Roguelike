@@ -19,7 +19,7 @@ namespace Projectiles
                 usedProjectile.SetActive(true);
             
                 //Physic
-                usedProjectile.GetComponent<Rigidbody2D>().velocity = cc.aim * projectileSpeed;
+                usedProjectile.GetComponent<Rigidbody2D>().velocity = cc.aim.normalized * projectileSpeed;
 
                 cc.nextTimeCast = Time.time + fireRate;
             }

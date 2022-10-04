@@ -49,7 +49,8 @@ namespace Character
             HandleMovement();
             AttackCooldown();
             
-            if(isShootingGamepad) usedProjectile.CharacterShooting(this, _tr.position);
+            if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, _tr.position);
+            if(isShootingMouse) MousePosition();
         }
 
         private void OnEnable()
@@ -65,15 +66,9 @@ namespace Character
 
             _characterInputs.Character.AimGamepad.performed += ctx =>
             {
-                if(isShootingGamepad)
-                {
-                    {
-                        aim = ctx.ReadValue<Vector2>();
-                    }
-                }
+                if(isShootingGamepad) aim = ctx.ReadValue<Vector2>();
             };
-         
-            _characterInputs.Character.AimMouse.performed += ctx => aim = ctx.ReadValue<Vector2>();
+            
             _characterInputs.Character.ShootGamepad.performed += ctx => isShootingGamepad = true;
             _characterInputs.Character.ShootGamepad.canceled += ctx => isShootingGamepad = false;
             _characterInputs.Character.ShootMouse.performed += ctx => isShootingMouse = true;
@@ -112,6 +107,11 @@ namespace Character
             if(Time.time > nextTimeCast) return true;
             return false;
         }
+
+        public void MousePosition()
+        {
+            aim = mousePos.transform.position;
+        } 
         
     }
 }
