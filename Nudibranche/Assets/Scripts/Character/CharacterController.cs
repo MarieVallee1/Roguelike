@@ -9,19 +9,21 @@ namespace Character
 
         private Rigidbody2D _rb;
         private Transform _tr;
-        //private Animator _animator;
         private SpriteRenderer _spriteRen;
+        //private Animator _animator;
 
+        [Header("References")]
         [SerializeField] private CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
         [SerializeField] private GameObject mousePos;
 
         #region Variables
         private Vector2 _direction;
-        public Vector2 aim;
+        [HideInInspector] public Vector2 aim;
         [HideInInspector] public float nextTimeCast;
-        [SerializeField] private bool isShootingGamepad;
-        [SerializeField] private bool isShootingMouse;
+        [Header("Debug")]
+        public bool isShootingGamepad;
+        public bool isShootingMouse;
         //private int _isRunningHash;
         //private bool _movementPressed;
         #endregion
@@ -46,7 +48,10 @@ namespace Character
             HandleMovement();
             AttackCooldown();
             
-            if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, _tr.position);
+            //Shoot the projectile
+            if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, mousePos.transform.position);
+            
+            //Handle the direction of the projectile if shot with the mouse
             if(isShootingMouse) MousePosition();
         }
 
@@ -63,9 +68,11 @@ namespace Character
 
             _characterInputs.Character.AimGamepad.performed += ctx =>
             {
+                //Handle the direction of the projectile if shot with the gamepad
                 if(isShootingGamepad) aim = ctx.ReadValue<Vector2>();
             };
             
+            //Allow to detect which controller is used 
             _characterInputs.Character.ShootGamepad.performed += ctx => isShootingGamepad = true;
             _characterInputs.Character.ShootGamepad.canceled += ctx => isShootingGamepad = false;
             _characterInputs.Character.ShootMouse.performed += ctx => isShootingMouse = true;
@@ -107,7 +114,7 @@ namespace Character
 
         public void MousePosition()
         {
-            aim = mousePos.transform.position;
+            aim = mousePos.transform.position - _tr.position;
         } 
         
     }
