@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4502711793785704712}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.01, z: 1.5871454}
+  m_LocalPosition: {x: 0.01, y: 0.01, z: 0}
   m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.22218}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,11 +115,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4502711793997958834}
   - component: {fileID: 4502711793997958844}
-  - component: {fileID: 4502711793997958847}
   - component: {fileID: 4502711793997958841}
   - component: {fileID: 4502711793997958840}
   - component: {fileID: 4502711793997958843}
-  m_Layer: 0
+  - component: {fileID: 7617211471611752731}
+  m_Layer: 9
   m_Name: Moule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,20 +170,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &4502711793997958847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4502711793997958835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 0}
 --- !u!114 &4502711793997958841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,8 +183,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 300
-  cacDistanceMax: 2
+  speed: 250
+  timeBetwennAttacks: 1
+  timePrepAttack: 1
+  damage: 1
 --- !u!50 &4502711793997958840
 Rigidbody2D:
   serializedVersion: 4
@@ -246,3 +234,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2135451, y: 1.1910661}
   m_EdgeRadius: 0
+--- !u!114 &7617211471611752731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502711793997958835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6503342195327828589
+  updateError: 1
+  checkTime: 0.2
