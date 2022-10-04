@@ -1,8 +1,5 @@
 using Projectiles;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.iOS;
-using UnityEngine.Serialization;
 
 namespace Character
 {
@@ -21,7 +18,7 @@ namespace Character
 
         #region Variables
         private Vector2 _direction;
-        [HideInInspector] public Vector2 aim;
+        public Vector2 aim;
         [HideInInspector] public float nextTimeCast;
         [SerializeField] private bool isShootingGamepad;
         [SerializeField] private bool isShootingMouse;
