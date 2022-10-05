@@ -133,7 +133,7 @@ public class IAMoule : MonoBehaviour
         mouleSprite.color = Color.yellow;
         yield return new WaitForSeconds(timePrepAttack);
         mouleSprite.color = Color.red;
-        if (cac)
+        if (cac)        // TO DO: si parade bien placée pas de dégâts
         {
             testPlayerEtIa.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
         }

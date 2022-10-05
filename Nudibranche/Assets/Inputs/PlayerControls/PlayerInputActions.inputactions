@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "Character",
             "id": "dffa9ebb-0019-42d8-a081-3b1c7bf71c5c",
             "actions": [
                 {
@@ -15,19 +15,37 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Aim",
+                    "name": "AimGamepad",
                     "type": "PassThrough",
                     "id": "ae59ba16-f537-4224-b680-334308ee54b3",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.5)",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
+                    "name": "AimMouse",
                     "type": "PassThrough",
+                    "id": "f1c40998-9253-4700-bb31-0c5829920c00",
+                    "expectedControlType": "Vector2",
+                    "processors": "StickDeadzone(min=0.5)",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShootGamepad",
+                    "type": "Value",
                     "id": "d600c100-b086-4823-9ac5-0c12ebbd7e4f",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ShootMouse",
+                    "type": "Button",
+                    "id": "401b10aa-7c54-4eaa-b94d-7e087f53826a",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -39,7 +57,7 @@
                     "id": "4c71cc50-a055-4d31-a797-60514fd8cde5",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "StickDeadzone(min=0.5)",
                     "groups": "Gamepad",
                     "action": "Movement",
                     "isComposite": false,
@@ -107,18 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9511a7e3-c274-423f-8730-64552d931c28",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard & Mouse",
-                    "action": "Aim",
+                    "action": "AimGamepad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -126,10 +133,32 @@
                     "name": "",
                     "id": "6936a2b5-46b6-4ac9-b0a7-f42f7202ef4a",
                     "path": "<Gamepad>/rightStick",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.2)",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Shoot",
+                    "action": "ShootGamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b1d74db-9646-4cd7-bacb-f6b002a7b556",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "ShootMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5586d11c-374a-4ca8-97bf-5ab9701ee63c",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "AimMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
