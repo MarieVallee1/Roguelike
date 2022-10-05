@@ -17,6 +17,7 @@ namespace GenPro
         private Vector3 _newPos;
         private int _indexForBoss,_indexForCharacter1, _indexForCharacter2;
         private Side _sideFirstLoop, _sideBoss, _sideCharacter1,_sideCharacter2, _nextSide;
+        private SpecialRoom _specialRoom1, _specialRoom2, _specialRoom3;
         private bool _secondRoom4Room, _bossRoomIsSet;
 
         private enum Side
@@ -46,8 +47,11 @@ namespace GenPro
             _secondRoom4Room = PlaceSecondRoom();
             PickSideFirstLoop();
             CheckFiller2Room(_sideFirstLoop);
+            _specialRoom1 = PickSpecialRoom();
             FirstLoop();
-            
+            _specialRoom2 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
+            _specialRoom3 = SpecialRoom.Character2;
+            SecondLoop();
         }
         private void CheckFiller2Room(Side side)
         {
@@ -173,13 +177,12 @@ namespace GenPro
         private void FirstLoopUpRight()
         {
             _nextSide = Side.Up;
-            var specialRoom = PickSpecialRoom();
             var addSpecialRoom = Random.Range(1, 5);
             if (addSpecialRoom==1)
             {
                 Place3RoomNse(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Right;
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(_specialRoom1,Side.Up);
             }
             else Place2RoomSe(_lastRoomIndex,_nextSide);
 
@@ -187,33 +190,32 @@ namespace GenPro
             {
                 Place3RoomNso(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Down;
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(_specialRoom1,Side.Up);
             }
             if (addSpecialRoom==3)
             {
                 Place3RoomSeo(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Down;
-                SetSpecialRoom(specialRoom,Side.Right);
+                SetSpecialRoom(_specialRoom1,Side.Right);
             }
             else if(addSpecialRoom!=2) Place2RoomSo(_lastRoomIndex,_nextSide);
             
             if (addSpecialRoom==4)
             {
                 Place3RoomNeo(_lastRoomIndex,_nextSide);
-                SetSpecialRoom(specialRoom,Side.Right);
+                SetSpecialRoom(_specialRoom1,Side.Right);
             }
             else Place2RoomNo(_lastRoomIndex,_nextSide);
         }
         private void FirstLoopUpLeft()
         {
             _nextSide = Side.Up;
-            var specialRoom = PickSpecialRoom();
             var addSpecialRoom = Random.Range(1, 5);
             if (addSpecialRoom==1)
             {
                 Place3RoomNso(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Left;
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(_specialRoom1,Side.Up);
             }
             else Place2RoomSo(_lastRoomIndex,_nextSide);
 
@@ -221,33 +223,32 @@ namespace GenPro
             {
                 Place3RoomNse(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Down;
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(_specialRoom1,Side.Up);
             }
             if (addSpecialRoom==3)
             {
                 Place3RoomSeo(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Down;
-                SetSpecialRoom(specialRoom,Side.Left);
+                SetSpecialRoom(_specialRoom1,Side.Left);
             }
             else if(addSpecialRoom!=2) Place2RoomSe(_lastRoomIndex,_nextSide);
             
             if (addSpecialRoom==4)
             {
                 Place3RoomNeo(_lastRoomIndex,_nextSide);
-                SetSpecialRoom(specialRoom,Side.Left);
+                SetSpecialRoom(_specialRoom1,Side.Left);
             }
             else Place2RoomNe(_lastRoomIndex,_nextSide);
         }
         private void FirstLoopDownRight()
         {
             _nextSide = Side.Down;
-            var specialRoom = PickSpecialRoom();
             var addSpecialRoom = Random.Range(1, 5);
             if (addSpecialRoom==1)
             {
                 Place3RoomNse(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Right;
-                SetSpecialRoom(specialRoom,Side.Down);
+                SetSpecialRoom(_specialRoom1,Side.Down);
             }
             else Place2RoomNe(_lastRoomIndex,_nextSide);
 
@@ -255,33 +256,32 @@ namespace GenPro
             {
                 Place3RoomNso(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Up;
-                SetSpecialRoom(specialRoom,Side.Down);
+                SetSpecialRoom(_specialRoom1,Side.Down);
             }
             if (addSpecialRoom==3)
             {
                 Place3RoomNeo(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Up;
-                SetSpecialRoom(specialRoom,Side.Right);
+                SetSpecialRoom(_specialRoom1,Side.Right);
             }
             else if(addSpecialRoom!=2) Place2RoomNo(_lastRoomIndex,_nextSide);
             
             if (addSpecialRoom==4)
             {
                 Place3RoomSeo(_lastRoomIndex,_nextSide);
-                SetSpecialRoom(specialRoom,Side.Right);
+                SetSpecialRoom(_specialRoom1,Side.Right);
             }
             else Place2RoomSo(_lastRoomIndex,_nextSide);
         }
         private void FirstLoopDownLeft()
         {
             _nextSide = Side.Down;
-            var specialRoom = PickSpecialRoom();
             var addSpecialRoom = Random.Range(1, 5);
             if (addSpecialRoom==1)
             {
                 Place3RoomNso(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Left;
-                SetSpecialRoom(specialRoom,Side.Down);
+                SetSpecialRoom(_specialRoom1,Side.Down);
             }
             else Place2RoomNo(_lastRoomIndex,_nextSide);
 
@@ -289,22 +289,80 @@ namespace GenPro
             {
                 Place3RoomNse(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Up;
-                SetSpecialRoom(specialRoom,Side.Down);
+                SetSpecialRoom(_specialRoom1,Side.Down);
             }
             if (addSpecialRoom==3)
             {
                 Place3RoomNeo(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Up;
-                SetSpecialRoom(specialRoom,Side.Left);
+                SetSpecialRoom(_specialRoom1,Side.Left);
             }
             else if(addSpecialRoom!=2)Place2RoomNe(_lastRoomIndex,_nextSide);
             
             if (addSpecialRoom==4)
             {
                 Place3RoomSeo(_lastRoomIndex,_nextSide);
-                SetSpecialRoom(specialRoom,Side.Left);
+                SetSpecialRoom(_specialRoom1,Side.Left);
             }
             else Place2RoomSe(_lastRoomIndex,_nextSide);
+        }
+        private void SecondLoop()
+        {
+            if (_secondRoom4Room)
+            {
+                SecondLoopJoined();
+            }
+            else SecondLoopUnjoined();
+        }
+        private void SecondLoopJoined()
+        {
+            if (_sideFirstLoop==Side.Right)
+            {
+                SecondLoopJoinedLeft();
+            }
+            else SecondLoopJoinedRight();
+        }
+        private void SecondLoopJoinedLeft()
+        {
+            _nextSide = Side.Up;
+            var addSpecialRoom2 = Random.Range(1, 5);
+            var addSpecialRoom3 = Random.Range(1, 5);
+            if (addSpecialRoom2==1)
+            {
+                Place3RoomNso(1,_nextSide); //Set 1st Room of the loop on top of the 2nd Room
+                _nextSide = Side.Left;
+                SetSpecialRoom(_specialRoom1,Side.Up);
+            }
+            else Place2RoomSo(_lastRoomIndex,_nextSide);
+
+            if (addSpecialRoom2==2)
+            {
+                Place3RoomNse(_lastRoomIndex,_nextSide);
+                _nextSide = Side.Down;
+                SetSpecialRoom(_specialRoom1,Side.Up);
+            }
+            if (addSpecialRoom2==3)
+            {
+                Place3RoomSeo(_lastRoomIndex,_nextSide);
+                _nextSide = Side.Down;
+                SetSpecialRoom(_specialRoom1,Side.Left);
+            }
+            else if(addSpecialRoom2!=2) Place2RoomSe(_lastRoomIndex,_nextSide);
+            
+            if (addSpecialRoom2==4)
+            {
+                Place3RoomNeo(_lastRoomIndex,_nextSide);
+                SetSpecialRoom(_specialRoom1,Side.Left);
+            }
+            else Place2RoomNe(_lastRoomIndex,_nextSide);
+        }
+        private void SecondLoopJoinedRight()
+        {
+            
+        }
+        private void SecondLoopUnjoined()
+        {
+            
         }
         private void InstantiateRoom(int indexOldRoom,Side side,bool big)
         {
@@ -540,12 +598,10 @@ namespace GenPro
             SpecialRoom specialRoom;
             if (Random.Range(0,2) == 0)
             {
-                specialRoom = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character2;
+                specialRoom = SpecialRoom.Boss;
+                _bossRoomIsSet = true;
             }
-            else
-            {
-                specialRoom = SpecialRoom.Character1;
-            }
+            else specialRoom = SpecialRoom.Character1;
             return specialRoom;
         }
         private void SetSpecialRoom(SpecialRoom specialRoom, Side side)
