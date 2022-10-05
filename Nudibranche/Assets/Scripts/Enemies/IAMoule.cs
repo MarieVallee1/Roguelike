@@ -140,7 +140,7 @@ public class IAMoule : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         mouleSprite.color = Color.white;
         yield return new WaitForSeconds(timeBetwennAttacks);
-        if (cac)                          // relance une attaque si le joueur est toujours au CaC
+        if (cac)
         {
             StartCoroutine(Attaque());
         }
