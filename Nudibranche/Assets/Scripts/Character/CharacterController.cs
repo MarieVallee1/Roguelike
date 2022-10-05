@@ -1,3 +1,4 @@
+using System.Threading;
 using Projectiles;
 using UnityEngine;
 
@@ -20,10 +21,13 @@ namespace Character
         #region Variables
         private Vector2 _direction;
         [HideInInspector] public Vector2 aim;
-        [HideInInspector] public float nextTimeCast;
-        [Header("Debug")]
+        [HideInInspector] public float nextTimeCast; 
+        private float _nextTimeParry;
+        private float _parryLifeTime;
+        [Header("State")]
         public bool isShootingGamepad;
         public bool isShootingMouse;
+        public bool isParrying;
         //private int _isRunningHash;
         //private bool _movementPressed;
         #endregion
@@ -41,12 +45,16 @@ namespace Character
             _spriteRen = GetComponent<SpriteRenderer>();
 
             //_isRunningHash = Animator.StringToHash("isRunning");
+
+            _parryLifeTime = characterData.parryTime;
         }
 
         private void Update()
         {
             HandleMovement();
             AttackCooldown();
+            HandleParry();
+            ParryCooldown();
             
             //Shoot the projectile
             if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, mousePos.transform.position);
@@ -77,6 +85,16 @@ namespace Character
             _characterInputs.Character.ShootGamepad.canceled += ctx => isShootingGamepad = false;
             _characterInputs.Character.ShootMouse.performed += ctx => isShootingMouse = true;
             _characterInputs.Character.ShootMouse.canceled += ctx => isShootingMouse = false;
+            _characterInputs.Character.Parry.performed += ctx =>
+            {
+                
+                
+                if (ParryCooldown() && !isParrying)
+                {
+                    Debug.Log(1);
+                    isParrying = true;
+                }
+            };
             
         }
         
@@ -106,9 +124,25 @@ namespace Character
   
         }
 
+        private void HandleParry()
+        {
+            if (isParrying) _parryLifeTime -= Time.deltaTime;
+            if (_parryLifeTime < 0f)
+            {
+                _characterInputs.Character.Parry.Enable();
+                _nextTimeParry = characterData.parryCooldown;
+                isParrying = false;
+            }
+        }
+
         public bool AttackCooldown()
         {
             if(Time.time > nextTimeCast) return true;
+            return false;
+        }
+        public bool ParryCooldown()
+        {
+            if(Time.time > _nextTimeParry) return true;
             return false;
         }
 
