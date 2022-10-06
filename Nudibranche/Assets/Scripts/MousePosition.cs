@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using UnityEngine;
 using CharacterController = Character.CharacterController;
 
@@ -6,8 +6,9 @@ public class MousePosition : MonoBehaviour
 {
     private Vector3 _screenPosition;
     private Vector3 _worldPosition;
+    private Vector3 _characterPosition;
+    private bool _gamepadOn;
     
-    [SerializeField] private Camera cam;
     private CharacterController _cc;
 
     private void Start()
@@ -18,26 +19,27 @@ public class MousePosition : MonoBehaviour
     private void Update()
     {
         BookPosition();
+        LastControlUsed();
     }
 
     private void BookPosition()
     {
-        //Handle the position of the book if the player is shooting with the mouse
-        
-        _screenPosition = Input.mousePosition;
-        _screenPosition.z = cam.nearClipPlane + 1;
-        _worldPosition = cam.ScreenToWorldPoint(_screenPosition);
-        
-        if (_cc.isShootingMouse)
+        if (!_gamepadOn)
         {
-            float angle = Mathf.Atan2(_worldPosition.x, _worldPosition.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, -angle);
+            float angle = Mathf.Atan2( _cc.aim.x,_cc.aim.y) * Mathf.Rad2Deg;
+            transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
         }
         //Same but with the gamepad
-        else if(_cc.isShootingGamepad)
+        if(_gamepadOn)
         {
             float angle = Mathf.Atan2(_cc.aim.x, _cc.aim.y) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, -angle);
+            transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
         }
+    }
+
+    private void LastControlUsed()
+    {
+        if (_cc.isShootingGamepad) _gamepadOn = true;
+        if (_cc.isShootingMouse) _gamepadOn = false;
     }
 }

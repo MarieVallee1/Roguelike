@@ -23,6 +23,8 @@ namespace Character
         #region Variables
         private Vector2 _direction;
         [HideInInspector] public Vector2 aim;
+        [HideInInspector] public Vector2 characterPos;
+        public GameObject debug;
         [HideInInspector] public float nextTimeCast; 
         private float _nextTimeParry;
         private float _parryLifeTime;
@@ -54,6 +56,9 @@ namespace Character
 
         private void Update()
         {
+            debug.transform.position = aim;
+            characterPos = _tr.position;
+            
             HandleMovement();
             
             AttackCooldown();
@@ -61,11 +66,9 @@ namespace Character
             HandleParry();
             ParryCooldown();
             
+            
             //Shoots the projectile
             if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, mousePos.transform.position);
-            
-            //Handles the direction of the projectile if shot with the mouse
-            if(isShootingMouse) MousePosition();
         }
 
         //Manages the inputs
@@ -91,6 +94,10 @@ namespace Character
             _characterInputs.Character.ShootGamepad.canceled += ctx => isShootingGamepad = false;
             _characterInputs.Character.ShootMouse.performed += ctx => isShootingMouse = true;
             _characterInputs.Character.ShootMouse.canceled += ctx => isShootingMouse = false;
+            _characterInputs.Character.AimMouse.performed += ctx =>
+            {
+                aim = ctx.ReadValue<Vector2>();
+            };
             _characterInputs.Character.Parry.performed += ctx =>
             {
                 if (ParryCooldown() && !isParrying)
@@ -165,19 +172,21 @@ namespace Character
             if(Time.time > _nextTimeParry) return true;
             return false;
         }
-
-        private void MousePosition()
-        {
-            aim = mousePos.transform.position - _tr.position;
-        }
-
+        
         private void DisableInputs()
         {
             _characterInputs.Character.Disable();
         }   
+        
         private void EnableInputs()
         {
             _characterInputs.Character.Enable();
+        }
+        
+        private void RestrictMousePos()
+        {
+            Mathf.Clamp(Input.mousePosition.x, aim.x  , aim.x);
+            Mathf.Clamp(Input.mousePosition.y,aim.x, aim.y);
         }
     }
 }
