@@ -10,6 +10,11 @@ namespace Character
         public float speed;
         [Range(0f, 100f)]
         public float health;
+        [Range(0f, 100f)]
+        public float parryCooldown;        
+        [Range(0f, 100f)]
+        public float parryTime;
+        
     
     }
 }

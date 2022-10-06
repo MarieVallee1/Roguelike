@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Projectiles;
 using UnityEngine;
 
@@ -10,23 +11,29 @@ namespace Character
         private Rigidbody2D _rb;
         private Transform _tr;
         private SpriteRenderer _spriteRen;
+        
         //private Animator _animator;
 
         [Header("References")]
         [SerializeField] private CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
         [SerializeField] private GameObject mousePos;
+        [SerializeField] private Transform parryCooldown;
 
         #region Variables
         private Vector2 _direction;
         [HideInInspector] public Vector2 aim;
-        [HideInInspector] public float nextTimeCast;
-        [Header("Debug")]
+        [HideInInspector] public float nextTimeCast; 
+        private float _nextTimeParry;
+        private float _parryLifeTime;
+        [Header("State")]
         public bool isShootingGamepad;
         public bool isShootingMouse;
+        public bool isParrying;
+        #endregion
+
         //private int _isRunningHash;
         //private bool _movementPressed;
-        #endregion
 
         private void Awake()
         {
@@ -37,24 +44,31 @@ namespace Character
         {
             _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<Transform>();
-            //_animator = GetComponent<Animator>();
             _spriteRen = GetComponent<SpriteRenderer>();
 
+            _parryLifeTime = characterData.parryTime;
+            
+            //_animator = GetComponent<Animator>();
             //_isRunningHash = Animator.StringToHash("isRunning");
         }
 
         private void Update()
         {
             HandleMovement();
+            
             AttackCooldown();
             
-            //Shoot the projectile
+            HandleParry();
+            ParryCooldown();
+            
+            //Shoots the projectile
             if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, mousePos.transform.position);
             
-            //Handle the direction of the projectile if shot with the mouse
+            //Handles the direction of the projectile if shot with the mouse
             if(isShootingMouse) MousePosition();
         }
 
+        //Manages the inputs
         private void OnEnable()
         {
             _characterInputs.Enable();
@@ -68,15 +82,23 @@ namespace Character
 
             _characterInputs.Character.AimGamepad.performed += ctx =>
             {
-                //Handle the direction of the projectile if shot with the gamepad
+                //Handles the direction of the projectile if shot with the gamepad
                 if(isShootingGamepad) aim = ctx.ReadValue<Vector2>();
             };
             
-            //Allow to detect which controller is used 
+            //Allows to detect which controller is used 
             _characterInputs.Character.ShootGamepad.performed += ctx => isShootingGamepad = true;
             _characterInputs.Character.ShootGamepad.canceled += ctx => isShootingGamepad = false;
             _characterInputs.Character.ShootMouse.performed += ctx => isShootingMouse = true;
             _characterInputs.Character.ShootMouse.canceled += ctx => isShootingMouse = false;
+            _characterInputs.Character.Parry.performed += ctx =>
+            {
+                if (ParryCooldown() && !isParrying)
+                {
+                    Debug.Log(1);
+                    isParrying = true;
+                }
+            };
             
         }
         
@@ -87,10 +109,10 @@ namespace Character
 
         private void HandleMovement()
         {
-            //Move the character
+            //Moves the character
             _rb.velocity = _direction * characterData.speed;
 
-            //Flip the sprite when facing left
+            //Flips the sprite when facing left
             if (_direction.x < 0) _spriteRen.flipX = true;
             if (_direction.x > 0) _spriteRen.flipX = false;
 
@@ -106,16 +128,56 @@ namespace Character
   
         }
 
+        private void HandleParry()
+        {
+            if (isParrying)
+            {
+                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                _spriteRen.color = Color.red;
+                _rb.velocity = Vector2.zero;
+                _parryLifeTime -= Time.deltaTime;
+                DisableInputs();
+            }
+            
+            //End of parry
+            if (_parryLifeTime < 0f)
+            {
+                parryCooldown.localScale = new Vector3(1, 1, 1);
+                _rb.constraints = RigidbodyConstraints2D.None;
+                _spriteRen.color = Color.white;
+                parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
+                
+                EnableInputs();
+                _nextTimeParry = Time.time + characterData.parryCooldown;
+                _parryLifeTime = characterData.parryTime;
+                isParrying = false;
+            }
+        }
+
         public bool AttackCooldown()
         {
             if(Time.time > nextTimeCast) return true;
             return false;
         }
+        
+        private bool ParryCooldown()
+        {
+            if(Time.time > _nextTimeParry) return true;
+            return false;
+        }
 
-        public void MousePosition()
+        private void MousePosition()
         {
             aim = mousePos.transform.position - _tr.position;
-        } 
-        
+        }
+
+        private void DisableInputs()
+        {
+            _characterInputs.Character.Disable();
+        }   
+        private void EnableInputs()
+        {
+            _characterInputs.Character.Enable();
+        }
     }
 }
