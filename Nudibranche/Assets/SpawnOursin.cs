@@ -28,11 +28,10 @@ public class SpawnOursin : MonoBehaviour
     {
         transform.position = new Vector2(Random.Range(spawnXMin,spawXMax), Random.Range(spawnYMin,spawnYMax));
 
-        if (Physics2D.OverlapCircle(transform.position, radius, LayerMask.GetMask("Obstacle"), 0, 0))
+        if (Physics2D.OverlapCircle(transform.position, radius, LayerMask.GetMask("Obstacle", "Enemy"), 0, 0))
         {
-            
+            Oursin();
         }
     }
     
-    // aller comprendre overlap pour éviter que l'oursin ne chevauche d'autres trucs lordsqu'il spawn
 }
