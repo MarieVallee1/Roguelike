@@ -12,20 +12,26 @@ public class SpawnOursin : MonoBehaviour
     private float spawnXMin;
     private float spawnYMax;
     private float spawnYMin;
+    private float radius;
     private void Start()
     {
+        radius = transform.lossyScale.x / 2;
         Vector3[] cornerArray = new Vector3[4];
         room.GetWorldCorners(cornerArray);
-        spawnXMin = cornerArray[0].x + (transform.lossyScale.x / 2);
-        spawXMax = cornerArray[2].x - (transform.lossyScale.x / 2);
-        spawnYMin = cornerArray[0].y + (transform.lossyScale.x / 2);
-        spawnYMax = cornerArray[2].y - (transform.lossyScale.x / 2);
+        spawnXMin = cornerArray[0].x + radius;
+        spawXMax = cornerArray[2].x - radius;
+        spawnYMin = cornerArray[0].y + radius;
+        spawnYMax = cornerArray[2].y - radius;
     }
 
     public void Oursin()
     {
         transform.position = new Vector2(Random.Range(spawnXMin,spawXMax), Random.Range(spawnYMin,spawnYMax));
-        
+
+        if (Physics2D.OverlapCircle(transform.position, radius, LayerMask.GetMask("Obstacle"), 0, 0))
+        {
+            
+        }
     }
     
     // aller comprendre overlap pour éviter que l'oursin ne chevauche d'autres trucs lordsqu'il spawn
