@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace Character
 {
-    public class CharacterController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         private PlayerInputActions _characterInputs;
 
         private Rigidbody2D _rb;
         private Transform _tr;
         private SpriteRenderer _spriteRen;
+        public static PlayerController instance;
         
         //private Animator _animator;
 
@@ -23,8 +24,9 @@ namespace Character
         #region Variables
         private Vector2 _direction;
         [HideInInspector] public Vector2 aim;
+        private Vector2 _mouseAim;
         [HideInInspector] public Vector2 characterPos;
-        //public GameObject debug;
+        public GameObject debug;
         [HideInInspector] public float nextTimeCast; 
         private float _nextTimeParry;
         private float _parryLifeTime;
@@ -40,6 +42,11 @@ namespace Character
 
         private void Awake()
         {
+            if (instance != null && instance != this)
+                Destroy(gameObject);
+ 
+            instance = this;
+            
             _characterInputs = new PlayerInputActions();
         }
 
@@ -57,7 +64,7 @@ namespace Character
 
         private void Update()
         {
-            //debug.transform.position = aim;
+            debug.transform.position = aim ;
             characterPos = _tr.position;
             
             HandleMovement();
@@ -66,7 +73,9 @@ namespace Character
             
             HandleParry();
             ParryCooldown();
+            RestrictMousePos();
             
+            //RestrictMousePos();
             
             //Shoots the projectile
             if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, mousePos.transform.position);
@@ -97,13 +106,13 @@ namespace Character
             _characterInputs.Character.ShootMouse.canceled += ctx => isShootingMouse = false;
             _characterInputs.Character.AimMouse.performed += ctx =>
             {
-                aim = ctx.ReadValue<Vector2>();
+                _mouseAim = ctx.ReadValue<Vector2>();
+                aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
             _characterInputs.Character.Parry.performed += ctx =>
             {
                 if (ParryCooldown() && !isParrying)
                 {
-                    Debug.Log(1);
                     isParrying = true;
                 }
             };
@@ -186,8 +195,7 @@ namespace Character
         
         private void RestrictMousePos()
         {
-            Mathf.Clamp(Input.mousePosition.x, aim.x  , aim.x);
-            Mathf.Clamp(Input.mousePosition.y,aim.x, aim.y);
+            Display.RelativeMouseAt(characterPos);
         }
 
         public void TakeDamage(int damage)

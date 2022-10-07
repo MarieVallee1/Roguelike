@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 using Pathfinding;
 
@@ -28,7 +29,6 @@ public class IAMoule : MonoBehaviour
     public float timeBetwennAttacks = 1;
     public float timePrepAttack = 1;
     public int damage = 1;
-    private Character.CharacterController characterController;  //TO DO: à remplacer par le vrai script du player
 
 
     private void Start()
@@ -36,7 +36,6 @@ public class IAMoule : MonoBehaviour
         mouleSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        characterController = target.gameObject.GetComponent<Character.CharacterController>(); 
 
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
@@ -135,7 +134,7 @@ public class IAMoule : MonoBehaviour
         mouleSprite.color = Color.red;
         if (cac)        // TO DO: si parade bien placée pas de dégâts
         {
-            characterController.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
+            PlayerController.instance.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
         }
         yield return new WaitForSeconds(0.1f);
         mouleSprite.color = Color.white;

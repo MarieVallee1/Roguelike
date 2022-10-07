@@ -1,5 +1,6 @@
+using Character;
 using UnityEngine;
-using CharacterController = Character.CharacterController;
+using static Character.PlayerController;
 
 namespace Projectiles
 {
@@ -7,7 +8,7 @@ namespace Projectiles
 
     public class Projectile : ScriptableObject
     {
-        public void CharacterShooting(CharacterController cc, Vector2 initialPos)
+        public void CharacterShooting(PlayerController cc, Vector2 initialPos)
         {
             GameObject usedProjectile = PoolingSystem.instance.GetObject(projectileName);
             Debug.Log(usedProjectile);
