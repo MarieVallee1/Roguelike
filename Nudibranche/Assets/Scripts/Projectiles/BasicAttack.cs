@@ -1,4 +1,5 @@
 using System;
+using Character;
 using UnityEngine;
 
 namespace Projectiles
@@ -6,12 +7,27 @@ namespace Projectiles
     public class BasicAttack : MonoBehaviour
     {
         private int _damages;
+        public int multiplier;
         private float _countdown;
         public float projectileDuration;
 
+        private SpriteRenderer _ren;
+
         private void OnEnable()
         {
+            _ren.GetComponent<SpriteRenderer>();
+            
             _countdown = 0f;
+
+            if (PlayerController.instance.isBuffed)
+            {
+                _damages *= multiplier;
+                _ren.color = Color.red;
+            }
+            else
+            {
+                _ren.color = Color.white;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)

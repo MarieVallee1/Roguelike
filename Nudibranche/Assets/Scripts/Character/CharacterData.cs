@@ -14,6 +14,8 @@ namespace Character
         public float parryCooldown;        
         [Range(0f, 100f)]
         public float parryTime;
+        [Range(0f, 100f)]
+        public float buffDuration;
         
     
     }

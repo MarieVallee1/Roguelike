@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using Projectiles;
 using UnityEngine;
@@ -35,6 +36,7 @@ namespace Character
         public bool isShootingGamepad;
         public bool isShootingMouse;
         public bool isParrying;
+        public bool isBuffed;
         #endregion
 
         //private int _isRunningHash;
@@ -200,8 +202,22 @@ namespace Character
 
         public void TakeDamage(int damage)
         {
-            health = characterData.health;
-            health -= damage;
+            if (isParrying)
+            {
+                StartCoroutine(Parry());
+            }
+            else
+            {
+                health = characterData.health;
+                health -= damage;
+            }
+        }
+
+        private IEnumerator Parry()
+        {
+            isBuffed = true;
+            yield return new WaitForSeconds(characterData.buffDuration);
+            isBuffed = false;
         }
     }
 }
