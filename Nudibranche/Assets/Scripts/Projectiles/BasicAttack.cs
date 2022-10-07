@@ -1,4 +1,3 @@
-using System;
 using Character;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace Projectiles
 
         private void OnEnable()
         {
-            _ren.GetComponent<SpriteRenderer>();
+            _ren = this.GetComponent<SpriteRenderer>();
             
             _countdown = 0f;
 

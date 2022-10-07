@@ -27,7 +27,6 @@ namespace Character
         [HideInInspector] public Vector2 aim;
         private Vector2 _mouseAim;
         [HideInInspector] public Vector2 characterPos;
-        public GameObject debug;
         [HideInInspector] public float nextTimeCast; 
         private float _nextTimeParry;
         private float _parryLifeTime;
@@ -66,7 +65,6 @@ namespace Character
 
         private void Update()
         {
-            debug.transform.position = aim ;
             characterPos = _tr.position;
             
             HandleMovement();
@@ -205,11 +203,13 @@ namespace Character
             if (isParrying)
             {
                 StartCoroutine(Parry());
+                Debug.Log(4);
             }
             else
             {
                 health = characterData.health;
                 health -= damage;
+                Debug.Log(5);
             }
         }
 
