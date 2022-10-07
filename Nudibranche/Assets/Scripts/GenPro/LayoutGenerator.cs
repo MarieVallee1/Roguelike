@@ -733,18 +733,10 @@ namespace GenPro
             ChooseSpecialRoom(side);
             InstantiateRoom(indexOldRoom,side,false);
         }
-        private void PlaceShop4Room(int indexOldRoom,Side side)
+        private void PlaceShopRoom(int indexOldRoom,Side side,Entry entry)
         {
-            _currentRoomPool = Resources.LoadAll("Shop4Room", typeof(GameObject));
-            InstantiateRoom(indexOldRoom,side,false);
-            Debug.Log("Shop4Room");
-        }
-        private void PlaceShop2Room(int indexOldRoom,Side side,Entry entry)
-        {
-            _currentRoomPool = Resources.LoadAll("Shop2Room", typeof(GameObject));
             ChooseShopRoom(entry);
             InstantiateRoom(indexOldRoom,side,false);
-            Debug.Log("Shop2Room");
         }
         private void Place4Room(int indexOldRoom,Side side)
         {
@@ -912,7 +904,7 @@ namespace GenPro
                     while (entrySide!=Side.Down)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud!=null)
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud.gameObject!=null)
                             entrySide = Side.Down;
                     }
                     break;
@@ -920,7 +912,7 @@ namespace GenPro
                     while (entrySide!=Side.Left)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest!=null)
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest.gameObject!=null)
                             entrySide = Side.Left;
                     }
                     break;
@@ -928,7 +920,7 @@ namespace GenPro
                     while (entrySide!=Side.Up)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord!=null)
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord.gameObject!=null)
                             entrySide = Side.Up;
                     }
                     break;
@@ -936,7 +928,7 @@ namespace GenPro
                     while (entrySide!=Side.Right)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst!=null)
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst.gameObject!=null)
                             entrySide = Side.Right;
                     }
                     break;
@@ -951,31 +943,31 @@ namespace GenPro
             switch (entry)
             {
                 case Entry.FourRoom:
-                    if(_checkShopPosition==_shopPosition) PlaceShop4Room(_lastRoomIndex,_nextSide);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place4Room(_lastRoomIndex,_nextSide);
                     break;
                 case Entry.Ns:
-                    if(_checkShopPosition==_shopPosition) PlaceShop2Room(_lastRoomIndex,_nextSide,entry);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place2RoomNs(_lastRoomIndex,_nextSide);
                     break;
                 case Entry.Ne:
-                    if(_checkShopPosition==_shopPosition) PlaceShop2Room(_lastRoomIndex,_nextSide,entry);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place2RoomNe(_lastRoomIndex,_nextSide);
                     break;
                 case Entry.No:
-                    if(_checkShopPosition==_shopPosition) PlaceShop2Room(_lastRoomIndex,_nextSide,entry);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place2RoomNo(_lastRoomIndex,_nextSide);
                     break;
                 case Entry.Se:
-                    if(_checkShopPosition==_shopPosition) PlaceShop2Room(_lastRoomIndex,_nextSide,entry);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place2RoomSe(_lastRoomIndex,_nextSide);
                     break;
                 case Entry.So:
-                    if(_checkShopPosition==_shopPosition) PlaceShop2Room(_lastRoomIndex,_nextSide,entry);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place2RoomSo(_lastRoomIndex,_nextSide);
                     break;
                 case Entry.Eo:
-                    if(_checkShopPosition==_shopPosition) PlaceShop2Room(_lastRoomIndex,_nextSide,entry);
+                    if(_checkShopPosition==_shopPosition) PlaceShopRoom(_lastRoomIndex,_nextSide,entry);
                     else Place2RoomEo(_lastRoomIndex,_nextSide);
                     break;
             }
@@ -983,61 +975,40 @@ namespace GenPro
         }
         private void ChooseShopRoom(Entry entry)
         {
-            var checkEntry = false;
             switch (entry)
             {
+                case Entry.FourRoom:
+                    _currentRoomPool = Resources.LoadAll("Shop4Room", typeof(GameObject));
+                    PickARoomAtRandom();
+                    break;
                 case Entry.Ns:
-                    while (!checkEntry)
-                    {
-                        PickARoomAtRandom();
-                        var refEntry = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>();
-                        if (refEntry.entreeNord!=null&&refEntry.entreeSud!=null) checkEntry = true;
-                    }
+                    _currentRoomPool = Resources.LoadAll("Shop2Room/Ns", typeof(GameObject));
+                    PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Down ? Side.Down : Side.Up;
                     break;
                 case Entry.Ne:
-                    while (!checkEntry)
-                    {
-                        PickARoomAtRandom();
-                        var refEntry = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>();
-                        if (refEntry.entreeNord!=null&&refEntry.entreeEst!=null) checkEntry = true;
-                    }
+                    _currentRoomPool = Resources.LoadAll("Shop2Room/Ne", typeof(GameObject));
+                    PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Left ? Side.Up : Side.Right;
                     break;
                 case Entry.No:
-                    while (!checkEntry)
-                    {
-                        PickARoomAtRandom();
-                        var refEntry = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>();
-                        if (refEntry.entreeNord!=null&&refEntry.entreeOuest!=null) checkEntry = true;
-                    }
+                    _currentRoomPool = Resources.LoadAll("Shop2Room/No", typeof(GameObject));
+                    PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Up : Side.Left;
                     break;
                 case Entry.Se:
-                    while (!checkEntry)
-                    {
-                        PickARoomAtRandom();
-                        var refEntry = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>();
-                        if (refEntry.entreeSud!=null&&refEntry.entreeEst!=null) checkEntry = true;
-                    }
+                    _currentRoomPool = Resources.LoadAll("Shop2Room/Se", typeof(GameObject));
+                    PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Left ? Side.Down : Side.Right;
                     break;
                 case Entry.So:
-                    while (!checkEntry)
-                    {
-                        PickARoomAtRandom();
-                        var refEntry = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>();
-                        if (refEntry.entreeSud!=null&&refEntry.entreeOuest!=null) checkEntry = true;
-                    }
+                    _currentRoomPool = Resources.LoadAll("Shop2Room/So", typeof(GameObject));
+                    PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Down : Side.Left;
                     break;
                 case Entry.Eo:
-                    while (!checkEntry)
-                    {
-                        PickARoomAtRandom();
-                        var refEntry = _currentRoomPool[_chosenRoom].GetComponent<RefEntry>();
-                        if (refEntry.entreeEst!=null&&refEntry.entreeOuest!=null) checkEntry = true;
-                    }
+                    _currentRoomPool = Resources.LoadAll("Shop2Room/Eo", typeof(GameObject));
+                    PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Right : Side.Left;
                     break;
             }
