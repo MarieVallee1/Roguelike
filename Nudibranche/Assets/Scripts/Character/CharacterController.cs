@@ -24,10 +24,11 @@ namespace Character
         private Vector2 _direction;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
-        public GameObject debug;
+        //public GameObject debug;
         [HideInInspector] public float nextTimeCast; 
         private float _nextTimeParry;
         private float _parryLifeTime;
+        public int health;
         [Header("State")]
         public bool isShootingGamepad;
         public bool isShootingMouse;
@@ -56,7 +57,7 @@ namespace Character
 
         private void Update()
         {
-            debug.transform.position = aim;
+            //debug.transform.position = aim;
             characterPos = _tr.position;
             
             HandleMovement();
@@ -187,6 +188,12 @@ namespace Character
         {
             Mathf.Clamp(Input.mousePosition.x, aim.x  , aim.x);
             Mathf.Clamp(Input.mousePosition.y,aim.x, aim.y);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            health = characterData.health;
+            health -= damage;
         }
     }
 }
