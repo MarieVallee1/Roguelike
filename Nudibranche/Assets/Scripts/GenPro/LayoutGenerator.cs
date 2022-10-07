@@ -61,14 +61,28 @@ namespace GenPro
         }
         private void AddFiller2Room(Side side)
         {
-            if (Random.Range(0,filler2RoomBigVersionDenominator)==0)
-            {
-                PlaceBigRoom(_lastRoomIndex,side);
-            }
-            else
+            // if (Random.Range(0,filler2RoomBigVersionDenominator)==0)
+            // {
+            //     PlaceBigRoom(_lastRoomIndex,side);
+            // }
+            // else
             {
                 switch (side)
                 {
+                    case Side.Up:
+                        switch (Random.Range(0,3))
+                        {
+                            case 0:
+                                Place2RoomNs(_lastRoomIndex,side);
+                                break;
+                            case 1:
+                                Place2RoomSe(_lastRoomIndex,side);
+                                break;
+                            case 2:
+                                Place2RoomSo(_lastRoomIndex,side);
+                                break;
+                        }
+                        break;
                     case Side.Right:
                         switch (Random.Range(0,3))
                         {
@@ -80,6 +94,20 @@ namespace GenPro
                                 break;
                             case 2:
                                 Place2RoomSo(_lastRoomIndex,side);
+                                break;
+                        }
+                        break;
+                    case Side.Down:
+                        switch (Random.Range(0,3))
+                        {
+                            case 0:
+                                Place2RoomNs(_lastRoomIndex,side);
+                                break;
+                            case 1:
+                                Place2RoomNe(_lastRoomIndex,side);
+                                break;
+                            case 2:
+                                Place2RoomNo(_lastRoomIndex,side);
                                 break;
                         }
                         break;
@@ -565,9 +593,19 @@ namespace GenPro
         }
         private void PlaceSpecialRooms()
         {
-            PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
-            PlaceCharacterRoom(_indexForCharacter2,_sideCharacter2);
-            PlaceBossRoom(_indexForBoss,_sideBoss);
+            Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
+            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+            Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+            Filler2RoomBeforeSpecial(_indexForBoss,_sideBoss);
+            PlaceBossRoom(_lastRoomIndex,_nextSide);
+        }
+        private void Filler2RoomBeforeSpecial(int indexSpecial,Side side)
+        {
+            _savedIndex = _lastRoomIndex;
+            _lastRoomIndex = indexSpecial;
+            AddFiller2Room(side);
+            _lastRoomIndex = _savedIndex + 1;
         }
         private void InstantiateRoom(int indexOldRoom,Side side,bool big)
         {
@@ -724,6 +762,7 @@ namespace GenPro
             _currentRoomPool = Resources.LoadAll("2Room/EO", typeof(GameObject));
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
+            _nextSide = side == Side.Right ? Side.Right : Side.Left;
         }
         private void Place2RoomNe(int indexOldRoom,Side side)
         {
@@ -744,6 +783,7 @@ namespace GenPro
             _currentRoomPool = Resources.LoadAll("2Room/NS", typeof(GameObject));
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
+            _nextSide = side == Side.Down ? Side.Down : Side.Up;
         }
         private void Place2RoomSe(int indexOldRoom,Side side)
         {
@@ -829,14 +869,17 @@ namespace GenPro
             {
                 case SpecialRoom.Boss:
                     _indexForBoss = _lastRoomIndex;
+                    Debug.Log(_indexForBoss);
                     _sideBoss = side;
                     break;
                 case SpecialRoom.Character1:
                     _indexForCharacter1 = _lastRoomIndex;
+                    Debug.Log(_indexForCharacter1);
                     _sideCharacter1 = side;
                     break;
                 case SpecialRoom.Character2:
                     _indexForCharacter2 = _lastRoomIndex;
+                    Debug.Log(_indexForCharacter2);
                     _sideCharacter2 = side;
                     break;
             }
