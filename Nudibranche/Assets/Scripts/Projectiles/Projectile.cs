@@ -1,6 +1,5 @@
 using Character;
 using UnityEngine;
-using static Character.PlayerController;
 
 namespace Projectiles
 {
