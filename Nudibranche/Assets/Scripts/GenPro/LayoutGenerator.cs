@@ -13,9 +13,9 @@ namespace GenPro
         private Object[] _currentRoomPool;
         private int _chosenRoom, _shopPosition,_checkShopPosition;
         private Transform _newRoom;
-        private int _lastRoomIndex;
+        private int _lastRoomIndex, _indexForBoss,_indexForCharacter1, _indexForCharacter2, _savedIndex;
         private Vector3 _newPos;
-        private int _indexForBoss,_indexForCharacter1, _indexForCharacter2, _savedIndex;
+        private int _posBossRoom, _posCharacter1, _posCharacter2;
         private Side _sideFirstLoop, _sideBoss, _sideCharacter1,_sideCharacter2, _nextSide;
         private SpecialRoom _specialRoom1, _specialRoom2, _specialRoom3;
         private bool _secondRoom4Room, _bossRoomIsSet, _inFirstLoop;
@@ -55,6 +55,7 @@ namespace GenPro
         private void Start()
         {
             ChooseShopPosition();
+            _inFirstLoop = true;
             PlaceStartRoom();
             _secondRoom4Room = PlaceSecondRoom();
             PickSideFirstLoop();
@@ -68,16 +69,12 @@ namespace GenPro
         }
         private void CheckFiller2Room(Side side)
         {
-            if (Random.Range(0,filler2RoomApparitionDenominator)==0)
-                AddFiller2Room(side);
+            AddFiller2Room(side, Random.Range(0, filler2RoomBigVersionDenominator) == 0);
         }
-        private void AddFiller2Room(Side side)
+        private void AddFiller2Room(Side side, bool big)
         {
-            // if (Random.Range(0,filler2RoomBigVersionDenominator)==0)
-            // {
-            //     PlaceBigRoom(_lastRoomIndex,side);
-            // }
-            // else
+            if (big) PlaceBigRoom(_lastRoomIndex,side);
+            else
             {
                 switch (side)
                 {
@@ -148,7 +145,6 @@ namespace GenPro
         private void FirstLoop()
         {
             _savedIndex = _lastRoomIndex;
-            _inFirstLoop = true;
             switch (_nextSide)
             {
                 case Side.Up:
@@ -233,7 +229,7 @@ namespace GenPro
                 Place3RoomNse(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Right;
                 var specialRoom = addSpecialRoom1 == 1 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(specialRoom,Side.Up,1);
             }
             else PossibleShop(Entry.Se);
 
@@ -243,8 +239,8 @@ namespace GenPro
                 _nextSide = Side.Down;
                 var specialRoomFirst = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
                 var specialRoomSecond = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoomFirst,Side.Up);
-                SetSpecialRoom(specialRoomSecond,Side.Right);
+                SetSpecialRoom(specialRoomFirst,Side.Up,2);
+                SetSpecialRoom(specialRoomSecond,Side.Right,3);
             }
             else
             {
@@ -253,14 +249,14 @@ namespace GenPro
                     Place3RoomNso(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Up);
+                    SetSpecialRoom(specialRoom,Side.Up,2);
                 }
                 if (addSpecialRoom1==3||addSpecialRoom2==3)
                 {
                     Place3RoomSeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Right);
+                    SetSpecialRoom(specialRoom,Side.Right,3);
                 }
                 else if(addSpecialRoom1!=2&&addSpecialRoom2!=2) PossibleShop(Entry.So);
             }
@@ -269,7 +265,7 @@ namespace GenPro
             {
                 Place3RoomNeo(_lastRoomIndex,_nextSide);
                 var specialRoom = addSpecialRoom1 == 4 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Right);
+                SetSpecialRoom(specialRoom,Side.Right,4);
             }
             else PossibleShop(Entry.No);
         }
@@ -285,7 +281,7 @@ namespace GenPro
                 Place3RoomNso(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Left;
                 var specialRoom = addSpecialRoom1 == 1 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(specialRoom,Side.Up,1);
             }
             else PossibleShop(Entry.So);
 
@@ -295,8 +291,8 @@ namespace GenPro
                 _nextSide = Side.Down;
                 var specialRoomFirst = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
                 var specialRoomSecond = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoomFirst,Side.Up);
-                SetSpecialRoom(specialRoomSecond,Side.Left);
+                SetSpecialRoom(specialRoomFirst,Side.Up,2);
+                SetSpecialRoom(specialRoomSecond,Side.Left,3);
             }
             else
             {
@@ -305,14 +301,14 @@ namespace GenPro
                     Place3RoomNse(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Up);
+                    SetSpecialRoom(specialRoom,Side.Up,2);
                 }
                 if (addSpecialRoom1==3||addSpecialRoom2==3)
                 {
                     Place3RoomSeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Left);
+                    SetSpecialRoom(specialRoom,Side.Left,3);
                 }
                 else if(addSpecialRoom1!=2&&addSpecialRoom2!=2) PossibleShop(Entry.Se);
             }
@@ -321,7 +317,7 @@ namespace GenPro
             {
                 Place3RoomNeo(_lastRoomIndex,_nextSide);
                 var specialRoom = addSpecialRoom1 == 4 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Left);
+                SetSpecialRoom(specialRoom,Side.Left,4);
             }
             else PossibleShop(Entry.Ne);
         }
@@ -337,7 +333,7 @@ namespace GenPro
                 Place3RoomNse(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Right;
                 var specialRoom = addSpecialRoom1 == 1 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Down);
+                SetSpecialRoom(specialRoom,Side.Down,1);
             }
             else PossibleShop(Entry.Ne);
 
@@ -347,8 +343,8 @@ namespace GenPro
                 _nextSide = Side.Up;
                 var specialRoomFirst = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
                 var specialRoomSecond = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoomFirst,Side.Down);
-                SetSpecialRoom(specialRoomSecond,Side.Right);
+                SetSpecialRoom(specialRoomFirst,Side.Down,2);
+                SetSpecialRoom(specialRoomSecond,Side.Right,3);
             }
             else
             {
@@ -357,23 +353,23 @@ namespace GenPro
                     Place3RoomNso(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Up;
                     var specialRoom = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Down);
+                    SetSpecialRoom(specialRoom,Side.Down,2);
                 }
                 if (addSpecialRoom1==3||addSpecialRoom2==3)
                 {
                     Place3RoomNeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Up;
                     var specialRoom = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Right);
+                    SetSpecialRoom(specialRoom,Side.Right,3);
                 }
-                else if(addSpecialRoom1!=2) PossibleShop(Entry.No);
+                else if(addSpecialRoom1!=2&&addSpecialRoom2!=2) PossibleShop(Entry.No);
             }
 
             if (addSpecialRoom1==4||addSpecialRoom2==4)
             {
                 Place3RoomSeo(_lastRoomIndex,_nextSide);
                 var specialRoom = addSpecialRoom1 == 4 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Right);
+                SetSpecialRoom(specialRoom,Side.Right,4);
             }
             else PossibleShop(Entry.So);
         }
@@ -389,7 +385,7 @@ namespace GenPro
                 Place3RoomNso(_lastRoomIndex,_nextSide);
                 _nextSide = Side.Left;
                 var specialRoom = addSpecialRoom1 == 1 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Down);
+                SetSpecialRoom(specialRoom,Side.Down,1);
             }
             else PossibleShop(Entry.No);
 
@@ -399,8 +395,8 @@ namespace GenPro
                 _nextSide = Side.Up;
                 var specialRoomFirst = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
                 var specialRoomSecond = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoomFirst,Side.Down);
-                SetSpecialRoom(specialRoomSecond,Side.Left);
+                SetSpecialRoom(specialRoomFirst,Side.Down,2);
+                SetSpecialRoom(specialRoomSecond,Side.Left,3);
             }
             else
             {
@@ -409,14 +405,14 @@ namespace GenPro
                     Place3RoomNse(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Up;
                     var specialRoom = addSpecialRoom1 == 2 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Down);
+                    SetSpecialRoom(specialRoom,Side.Down,2);
                 }
                 if (addSpecialRoom1==3||addSpecialRoom2==3)
                 {
                     Place3RoomNeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Up;
                     var specialRoom = addSpecialRoom1 == 3 ? PickSpecialRoomNumber() : _specialRoom2;
-                    SetSpecialRoom(specialRoom,Side.Left);
+                    SetSpecialRoom(specialRoom,Side.Left,3);
                 }
                 else if(addSpecialRoom1!=2&&addSpecialRoom2!=2)PossibleShop(Entry.Ne);
             }
@@ -425,7 +421,7 @@ namespace GenPro
             {
                 Place3RoomSeo(_lastRoomIndex,_nextSide);
                 var specialRoom = addSpecialRoom1 == 4 ? PickSpecialRoomNumber() : _specialRoom2;
-                SetSpecialRoom(specialRoom,Side.Left);
+                SetSpecialRoom(specialRoom,Side.Left,4);
             }
             else PossibleShop(Entry.Se);
         }
@@ -459,7 +455,7 @@ namespace GenPro
                 _nextSide = Side.Left;
                 var specialRoom = (addSpecialRoom2 == 1) ? _specialRoom2 : _specialRoom3;
                 _lastRoomIndex = _savedIndex + 1; //Emplacement de la nouvelle salle pour placer la salle spéciale plus tard
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(specialRoom,Side.Up,1);
             }
             else PossibleShop(Entry.So);
 
@@ -471,8 +467,8 @@ namespace GenPro
                 _nextSide = Side.Down;
                 var specialRoomFirst = addSpecialRoom2 == 2 ? _specialRoom2 : _specialRoom3;
                 var specialRoomSecond = addSpecialRoom2 == 3 ? _specialRoom2 : _specialRoom3;
-                SetSpecialRoom(specialRoomFirst,Side.Up);
-                SetSpecialRoom(specialRoomSecond,Side.Left);
+                SetSpecialRoom(specialRoomFirst,Side.Up,2);
+                SetSpecialRoom(specialRoomSecond,Side.Left,3);
             }
             else
             {
@@ -481,26 +477,26 @@ namespace GenPro
                     Place3RoomNse(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = (addSpecialRoom2 == 2) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Up);
+                    SetSpecialRoom(specialRoom,Side.Up,2);
                 }
                 if (addSpecialRoom2==3||addSpecialRoom3==3)
                 {
                     Place3RoomSeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
-                    var specialRoom = (addSpecialRoom2 == 1) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Left);
+                    var specialRoom = (addSpecialRoom2 == 3) ? _specialRoom2 : _specialRoom3;
+                    SetSpecialRoom(specialRoom,Side.Left,3);
                 }
                 else if(addSpecialRoom2!=2&&addSpecialRoom3!=2) PossibleShop(Entry.Se);
             }
             
-            if ((addSpecialRoom2==2&&addSpecialRoom3==3)||(addSpecialRoom2==3&&addSpecialRoom3==2))
+            if ((addSpecialRoom2==4&&addSpecialRoom3==5)||(addSpecialRoom2==5&&addSpecialRoom3==4))
             {
                 PossibleShop(Entry.FourRoom);
                 _nextSide = Side.Down;
-                var specialRoomFirst = (addSpecialRoom2 == 2) ? _specialRoom2 : _specialRoom3;
-                var specialRoomSecond = (addSpecialRoom2 == 3) ? _specialRoom2 : _specialRoom3;
-                SetSpecialRoom(specialRoomFirst,Side.Up);
-                SetSpecialRoom(specialRoomSecond,Side.Left);
+                var specialRoomFirst = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
+                var specialRoomSecond = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
+                SetSpecialRoom(specialRoomFirst,Side.Up,4);
+                SetSpecialRoom(specialRoomSecond,Side.Left,5);
             }
             else
             {
@@ -508,13 +504,13 @@ namespace GenPro
                 {
                     Place3RoomNeo(_lastRoomIndex,_nextSide);
                     var specialRoom = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Left);
+                    SetSpecialRoom(specialRoom,Side.Left,4);
                 }
                 if (addSpecialRoom2==5||addSpecialRoom3==5)
                 {
                     Place3RoomNse(_lastRoomIndex,_nextSide);
                     var specialRoom = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Down);
+                    SetSpecialRoom(specialRoom,Side.Down,5);
                 }
                 else if(addSpecialRoom2!=4&&addSpecialRoom3!=4) PossibleShop(Entry.Ne);
             }
@@ -522,7 +518,7 @@ namespace GenPro
         private void SecondLoopJoinedRight()
         {
             _nextSide = Side.Up;
-            var addSpecialRoom2 = PickSpecialRoomPlacement(0,1);
+            var addSpecialRoom2 = PickSpecialRoomPlacement(0,6);
             var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,6);
             if (addSpecialRoom2==1||addSpecialRoom3==1)
             {
@@ -530,7 +526,7 @@ namespace GenPro
                 _nextSide = Side.Right;
                 var specialRoom = (addSpecialRoom2 == 1) ? _specialRoom2 : _specialRoom3;
                 _lastRoomIndex = _savedIndex + 1; //Emplacement de la nouvelle salle pour placer la salle spéciale plus tard
-                SetSpecialRoom(specialRoom,Side.Up);
+                SetSpecialRoom(specialRoom,Side.Up,1);
             }
             else PossibleShop(Entry.Se);
             
@@ -542,8 +538,8 @@ namespace GenPro
                 _nextSide = Side.Down;
                 var specialRoomFirst = addSpecialRoom2 == 2 ? _specialRoom2 : _specialRoom3;
                 var specialRoomSecond = addSpecialRoom2 == 3 ? _specialRoom2 : _specialRoom3;
-                SetSpecialRoom(specialRoomFirst,Side.Up);
-                SetSpecialRoom(specialRoomSecond,Side.Right);
+                SetSpecialRoom(specialRoomFirst,Side.Up,2);
+                SetSpecialRoom(specialRoomSecond,Side.Right,3);
             }
             else
             {
@@ -552,26 +548,26 @@ namespace GenPro
                     Place3RoomNso(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = (addSpecialRoom2 == 2) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Up);
+                    SetSpecialRoom(specialRoom,Side.Up,2);
                 }
                 if (addSpecialRoom2==3||addSpecialRoom3==3)
                 {
                     Place3RoomSeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
                     var specialRoom = (addSpecialRoom2 == 1) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Right);
+                    SetSpecialRoom(specialRoom,Side.Right,3);
                 }
                 else if(addSpecialRoom2!=2&&addSpecialRoom3!=2) PossibleShop(Entry.So);
             }
             
-            if ((addSpecialRoom2==2&&addSpecialRoom3==3)||(addSpecialRoom2==3&&addSpecialRoom3==2))
+            if ((addSpecialRoom2==4&&addSpecialRoom3==5)||(addSpecialRoom2==5&&addSpecialRoom3==4))
             {
                 PossibleShop(Entry.FourRoom);
                 _nextSide = Side.Down;
-                var specialRoomFirst = (addSpecialRoom2 == 2) ? _specialRoom2 : _specialRoom3;
-                var specialRoomSecond = (addSpecialRoom2 == 3) ? _specialRoom2 : _specialRoom3;
-                SetSpecialRoom(specialRoomFirst,Side.Up);
-                SetSpecialRoom(specialRoomSecond,Side.Right);
+                var specialRoomFirst = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
+                var specialRoomSecond = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
+                SetSpecialRoom(specialRoomFirst,Side.Up,4);
+                SetSpecialRoom(specialRoomSecond,Side.Right,5);
             }
             else
             {
@@ -579,13 +575,13 @@ namespace GenPro
                 {
                     Place3RoomNeo(_lastRoomIndex,_nextSide);
                     var specialRoom = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Right);
+                    SetSpecialRoom(specialRoom,Side.Right,4);
                 }
                 if (addSpecialRoom2==5||addSpecialRoom3==5)
                 {
                     Place3RoomNso(_lastRoomIndex,_nextSide);
                     var specialRoom = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Down);
+                    SetSpecialRoom(specialRoom,Side.Down,5);
                 }
                 else if(addSpecialRoom2!=4&&addSpecialRoom3!=4) PossibleShop(Entry.No);
             }
@@ -605,18 +601,16 @@ namespace GenPro
         }
         private void PlaceSpecialRooms()
         {
-            Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
-            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
-            Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
-            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
-            Filler2RoomBeforeSpecial(_indexForBoss,_sideBoss);
-            PlaceBossRoom(_lastRoomIndex,_nextSide);
+            //FirstLoopSpecialRoom
+            if(_bossRoomIsSet) PlaceBossRoom(_indexForBoss, _nextSide);
+            else PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
+            SecondLoopSpecialRooms();
         }
         private void Filler2RoomBeforeSpecial(int indexSpecial,Side side)
         {
             _savedIndex = _lastRoomIndex;
             _lastRoomIndex = indexSpecial;
-            AddFiller2Room(side);
+            CheckFiller2Room(side);
             _lastRoomIndex = _savedIndex + 1;
         }
         private void InstantiateRoom(int indexOldRoom,Side side,bool big)
@@ -820,28 +814,29 @@ namespace GenPro
         #endregion
         private void FindRemainingEntryBigRoom(Side side)
         {
+            if (!_inFirstLoop) _lastRoomIndex = _savedIndex + 1;
             var refEntry = listSalle[_lastRoomIndex].GetComponent<RefEntry>();
             switch (side)
             {
                 case Side.Up:
-                    if (refEntry.entreeNord != null) _nextSide = Side.Up;
-                    if (refEntry.entreeEst != null) _nextSide = Side.Right;
-                    if (refEntry.entreeOuest != null) _nextSide = Side.Left;
+                    if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
+                    if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
+                    if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
                     break;
                 case Side.Right:
-                    if (refEntry.entreeNord != null) _nextSide = Side.Up;
-                    if (refEntry.entreeEst != null) _nextSide = Side.Right;
-                    if (refEntry.entreeSud != null) _nextSide = Side.Down;
+                    if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
+                    if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
+                    if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
                     break;
                 case Side.Down:
-                    if (refEntry.entreeEst != null) _nextSide = Side.Right;
-                    if (refEntry.entreeSud != null) _nextSide = Side.Down;
-                    if (refEntry.entreeOuest != null) _nextSide = Side.Left;
+                    if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
+                    if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
+                    if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
                     break;
                 case Side.Left:
-                    if (refEntry.entreeNord != null) _nextSide = Side.Up;
-                    if (refEntry.entreeSud != null) _nextSide = Side.Down;
-                    if (refEntry.entreeOuest != null) _nextSide = Side.Left;
+                    if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
+                    if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
+                    if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
                     break;
             }
         }
@@ -874,24 +869,24 @@ namespace GenPro
             }
             return placement;
         }
-        private void SetSpecialRoom(SpecialRoom specialRoom, Side side)
+        private void SetSpecialRoom(SpecialRoom specialRoom, Side side, int posSpecialRoom)
         {
             switch (specialRoom)
             {
                 case SpecialRoom.Boss:
                     _indexForBoss = _lastRoomIndex;
-                    Debug.Log(_indexForBoss);
                     _sideBoss = side;
+                    _posBossRoom = posSpecialRoom;
                     break;
                 case SpecialRoom.Character1:
                     _indexForCharacter1 = _lastRoomIndex;
-                    Debug.Log(_indexForCharacter1);
                     _sideCharacter1 = side;
+                    _posCharacter1 = posSpecialRoom;
                     break;
                 case SpecialRoom.Character2:
                     _indexForCharacter2 = _lastRoomIndex;
-                    Debug.Log(_indexForCharacter2);
                     _sideCharacter2 = side;
+                    _posCharacter2 = posSpecialRoom;
                     break;
             }
         }
@@ -1011,6 +1006,62 @@ namespace GenPro
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Right : Side.Left;
                     break;
+            }
+        }
+        private void SecondLoopSpecialRooms()
+        {
+            if (_sideFirstLoop==Side.Right) //SecondLoop on the left
+            {
+                if (_bossRoomIsSet)
+                {
+                    var relativePos = _posCharacter2 - _posCharacter1;
+                    switch (_posCharacter1)
+                    {
+                        case 1:
+                            if (relativePos == 1)
+                            {
+                                Place2RoomNs(_indexForCharacter1,_sideCharacter1);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                            }
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                    }
+                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
+                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
+                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                }
+                else
+                {
+                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
+                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
+                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                }
+            }
+            else
+            {
+                if (_bossRoomIsSet)
+                {
+                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
+                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
+                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                }
+                else
+                {
+                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
+                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
+                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                }
             }
         }
     }
