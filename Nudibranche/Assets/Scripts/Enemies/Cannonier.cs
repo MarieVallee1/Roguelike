@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
+using Oursins;
 
-public class Cannonier : MonoBehaviour
+namespace Ennemy
+{
+    public class Cannonier : MonoBehaviour
 {
     // AstarPath.active.Scan();
     
@@ -16,9 +18,9 @@ public class Cannonier : MonoBehaviour
     private float radius = 2;
     public int nbOursinAround = 6;
     public GameObject target;
-    public GameObject oursin;
     public int nbOursin = 3;
     public float timeBetweenAttacks = 3;
+    [SerializeField] private Oursin usedOursin;
 
     // Caché //
     private bool hidden;
@@ -30,7 +32,7 @@ public class Cannonier : MonoBehaviour
 
     private void Start()
     {
-        radius = oursin.transform.lossyScale.x;
+        radius = usedOursin.radius;
         animator = GetComponent<Animator>();
         animator.SetTrigger("Activate");
         StartCoroutine(DelayBetweenAttacks());
@@ -75,7 +77,7 @@ public class Cannonier : MonoBehaviour
             if (spawnPointList.Count != 0)
             {
                 int x = Random.Range(0, spawnPointList.Count);
-                Instantiate(oursin, spawnPointList[x], quaternion.identity);
+                usedOursin.CannonierShooting(spawnPointList[x]);
                 spawnPointList.Remove(spawnPointList[x]);
             }
         }
@@ -87,7 +89,7 @@ public class Cannonier : MonoBehaviour
         spawnPointList.Clear();
     }
 
-    IEnumerator DelayBetweenAttacks()
+    IEnumerator DelayBetweenAttacks()      //un peu crado, fonctionne mais à revoir
     {
         if (!hidden)
         {
@@ -97,4 +99,6 @@ public class Cannonier : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenAttacks);
         StartCoroutine(DelayBetweenAttacks());
     }
+}
+
 }
