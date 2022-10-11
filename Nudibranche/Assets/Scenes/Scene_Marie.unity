@@ -207,7 +207,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2397271
 BoxCollider2D:
@@ -430,7 +430,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &835979597
 MonoBehaviour:
@@ -552,7 +552,7 @@ Transform:
   - {fileID: 1282911243}
   - {fileID: 1174542288}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1174542287
 GameObject:
@@ -676,7 +676,7 @@ PrefabInstance:
     - target: {fileID: 4072053401284252992, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4072053401284252992, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
@@ -736,8 +736,14 @@ PrefabInstance:
     - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
       propertyPath: poolData.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
+        type: 3}
+      propertyPath: poolData.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 9134653429622646478, guid: 8a5361426e0bce64cb8a25cd30699800,
+        type: 3}
     - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
       propertyPath: poolData.Array.data[1].prefab
@@ -746,8 +752,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
+      propertyPath: poolData.Array.data[0].description
+      value: Oursin explosif
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
+        type: 3}
       propertyPath: poolData.Array.data[1].description
       value: Oursin explosif
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
+        type: 3}
+      propertyPath: poolData.Array.data[0].numberOfObjects
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4072053401284253055, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
@@ -1064,7 +1080,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2049953312
 BoxCollider2D:
@@ -1132,7 +1148,7 @@ PrefabInstance:
     - target: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
         type: 3}
@@ -1216,7 +1232,7 @@ PrefabInstance:
     - target: {fileID: 581532215271714696, guid: 2901068f8ba611b49bf1b5095dfcee54,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 581532215271714696, guid: 2901068f8ba611b49bf1b5095dfcee54,
         type: 3}
@@ -1285,7 +1301,7 @@ PrefabInstance:
     - target: {fileID: 4502711793997958834, guid: 3f7584bf7d7db5a4c937264e0240f068,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4502711793997958834, guid: 3f7584bf7d7db5a4c937264e0240f068,
         type: 3}

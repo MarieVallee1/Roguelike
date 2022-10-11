@@ -29,7 +29,8 @@ namespace Oursins
         [TextArea] public string description;
 
         [Header("Characteristics")]
-        [Range(0, 100)] public float damage;
+        [Range(0, 100)] public int explosionDamage;
+        [Range(0, 100)] public int passiveDamage;
 
         public float radius;
     }
