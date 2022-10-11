@@ -29,7 +29,9 @@ public class IAMoule : MonoBehaviour
     public float timeBetwennAttacks = 1;
     public float timePrepAttack = 1;
     public int damage = 1;
-
+    
+    // Health //
+    public int pv = 5;
 
     private void Start()
     {
@@ -39,7 +41,6 @@ public class IAMoule : MonoBehaviour
 
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
-
     }
 
     void UpdatePath()
@@ -111,6 +112,11 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
+
+        if (pv <= 0)
+        {
+            Debug.Log("Moule is dead");
+        }
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -147,6 +153,11 @@ public class IAMoule : MonoBehaviour
         {
             stopPathfinding = false;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        pv -= damage;
     }
 
     void Flip()

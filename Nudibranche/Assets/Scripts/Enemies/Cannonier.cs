@@ -3,38 +3,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Unity.Mathematics;
+using Random = UnityEngine.Random;
 
 public class Cannonier : MonoBehaviour
 {
+    // AstarPath.active.Scan();
+    
     //Spawn Oursin//
     public List<Vector2> spawnPointList;
-    public float radius = 2;
-    public int nbOursin;
+    public float radiusSpawn = 2;
+    private float radius = 2;
+    public int nbOursinAround = 6;
     public GameObject target;
     public GameObject oursin;
+    public int nbOursin = 3;
+    public float timeBetweenAttacks = 3;
+
+    // Caché //
+    private bool hidden;
+    public float hiddenDistance = 1;
+    private bool enableAttack;
+    
+    // Animator //
+    private Animator animator;
 
     private void Start()
     {
-        CreateSpawnList();
-        for (int i = 0; i < spawnPointList.Count; i++)
-        {
-            Instantiate(oursin, spawnPointList[i], Quaternion.identity);
-        }
+        radius = oursin.transform.lossyScale.x;
+        animator = GetComponent<Animator>();
+        animator.SetTrigger("Activate");
+        StartCoroutine(DelayBetweenAttacks());
     }
 
     void Update()
     {
-
-        // AstarPath.active.Scan();
-        
+        if (Vector2.Distance(transform.position, target.transform.position) <= hiddenDistance)
+        {
+            animator.SetBool("Hidden", true);
+            hidden = true;
+        }
+        else
+        {
+            animator.SetBool("Hidden", false);
+            hidden = false;
+        }
     }
 
     void CreateSpawnList()
     {
         spawnPointList.Add(target.transform.position);
-        for (int i = 0; i < nbOursin ; i++)
+        for (int i = 0; i < nbOursinAround ; i++)
         {
-            spawnPointList.Add( new Vector2(spawnPointList[0].x + Mathf.Cos(2*Mathf.PI/nbOursin * i) * radius , spawnPointList[0].y + Mathf.Sin(2*Mathf.PI/nbOursin * i) * radius));
+            spawnPointList.Add( new Vector2(spawnPointList[0].x + Mathf.Cos(2*Mathf.PI/nbOursinAround * i) * radiusSpawn , spawnPointList[0].y + Mathf.Sin(2*Mathf.PI/nbOursinAround * i) * radiusSpawn));
         }
 
         for (int i = 0; i < spawnPointList.Count; i++)
@@ -45,5 +66,35 @@ public class Cannonier : MonoBehaviour
                 i -= 1;
             }
         }
+    }
+    
+    void SpawnOursins()
+    {
+        for (int i = 0; i < nbOursin; i++)
+        {
+            if (spawnPointList.Count != 0)
+            {
+                int x = Random.Range(0, spawnPointList.Count);
+                Instantiate(oursin, spawnPointList[x], quaternion.identity);
+                spawnPointList.Remove(spawnPointList[x]);
+            }
+        }
+    }
+    public void Attaque()
+    {
+        CreateSpawnList();
+        SpawnOursins();
+        spawnPointList.Clear();
+    }
+
+    IEnumerator DelayBetweenAttacks()
+    {
+        if (!hidden)
+        {
+            animator.SetTrigger("Shoot");
+        }
+
+        yield return new WaitForSeconds(timeBetweenAttacks);
+        StartCoroutine(DelayBetweenAttacks());
     }
 }
