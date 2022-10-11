@@ -130,7 +130,10 @@ public class IAMoule : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        cac = false;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            cac = false;
+        }
     }
 
     private IEnumerator Attaque()

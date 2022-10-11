@@ -847,11 +847,12 @@ namespace GenPro
         }
         private int PickSpecialRoomPlacement(int otherRoom, int borneSup)
         {
-            var placement = 0;
-            while (placement == otherRoom||placement==0)
+            var placement = otherRoom;
+            while (placement == otherRoom)
             {
                 placement = Random.Range(1, borneSup);
             }
+            if (placement == 0) placement = 1;
             return placement;
         }
         private void SetSpecialRoom(SpecialRoom specialRoom, Side side, int posSpecialRoom)
@@ -995,9 +996,6 @@ namespace GenPro
         }
         private void SecondLoopSpecialRooms()
         {
-            Debug.Log("_posCharacter1 = " +_posCharacter1);
-            Debug.Log("_posCharacter2 = " +_posCharacter2);
-            Debug.Log("_posBossRoom = " +_posBossRoom);
             var relativePos = _bossRoomIsSet?_posCharacter2-_posCharacter1 : _posCharacter2 - _posBossRoom;
             if (_bossRoomIsSet)
             {
@@ -1015,7 +1013,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(false,true);
+                                SwitchDefaultSpecial(false,true,false);
                                 break;
                         }
                         break;
@@ -1041,7 +1039,7 @@ namespace GenPro
                             default:
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
                                 else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                SwitchDefaultSpecial(true,true);
+                                SwitchDefaultSpecial(true,true,false);
                                 break;
                         }
                         break;
@@ -1067,7 +1065,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(true,true);
+                                SwitchDefaultSpecial(true,true,false);
                                 break;
                         }
                         break;
@@ -1085,7 +1083,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(true,true);
+                                SwitchDefaultSpecial(true,true,false);
                                 break;
                         }
                         break;
@@ -1112,7 +1110,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(false,true);
+                                SwitchDefaultSpecial(false,true,true);
                                 break;
                         }
                         break;
@@ -1120,6 +1118,7 @@ namespace GenPro
                         switch (relativePos)
                         {
                             case 1:
+                                if (_loopDown) _entryBlock = Entry.Ns;
                                 Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,true);
                                 PlaceBossRoom(_lastRoomIndex,_nextSide);
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
@@ -1128,9 +1127,16 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             case -1:
-                                if (!_loopDown)_entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
-                                Filler2RoomBeforeSpecial(_indexForBoss,_sideBoss,false);
+                                if (!_loopDown)
+                                {
+                                    _entryBlock = _sideFirstLoop == Side.Right ? Entry.Se : Entry.So;
+                                    Filler2RoomBeforeSpecial(_indexForBoss,_sideBoss,false);
+                                }
+                                else
+                                {
+                                    if(_sideFirstLoop==Side.Right) Place2RoomNo(_indexForBoss,_sideBoss);
+                                    else Place2RoomNe(_indexForBoss,_sideBoss);
+                                }
                                 PlaceBossRoom(_lastRoomIndex,_nextSide);
                                 Place2RoomNs(_indexForCharacter2,_sideCharacter2);
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
@@ -1138,7 +1144,7 @@ namespace GenPro
                             default:
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
                                 else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                SwitchDefaultSpecial(true,true);
+                                SwitchDefaultSpecial(true,true,true);
                                 break;
                         }
                         break;
@@ -1146,9 +1152,12 @@ namespace GenPro
                         switch (relativePos)
                         {
                             case 1:
-                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
-                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                if (!_loopDown)
+                                {
+                                    _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                    Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                }
+                                else Place2RoomEo(_indexForBoss, _sideBoss);
                                 PlaceBossRoom(_lastRoomIndex,_nextSide);
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
                                 else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
@@ -1156,9 +1165,12 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             case -1:
-                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
-                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                if (!_loopDown)
+                                {
+                                    _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                    Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                }
+                                else Place2RoomEo(_indexForBoss,_sideBoss);
                                 PlaceBossRoom(_lastRoomIndex,_nextSide);
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.So : Entry.Se;
                                 else _entryBlock = _sideFirstLoop==Side.Right? Entry.No : Entry.Ne;
@@ -1166,7 +1178,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(true,true);
+                                SwitchDefaultSpecial(true,true,true);
                                 break;
                         }
                         break;
@@ -1174,27 +1186,33 @@ namespace GenPro
                         switch (relativePos)
                         {
                             case -1:
-                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
-                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
-                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) Place2RoomEo(_indexForBoss,_sideBoss);
+                                else
+                                {
+                                    _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                    Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                }
+                                PlaceBossRoom(_lastRoomIndex,_nextSide);
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
                                 else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
                                 Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(true,true);
+                                SwitchDefaultSpecial(true,true,true);
                                 break;
                         }
                         break;
                 }
             }
         }
-        private void SwitchDefaultSpecial(bool big1, bool big2)
+        private void SwitchDefaultSpecial(bool big1, bool big2, bool boss)
         {
-            Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1,big1);
-            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+            var startIndex = boss ? _indexForBoss : _indexForCharacter1;
+            var side = boss ? _sideBoss : _sideCharacter1;
+            Filler2RoomBeforeSpecial(startIndex,side,big1);
+            if (boss) PlaceBossRoom(_lastRoomIndex,_nextSide);
+            else PlaceCharacterRoom(_lastRoomIndex,_nextSide);
             Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,big2);
             PlaceCharacterRoom(_lastRoomIndex,_nextSide);
         }
