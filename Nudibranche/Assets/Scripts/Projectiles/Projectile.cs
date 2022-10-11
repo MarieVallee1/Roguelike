@@ -11,8 +11,7 @@ namespace Projectiles
         public void CharacterShooting(PlayerController cc, Vector2 initialPos)
         {
             GameObject usedProjectile = PoolingSystem.instance.GetObject(projectileName);
-            Debug.Log(usedProjectile);
-            
+
             if (usedProjectile != null && cc.AttackCooldown())
             {
                 //Placement & activation
