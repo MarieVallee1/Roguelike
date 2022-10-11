@@ -18,7 +18,8 @@ namespace GenPro
         private int _posBossRoom, _posCharacter1, _posCharacter2;
         private Side _sideFirstLoop, _sideBoss, _sideCharacter1,_sideCharacter2, _nextSide;
         private SpecialRoom _specialRoom1, _specialRoom2, _specialRoom3;
-        private bool _secondRoom4Room, _bossRoomIsSet, _inFirstLoop;
+        private bool _secondRoom4Room, _bossRoomIsSet, _inFirstLoop, _loopDown;
+        private Entry _entryBlock;
 
         private enum Side
         {
@@ -82,13 +83,16 @@ namespace GenPro
                         switch (Random.Range(0,3))
                         {
                             case 0:
-                                Place2RoomNs(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Ns) Place2RoomNs(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 1:
-                                Place2RoomSe(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Se) Place2RoomSe(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 2:
-                                Place2RoomSo(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.So) Place2RoomSo(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                         }
                         break;
@@ -96,13 +100,16 @@ namespace GenPro
                         switch (Random.Range(0,3))
                         {
                             case 0:
-                                Place2RoomEo(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Eo) Place2RoomEo(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 1:
-                                Place2RoomNo(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.No) Place2RoomNo(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 2:
-                                Place2RoomSo(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.So) Place2RoomSo(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                         }
                         break;
@@ -110,13 +117,16 @@ namespace GenPro
                         switch (Random.Range(0,3))
                         {
                             case 0:
-                                Place2RoomNs(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Ns) Place2RoomNs(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 1:
-                                Place2RoomNe(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Ne) Place2RoomNe(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 2:
-                                Place2RoomNo(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.No) Place2RoomNo(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                         }
                         break;
@@ -124,18 +134,22 @@ namespace GenPro
                         switch (Random.Range(0,3))
                         {
                             case 0:
-                                Place2RoomNe(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Ne) Place2RoomNe(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 1:
-                                Place2RoomSe(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Se) Place2RoomSe(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                             case 2:
-                                Place2RoomEo(_lastRoomIndex,side);
+                                if(_entryBlock!=Entry.Eo) Place2RoomEo(_lastRoomIndex,side);
+                                else AddFiller2Room(side, false);
                                 break;
                         }
                         break;
                 }
             }
+            _entryBlock = Entry.FourRoom;
         }
         private void PickSideFirstLoop()
         {
@@ -219,6 +233,7 @@ namespace GenPro
         }
         private void FirstLoopUpRight()
         {
+            _loopDown = false;
             _nextSide = Side.Up;
             var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
             var addSpecialRoom2 = 0;
@@ -271,6 +286,7 @@ namespace GenPro
         }
         private void FirstLoopUpLeft()
         {
+            _loopDown = false;
             _nextSide = Side.Up;
             var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
             var addSpecialRoom2 = 0;
@@ -323,6 +339,7 @@ namespace GenPro
         }
         private void FirstLoopDownRight()
         {
+            _loopDown = true;
             _nextSide = Side.Down;
             var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
             var addSpecialRoom2 = 0;
@@ -375,6 +392,7 @@ namespace GenPro
         }
         private void FirstLoopDownLeft()
         {
+            _loopDown = true;
             _nextSide = Side.Down;
             var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
             var addSpecialRoom2 = 0;
@@ -446,9 +464,10 @@ namespace GenPro
         }
         private void SecondLoopJoinedLeft()
         {
+            _loopDown = false;
             _nextSide = Side.Up;
             var addSpecialRoom2 = PickSpecialRoomPlacement(0,1);
-            var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,6);
+            var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,5);
             if (addSpecialRoom2==1||addSpecialRoom3==1)
             {
                 Place3RoomNso(_lastRoomIndex,_nextSide); //Set 1st Room of the loop on top of the 2nd Room
@@ -489,37 +508,20 @@ namespace GenPro
                 else if(addSpecialRoom2!=2&&addSpecialRoom3!=2) PossibleShop(Entry.Se);
             }
             
-            if ((addSpecialRoom2==4&&addSpecialRoom3==5)||(addSpecialRoom2==5&&addSpecialRoom3==4))
+            if (addSpecialRoom2==4||addSpecialRoom3==4)
             {
-                PossibleShop(Entry.FourRoom);
-                _nextSide = Side.Down;
-                var specialRoomFirst = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
-                var specialRoomSecond = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
-                SetSpecialRoom(specialRoomFirst,Side.Up,4);
-                SetSpecialRoom(specialRoomSecond,Side.Left,5);
+                Place3RoomNeo(_lastRoomIndex,_nextSide);
+                var specialRoom = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
+                SetSpecialRoom(specialRoom,Side.Left,4);
             }
-            else
-            {
-                if (addSpecialRoom2==4||addSpecialRoom3==4)
-                {
-                    Place3RoomNeo(_lastRoomIndex,_nextSide);
-                    var specialRoom = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Left,4);
-                }
-                if (addSpecialRoom2==5||addSpecialRoom3==5)
-                {
-                    Place3RoomNse(_lastRoomIndex,_nextSide);
-                    var specialRoom = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Down,5);
-                }
-                else if(addSpecialRoom2!=4&&addSpecialRoom3!=4) PossibleShop(Entry.Ne);
-            }
+            else PossibleShop(Entry.Ne);
         }
         private void SecondLoopJoinedRight()
         {
+            _loopDown = false;
             _nextSide = Side.Up;
-            var addSpecialRoom2 = PickSpecialRoomPlacement(0,6);
-            var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,6);
+            var addSpecialRoom2 = PickSpecialRoomPlacement(0,5);
+            var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,5);
             if (addSpecialRoom2==1||addSpecialRoom3==1)
             {
                 Place3RoomNse(_lastRoomIndex,_nextSide); //Set 1st Room of the loop on top of the 2nd Room
@@ -560,31 +562,13 @@ namespace GenPro
                 else if(addSpecialRoom2!=2&&addSpecialRoom3!=2) PossibleShop(Entry.So);
             }
             
-            if ((addSpecialRoom2==4&&addSpecialRoom3==5)||(addSpecialRoom2==5&&addSpecialRoom3==4))
+            if (addSpecialRoom2==4||addSpecialRoom3==4)
             {
-                PossibleShop(Entry.FourRoom);
-                _nextSide = Side.Down;
-                var specialRoomFirst = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
-                var specialRoomSecond = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
-                SetSpecialRoom(specialRoomFirst,Side.Up,4);
-                SetSpecialRoom(specialRoomSecond,Side.Right,5);
+                Place3RoomNeo(_lastRoomIndex,_nextSide);
+                var specialRoom = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
+                SetSpecialRoom(specialRoom,Side.Right,4);
             }
-            else
-            {
-                if (addSpecialRoom2==4||addSpecialRoom3==4)
-                {
-                    Place3RoomNeo(_lastRoomIndex,_nextSide);
-                    var specialRoom = (addSpecialRoom2 == 4) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Right,4);
-                }
-                if (addSpecialRoom2==5||addSpecialRoom3==5)
-                {
-                    Place3RoomNso(_lastRoomIndex,_nextSide);
-                    var specialRoom = (addSpecialRoom2 == 5) ? _specialRoom2 : _specialRoom3;
-                    SetSpecialRoom(specialRoom,Side.Down,5);
-                }
-                else if(addSpecialRoom2!=4&&addSpecialRoom3!=4) PossibleShop(Entry.No);
-            }
+            else PossibleShop(Entry.No);
         }
         private void SecondLoopUnJoined()
         {
@@ -602,15 +586,16 @@ namespace GenPro
         private void PlaceSpecialRooms()
         {
             //FirstLoopSpecialRoom
-            if(_bossRoomIsSet) PlaceBossRoom(_indexForBoss, _nextSide);
+            if(_bossRoomIsSet) PlaceBossRoom(_indexForBoss, _sideBoss);
             else PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
             SecondLoopSpecialRooms();
         }
-        private void Filler2RoomBeforeSpecial(int indexSpecial,Side side)
+        private void Filler2RoomBeforeSpecial(int indexSpecial,Side side, bool big)
         {
             _savedIndex = _lastRoomIndex;
             _lastRoomIndex = indexSpecial;
-            CheckFiller2Room(side);
+            if (big) CheckFiller2Room(side);
+            else AddFiller2Room(side,false);
             _lastRoomIndex = _savedIndex + 1;
         }
         private void InstantiateRoom(int indexOldRoom,Side side,bool big)
@@ -1010,59 +995,208 @@ namespace GenPro
         }
         private void SecondLoopSpecialRooms()
         {
-            if (_sideFirstLoop==Side.Right) //SecondLoop on the left
+            Debug.Log("_posCharacter1 = " +_posCharacter1);
+            Debug.Log("_posCharacter2 = " +_posCharacter2);
+            Debug.Log("_posBossRoom = " +_posBossRoom);
+            var relativePos = _bossRoomIsSet?_posCharacter2-_posCharacter1 : _posCharacter2 - _posBossRoom;
+            if (_bossRoomIsSet)
             {
-                if (_bossRoomIsSet)
+                switch (_posCharacter1)
                 {
-                    var relativePos = _posCharacter2 - _posCharacter1;
-                    switch (_posCharacter1)
-                    {
-                        case 1:
-                            if (relativePos == 1)
-                            {
+                    case 1:
+                        switch (relativePos)
+                        {
+                            case 1:
                                 Place2RoomNs(_indexForCharacter1,_sideCharacter1);
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
-                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
+                                if(!_loopDown)_entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
-                            }
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                    }
-                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
-                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
-                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
-                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
-                }
-                else
-                {
-                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
-                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
-                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
-                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                SwitchDefaultSpecial(false,true);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (relativePos)
+                        {
+                            case 1:
+                                Filler2RoomBeforeSpecial(_indexForCharacter1, _sideCharacter1,true);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            case -1:
+                                if (!_loopDown)_entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                Place2RoomNs(_indexForCharacter2,_sideCharacter2);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                SwitchDefaultSpecial(true,true);
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (relativePos)
+                        {
+                            case 1:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForCharacter1, _sideCharacter1,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            case -1:
+                                Filler2RoomBeforeSpecial(_indexForCharacter1, _sideCharacter1,true);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.So : Entry.Se;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.No : Entry.Ne;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                SwitchDefaultSpecial(true,true);
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (relativePos)
+                        {
+                            case -1:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                Filler2RoomBeforeSpecial(_indexForCharacter1, _sideCharacter1,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                SwitchDefaultSpecial(true,true);
+                                break;
+                        }
+                        break;
                 }
             }
             else
             {
-                if (_bossRoomIsSet)
+                switch (_posBossRoom)
                 {
-                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
-                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
-                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
-                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
-                }
-                else
-                {
-                    Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1);
-                    PlaceCharacterRoom(_indexForCharacter1,_sideCharacter1);
-                    Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2);
-                    PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                    case 1:
+                        switch (relativePos)
+                        {
+                            case 1:
+                                if (!_loopDown) Place2RoomNs(_indexForBoss,_sideBoss);
+                                else
+                                {
+                                    if(_sideFirstLoop==Side.Right) Place2RoomNe(_indexForBoss,_sideBoss);
+                                    else Place2RoomNo(_indexForBoss,_sideBoss);
+                                }
+                                PlaceBossRoom(_lastRoomIndex,_nextSide);
+                                if(!_loopDown)_entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                SwitchDefaultSpecial(false,true);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (relativePos)
+                        {
+                            case 1:
+                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,true);
+                                PlaceBossRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            case -1:
+                                if (!_loopDown)_entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForBoss,_sideBoss,false);
+                                PlaceBossRoom(_lastRoomIndex,_nextSide);
+                                Place2RoomNs(_indexForCharacter2,_sideCharacter2);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                SwitchDefaultSpecial(true,true);
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (relativePos)
+                        {
+                            case 1:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                PlaceBossRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            case -1:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                PlaceBossRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.So : Entry.Se;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.No : Entry.Ne;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                SwitchDefaultSpecial(true,true);
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (relativePos)
+                        {
+                            case -1:
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
+                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
+                                Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,false);
+                                PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+                                break;
+                            default:
+                                SwitchDefaultSpecial(true,true);
+                                break;
+                        }
+                        break;
                 }
             }
+        }
+        private void SwitchDefaultSpecial(bool big1, bool big2)
+        {
+            Filler2RoomBeforeSpecial(_indexForCharacter1,_sideCharacter1,big1);
+            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
+            Filler2RoomBeforeSpecial(_indexForCharacter2,_sideCharacter2,big2);
+            PlaceCharacterRoom(_lastRoomIndex,_nextSide);
         }
     }
 }
