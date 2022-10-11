@@ -30,7 +30,6 @@ namespace Objects
             
                 for (int i = 0; i < poolData[j].NumberOfObjects; i++)
                 {
-                    Debug.Log(poolData[j].NumberOfObjects);
                     GameObject obj = Instantiate(poolData[j].Prefab);
                     obj.SetActive(false);
                     _poolDictionary[poolData[j].Prefab.name].Add(obj);
