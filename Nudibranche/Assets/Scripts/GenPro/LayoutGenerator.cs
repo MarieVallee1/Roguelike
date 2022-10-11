@@ -852,6 +852,7 @@ namespace GenPro
             {
                 placement = Random.Range(1, borneSup);
             }
+            if (placement == 0) placement = 1;
             return placement;
         }
         private void SetSpecialRoom(SpecialRoom specialRoom, Side side, int posSpecialRoom)
