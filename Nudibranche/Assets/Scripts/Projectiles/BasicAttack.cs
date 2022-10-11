@@ -14,10 +14,10 @@ namespace Projectiles
 
         private void OnEnable()
         {
-            _ren = this.GetComponent<SpriteRenderer>();
+            _ren = GetComponent<SpriteRenderer>();
             
             _countdown = 0f;
-
+            
             if (PlayerController.instance.isBuffed)
             {
                 _damages *= multiplier;

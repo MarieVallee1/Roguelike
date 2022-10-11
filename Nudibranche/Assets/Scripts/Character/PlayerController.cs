@@ -20,6 +20,7 @@ namespace Character
         [SerializeField] private CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
         [SerializeField] private GameObject mousePos;
+        [SerializeField] private GameObject mouseCursor;
         [SerializeField] private Transform parryCooldown;
 
         #region Variables
@@ -95,6 +96,8 @@ namespace Character
 
             _characterInputs.Character.AimGamepad.performed += ctx =>
             {
+                //Disable the cursor when aiming with the gamepad
+               mouseCursor.SetActive(false);
                 //Handles the direction of the projectile if shot with the gamepad
                 if(isShootingGamepad) aim = ctx.ReadValue<Vector2>();
             };
@@ -106,6 +109,8 @@ namespace Character
             _characterInputs.Character.ShootMouse.canceled += ctx => isShootingMouse = false;
             _characterInputs.Character.AimMouse.performed += ctx =>
             {
+                //Enable the cursor when shooting with the mouse
+                mouseCursor.SetActive(true);
                 _mouseAim = ctx.ReadValue<Vector2>();
                 aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
@@ -203,13 +208,14 @@ namespace Character
             if (isParrying)
             {
                 StartCoroutine(Parry());
-                Debug.Log(4);
+                print("I'm Parrying !");
             }
             else
             {
                 health = characterData.health;
                 health -= damage;
-                Debug.Log(5);
+                print("I got hit !");
+
             }
         }
 
