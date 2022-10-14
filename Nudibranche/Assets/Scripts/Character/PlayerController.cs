@@ -20,7 +20,7 @@ namespace Character
         [Header("References")]
         [SerializeField] private CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
-        [SerializeField] private GameObject mousePos;
+        [SerializeField] private GameObject bookPos;
         [SerializeField] private GameObject mouseCursor;
         [SerializeField] private Transform parryCooldown;
 
@@ -38,9 +38,10 @@ namespace Character
         
         public int health;
 
-        public bool gamepadOn;
+        
         
         [Header("State")]
+        public bool gamepadOn;
         public bool isShooting;
         public bool isParrying;
         public bool isBuffed;
@@ -58,7 +59,6 @@ namespace Character
             
             _characterInputs = new PlayerInputActions();
         }
-
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -71,17 +71,15 @@ namespace Character
             //_animator = GetComponent<Animator>();
             //_isRunningHash = Animator.StringToHash("isRunning");
         }
-
         private void Update()
         {
             characterPos = _tr.position;
             RestrictMousePos();
         }
-
         private void FixedUpdate()
         {
             //Shoots the projectile
-            if(isShooting) usedProjectile.CharacterShooting(this, mousePos.transform.position);
+            if(isShooting) usedProjectile.CharacterShooting(this, bookPos.transform.position);
             
             HandleMovement();
             characterSpeed = _rb.velocity.magnitude;
@@ -91,8 +89,8 @@ namespace Character
             HandleParry();
             ParryCooldown();
         }
-
-        //Manages the inputs
+        
+        
         private void OnEnable()
         {
             _characterInputs.Enable();
@@ -129,7 +127,7 @@ namespace Character
                 //Enable the cursor when shooting with the mouse
                 mouseCursor.SetActive(true);
                 _mouseAim = ctx.ReadValue<Vector2>();
-                aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
+                if(!gamepadOn)aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
             
             _characterInputs.Character.Parry.performed += ctx =>
@@ -137,11 +135,11 @@ namespace Character
                 if (ParryCooldown() && !isParrying) isParrying = true;
             };
         }
-        
         private void OnDisable()
         {
             _characterInputs.Disable();
         }
+        
 
         private void HandleMovement()
         {
@@ -169,7 +167,6 @@ namespace Character
             #endregion
   
         }
-
         private void HandleParry()
         {
             if (isParrying)
@@ -195,24 +192,27 @@ namespace Character
                 isParrying = false;
             }
         }
-
         public bool AttackCooldown()
         {
             if(Time.time > nextTimeCast) return true;
             return false;
         }
-        
         private bool ParryCooldown()
         {
             if(Time.time > _nextTimeParry) return true;
             return false;
         }
+        private IEnumerator Parry()
+        {
+            isBuffed = true;
+            yield return new WaitForSeconds(characterData.buffDuration);
+            isBuffed = false;
+        }
         
         private void DisableInputs()
         {
             _characterInputs.Character.Disable();
-        }   
-        
+        }
         private void EnableInputs()
         {
             _characterInputs.Character.Enable();
@@ -222,7 +222,7 @@ namespace Character
         {
             Display.RelativeMouseAt(characterPos);
         }
-
+        
         public void TakeDamage(int damage)
         {
             if (isParrying)
@@ -239,11 +239,7 @@ namespace Character
             }
         }
 
-        private IEnumerator Parry()
-        {
-            isBuffed = true;
-            yield return new WaitForSeconds(characterData.buffDuration);
-            isBuffed = false;
-        }
+        
+        
     }
 }
