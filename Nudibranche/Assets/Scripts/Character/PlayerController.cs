@@ -37,10 +37,11 @@ namespace Character
         private float _parryLifeTime;
         
         public int health;
+
+        public bool gamepadOn;
         
         [Header("State")]
-        public bool isShootingGamepad;
-        public bool isShootingMouse;
+        public bool isShooting;
         public bool isParrying;
         public bool isBuffed;
         #endregion
@@ -80,7 +81,7 @@ namespace Character
         private void FixedUpdate()
         {
             //Shoots the projectile
-            if(isShootingGamepad || isShootingMouse) usedProjectile.CharacterShooting(this, mousePos.transform.position);
+            if(isShooting) usedProjectile.CharacterShooting(this, mousePos.transform.position);
             
             HandleMovement();
             characterSpeed = _rb.velocity.magnitude;
@@ -101,21 +102,28 @@ namespace Character
                 _direction = ctx.ReadValue<Vector2>();
                 _movementPressed = _direction.x != 0 || _direction.y != 0;
             };
-
-
-            _characterInputs.Character.AimGamepad.performed += ctx =>
-            {
-                //Disable the cursor when aiming with the gamepad
-               mouseCursor.SetActive(false);
-                //Handles the direction of the projectile if shot with the gamepad
-                if(isShootingGamepad) aim = ctx.ReadValue<Vector2>();
-            };
             
             //Allows to detect which controller is used 
-            _characterInputs.Character.ShootGamepad.performed += ctx => isShootingGamepad = true;
-            _characterInputs.Character.ShootGamepad.canceled += ctx => isShootingGamepad = false;
-            _characterInputs.Character.ShootMouse.performed += ctx => isShootingMouse = true;
-            _characterInputs.Character.ShootMouse.canceled += ctx => isShootingMouse = false;
+            _characterInputs.Character.ShootGamepad.performed += ctx =>
+            {
+                gamepadOn = true;
+                isShooting = true;
+            };
+            _characterInputs.Character.ShootGamepad.canceled += ctx => isShooting = false;
+            _characterInputs.Character.ShootMouse.performed += ctx =>
+            {
+                gamepadOn = false;
+                isShooting = true;
+            };
+            _characterInputs.Character.ShootMouse.canceled += ctx => isShooting = false;
+                _characterInputs.Character.AimGamepad.performed += ctx =>
+            {
+                //Disable the cursor when aiming with the gamepad
+                mouseCursor.SetActive(false);
+                //Handles the direction of the projectile if shot with the gamepad
+                aim = ctx.ReadValue<Vector2>();
+            };
+            
             _characterInputs.Character.AimMouse.performed += ctx =>
             {
                 //Enable the cursor when shooting with the mouse
@@ -123,14 +131,11 @@ namespace Character
                 _mouseAim = ctx.ReadValue<Vector2>();
                 aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
+            
             _characterInputs.Character.Parry.performed += ctx =>
             {
-                if (ParryCooldown() && !isParrying)
-                {
-                    isParrying = true;
-                }
+                if (ParryCooldown() && !isParrying) isParrying = true;
             };
-            
         }
         
         private void OnDisable()
