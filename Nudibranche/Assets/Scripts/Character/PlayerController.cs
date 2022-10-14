@@ -153,8 +153,8 @@ namespace Character
             }
             
             //Flips the sprite when facing left
-            if (_direction.x < 0) _spriteRen.flipX = true;
-            if (_direction.x > 0) _spriteRen.flipX = false;
+            if (_direction.x > 0) _spriteRen.flipX = true;
+            if (_direction.x < 0) _spriteRen.flipX = false;
 
 
             #region Animation
