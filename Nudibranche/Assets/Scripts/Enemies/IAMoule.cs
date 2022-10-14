@@ -19,6 +19,7 @@ public class IAMoule : MonoBehaviour
     private Rigidbody2D rb;
     private bool pathUpdated = true;
     private bool stopPathfinding;
+    [SerializeField] private float repulseSpeed = 100;
     
     // Graph //
     private SpriteRenderer mouleSprite;
@@ -86,7 +87,7 @@ public class IAMoule : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position);
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         force = direction * speed * Time.deltaTime;
 
         if (!stopPathfinding)
@@ -126,6 +127,12 @@ public class IAMoule : MonoBehaviour
             stopPathfinding = true;
             StartCoroutine(Attaque());
         }
+
+        if (col.gameObject.CompareTag("Moule") && !cac)
+        {
+            Vector2 repulseForce = (gameObject.transform.position - col.gameObject.transform.position).normalized * repulseSpeed;
+            rb.AddForce(repulseForce, ForceMode2D.Impulse);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -143,7 +150,7 @@ public class IAMoule : MonoBehaviour
         mouleSprite.color = Color.red;
         if (cac)        // TO DO: si parade bien placée pas de dégâts
         {
-            PlayerController.instance.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
+            //PlayerController.instance.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
         }
         yield return new WaitForSeconds(0.1f);
         mouleSprite.color = Color.white;

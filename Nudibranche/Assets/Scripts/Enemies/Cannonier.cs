@@ -10,8 +10,6 @@ namespace Ennemy
 {
     public class Cannonier : MonoBehaviour
 {
-    // AstarPath.active.Scan();
-    
     //Spawn Oursin//
     public List<Vector2> spawnPointList;
     public float radiusSpawn = 2;
@@ -81,6 +79,7 @@ namespace Ennemy
                 spawnPointList.Remove(spawnPointList[x]);
             }
         }
+        AstarPath.active.Scan();
     }
     public void Attaque()
     {
