@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using Projectiles;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Character
@@ -29,18 +29,18 @@ namespace Character
         private Vector2 _mouseAim;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
-        [HideInInspector] public Vector2 lastDir;
-        
+
         [HideInInspector] public float nextTimeCast;
-        [SerializeField] private float characterSpeed;
+        
         private float _nextTimeParry;
         private float _parryLifeTime;
+        [Space]
+        [SerializeField] private float speedDebug;
         
-        public int health;
+        private int _health;
 
-        
-        
         [Header("State")]
+        public bool canGethit;
         public bool gamepadOn;
         public bool isShooting;
         public bool isParrying;
@@ -48,7 +48,7 @@ namespace Character
         #endregion
 
         //private int _isRunningHash;
-        private bool _movementPressed;
+        [SerializeField] private bool movementPressed;
 
         private void Awake()
         {
@@ -58,19 +58,20 @@ namespace Character
             instance = this;
             
             _characterInputs = new PlayerInputActions();
-        }
-        private void Start()
-        {
+            
             _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<Transform>();
             _spriteRen = GetComponent<SpriteRenderer>();
 
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
-
+            _health = characterData.health;
+            canGethit = true;
+            
             //_animator = GetComponent<Animator>();
             //_isRunningHash = Animator.StringToHash("isRunning");
         }
+   
         private void Update()
         {
             characterPos = _tr.position;
@@ -82,7 +83,7 @@ namespace Character
             if(isShooting) usedProjectile.CharacterShooting(this, bookPos.transform.position);
             
             HandleMovement();
-            characterSpeed = _rb.velocity.magnitude;
+            speedDebug = _rb.velocity.magnitude;
             
             AttackCooldown();
             
@@ -98,7 +99,7 @@ namespace Character
             _characterInputs.Character.Movement.performed += ctx =>
             {
                 _direction = ctx.ReadValue<Vector2>();
-                _movementPressed = _direction.x != 0 || _direction.y != 0;
+                movementPressed = _direction.x != 0 || _direction.y != 0;
             };
             
             //Allows to detect which controller is used 
@@ -146,15 +147,14 @@ namespace Character
             _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, characterData.maxSpeed);
             
             //Moves the character
-            if (_movementPressed)
+            if (movementPressed)
             {
                 _rb.AddForce(_direction * characterData.speed,ForceMode2D.Impulse);
-                lastDir = _direction;
             }
             
             //Flips the sprite when facing left
-            if (_direction.x < 0) _spriteRen.flipX = true;
-            if (_direction.x > 0) _spriteRen.flipX = false;
+            if (_direction.x > 0) _spriteRen.flipX = true;
+            if (_direction.x < 0) _spriteRen.flipX = false;
 
 
             #region Animation
@@ -182,14 +182,19 @@ namespace Character
             if (_parryLifeTime < 0f)
             {
                 parryCooldown.localScale = new Vector3(1, 1, 1);
-                _rb.constraints = RigidbodyConstraints2D.None;
-                _spriteRen.color = Color.white;
-                parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
                 
-                EnableInputs();
+                _rb.constraints = RigidbodyConstraints2D.None;
+                _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _spriteRen.color = Color.white;
+                
+                parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
                 _nextTimeParry = Time.time + characterData.parryCooldown;
                 _parryLifeTime = characterData.parryTime;
                 isParrying = false;
+
+                movementPressed = false;
+                
+                EnableInputs();
             }
         }
         public bool AttackCooldown()
@@ -232,14 +237,38 @@ namespace Character
             }
             else
             {
-                health = characterData.health;
-                health -= damage;
+                
+                //Debugs Death :D 
+                if (_health <= 0)
+                {
+                    Debug.Log("You're dead");
+                    _health = characterData.health;
+                }
+                
+                StartCoroutine(Invulnerability());
+                
+                _health -= damage;
+                
+                //Set the UI to the right amount of hearts
+                Health.instance.SetHealth(_health);
+                
                 print("I got hit !");
-
             }
         }
 
-        
-        
+        private IEnumerator Invulnerability()
+        {
+            canGethit = false;
+            
+            _spriteRen.DOFade(0, 0.1f);
+            yield return new WaitForSeconds(0.1f);
+            _spriteRen.DOFade(1, 0.1f); 
+            yield return new WaitForSeconds(0.1f);
+            _spriteRen.DOFade(0, 0.1f);
+            yield return new WaitForSeconds(0.1f);
+            _spriteRen.DOFade(1, 0.1f); 
+
+            canGethit = true;
+        }
     }
 }

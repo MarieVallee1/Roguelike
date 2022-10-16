@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class TestEnemy : MonoBehaviour
 {
-    private void OnCollisionStay2D(Collision2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        PlayerController.instance.TakeDamage(1);
+        if (PlayerController.instance.canGethit)
+        {
+            PlayerController.instance.TakeDamage(1);
+        }
     }
 }
