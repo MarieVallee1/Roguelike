@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using Projectiles;
@@ -29,8 +28,7 @@ namespace Character
         private Vector2 _mouseAim;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
-        [HideInInspector] public Vector2 lastDir;
-        
+
         [HideInInspector] public float nextTimeCast;
         [SerializeField] private float characterSpeed;
         private float _nextTimeParry;
@@ -38,9 +36,10 @@ namespace Character
         
         public int health;
 
-        
-        
+
+
         [Header("State")]
+        public bool canGethit;
         public bool gamepadOn;
         public bool isShooting;
         public bool isParrying;
@@ -67,7 +66,9 @@ namespace Character
 
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
-
+            health = characterData.health;
+            canGethit = true;
+            
             //_animator = GetComponent<Animator>();
             //_isRunningHash = Animator.StringToHash("isRunning");
         }
@@ -149,7 +150,6 @@ namespace Character
             if (_movementPressed)
             {
                 _rb.AddForce(_direction * characterData.speed,ForceMode2D.Impulse);
-                lastDir = _direction;
             }
             
             //Flips the sprite when facing left
@@ -232,14 +232,28 @@ namespace Character
             }
             else
             {
+                StartCoroutine(Invulnerability());
+                
                 health = characterData.health;
                 health -= damage;
+                
                 print("I got hit !");
-
             }
         }
 
-        
-        
+        private IEnumerator Invulnerability()
+        {
+            canGethit = false;
+            
+            _spriteRen.DOFade(0, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+            _spriteRen.DOFade(1, 0.2f); 
+            yield return new WaitForSeconds(0.3f);
+            _spriteRen.DOFade(0, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+            _spriteRen.DOFade(1, 0.2f); 
+
+            canGethit = true;
+        }
     }
 }

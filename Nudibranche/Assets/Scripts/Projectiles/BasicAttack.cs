@@ -1,3 +1,4 @@
+using System;
 using Character;
 using UnityEngine;
 
@@ -6,16 +7,16 @@ namespace Projectiles
     public class BasicAttack : MonoBehaviour
     {
         private int _damages;
-        public int multiplier;
         private float _countdown;
+        
+        public int multiplier;
         public float projectileDuration;
 
         private SpriteRenderer _ren;
-
         private void OnEnable()
         {
             _ren = GetComponent<SpriteRenderer>();
-            
+
             _countdown = 0f;
             
             if (PlayerController.instance.isBuffed)
