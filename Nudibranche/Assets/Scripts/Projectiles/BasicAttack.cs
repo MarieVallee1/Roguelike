@@ -13,6 +13,8 @@ namespace Projectiles
         public float projectileDuration;
 
         private SpriteRenderer _ren;
+        private TrailRenderer _trail;
+        
         private void OnEnable()
         {
             _ren = GetComponent<SpriteRenderer>();
