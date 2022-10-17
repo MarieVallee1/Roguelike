@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9215006646866032877}
   - component: {fileID: 7135440744265844698}
   m_Layer: 8
-  m_Name: Cannonier
+  m_Name: Canonnier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,9 +51,9 @@ MonoBehaviour:
   radiusSpawn: 2
   nbOursinAround: 6
   target: {fileID: 0}
-  oursin: {fileID: 0}
   nbOursin: 3
-  timeBetweenOursins: 2
+  timeBetweenAttacks: 3
+  usedOursin: {fileID: 0}
   hiddenDistance: 1
 --- !u!61 &631100557
 BoxCollider2D:
