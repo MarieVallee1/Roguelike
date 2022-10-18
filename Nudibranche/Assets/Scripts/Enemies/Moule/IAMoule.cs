@@ -8,7 +8,7 @@ using Pathfinding;
 public class IAMoule : MonoBehaviour
 {
     // Pathfinding //
-    public Transform target;    //TO DO: trouver une autre manière de lui assigner le player que à la main (vraiment utile ?)
+    [SerializeField] private Transform target;
     public float speed = 200;
     private Vector2 force;
     private float nextWaypointDistance = 1;
@@ -39,6 +39,7 @@ public class IAMoule : MonoBehaviour
         mouleSprite = GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        target = PlayerController.instance.transform;
 
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;

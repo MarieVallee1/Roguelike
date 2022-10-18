@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
@@ -15,7 +16,7 @@ namespace Ennemy
     public float radiusSpawn = 2;
     private float radius = 2;
     public int nbOursinAround = 6;
-    public GameObject target;
+    public Transform target;
     public int nbOursin = 3;
     public float timeBetweenAttacks = 3;
     [SerializeField] private Oursin usedOursin;
@@ -51,6 +52,7 @@ namespace Ennemy
 
     private void Start()
     {
+        target = PlayerController.instance.transform;
         radius = usedOursin.radius;
         animator = GetComponent<Animator>();
         animator.SetTrigger("Activate");
