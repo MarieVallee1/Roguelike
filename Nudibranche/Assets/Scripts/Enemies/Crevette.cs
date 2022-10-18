@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Pathfinding.Util;
 
 public class Crevette : MonoBehaviour
 {
@@ -16,13 +17,15 @@ public class Crevette : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private bool pathUpdated = true;
-    private bool stopPathfinding;
+    private bool stopPathfinding = false;
+    public float targetDistance = 1;
     
     //Graph//
     private SpriteRenderer crevetteSprite;
     
     //Combat//
     public int damage = 1;
+    public float projectileDiameter;
     
     //Health//
     public int pv = 5;
@@ -31,6 +34,9 @@ public class Crevette : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         crevetteSprite = GetComponent<SpriteRenderer>();
+        
+        InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
+        pathUpdated = true;
     }
 
     void UpdatePath()
@@ -100,19 +106,39 @@ public class Crevette : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             path = null;
             pathUpdated = false;
-        } 
-        
+        }
+
+        if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
+        {
+            Vector2 raycastDirection = target.transform.position - transform.position;
+            if (Physics2D.BoxCast(transform.position, new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection), raycastDirection, raycastDirection.magnitude,
+                    LayerMask.GetMask("Obstacle")))
+            {
+                stopPathfinding = false;
+            }
+            else
+            {
+                stopPathfinding = true; 
+            }
+            Debug.DrawRay(transform.position, raycastDirection, Color.red);
+        }
+        else
+        {
+            stopPathfinding = false;
+        }
+
+
     }
     
     void Flip()
     {
         if (rb.velocity.x >= 0.01f)
         {
-            crevetteSprite.flipX = true;
+            crevetteSprite.flipX = false;
         }
         else if (rb.velocity.x <= 0.01f)
         {
-            crevetteSprite.flipX = false;
+            crevetteSprite.flipX = true;
         }
     }
 }
