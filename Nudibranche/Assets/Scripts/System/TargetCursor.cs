@@ -1,3 +1,4 @@
+using Character;
 using UnityEngine;
 
 namespace System
@@ -6,7 +7,6 @@ namespace System
     {
         [SerializeField] private Camera cam;
         public static TargetCursor instance;
-    
 
         private void Awake()
         {
@@ -19,11 +19,11 @@ namespace System
                 instance = this; 
             } 
         }
-
         private void Update()
         {
-            CursorPosition();
+            if(!PlayerController.instance.gamepadOn) CursorPosition();
         }
+        
 
         private void CursorPosition()
         {

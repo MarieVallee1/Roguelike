@@ -36,7 +36,7 @@ public class IAMoule : MonoBehaviour
 
     private void Start()
     {
-        mouleSprite = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        mouleSprite = GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
