@@ -135,6 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &395196602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2030734377252228402, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4846693284545004637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &438122204
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7e3f5180e9b3f45862324387e42712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 1376400825}
+  dialogueBox1: {fileID: 395196602}
+  dialogueBox2: {fileID: 2081322266}
+  spriteNpc: {fileID: 1220896538}
   nameTxt: {fileID: 1186313492}
   dialogueTxt: {fileID: 389322418}
 --- !u!1 &928957103
@@ -384,17 +392,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1220896538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5875200765131132921, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4846693284545004637}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1240358730 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4395585856435167876, guid: 3426bdae9be228b4a9b8765f92d9445e,
     type: 3}
   m_PrefabInstance: {fileID: 4395585857657175502}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1376400825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2928636380500605632, guid: 5bfde0a7fc1be73418b00953d5d4353d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4846693284545004637}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1590678068 stripped
 MonoBehaviour:
@@ -603,9 +617,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 619228852, guid: 0141a917dcef58f48a82cdefa9e47f86, type: 3}
-  m_Color: {r: 1, g: 0.9587247, b: 0, a: 1}
-  m_FlipX: 0
+  m_Sprite: {fileID: 21300000, guid: 71bd60fdd21fb364abe46d3ec3dbe4ec, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 3.87, y: 4.36}
@@ -744,6 +758,12 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &2081322266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5203616959424546466, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4846693284545004637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2138391268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1083,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1173997419468358211, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912169835563137440, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 4846693285327624626, guid: 5bfde0a7fc1be73418b00953d5d4353d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1177,6 +1208,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5875200765131132921, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868981367695550110, guid: 5bfde0a7fc1be73418b00953d5d4353d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bfde0a7fc1be73418b00953d5d4353d, type: 3}

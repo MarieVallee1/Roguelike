@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,9 @@ namespace Narration
     public class DialogueManager : MonoBehaviour
     {
         
-        [SerializeField] private GameObject dialogueBox;
+        [SerializeField] private GameObject dialogueBox1;
+        [SerializeField] private GameObject dialogueBox2;
+        [SerializeField] private Image spriteNpc;
         [SerializeField] private TextMeshProUGUI nameTxt;
         [SerializeField] private TextMeshProUGUI dialogueTxt;
 
@@ -30,13 +33,11 @@ namespace Narration
         private void Start()
         {
             _sentences = new Queue<string>();
-
-            dialogueBox.SetActive(false);
         }
 
         public void StartDialogue(Dialogue dialogue)
         {
-            dialogueBox.SetActive(true);    
+            OpenDialogue();  
 
             if (!_dialogueStarted)
             {
@@ -51,7 +52,6 @@ namespace Narration
                 
                 _dialogueStarted = true;                                  
             }
-            
             DisplayNextSentence();      
         }
 
@@ -69,9 +69,23 @@ namespace Narration
 
         void EndDialogue()
         {
-            dialogueBox.SetActive(false);    
+            CloseDialogue();
 
             _dialogueStarted = false;
         }
+
+        private void OpenDialogue()
+        {
+            dialogueBox1.transform.DOLocalMoveX(0, 0.8f);
+            dialogueBox2.transform.DOLocalMoveX(0, 0.8f);
+            spriteNpc.DOFade(1, 1f);
+        }
+        
+        private void CloseDialogue()
+        {
+            dialogueBox1.transform.DOLocalMoveX(2000, 0.8f);
+            dialogueBox2.transform.DOLocalMoveX(-2000, 0.8f);
+            spriteNpc.DOFade(0, 0.8f);
+        }                                       
     }
 }
