@@ -9,6 +9,7 @@ public class LayerOrder : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
     void Update()
     {

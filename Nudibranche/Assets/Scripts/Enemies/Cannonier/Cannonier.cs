@@ -22,7 +22,6 @@ namespace Ennemy
     [SerializeField] private Oursin usedOursin;
 
     // Caché //
-    
     public float hiddenDistance = 1;
     private bool enableAttack;
 
@@ -83,7 +82,8 @@ namespace Ennemy
 
         for (int i = 0; i < spawnPointList.Count; i++)
         {
-            if (Physics2D.OverlapCircle(spawnPointList[i], radius, LayerMask.GetMask("Obstacle"), 0, 0))
+            if (Physics2D.CircleCast(spawnPointList[i], radius, Vector2.zero, 0,
+                    LayerMask.GetMask("Obstacle", "Canonnier")))
             {
                 spawnPointList.Remove(spawnPointList[i]);
                 i -= 1;
@@ -102,7 +102,6 @@ namespace Ennemy
                 spawnPointList.Remove(spawnPointList[x]);
             }
         }
-        AstarPath.active.Scan();
     }
     public void Attaque()
     {
