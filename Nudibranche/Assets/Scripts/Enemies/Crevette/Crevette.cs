@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Pathfinding.Util;
+using CrevetteProjectiles;
 
-public class Crevette : MonoBehaviour
+namespace Ennemy
+{
+    public class Crevette : MonoBehaviour
 {
     //Pathfinding//
     public Transform target;
@@ -16,14 +20,18 @@ public class Crevette : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private bool pathUpdated = true;
-    private bool stopPathfinding;
+    private bool stopPathfinding = false;
+    public float targetDistance = 1;
     
     //Graph//
     private SpriteRenderer crevetteSprite;
     
     //Combat//
-    public int damage = 1;
-    
+    public float projectileDiameter;
+    [SerializeField] private CrevetteProjectile usedCrevetteProjectile;
+    private bool attaque;
+    public float nextTimeCast;
+
     //Health//
     public int pv = 5;
     void Start()
@@ -31,6 +39,9 @@ public class Crevette : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         crevetteSprite = GetComponent<SpriteRenderer>();
+        
+        InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
+        pathUpdated = true;
     }
 
     void UpdatePath()
@@ -53,6 +64,7 @@ public class Crevette : MonoBehaviour
     {
         
         Flip();
+        AttackCooldown();
 
         if (!pathUpdated && !stopPathfinding)
         {
@@ -100,8 +112,40 @@ public class Crevette : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             path = null;
             pathUpdated = false;
-        } 
+        }
+
+        if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
+        {
+            Vector2 raycastDirection = target.transform.position - transform.position;
+            if (Physics2D.BoxCast(transform.position, new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection), raycastDirection, raycastDirection.magnitude,
+                    LayerMask.GetMask("Obstacle")))
+            {
+                stopPathfinding = false;
+                attaque = false;
+            }
+            else
+            {
+                stopPathfinding = true;
+                attaque = true;
+            }
+            Debug.DrawRay(transform.position, raycastDirection, Color.red);
+        }
+        else
+        {
+            stopPathfinding = false;
+            attaque = false;
+        }
         
+        if (attaque)
+        {
+            usedCrevetteProjectile.CrevetteShooting(this, this.transform.position, target.position - transform.position);
+        }
+    }
+    
+    public bool AttackCooldown()
+    {
+        if(Time.time > nextTimeCast) return true;
+        return false;
     }
     
     void Flip()
@@ -116,3 +160,5 @@ public class Crevette : MonoBehaviour
         }
     }
 }
+}
+

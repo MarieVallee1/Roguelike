@@ -8,8 +8,7 @@ namespace Character
 {
     public class PlayerController : MonoBehaviour
     {
-        private PlayerInputActions _characterInputs;
-
+        public PlayerInputActions characterInputs;
         private Rigidbody2D _rb;
         private Transform _tr;
         private SpriteRenderer _spriteRen;
@@ -45,6 +44,7 @@ namespace Character
         public bool isShooting;
         public bool isParrying;
         public bool isBuffed;
+        public bool isInteracting;
         #endregion
 
         //private int _isRunningHash;
@@ -57,7 +57,7 @@ namespace Character
  
             instance = this;
             
-            _characterInputs = new PlayerInputActions();
+            characterInputs = new PlayerInputActions();
             
             _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<Transform>();
@@ -94,28 +94,28 @@ namespace Character
         
         private void OnEnable()
         {
-            _characterInputs.Enable();
+            characterInputs.Enable();
 
-            _characterInputs.Character.Movement.performed += ctx =>
+            characterInputs.Character.Movement.performed += ctx =>
             {
                 _direction = ctx.ReadValue<Vector2>();
                 movementPressed = _direction.x != 0 || _direction.y != 0;
             };
             
             //Allows to detect which controller is used 
-            _characterInputs.Character.ShootGamepad.performed += ctx =>
+            characterInputs.Character.ShootGamepad.performed += ctx =>
             {
                 gamepadOn = true;
                 isShooting = true;
             };
-            _characterInputs.Character.ShootGamepad.canceled += ctx => isShooting = false;
-            _characterInputs.Character.ShootMouse.performed += ctx =>
+            characterInputs.Character.ShootGamepad.canceled += ctx => isShooting = false;
+            characterInputs.Character.ShootMouse.performed += ctx =>
             {
                 gamepadOn = false;
                 isShooting = true;
             };
-            _characterInputs.Character.ShootMouse.canceled += ctx => isShooting = false;
-                _characterInputs.Character.AimGamepad.performed += ctx =>
+            characterInputs.Character.ShootMouse.canceled += ctx => isShooting = false;
+                characterInputs.Character.AimGamepad.performed += ctx =>
             {
                 //Disable the cursor when aiming with the gamepad
                 mouseCursor.SetActive(false);
@@ -123,7 +123,7 @@ namespace Character
                 aim = ctx.ReadValue<Vector2>();
             };
             
-            _characterInputs.Character.AimMouse.performed += ctx =>
+            characterInputs.Character.AimMouse.performed += ctx =>
             {
                 //Enable the cursor when shooting with the mouse
                 mouseCursor.SetActive(true);
@@ -131,14 +131,14 @@ namespace Character
                 if(!gamepadOn)aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
             
-            _characterInputs.Character.Parry.performed += ctx =>
+            characterInputs.Character.Parry.performed += ctx =>
             {
                 if (ParryCooldown() && !isParrying) isParrying = true;
             };
         }
         private void OnDisable()
         {
-            _characterInputs.Disable();
+            characterInputs.Disable();
         }
         
 
@@ -167,6 +167,7 @@ namespace Character
             #endregion
   
         }
+        
         private void HandleParry()
         {
             if (isParrying)
@@ -216,11 +217,11 @@ namespace Character
         
         private void DisableInputs()
         {
-            _characterInputs.Character.Disable();
+            characterInputs.Character.Disable();
         }
         private void EnableInputs()
         {
-            _characterInputs.Character.Enable();
+            characterInputs.Character.Enable();
         }
         
         private void RestrictMousePos()
