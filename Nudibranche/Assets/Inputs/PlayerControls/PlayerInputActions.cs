@@ -80,6 +80,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""53bea159-62ef-4c0f-a812-9c9fa8e11c85"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -214,6 +223,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68326d3c-81c6-4a7a-99bc-09780a2228f6"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef2ef7c7-1442-4941-bef0-3591cd0469ab"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -256,6 +287,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Character_ShootGamepad = m_Character.FindAction("ShootGamepad", throwIfNotFound: true);
         m_Character_ShootMouse = m_Character.FindAction("ShootMouse", throwIfNotFound: true);
         m_Character_Parry = m_Character.FindAction("Parry", throwIfNotFound: true);
+        m_Character_Interact = m_Character.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -321,6 +353,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ShootGamepad;
     private readonly InputAction m_Character_ShootMouse;
     private readonly InputAction m_Character_Parry;
+    private readonly InputAction m_Character_Interact;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -331,6 +364,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @ShootGamepad => m_Wrapper.m_Character_ShootGamepad;
         public InputAction @ShootMouse => m_Wrapper.m_Character_ShootMouse;
         public InputAction @Parry => m_Wrapper.m_Character_Parry;
+        public InputAction @Interact => m_Wrapper.m_Character_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -358,6 +392,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Parry.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnParry;
                 @Parry.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnParry;
                 @Parry.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnParry;
+                @Interact.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -380,6 +417,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Parry.started += instance.OnParry;
                 @Parry.performed += instance.OnParry;
                 @Parry.canceled += instance.OnParry;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -410,5 +450,6 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnShootGamepad(InputAction.CallbackContext context);
         void OnShootMouse(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
