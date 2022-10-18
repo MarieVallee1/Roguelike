@@ -21,9 +21,30 @@ namespace Ennemy
     [SerializeField] private Oursin usedOursin;
 
     // Caché //
-    private bool hidden;
+    
     public float hiddenDistance = 1;
     private bool enableAttack;
+
+    private bool hidden;
+    private bool Hidden
+    {
+        get { return hidden;}
+        set
+        {
+            if (value != hidden)
+            {
+                if (hidden)
+                {
+                    StartCoroutine(DelayBetweenAttacks());
+                }
+                else
+                {
+                    StopCoroutine(DelayBetweenAttacks());
+                }
+            }
+            hidden = value; 
+        }
+    }
     
     // Animator //
     private Animator animator;
@@ -41,12 +62,12 @@ namespace Ennemy
         if (Vector2.Distance(transform.position, target.transform.position) <= hiddenDistance)
         {
             animator.SetBool("Hidden", true);
-            hidden = true;
+            Hidden = true;
         }
         else
         {
             animator.SetBool("Hidden", false);
-            hidden = false;
+            Hidden = false;
         }
     }
 
@@ -88,13 +109,9 @@ namespace Ennemy
         spawnPointList.Clear();
     }
 
-    IEnumerator DelayBetweenAttacks()      //un peu crado, fonctionne mais à revoir
+    IEnumerator DelayBetweenAttacks()
     {
-        if (!hidden)
-        {
-            animator.SetTrigger("Shoot");
-        }
-
+        animator.SetTrigger("Shoot");
         yield return new WaitForSeconds(timeBetweenAttacks);
         StartCoroutine(DelayBetweenAttacks());
     }
