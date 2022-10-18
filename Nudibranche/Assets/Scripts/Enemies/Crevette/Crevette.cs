@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using Pathfinding.Util;
+using CrevetteProjectiles;
 
-public class Crevette : MonoBehaviour
+namespace Ennemy
+{
+    public class Crevette : MonoBehaviour
 {
     //Pathfinding//
     public Transform target;
@@ -24,9 +27,11 @@ public class Crevette : MonoBehaviour
     private SpriteRenderer crevetteSprite;
     
     //Combat//
-    public int damage = 1;
     public float projectileDiameter;
-    
+    [SerializeField] private CrevetteProjectile usedCrevetteProjectile;
+    private bool attaque;
+    public float nextTimeCast;
+
     //Health//
     public int pv = 5;
     void Start()
@@ -59,6 +64,7 @@ public class Crevette : MonoBehaviour
     {
         
         Flip();
+        AttackCooldown();
 
         if (!pathUpdated && !stopPathfinding)
         {
@@ -115,30 +121,44 @@ public class Crevette : MonoBehaviour
                     LayerMask.GetMask("Obstacle")))
             {
                 stopPathfinding = false;
+                attaque = false;
             }
             else
             {
-                stopPathfinding = true; 
+                stopPathfinding = true;
+                attaque = true;
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
         }
         else
         {
             stopPathfinding = false;
+            attaque = false;
         }
-
-
+        
+        if (attaque)
+        {
+            usedCrevetteProjectile.CrevetteShooting(this, this.transform.position, target.position - transform.position);
+        }
+    }
+    
+    public bool AttackCooldown()
+    {
+        if(Time.time > nextTimeCast) return true;
+        return false;
     }
     
     void Flip()
     {
         if (rb.velocity.x >= 0.01f)
         {
-            crevetteSprite.flipX = false;
+            crevetteSprite.flipX = true;
         }
         else if (rb.velocity.x <= 0.01f)
         {
-            crevetteSprite.flipX = true;
+            crevetteSprite.flipX = false;
         }
     }
 }
+}
+

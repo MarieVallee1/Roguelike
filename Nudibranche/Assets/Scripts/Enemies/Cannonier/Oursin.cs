@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ennemy;
 using Objects;
 
 namespace Oursins
@@ -16,7 +15,6 @@ namespace Oursins
 
             if (usedOursin != null)
             {
-                Debug.Log(usedOursin);
                 //Placement & activation
                 usedOursin.transform.position = spawnPos;
                 usedOursin.SetActive(true);
