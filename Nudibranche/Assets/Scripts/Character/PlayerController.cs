@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Projectiles;
 using Unity.VisualScripting;
@@ -22,6 +23,7 @@ namespace Character
         [SerializeField] private GameObject bookPos;
         [SerializeField] private GameObject mouseCursor;
         [SerializeField] private Transform parryCooldown;
+        [SerializeField] private List<Sprite> charaDirSprites;
 
         #region Variables
         private Vector2 _direction;
@@ -44,7 +46,8 @@ namespace Character
         public bool isShooting;
         public bool isParrying;
         public bool isBuffed;
-        public bool isInteracting;
+        public bool isMovingUp;
+        public bool isMovingDown;
         #endregion
 
         //private int _isRunningHash;
@@ -100,6 +103,8 @@ namespace Character
             {
                 _direction = ctx.ReadValue<Vector2>();
                 movementPressed = _direction.x != 0 || _direction.y != 0;
+                isMovingUp = _direction.y > 0.7;
+                isMovingDown = _direction.y < -0.7;
             };
             
             //Allows to detect which controller is used 
@@ -159,6 +164,19 @@ namespace Character
 
             #region Animation
 
+            if (isMovingUp)
+            {
+                _spriteRen.sprite = charaDirSprites[2];
+            }else if (isMovingDown)
+            {
+                _spriteRen.sprite = charaDirSprites[0];
+            }
+            else
+            {
+                _spriteRen.sprite = charaDirSprites[1];
+            }
+            
+            
             // bool isRunning = _animator.GetBool(_isRunningHash);
             //
             // if (_movementPressed) _animator.SetBool(_isRunningHash, true);
