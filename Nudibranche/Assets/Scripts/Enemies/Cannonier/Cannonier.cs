@@ -24,8 +24,7 @@ namespace Ennemy
     // Caché //
     public float hiddenDistance = 1;
     private bool enableAttack;
-
-    private bool hidden;
+    private bool hidden = true;
     private bool Hidden
     {
         get { return hidden;}
@@ -55,7 +54,11 @@ namespace Ennemy
         radius = usedOursin.radius;
         animator = GetComponent<Animator>();
         animator.SetTrigger("Activate");
-        StartCoroutine(DelayBetweenAttacks());
+    }
+
+    public void StartActivityCannonier()
+    {
+        
     }
 
     void Update()

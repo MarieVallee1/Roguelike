@@ -40,7 +40,7 @@ namespace Ennemy
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         crevetteSprite = GetComponent<SpriteRenderer>();
-
+        
         target = PlayerController.instance.transform;
         
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
