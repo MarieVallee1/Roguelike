@@ -1,6 +1,7 @@
 using System;
 using Character;
 using UnityEngine;
+using Projectiles;
 
 namespace Projectiles
 {
@@ -14,6 +15,8 @@ namespace Projectiles
 
         private SpriteRenderer _ren;
         private TrailRenderer _trail;
+
+        public Projectile projectileData;
         
         private void OnEnable()
         {
@@ -34,6 +37,10 @@ namespace Projectiles
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(projectileData.damage);
+            }
             if (other.gameObject.CompareTag("Enemy") && other.gameObject.CompareTag("Environment"))
             {
                 gameObject.SetActive(false);

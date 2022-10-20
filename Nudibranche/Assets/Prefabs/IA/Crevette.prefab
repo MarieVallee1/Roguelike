@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5912512539017445703}
   m_Layer: 9
   m_Name: LayerManager
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,9 +58,10 @@ GameObject:
   - component: {fileID: 5661119468485804723}
   - component: {fileID: 7336686198961904145}
   - component: {fileID: 6022184843574172176}
+  - component: {fileID: 6641259440492536489}
   m_Layer: 9
   m_Name: Crevette
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,6 +230,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6641259440492536489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932920993117357847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95606bb8318059d4789981193ab1de49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPV: 3
+  pv: 0
 --- !u!1 &3003386238345824868
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +256,7 @@ GameObject:
   - component: {fileID: 6204201795686456872}
   m_Layer: 14
   m_Name: ProjectileHit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

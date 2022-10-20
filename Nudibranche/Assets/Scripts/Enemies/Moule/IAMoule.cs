@@ -30,9 +30,6 @@ public class IAMoule : MonoBehaviour
     public float timeBetwennAttacks = 1;
     public float timePrepAttack = 1;
     public int damage = 1;
-    
-    // Health //
-    public int pv = 5;
 
     private void Start()
     {
@@ -113,11 +110,6 @@ public class IAMoule : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             path = null;
             pathUpdated = false;
-        }
-
-        if (pv <= 0)
-        {
-            Debug.Log("Moule is dead");
         }
     }
     private void OnCollisionEnter2D(Collision2D col)

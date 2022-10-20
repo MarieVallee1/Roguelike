@@ -34,6 +34,6 @@ namespace Projectiles
         [Range(0,10)] public float fireRate;
         [Range(0,100)] public float projectileSpeed;
         [Range(0,10)] public float cooldown;
-        [Range(0, 100)] public float damage;
+        [Range(0, 100)] public int damage;
     }
 }

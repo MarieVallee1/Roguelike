@@ -24,6 +24,7 @@ public class OursinBehavior : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(Behavior());
+        dangerous = false;
     }
 
     IEnumerator Behavior()
@@ -36,7 +37,6 @@ public class OursinBehavior : MonoBehaviour
         animator.SetTrigger("Explode");
         dangerous = true;
         yield return new WaitForSeconds(timeOnScreen);
-        dangerous = false;
         gameObject.SetActive(false);
     }
 
