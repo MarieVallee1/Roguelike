@@ -56,11 +56,6 @@ namespace Ennemy
         animator.SetTrigger("Activate");
     }
 
-    public void StartActivityCannonier()
-    {
-        
-    }
-
     void Update()
     {
         if (Vector2.Distance(transform.position, target.transform.position) <= hiddenDistance)

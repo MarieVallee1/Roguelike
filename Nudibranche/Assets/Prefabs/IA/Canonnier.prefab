@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 631100557}
   - component: {fileID: 9215006646866032877}
   - component: {fileID: 7135440744265844698}
-  m_Layer: 8
+  - component: {fileID: 6860674512028189146}
+  m_Layer: 11
   m_Name: Canonnier
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,6 +156,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6860674512028189146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65909973824017759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95606bb8318059d4789981193ab1de49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPV: 3
+  pv: 0
 --- !u!1 &2246861995514337409
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,9 +179,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4465769647565097722}
+  - component: {fileID: 6142729410387526767}
   m_Layer: 14
   m_Name: ProjectileHit
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +202,32 @@ Transform:
   m_Father: {fileID: 65909973824017756}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &6142729410387526767
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246861995514337409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.029402018, y: -0.017642021}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.5992045, y: 4.3754377}
+  m_EdgeRadius: 0
 --- !u!1 &6291779619849474840
 GameObject:
   m_ObjectHideFlags: 0

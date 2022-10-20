@@ -30,9 +30,6 @@ public class IAMoule : MonoBehaviour
     public float timeBetwennAttacks = 1;
     public float timePrepAttack = 1;
     public int damage = 1;
-    
-    // Health //
-    public int pv = 5;
 
     private void Start()
     {
@@ -114,11 +111,6 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
-
-        if (pv <= 0)
-        {
-            Debug.Log("Moule is dead");
-        }
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -149,9 +141,9 @@ public class IAMoule : MonoBehaviour
         mouleSprite.color = Color.yellow;
         yield return new WaitForSeconds(timePrepAttack);
         mouleSprite.color = Color.red;
-        if (cac)        // TO DO: si parade bien placée pas de dégâts
+        if (cac)
         {
-            //PlayerController.instance.TakeDamage(damage);    // TO DO: récupérer la fonction sur le vrai script du player
+            PlayerController.instance.TakeDamage(damage);
         }
         yield return new WaitForSeconds(0.1f);
         mouleSprite.color = Color.white;
@@ -165,12 +157,6 @@ public class IAMoule : MonoBehaviour
             stopPathfinding = false;
         }
     }
-
-    public void TakeDamage(int damage)
-    {
-        pv -= damage;
-    }
-
     void Flip()
     {
         if (rb.velocity.x >= 0.01f)

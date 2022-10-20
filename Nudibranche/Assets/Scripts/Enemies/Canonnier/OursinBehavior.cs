@@ -24,6 +24,7 @@ public class OursinBehavior : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(Behavior());
+        dangerous = false;
     }
 
     IEnumerator Behavior()
@@ -45,9 +46,17 @@ public class OursinBehavior : MonoBehaviour
         {
             target = col.gameObject;
             targetInZone = true;
+            
+            if (dangerous)
+            {
+                target.GetComponent<PlayerController>().TakeDamage(oursinData.explosionDamage);
+            }
         }
+    }
 
-        if (dangerous)
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
         {
             target.GetComponent<PlayerController>().TakeDamage(oursinData.passiveDamage);
         }
