@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 5661119468485804723}
   - component: {fileID: 7336686198961904145}
   - component: {fileID: 6022184843574172176}
-  - component: {fileID: 2195262503500975509}
   m_Layer: 9
   m_Name: Crevette
   m_TagString: Untagged
@@ -203,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 150
-  targetDistance: 4
+  targetDistance: 8
   projectileDiameter: 0.5
   usedCrevetteProjectile: {fileID: 11400000, guid: db3c952546a300e47beed223a21124d8,
     type: 2}
@@ -230,18 +229,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2195262503500975509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2932920993117357847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08135d4040fa7da4a83d1aa1aff82cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3003386238345824868
 GameObject:
   m_ObjectHideFlags: 0

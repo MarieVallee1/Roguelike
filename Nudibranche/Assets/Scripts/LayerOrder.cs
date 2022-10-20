@@ -8,7 +8,6 @@ public class LayerOrder : MonoBehaviour
     private int roundedYPos;
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
     void Update()
