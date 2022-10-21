@@ -145,7 +145,11 @@ namespace Character
         {
             characterInputs.Disable();
         }
-        
+
+        public void FreezeCharacter()
+        {
+            _rb.velocity = Vector2.zero;
+        }
 
         private void HandleMovement()
         {
