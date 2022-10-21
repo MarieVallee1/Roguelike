@@ -1,6 +1,4 @@
-using System;
 using Character;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Narration
@@ -27,16 +25,16 @@ namespace Narration
             _inZone = false;
         }
 
-        private void TriggerDialogue()
-        {
-            DialogueManager.instance.StartDialogue(dialogue);
-        }
-
         void InteractionZone()
         {
             if (PlayerController.instance.characterInputs.Character.Interact.triggered)
             {
-                TriggerDialogue();
+                DialogueManager.instance.StartDialogue(dialogue);
+            }
+            
+            if (PlayerController.instance.characterInputs.UI.Interact.triggered)
+            {
+                DialogueManager.instance.ContinueDialogue(dialogue);
             }
         }
     }
