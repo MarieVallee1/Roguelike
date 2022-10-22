@@ -30,7 +30,11 @@ namespace Narration
         
         [Header("Buttons")]
         [SerializeField] private GameObject choices;
-
+        
+        [Header("PnJ")]
+        [SerializeField] private Npc scieRano;
+        [SerializeField] private Npc shellock;
+        [SerializeField] private Npc sirène;
 
         private Queue<string> _sentences;
         private Queue<string> _sentences1;
@@ -107,7 +111,7 @@ namespace Narration
 
             if (_sentences.Count <= 0 && _branchTaken == 0 || _sentences1.Count <= 0 || _sentences2.Count <= 0)
             {
-                EndDialogue();
+                EndDialogue(dialogue);
                 return;
             }
 
@@ -135,8 +139,28 @@ namespace Narration
             }
         }
 
-        void EndDialogue()
+        void EndDialogue(Dialogue dialogue)
         {
+            
+            switch (dialogue.skillIndex)
+            {
+                case 0:
+                {
+                    PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                }
+                    break;
+                case 1 :
+                {
+                    PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                }
+                    break;
+                case 2 :
+                {
+                    PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                }
+                    break;
+            }
+            
             CloseDialogue();
             PlayerController.instance.EnableInputs();
         }
@@ -192,5 +216,6 @@ namespace Narration
             string sentence = _sentences2.Dequeue();
             dialogueTxt.text = sentence;
         }
+        
     }
 }

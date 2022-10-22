@@ -24,6 +24,8 @@ namespace Character
         [SerializeField] private GameObject mouseCursor;
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private List<Sprite> charaDirSprites;
+        public List<Skills> skills;
+        public Skills currentSkill;
 
         #region Variables
         private Vector2 _direction;

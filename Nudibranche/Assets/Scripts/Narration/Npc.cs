@@ -30,6 +30,7 @@ namespace Narration
             if (PlayerController.instance.characterInputs.Character.Interact.triggered)
             {
                 DialogueManager.instance.StartDialogue(dialogue);
+                PlayerController.instance.FreezeCharacter();
             }
             
             if (PlayerController.instance.characterInputs.UI.Interact.triggered)
