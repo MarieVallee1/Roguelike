@@ -318,6 +318,9 @@ MonoBehaviour:
   choice1Txt: {fileID: 1847953229}
   choice2Txt: {fileID: 4846693284545004638}
   choices: {fileID: 1750365594}
+  scieRano: {fileID: 0}
+  shellock: {fileID: 0}
+  "sir\xE8ne": {fileID: 0}
 --- !u!225 &614546057 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 614546057, guid: 5bfde0a7fc1be73418b00953d5d4353d,
@@ -851,6 +854,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 1865486860194852731, guid: 1696c45d64efa83428a36df1bace9197,
+        type: 3}
+      propertyPath: skills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865486860194852731, guid: 1696c45d64efa83428a36df1bace9197,
+        type: 3}
+      propertyPath: skills.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ab0844779a204d2479979d0f47f4045c,
+        type: 2}
     - target: {fileID: 1865486860194852735, guid: 1696c45d64efa83428a36df1bace9197,
         type: 3}
       propertyPath: m_RootOrder
