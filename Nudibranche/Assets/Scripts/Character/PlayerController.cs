@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Projectiles;
-using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 namespace Character
@@ -24,6 +24,8 @@ namespace Character
         [SerializeField] private GameObject mouseCursor;
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private List<Sprite> charaDirSprites;
+        public List<Skills> skills;
+        public Skills currentSkill;
 
         #region Variables
         private Vector2 _direction;
@@ -97,7 +99,7 @@ namespace Character
         
         private void OnEnable()
         {
-            characterInputs.Enable();
+            characterInputs.Character.Enable();
 
             characterInputs.Character.Movement.performed += ctx =>
             {
@@ -145,7 +147,11 @@ namespace Character
         {
             characterInputs.Disable();
         }
-        
+
+        public void FreezeCharacter()
+        {
+            _rb.velocity = Vector2.zero;
+        }
 
         private void HandleMovement()
         {
@@ -164,17 +170,17 @@ namespace Character
 
             #region Animation
 
-            if (isMovingUp)
-            {
-                _spriteRen.sprite = charaDirSprites[2];
-            }else if (isMovingDown)
-            {
-                _spriteRen.sprite = charaDirSprites[0];
-            }
-            else
-            {
-                _spriteRen.sprite = charaDirSprites[1];
-            }
+            // if (isMovingUp)
+            // {
+            //     _spriteRen.sprite = charaDirSprites[2];
+            // }else if (isMovingDown)
+            // {
+            //     _spriteRen.sprite = charaDirSprites[0];
+            // }
+            // else
+            // {
+            //     _spriteRen.sprite = charaDirSprites[1];
+            // }
             
             
             // bool isRunning = _animator.GetBool(_isRunningHash);
@@ -233,13 +239,15 @@ namespace Character
             isBuffed = false;
         }
         
-        private void DisableInputs()
+        public void DisableInputs()
         {
             characterInputs.Character.Disable();
+            characterInputs.UI.Enable();
         }
-        private void EnableInputs()
+        public void EnableInputs()
         {
             characterInputs.Character.Enable();
+            characterInputs.UI.Disable();
         }
         
         private void RestrictMousePos()
