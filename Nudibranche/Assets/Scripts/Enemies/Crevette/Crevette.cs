@@ -144,7 +144,7 @@ namespace Ennemy
             usedCrevetteProjectile.CrevetteShooting(this, this.transform.position, target.position - transform.position);
         }
     }
-    
+
     public bool AttackCooldown()
     {
         if(Time.time > nextTimeCast) return true;

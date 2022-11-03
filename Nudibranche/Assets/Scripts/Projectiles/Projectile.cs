@@ -16,14 +16,18 @@ namespace Projectiles
             {
                 //Placement & activation
                 usedProjectile.transform.position = initialPos;
+                direction = cc.aim.normalized;
                 usedProjectile.SetActive(true);
             
                 //Physic
                 usedProjectile.GetComponent<Rigidbody2D>().velocity = cc.aim.normalized * projectileSpeed;
+                
 
                 cc.nextTimeCast = Time.time + fireRate;
             }
         }
+
+        public Vector2 direction;
     
         [Header("Projectile Type")] 
         public string projectileName;
