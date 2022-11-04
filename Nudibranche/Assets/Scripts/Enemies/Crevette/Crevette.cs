@@ -23,6 +23,24 @@ namespace Ennemy
     private bool pathUpdated = true;
     private bool stopPathfinding = false;
     public float targetDistance = 1;
+
+    private bool StopPathfinding
+    {
+        get { return stopPathfinding; }
+
+        set
+        {
+            if (value != stopPathfinding)
+            {
+                if (!stopPathfinding)
+                {
+                    rb.velocity = new Vector2(0, 0);
+                }
+            }
+
+            stopPathfinding = value;
+        }
+    }
     
     //Graph//
     private SpriteRenderer crevetteSprite;
@@ -112,7 +130,6 @@ namespace Ennemy
         {
             CancelInvoke("UpdatePath");
             seeker.CancelCurrentPathRequest();
-            rb.velocity = new Vector2(0, 0);
             path = null;
             pathUpdated = false;
         }
@@ -123,19 +140,19 @@ namespace Ennemy
             if (Physics2D.BoxCast(transform.position, new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection), raycastDirection, raycastDirection.magnitude,
                     LayerMask.GetMask("Obstacle")))
             {
-                stopPathfinding = false;
+                StopPathfinding = false;
                 attaque = false;
             }
             else
             {
-                stopPathfinding = true;
+                StopPathfinding = true;
                 attaque = true;
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
         }
         else
         {
-            stopPathfinding = false;
+            StopPathfinding = false;
             attaque = false;
         }
         
