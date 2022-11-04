@@ -19,8 +19,8 @@ namespace Character
         [Header("References")]
         [SerializeField] private CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
-        [SerializeField] private GameObject bookPos;
-        [SerializeField] private GameObject mouseCursor;
+        [SerializeField] private GameObject book;
+        [SerializeField] private GameObject cursor;
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private Transform visualTr;
         [SerializeField] private GameObject visuals;
@@ -88,7 +88,7 @@ namespace Character
         private void FixedUpdate()
         {
             //Shoots the projectile
-            if(isShooting) usedProjectile.CharacterShooting(this, bookPos.transform.position);
+            if(isShooting) usedProjectile.CharacterShooting(this, book.transform.position);
             
             HandleMovement();
             speedDebug = _rb.velocity.magnitude;
@@ -128,7 +128,7 @@ namespace Character
                 characterInputs.Character.AimGamepad.performed += ctx =>
             {
                 //Disable the cursor when aiming with the gamepad
-                mouseCursor.SetActive(false);
+                cursor.SetActive(false);
                 //Handles the direction of the projectile if shot with the gamepad
                 aim = ctx.ReadValue<Vector2>();
             };
@@ -136,7 +136,7 @@ namespace Character
             characterInputs.Character.AimMouse.performed += ctx =>
             {
                 //Enable the cursor when shooting with the mouse
-                mouseCursor.SetActive(true);
+                cursor.SetActive(true);
                 _mouseAim = ctx.ReadValue<Vector2>();
                 if(!gamepadOn)aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
