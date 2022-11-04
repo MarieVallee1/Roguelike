@@ -7,21 +7,24 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxPV = 3;
     public int pv;
+    public bool vulnerable = true;
 
     private void OnEnable()
     {
         pv = maxPV;
+        vulnerable = true;
     }
 
     public void takeDamage(int damage)
     {
-        if (pv <= 1)
-        {
-            gameObject.SetActive(false);
-        }
-        else
+        if (vulnerable)
         {
             pv -= damage;
+
+            if (pv <= 0)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

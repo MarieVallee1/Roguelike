@@ -12,6 +12,7 @@ namespace Projectiles
         
         public int multiplier;
         public float projectileDuration;
+        public Vector2 direction;
 
         private SpriteRenderer _ren;
         private TrailRenderer _trail;
@@ -23,7 +24,7 @@ namespace Projectiles
             _ren = GetComponent<SpriteRenderer>();
 
             _countdown = 0f;
-            
+
             if (PlayerController.instance.isBuffed)
             {
                 _damages *= multiplier;
@@ -33,6 +34,8 @@ namespace Projectiles
             {
                 _ren.color = Color.white;
             }
+            
+            direction = projectileData.direction;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -41,7 +44,7 @@ namespace Projectiles
             {
                 other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(projectileData.damage);
             }
-            if (other.gameObject.CompareTag("Enemy") && other.gameObject.CompareTag("Environment"))
+            if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment"))
             {
                 gameObject.SetActive(false);
             }

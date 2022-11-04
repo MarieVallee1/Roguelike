@@ -25,6 +25,7 @@ namespace Ennemy
     public float hiddenDistance = 1;
     private bool enableAttack;
     private bool hidden = true;
+    private EnemyHealth enemyHealth;
     private bool Hidden
     {
         get { return hidden;}
@@ -54,6 +55,7 @@ namespace Ennemy
         radius = usedOursin.radius;
         animator = GetComponent<Animator>();
         animator.SetTrigger("Activate");
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     void Update()
@@ -62,11 +64,13 @@ namespace Ennemy
         {
             animator.SetBool("Hidden", true);
             Hidden = true;
+            enemyHealth.vulnerable = false;
         }
         else
         {
             animator.SetBool("Hidden", false);
             Hidden = false;
+            enemyHealth.vulnerable = true;
         }
     }
 

@@ -56,7 +56,7 @@ public class OursinBehavior : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && dangerous)
         {
             target.GetComponent<PlayerController>().TakeDamage(oursinData.passiveDamage);
         }
