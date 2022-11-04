@@ -44,7 +44,7 @@ namespace Projectiles
             {
                 other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(projectileData.damage);
             }
-            if (other.gameObject.CompareTag("Enemy") && other.gameObject.CompareTag("Environment"))
+            if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment"))
             {
                 gameObject.SetActive(false);
             }

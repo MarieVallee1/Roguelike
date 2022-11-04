@@ -19,14 +19,12 @@ public class EnemyHealth : MonoBehaviour
     {
         if (vulnerable)
         {
+            pv -= damage;
+            
             if (pv <= 0)
             {
                 gameObject.SetActive(false);
             }
-            else
-            {
-                pv -= damage;
-            } 
         }
     }
 }

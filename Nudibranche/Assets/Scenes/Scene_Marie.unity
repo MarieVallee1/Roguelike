@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 2397271}
   m_Layer: 8
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 745112388}
   m_Layer: 8
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,7 +755,12 @@ PrefabInstance:
     - target: {fileID: 8109048083827309125, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8109048083827309125, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f08fc7687a542241af46acf85a546e9, type: 3}
@@ -861,7 +866,7 @@ GameObject:
   - component: {fileID: 1174542289}
   m_Layer: 8
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1170,7 +1175,7 @@ GameObject:
   - component: {fileID: 1282911244}
   m_Layer: 8
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1282,7 +1287,7 @@ GameObject:
   - component: {fileID: 1473482307}
   m_Layer: 8
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
