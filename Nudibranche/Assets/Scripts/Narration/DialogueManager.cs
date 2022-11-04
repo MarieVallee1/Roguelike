@@ -181,7 +181,7 @@ namespace Narration
         private void CloseDialogue()
         {
             Cursor.visible = true;
-            TargetCursor.instance.enabled = false;
+            TargetCursor.instance.enabled = true;
             
             dialogueBox1.transform.DOLocalMoveX(2000, 0.8f);
             dialogueBox2.transform.DOLocalMoveX(-2000, 0.8f);

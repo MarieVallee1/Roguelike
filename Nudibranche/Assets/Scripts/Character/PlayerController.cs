@@ -12,10 +12,9 @@ namespace Character
         public PlayerInputActions characterInputs;
         private Rigidbody2D _rb;
         private Transform _tr;
-        private SpriteRenderer _spriteRen;
         public static PlayerController instance;
         
-        //private Animator _animator;
+        private Animator _animator;
 
         [Header("References")]
         [SerializeField] private CharacterData characterData;
@@ -23,7 +22,9 @@ namespace Character
         [SerializeField] private GameObject bookPos;
         [SerializeField] private GameObject mouseCursor;
         [SerializeField] private Transform parryCooldown;
-        [SerializeField] private List<Sprite> charaDirSprites;
+        [SerializeField] private Transform visualTr;
+        [SerializeField] private GameObject visuals;
+        
         public List<Skills> skills;
         public Skills currentSkill;
 
@@ -50,11 +51,12 @@ namespace Character
         public bool isBuffed;
         public bool isMovingUp;
         public bool isMovingDown;
+        public bool isFacingLeft;
         #endregion
 
-        //private int _isRunningHash;
+        private int _isRunningHash;
         [SerializeField] private bool movementPressed;
-
+        
         private void Awake()
         {
             if (instance != null && instance != this)
@@ -66,21 +68,22 @@ namespace Character
             
             _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<Transform>();
-            _spriteRen = GetComponent<SpriteRenderer>();
 
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
             _health = characterData.health;
             canGethit = true;
             
-            //_animator = GetComponent<Animator>();
-            //_isRunningHash = Animator.StringToHash("isRunning");
+            _animator = GetComponentInChildren<Animator>();
+            _isRunningHash = Animator.StringToHash("isRunning");
+            
         }
    
         private void Update()
         {
             characterPos = _tr.position;
             RestrictMousePos();
+            Flip();
         }
         private void FixedUpdate()
         {
@@ -163,41 +166,55 @@ namespace Character
                 _rb.AddForce(_direction * characterData.speed,ForceMode2D.Impulse);
             }
             
-            //Flips the sprite when facing left
-            if (_direction.x > 0) _spriteRen.flipX = true;
-            if (_direction.x < 0) _spriteRen.flipX = false;
+            // //Flips the sprite when facing left
+            if (_direction.x > 0) isFacingLeft = false;
+            if (_direction.x < 0) isFacingLeft = true;
 
 
             #region Animation
 
             // if (isMovingUp)
             // {
+            //     //Back
             //     _spriteRen.sprite = charaDirSprites[2];
             // }else if (isMovingDown)
             // {
+            //     //Front
             //     _spriteRen.sprite = charaDirSprites[0];
             // }
             // else
             // {
+            //     // 3/4
             //     _spriteRen.sprite = charaDirSprites[1];
             // }
             
             
-            // bool isRunning = _animator.GetBool(_isRunningHash);
-            //
-            // if (_movementPressed) _animator.SetBool(_isRunningHash, true);
-            // else _animator.SetBool(_isRunningHash, false);
+            bool isRunning = _animator.GetBool(_isRunningHash);
+            
+            if (movementPressed) _animator.SetBool(_isRunningHash, true);
+            else _animator.SetBool(_isRunningHash, false);
 
             #endregion
   
         }
-        
+
+        private void Flip()
+        {
+            visuals.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
+        }
+
         private void HandleParry()
         {
             if (isParrying)
             {
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                _spriteRen.color = Color.red;
+                
+                foreach(Transform child in visualTr)
+                {
+                    SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
+                    ren.color = Color.red;
+                }
+                
                 _rb.velocity = Vector2.zero;
                 _parryLifeTime -= Time.deltaTime;
                 DisableInputs();
@@ -207,11 +224,18 @@ namespace Character
             if (_parryLifeTime < 0f)
             {
                 parryCooldown.localScale = new Vector3(1, 1, 1);
+
+                var constraints = _rb.constraints;
+                constraints = RigidbodyConstraints2D.None;
+                constraints = RigidbodyConstraints2D.FreezeRotation;
+                _rb.constraints = constraints;
                 
-                _rb.constraints = RigidbodyConstraints2D.None;
-                _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                _spriteRen.color = Color.white;
-                
+                foreach(Transform child in visualTr)
+                {
+                    SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
+                    ren.color = Color.white;
+                }
+
                 parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
                 _nextTimeParry = Time.time + characterData.parryCooldown;
                 _parryLifeTime = characterData.parryTime;
@@ -287,13 +311,18 @@ namespace Character
         {
             canGethit = false;
             
-            _spriteRen.DOFade(0, 0.1f);
-            yield return new WaitForSeconds(0.1f);
-            _spriteRen.DOFade(1, 0.1f); 
-            yield return new WaitForSeconds(0.1f);
-            _spriteRen.DOFade(0, 0.1f);
-            yield return new WaitForSeconds(0.1f);
-            _spriteRen.DOFade(1, 0.1f); 
+            foreach(Transform child in visualTr)
+            {
+                SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
+                
+                ren.DOFade(0, 0.1f);
+                yield return new WaitForSeconds(0.1f);
+                ren.DOFade(1, 0.1f); 
+                yield return new WaitForSeconds(0.1f);
+                ren.DOFade(0, 0.1f);
+                yield return new WaitForSeconds(0.1f);
+                ren.DOFade(1, 0.1f); 
+            }
 
             canGethit = true;
         }
