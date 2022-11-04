@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Projectiles;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
 namespace Character
@@ -78,7 +77,8 @@ namespace Character
             _isRunningHash = Animator.StringToHash("isRunning");
             
         }
-   
+        
+        
         private void Update()
         {
             characterPos = _tr.position;
@@ -150,12 +150,37 @@ namespace Character
         {
             characterInputs.Disable();
         }
-
-        public void FreezeCharacter()
+        
+        
+        public void TakeDamage(int damage)
         {
-            _rb.velocity = Vector2.zero;
+            if (isParrying)
+            {
+                StartCoroutine(Parry());
+                print("I'm Parrying !");
+            }
+            else
+            {
+                
+                //Debugs Death :D 
+                if (_health <= 0)
+                {
+                    Debug.Log("You're dead");
+                    _health = characterData.health;
+                }
+                
+                StartCoroutine(InvulnerabilityFrame());
+                
+                _health -= damage;
+                
+                //Set the UI to the right amount of hearts
+                Health.instance.SetHealth(_health);
+                
+                print("I got hit !");
+            }
         }
 
+        
         private void HandleMovement()
         {
             _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, characterData.maxSpeed);
@@ -197,12 +222,6 @@ namespace Character
             #endregion
   
         }
-
-        private void Flip()
-        {
-            visuals.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
-        }
-
         private void HandleParry()
         {
             if (isParrying)
@@ -246,6 +265,12 @@ namespace Character
                 EnableInputs();
             }
         }
+        private IEnumerator Parry()
+        {
+            isBuffed = true;
+            yield return new WaitForSeconds(characterData.buffDuration);
+            isBuffed = false;
+        }
         public bool AttackCooldown()
         {
             if(Time.time > nextTimeCast) return true;
@@ -256,13 +281,16 @@ namespace Character
             if(Time.time > _nextTimeParry) return true;
             return false;
         }
-        private IEnumerator Parry()
-        {
-            isBuffed = true;
-            yield return new WaitForSeconds(characterData.buffDuration);
-            isBuffed = false;
-        }
+ 
         
+        public void FreezeCharacter()
+        {
+            _rb.velocity = Vector2.zero;
+        }
+        private void Flip()
+        {
+            visuals.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
+        }
         public void DisableInputs()
         {
             characterInputs.Character.Disable();
@@ -273,41 +301,11 @@ namespace Character
             characterInputs.Character.Enable();
             characterInputs.UI.Disable();
         }
-        
         private void RestrictMousePos()
         {
             Display.RelativeMouseAt(characterPos);
         }
-        
-        public void TakeDamage(int damage)
-        {
-            if (isParrying)
-            {
-                StartCoroutine(Parry());
-                print("I'm Parrying !");
-            }
-            else
-            {
-                
-                //Debugs Death :D 
-                if (_health <= 0)
-                {
-                    Debug.Log("You're dead");
-                    _health = characterData.health;
-                }
-                
-                StartCoroutine(Invulnerability());
-                
-                _health -= damage;
-                
-                //Set the UI to the right amount of hearts
-                Health.instance.SetHealth(_health);
-                
-                print("I got hit !");
-            }
-        }
-
-        private IEnumerator Invulnerability()
+        private IEnumerator InvulnerabilityFrame()
         {
             canGethit = false;
             
