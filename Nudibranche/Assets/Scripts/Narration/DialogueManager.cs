@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Character;
 using DG.Tweening;
@@ -51,7 +52,6 @@ namespace Narration
 
             instance = this;
         }
-
         private void Start()
         {
             _sentences = new Queue<string>();
@@ -59,6 +59,7 @@ namespace Narration
             _sentences2 = new Queue<string>();
         }
 
+        
         public void StartDialogue(Dialogue dialogue)
         {
             _branchTaken = 0;
@@ -90,14 +91,13 @@ namespace Narration
             }
             
             string sentences = _sentences.Dequeue();
-            dialogueTxt.text = sentences;
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentences));
         }
-
         public void ContinueDialogue(Dialogue dialogue)
         {
             DisplayNextSentence(dialogue);
         }
-
         private void DisplayNextSentence(Dialogue dialogue)
         {
             if (_sentences.Count == 0 && _branchTaken == 0)
@@ -120,51 +120,67 @@ namespace Narration
                 case 0 :
                 {
                     string sentences = _sentences.Dequeue();
-                    dialogueTxt.text = sentences;
+                    StopAllCoroutines();
+                    StartCoroutine(TypeSentence(sentences));
                 }
                     
                     break;
                 case 1 :
                 {
                     string sentences = _sentences1.Dequeue();
-                    dialogueTxt.text = sentences;
+                    StopAllCoroutines();
+                    StartCoroutine(TypeSentence(sentences));
                 }
                     break;
                 case 2 :
                 {
                     string sentences = _sentences2.Dequeue();
-                    dialogueTxt.text = sentences;
+                    StopAllCoroutines();
+                    StartCoroutine(TypeSentence(sentences));
                 }
                     break;
             }
         }
-
+        IEnumerator TypeSentence (string sentence)
+        {
+            dialogueTxt.text = "";
+            foreach (char letter in sentence.ToCharArray())
+            {
+                dialogueTxt.text += letter;
+                yield return null;
+            }
+        }
         void EndDialogue(Dialogue dialogue)
         {
-            
-            switch (dialogue.skillIndex)
+            if (_branchTaken == 1)
             {
-                case 0:
+                switch (dialogue.skillIndex)
                 {
-                    PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                    case 0:
+                    {
+                        PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                    }
+                        break;
+                    case 1 :
+                    {
+                        PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                    }
+                        break;
+                    case 2 :
+                    {
+                        PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                    }
+                        break;
                 }
-                    break;
-                case 1 :
-                {
-                    PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
-                }
-                    break;
-                case 2 :
-                {
-                    PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
-                }
-                    break;
+                
+                UIManager.instance.UpdateSkillInfo();
             }
-            
+
             CloseDialogue();
             PlayerController.instance.EnableInputs();
         }
-
+        
+        
         private void OpenDialogue()
         {
             Cursor.visible = true;
@@ -190,7 +206,8 @@ namespace Narration
             spriteNpc.DOFade(0, 0.8f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
         }
-
+        
+        
         private void OpenChoices()
         {
             choices.SetActive(true);
