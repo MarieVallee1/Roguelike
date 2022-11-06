@@ -63,7 +63,7 @@ namespace Narration
         public void StartDialogue(Dialogue dialogue)
         {
             _branchTaken = 0;
-            PlayerController.instance.DisableInputs();
+            PlayerController.instance.enabled = false;
             OpenDialogue();
             
             nameTxt.text = dialogue.name;     
@@ -177,7 +177,7 @@ namespace Narration
             }
 
             CloseDialogue();
-            PlayerController.instance.EnableInputs();
+            PlayerController.instance.enabled = true;
         }
         
         
