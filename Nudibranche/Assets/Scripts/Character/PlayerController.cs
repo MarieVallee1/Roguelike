@@ -102,6 +102,7 @@ namespace Character
         
         private void OnEnable()
         {
+            characterInputs.UI.Disable();
             characterInputs.Character.Enable();
 
             characterInputs.Character.Movement.performed += ctx =>
@@ -149,6 +150,7 @@ namespace Character
         private void OnDisable()
         {
             characterInputs.Disable();
+            movementPressed = false;
         }
         
         
@@ -285,6 +287,7 @@ namespace Character
         
         public void FreezeCharacter()
         {
+            DisableInputs();
             _rb.velocity = Vector2.zero;
         }
         private void Flip()
@@ -295,6 +298,9 @@ namespace Character
         {
             characterInputs.Character.Disable();
             characterInputs.UI.Enable();
+            
+            //Stop the player from running (anim)
+            _animator.SetBool(_isRunningHash, false);
         }
         public void EnableInputs()
         {
