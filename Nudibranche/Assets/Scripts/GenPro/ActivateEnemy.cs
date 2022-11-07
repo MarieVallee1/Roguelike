@@ -5,7 +5,7 @@ namespace GenPro
 {
     public class ActivateEnemy : MonoBehaviour
     {
-        [SerializeField] private EnemySpawn spawn;
+        [SerializeField] private EnemySpawn levelDesign;
         private enum Enemy
         {
             moule,
@@ -41,7 +41,7 @@ namespace GenPro
 
         public void Die()
         {
-            spawn.linkedRoom.RemoveEnemy(this);
+            levelDesign.linkedRoom.RemoveEnemy(this);
         }
     }
 }
