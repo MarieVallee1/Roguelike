@@ -25,7 +25,6 @@ namespace GenPro
             _children[0] = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
             _children[0].GetComponent<EnemyManager>().linkedRoom = this;
             _children[1] = Instantiate(background[Random.Range(0, background.Length)], transform);
-            _children[1].GetComponent<EnemyManager>().linkedRoom = this;
 
             foreach (var entry in entries)
             {
@@ -69,7 +68,7 @@ namespace GenPro
             door.SetActive(true);
             foreach (var enemy in _enemyManager.chosenSpawn.enemies)
             {
-                enemy.GetComponent<ActivateEnemy>().enabled = true;
+                //enemy.GetComponent<ActivateEnemy>().enabled = true;
             }
         }
     }
