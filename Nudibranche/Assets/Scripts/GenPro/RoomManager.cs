@@ -15,16 +15,17 @@ namespace GenPro
         [SerializeField] private GameObject door;
 
         private GameObject[] _children;
-        private List<GameObject> _enemyList;
-        private EnemyManager _enemyManager;
+        private List<ActivateEnemy> _enemyList;
         private float _lastPos;
 
         private void Start()
         {
             _children = new GameObject[2];
-            _children[0] = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
-            _children[0].GetComponent<EnemyManager>().linkedRoom = this;
-            _children[1] = Instantiate(background[Random.Range(0, background.Length)], transform);
+            //_children[0] = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
+            // var spawn = _children[0].GetComponent<EnemySpawn>();
+            // spawn.linkedRoom = this;
+            // spawn.ChooseSpawn();
+            // _children[1] = Instantiate(background[Random.Range(0, background.Length)], transform);
 
             foreach (var entry in entries)
             {
@@ -50,12 +51,12 @@ namespace GenPro
             activated = false;
         }
 
-        public void AddEnemyToList(GameObject enemy)
+        public void AddEnemyToList(ActivateEnemy enemy)
         {
             _enemyList.Add(enemy);
         }
 
-        public void RemoveEnemy(GameObject enemy)
+        public void RemoveEnemy(ActivateEnemy enemy)
         {
             _enemyList.Remove(enemy);
             if (_enemyList.Count != 0) return;
@@ -66,9 +67,9 @@ namespace GenPro
         public void SummonDoor()
         {
             door.SetActive(true);
-            foreach (var enemy in _enemyManager.chosenSpawn.enemies)
+            foreach (var enemy in _enemyList)
             {
-                //enemy.GetComponent<ActivateEnemy>().enabled = true;
+                enemy.Activate();
             }
         }
     }

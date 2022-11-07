@@ -4,13 +4,13 @@ using Random = UnityEngine.Random;
 
 namespace GenPro
 {
-    public class EnemyManager : MonoBehaviour
+    public class EnemySpawn : MonoBehaviour
     {
         public RoomManager linkedRoom;
         [SerializeField] private Spawn[] spawns;
         public Spawn chosenSpawn;
 
-        private void Awake()
+        public void ChooseSpawn()
         {
             chosenSpawn = spawns[Random.Range(0, spawns.Length)];
             foreach (var enemy in chosenSpawn.enemies)
@@ -23,6 +23,6 @@ namespace GenPro
     [Serializable]
     public class Spawn
     {
-        public GameObject[] enemies;
+        public ActivateEnemy[] enemies;
     }
 }
