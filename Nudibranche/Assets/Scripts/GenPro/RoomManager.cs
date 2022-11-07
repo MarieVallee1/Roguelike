@@ -9,45 +9,35 @@ namespace GenPro
     {
         public bool activated, roomIsCleared;
 
-        [SerializeField] private EntranceTrigger[] entries;
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] background;
         [SerializeField] private GameObject door;
         [SerializeField] private GameObject blackScreen;
 
-        private GameObject[] _children;
+        private GameObject _levelDesign;
+        private GameObject _background;
         private List<ActivateEnemy> _enemyList;
         private float _lastPos;
 
         private void Start()
         {
-            _children = new GameObject[1];
-            _children[0] = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
-             _children[0].GetComponent<EnemySpawn>().ChooseSpawn(this);
-            // _children[1] = Instantiate(background[Random.Range(0, background.Length)], transform);
-
-            foreach (var entry in entries)
-            {
-                entry.linkedRoom = this;
-            }
+            _levelDesign = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
+            _levelDesign.GetComponent<EnemySpawn>().ChooseSpawn(this);
+            // _background = Instantiate(background[Random.Range(0, background.Length)], transform);
         }
 
         public void Activate()
         {
-            foreach (var array in _children)
-            {
-                array.SetActive(true);
-            }
+            _levelDesign.SetActive(true);
+            //_background.SetActive(true);
             blackScreen.SetActive(false);
             activated = true;
         }
 
         public void Deactivate()
         {
-            foreach (var array in _children)
-            {
-                array.SetActive(false);
-            }
+            _levelDesign.SetActive(false);
+            //_background.SetActive(false);
             blackScreen.SetActive(true);
             activated = false;
         }
