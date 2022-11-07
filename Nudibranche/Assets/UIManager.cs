@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
     [SerializeField] private TextMeshProUGUI skillInfo;
+    //[SerializeField] private TextMeshProUGUI dialogueBox;
 
 
     private void Awake()
