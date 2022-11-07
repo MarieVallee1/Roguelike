@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5609374179078450289}
   - component: {fileID: 6327504613694652914}
   - component: {fileID: 7867201812961475642}
+  - component: {fileID: 2058652254078611704}
   m_Layer: 0
   m_Name: "Entr\xE9eE"
   m_TagString: Untagged
@@ -100,6 +101,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 6848207525147695389}
   side: 1
+--- !u!61 &2058652254078611704
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440202135283749739}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5356405474359740444
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +138,7 @@ GameObject:
   - component: {fileID: 8201078563909282610}
   - component: {fileID: 6080050529781916742}
   - component: {fileID: 8755694412405372017}
+  - component: {fileID: 4583776612411829844}
   m_Layer: 0
   m_Name: "Entr\xE9eO"
   m_TagString: Untagged
@@ -200,6 +228,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 6848207525147695389}
   side: 3
+--- !u!61 &4583776612411829844
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356405474359740444}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &5909119137766675870
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +265,7 @@ GameObject:
   - component: {fileID: 5170149411665743623}
   - component: {fileID: 1699065708633758539}
   - component: {fileID: 6140481588647878475}
+  - component: {fileID: 3896831658645971537}
   m_Layer: 0
   m_Name: "Entr\xE9eN"
   m_TagString: Untagged
@@ -300,6 +355,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 6848207525147695389}
   side: 0
+--- !u!61 &3896831658645971537
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909119137766675870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7258610828469679957
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +621,7 @@ MonoBehaviour:
   levelDesign: []
   background: []
   door: {fileID: 6921487938399915880}
-  blackScreen: {fileID: 0}
+  blackScreen: {fileID: 2013871824077984453}
 --- !u!1001 &4438815262861108843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,6 +775,12 @@ PrefabInstance:
 --- !u!4 &1205983409366542503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4829463464549592791, guid: 0cda720774eba0644a63394b1aac07ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 6032906963937527408}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2013871824077984453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5209403811787707573, guid: 0cda720774eba0644a63394b1aac07ac,
     type: 3}
   m_PrefabInstance: {fileID: 6032906963937527408}
   m_PrefabAsset: {fileID: 0}
