@@ -611,6 +611,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &416887049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4311490467148635262, guid: fc6e02fd542f406448ebfb9180295bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7934063427772492795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &438122204
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,6 +831,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &453577499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2696886563982867224, guid: fc6e02fd542f406448ebfb9180295bb5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7934063427772492795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &500881730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1064,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillInfo: {fileID: 1166241950}
+--- !u!114 &524779819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524779810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914aa340702299147aef290f3d418bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 453577499}
+  interactionTxt: {fileID: 416887049}
 --- !u!1 &543093794
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,6 +2033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c68c5ca1082a6a46a9ffe07ba94f9f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interaction: {fileID: 11400000, guid: 6dc6fca990da68d45a7b6f5266775239, type: 2}
 --- !u!58 &905773438
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2011,7 +2044,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.24}
@@ -9724,7 +9757,7 @@ PrefabInstance:
     - target: {fileID: 1439422530346035846, guid: fc6e02fd542f406448ebfb9180295bb5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4365711427142584915, guid: fc6e02fd542f406448ebfb9180295bb5,
         type: 3}
@@ -9770,6 +9803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385410287670927098, guid: fc6e02fd542f406448ebfb9180295bb5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -350
       objectReference: {fileID: 0}
     - target: {fileID: 7346711574582444460, guid: fc6e02fd542f406448ebfb9180295bb5,
         type: 3}

@@ -8,8 +8,18 @@ public class BackgroundInteraction : MonoBehaviour
 {
     
     private bool _inZone;
+    [SerializeField] private Interaction interaction;
 
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        _inZone = true;
+    }  
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _inZone = false;
+    }
+    
     private void Update()
     {
         if (_inZone)
@@ -23,11 +33,12 @@ public class BackgroundInteraction : MonoBehaviour
         if (PlayerController.instance.characterInputs.Character.Interact.triggered)
         {
             PlayerController.instance.FreezeCharacter();
+            InteractionManager.instance.StartDialogue(interaction);
         }
             
         if (PlayerController.instance.characterInputs.UI.Interact.triggered)
         {
-            
+            InteractionManager.instance.DisplayNextSentence();
         }
     }
 }

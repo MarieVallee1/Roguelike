@@ -33,4 +33,6 @@ public class UIManager : MonoBehaviour
             skillInfo.text = "Current Skill :" + PlayerController.instance.currentSkill.name;
         }
     }
+    
+    
 }
