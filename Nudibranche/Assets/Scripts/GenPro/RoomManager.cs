@@ -13,6 +13,7 @@ namespace GenPro
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] background;
         [SerializeField] private GameObject door;
+        [SerializeField] private GameObject blackScreen;
 
         private GameObject[] _children;
         private List<ActivateEnemy> _enemyList;
@@ -22,9 +23,7 @@ namespace GenPro
         {
             _children = new GameObject[2];
             //_children[0] = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
-            // var spawn = _children[0].GetComponent<EnemySpawn>();
-            // spawn.linkedRoom = this;
-            // spawn.ChooseSpawn();
+            // _children[0].GetComponent<EnemySpawn>().ChooseSpawn(this);
             // _children[1] = Instantiate(background[Random.Range(0, background.Length)], transform);
 
             foreach (var entry in entries)
@@ -39,6 +38,7 @@ namespace GenPro
             {
                 array.SetActive(true);
             }
+            blackScreen.SetActive(false);
             activated = true;
         }
 
@@ -48,6 +48,7 @@ namespace GenPro
             {
                 array.SetActive(false);
             }
+            blackScreen.SetActive(true);
             activated = false;
         }
 

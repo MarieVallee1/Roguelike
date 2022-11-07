@@ -8,12 +8,13 @@ namespace GenPro
     {
         public RoomManager linkedRoom;
         [SerializeField] private Spawn[] spawns;
-        public Spawn chosenSpawn;
+        private Spawn _chosenSpawn;
 
-        public void ChooseSpawn()
+        public void ChooseSpawn(RoomManager currentRoom)
         {
-            chosenSpawn = spawns[Random.Range(0, spawns.Length)];
-            foreach (var enemy in chosenSpawn.enemies)
+            linkedRoom = currentRoom;
+            _chosenSpawn = spawns[Random.Range(0, spawns.Length)];
+            foreach (var enemy in _chosenSpawn.enemies)
             {
                 linkedRoom.AddEnemyToList(enemy);
             }
