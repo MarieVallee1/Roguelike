@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3193713633882024822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -2.21, z: 0}
+  m_LocalPosition: {x: -0.1, y: -0.59, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -89,7 +89,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029786587, y: 0.007446766}
+  m_Offset: {x: 0.054309368, y: -0.007843137}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -100,7 +100,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.3786325, y: 5.304166}
+  m_Size: {x: 1.0821114, y: 1.2064159}
   m_EdgeRadius: 0
 --- !u!1 &4502711793997958835
 GameObject:
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 4502711793997958835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.8, y: 1.62, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2027434860026820160}
@@ -221,18 +221,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.30275416, y: -2.2908113}
+  m_Offset: {x: -0.17278814, y: -0.5783191}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.51, y: 5.4}
+    oldSize: {x: 1.4638059, y: 1.5171429}
     newSize: {x: 6.13, y: 5.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.29954, y: 0.27399015}
+  m_Size: {x: 0.553463, y: 0.15166926}
   m_EdgeRadius: 0
 --- !u!212 &3496624755005587030
 SpriteRenderer:
@@ -275,7 +275,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1241874052, guid: 56006987255c2604ba0301c90e807db7, type: 3}
+  m_Sprite: {fileID: -468270986306072023, guid: 342c1114f255919459538590d233f336,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -300,3 +301,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPV: 3
   pv: 0
+  vulnerable: 1
