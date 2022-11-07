@@ -93,6 +93,28 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
+  - name: perle seule
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1865
+      y: 3029
+      width: 104
+      height: 103
+    spriteID: 4476ebe66a41d8c4fbf8b83786a51678
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1865, y: 3029}
+    spritePosition: {x: 1311, y: 221}
   - name: perles
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1153,7 +1175,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 461
-      y: 3704
+      y: 3696
       width: 334
       height: 317
     spriteID: a8f4f6290b8135049a6313412064e0ee
@@ -1740,7 +1762,7 @@ ScriptedImporter:
     - {x: 45, y: 46}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 461, y: 3704}
+    uvTransform: {x: 461, y: 3696}
     spritePosition: {x: 230, y: 429}
   - name: "t\xEAte"
     originalName: 
@@ -2259,7 +2281,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 3704
+      y: 3696
       width: 449
       height: 323
     spriteID: ac53e39e431b9844fb4065e7963b0984
@@ -2759,7 +2781,7 @@ ScriptedImporter:
     - {x: 28, y: 29}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 3704}
+    uvTransform: {x: 4, y: 3696}
     spritePosition: {x: 461, y: 1382}
   - name: branchie gauche 1
     originalName: 
@@ -6374,6 +6396,28 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 2199}
     spritePosition: {x: 598, y: 616}
+  - name: billes bras
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1548
+      y: 3029
+      width: 309
+      height: 180
+    spriteID: f8e0fcd0d86db124aa0238f8a9a8fd4c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1548, y: 3029}
+    spritePosition: {x: 933, y: 685}
   - name: sac de billes
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -6382,7 +6426,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 3119
+      y: 3111
       width: 756
       height: 577
     spriteID: 1cf5b18d834ee774e85f7dc2cf67afd3
@@ -6898,7 +6942,7 @@ ScriptedImporter:
     - {x: 36, y: 37}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 3119}
+    uvTransform: {x: 4, y: 3111}
     spritePosition: {x: 809, y: 478}
   - name: gras des boobs
     originalName: 
@@ -9973,6 +10017,16 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
+  - name: perle seule
+    spriteName: perle seule
+    isGroup: 0
+    parentIndex: 1
+    spriteID: 4476ebe66a41d8c4fbf8b83786a51678
+    layerID: 43
+    mosaicPosition: {x: 1865, y: 3029}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: perles
     spriteName: perles
     isGroup: 0
@@ -9999,7 +10053,7 @@ ScriptedImporter:
     parentIndex: 1
     spriteID: a8f4f6290b8135049a6313412064e0ee
     layerID: 30
-    mosaicPosition: {x: 461, y: 3704}
+    mosaicPosition: {x: 461, y: 3696}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -10019,7 +10073,7 @@ ScriptedImporter:
     parentIndex: 1
     spriteID: ac53e39e431b9844fb4065e7963b0984
     layerID: 25
-    mosaicPosition: {x: 4, y: 3704}
+    mosaicPosition: {x: 4, y: 3696}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -10083,13 +10137,23 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
+  - name: billes bras
+    spriteName: billes bras
+    isGroup: 0
+    parentIndex: 1
+    spriteID: f8e0fcd0d86db124aa0238f8a9a8fd4c
+    layerID: 42
+    mosaicPosition: {x: 1548, y: 3029}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: sac de billes
     spriteName: sac de billes
     isGroup: 0
     parentIndex: 1
     spriteID: 1cf5b18d834ee774e85f7dc2cf67afd3
     layerID: 11
-    mosaicPosition: {x: 4, y: 3119}
+    mosaicPosition: {x: 4, y: 3111}
     flatten: 0
     isImported: 1
     isVisible: 1
