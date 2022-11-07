@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 1306890913457576673}
   - component: {fileID: 3603575534433171733}
   - component: {fileID: 2960746005384576287}
+  - component: {fileID: 6674896092287499854}
   m_Layer: 0
   m_Name: "Entr\xE9eN"
   m_TagString: Untagged
@@ -321,6 +322,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 3064999922128677727}
   side: 0
+--- !u!61 &6674896092287499854
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8262446305871364535}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &5090192807870734364
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -34,20 +34,20 @@ namespace GenPro
 
         public void Activate()
         {
-            foreach (var array in _children)
-            {
-                array.SetActive(true);
-            }
+            // foreach (var array in _children)
+            // {
+            //     array.SetActive(true);
+            // }
             blackScreen.SetActive(false);
             activated = true;
         }
 
         public void Deactivate()
         {
-            foreach (var array in _children)
-            {
-                array.SetActive(false);
-            }
+            // foreach (var array in _children)
+            // {
+            //     array.SetActive(false);
+            // }
             blackScreen.SetActive(true);
             activated = false;
         }
@@ -67,11 +67,11 @@ namespace GenPro
 
         public void SummonDoor()
         {
-            door.SetActive(true);
-            foreach (var enemy in _enemyList)
-            {
-                enemy.Activate();
-            }
+            // door.SetActive(true);
+            // foreach (var enemy in _enemyList)
+            // {
+            //     enemy.Activate();
+            // }
         }
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2639061475935786102}
   - component: {fileID: 1074527854406825633}
   - component: {fileID: 3263122423393579253}
+  - component: {fileID: 8763542078229566005}
   m_Layer: 0
   m_Name: "Entr\xE9eE"
   m_TagString: Untagged
@@ -100,6 +101,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 3402353181376813075}
   side: 1
+--- !u!61 &8763542078229566005
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105169346812411067}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7798991289533041945
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +244,8 @@ GameObject:
   m_Component:
   - component: {fileID: 216924565818972403}
   - component: {fileID: 9019530806784555520}
-  - component: {fileID: 2728328735088515407}
   - component: {fileID: 6774066458811655607}
+  - component: {fileID: 6890860367612655850}
   m_Layer: 0
   m_Name: "Entr\xE9eS"
   m_TagString: Untagged
@@ -294,7 +321,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2728328735088515407
+--- !u!114 &6774066458811655607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870905580345682580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba77fe05e4880a14588d767dc0e7dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedRoom: {fileID: 3402353181376813075}
+  side: 2
+--- !u!61 &6890860367612655850
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,20 +361,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6774066458811655607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7870905580345682580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba77fe05e4880a14588d767dc0e7dd70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedRoom: {fileID: 3402353181376813075}
-  side: 2
 --- !u!1001 &5135166812745542829
 PrefabInstance:
   m_ObjectHideFlags: 0

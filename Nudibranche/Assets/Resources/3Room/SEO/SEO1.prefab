@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1791572329483289267}
   - component: {fileID: 6080668895889221634}
-  - component: {fileID: 2274745721918524597}
   - component: {fileID: 6227279785924927823}
+  - component: {fileID: 8188908083548294001}
   m_Layer: 0
   m_Name: "Entr\xE9eS"
   m_TagString: Untagged
@@ -87,7 +87,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2274745721918524597
+--- !u!114 &6227279785924927823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260082082307009216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba77fe05e4880a14588d767dc0e7dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedRoom: {fileID: 2319416241647583171}
+  side: 2
+--- !u!61 &8188908083548294001
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,20 +127,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6227279785924927823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260082082307009216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba77fe05e4880a14588d767dc0e7dd70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedRoom: {fileID: 2319416241647583171}
-  side: 2
 --- !u!1 &2802812700246454204
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 8785825202916101703}
   - component: {fileID: 912170491423140188}
   - component: {fileID: 3930857508627548595}
+  - component: {fileID: 1747709741340854555}
   m_Layer: 0
   m_Name: "Entr\xE9eE"
   m_TagString: Untagged
@@ -227,6 +228,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 2319416241647583171}
   side: 1
+--- !u!61 &1747709741340854555
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802812700246454204}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6191987902458469747
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +265,7 @@ GameObject:
   - component: {fileID: 8144023225477072131}
   - component: {fileID: 2503797217008427372}
   - component: {fileID: 5167477672241019896}
+  - component: {fileID: 1851789252847184396}
   m_Layer: 0
   m_Name: "Entr\xE9eO"
   m_TagString: Untagged
@@ -327,6 +355,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 2319416241647583171}
   side: 3
+--- !u!61 &1851789252847184396
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6191987902458469747}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7798991289533041945
 GameObject:
   m_ObjectHideFlags: 0
