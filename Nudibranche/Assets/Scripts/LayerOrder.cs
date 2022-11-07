@@ -13,6 +13,6 @@ public class LayerOrder : MonoBehaviour
     void Update()
     {
         roundedYPos = (int)Mathf.Round(transform.position.y * 10);
-        spriteRenderer.sortingOrder = - roundedYPos;
+        //spriteRenderer.sortingOrder = - roundedYPos;
     }
 }

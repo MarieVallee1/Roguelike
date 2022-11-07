@@ -5,7 +5,7 @@ namespace System
 {
     public class TargetCursor : MonoBehaviour
     {
-        [SerializeField] private Camera cam;
+        private Camera cam;
         public static TargetCursor instance;
 
         private void Awake()
@@ -18,6 +18,8 @@ namespace System
             { 
                 instance = this; 
             } 
+            
+            cam = Camera.main;
         }
         private void Update()
         {
