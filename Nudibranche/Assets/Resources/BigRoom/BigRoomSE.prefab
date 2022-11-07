@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5609374179078450289}
   - component: {fileID: 6327504613694652914}
+  - component: {fileID: 7400357529215378816}
+  - component: {fileID: 941675431602479402}
   m_Layer: 0
   m_Name: "Entr\xE9eE"
   m_TagString: Untagged
@@ -85,6 +87,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7400357529215378816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440202135283749739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba77fe05e4880a14588d767dc0e7dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedRoom: {fileID: 2352969331441350797}
+  side: 1
+--- !u!61 &941675431602479402
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440202135283749739}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7258610828469679957
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,6 +137,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1199108819209040169}
   - component: {fileID: 1576211204463417804}
+  - component: {fileID: 6216696633020992583}
+  - component: {fileID: 3486972016982771352}
   m_Layer: 0
   m_Name: "Entr\xE9eS"
   m_TagString: Untagged
@@ -170,6 +214,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6216696633020992583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258610828469679957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba77fe05e4880a14588d767dc0e7dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedRoom: {fileID: 2352969331441350797}
+  side: 2
+--- !u!61 &3486972016982771352
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258610828469679957}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7798991289533041945
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +265,7 @@ GameObject:
   - component: {fileID: 1448626075917169022}
   - component: {fileID: 1965866107102166522}
   - component: {fileID: 6938037284471007361}
+  - component: {fileID: 2352969331441350797}
   m_Layer: 0
   m_Name: BigRoomSE
   m_TagString: Untagged
@@ -274,6 +359,25 @@ MonoBehaviour:
   entreeSud: {fileID: 7258610828469679957}
   entreeEst: {fileID: 4440202135283749739}
   entreeOuest: {fileID: 0}
+--- !u!114 &2352969331441350797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7798991289533041945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cffb9bd6dde7144a6e1769d8d0305d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activated: 0
+  roomIsCleared: 0
+  entries: []
+  levelDesign: []
+  background: []
+  door: {fileID: 0}
+  blackScreen: {fileID: 538138717032720716}
 --- !u!1001 &5709543316365950457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,6 +447,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cda720774eba0644a63394b1aac07ac, type: 3}
+--- !u!1 &538138717032720716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5209403811787707573, guid: 0cda720774eba0644a63394b1aac07ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 5709543316365950457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &880994736893465390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4829463464549592791, guid: 0cda720774eba0644a63394b1aac07ac,
