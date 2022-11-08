@@ -21,6 +21,7 @@ namespace Character
         private void Update()
         {
             SetRotation();
+            HandleSpriteRotation();
         }
 
         private void SetRotation()
@@ -40,7 +41,45 @@ namespace Character
 
         private void HandleSpriteRotation()
         {
+            if(transform.rotation.x < 10 && transform.rotation.x > -10)
+            {
+                print("is up ");
+            }
             
+            if(transform.rotation.x > 10 && transform.rotation.x < 80)
+            {
+                print("is up left");
+            } 
+            
+            if(transform.rotation.x > 80 && transform.rotation.x < 100)
+            {
+                print("is left");
+            } 
+            
+            if(transform.rotation.x > 100 && transform.rotation.x < 170)
+            {
+                print("is down left");
+            } 
+            
+            if(transform.rotation.x > 170 && transform.rotation.x < -170)
+            {
+                print("is down");
+            }
+
+            if (transform.rotation.x < -170 && transform.rotation.x < -80)
+            {
+                print("is down right");
+            }
+
+            if (transform.rotation.x > -80 && transform.rotation.x < -70)
+            {
+                print("is right");
+            }
+
+            if (transform.rotation.x > -70 && transform.rotation.x > -10)
+            {
+                print("is up right");
+            }
         }
     }
 }
