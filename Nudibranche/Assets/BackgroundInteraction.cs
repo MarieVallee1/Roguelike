@@ -32,8 +32,8 @@ public class BackgroundInteraction : MonoBehaviour
     {
         if (PlayerController.instance.characterInputs.Character.Interact.triggered)
         {
-            PlayerController.instance.FreezeCharacter();
             InteractionManager.instance.StartDialogue(interaction);
+            PlayerController.instance.FreezeCharacter();
         }
             
         if (PlayerController.instance.characterInputs.UI.Interact.triggered)
