@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 342c1114f255919459538590d233f336
+guid: b32dfeb244ef53744aa9a4d0c9a078c5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -31,8 +31,8 @@ ScriptedImporter:
     spriteMode: 1
     spriteExtrude: 1
     spriteMeshType: 1
-    alignment: 9
-    spritePivot: {x: 0.5, y: 0.1}
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 350
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
@@ -69,18 +69,18 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   spriteImportData:
-  - name: Moule 3-4 Spirte_1
+  - name: Moule 3-4 Sprite_1
     originalName: 
-    pivot: {x: 0.5, y: 0.1}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 0
       y: 0
       width: 512
-      height: 531
-    spriteID: 2b909d96298e1f642a8cc844145189d4
+      height: 512
+    spriteID: 5010dba8d4f78794e8d83517a21b531c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -93,7 +93,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: coquille haut
+  - name: colo coquille haut
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -101,10 +101,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 272
-      width: 305
-      height: 131
-    spriteID: 56e7c6f3ed85eeb46b1a9c7aafdfa8cc
+      y: 271
+      width: 303
+      height: 130
+    spriteID: 8b2e66e36fe2022488f56102943a8f5c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -113,9 +113,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 272}
-    spritePosition: {x: 77, y: 286}
-  - name: coquille bas
+    uvTransform: {x: 4, y: 271}
+    spritePosition: {x: 80, y: 276}
+  - name: colo coquille bas
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -123,10 +123,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 411
-      width: 288
-      height: 116
-    spriteID: e25f3518a74822b48b176e38d73e3654
+      y: 409
+      width: 284
+      height: 115
+    spriteID: a9c607c68939c1c4fba53454ab494d33
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -135,9 +135,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 411}
-    spritePosition: {x: 84, y: 211}
-  - name: "t\xEAte"
+    uvTransform: {x: 4, y: 409}
+    spritePosition: {x: 88, y: 202}
+  - name: "colo t\xEAte"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -146,9 +146,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 248
       y: 4
-      width: 220
-      height: 163
-    spriteID: e50f107d29b5b7f488841448e23e088a
+      width: 217
+      height: 160
+    spriteID: 048cd267bfd8bcf4aa52cd968ddea4cd
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -158,8 +158,8 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 248, y: 4}
-    spritePosition: {x: 91, y: 239}
-  - name: "coquille haut arri\xE8re"
+    spritePosition: {x: 95, y: 230}
+  - name: colo parties bas coquille haut
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -167,10 +167,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 535
-      width: 289
-      height: 102
-    spriteID: 2559e54b283141e46a91e27bd2c1ee3d
+      y: 532
+      width: 286
+      height: 99
+    spriteID: 7bf7c3b5996f04547bb5f34d394f0cc4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,20 +179,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 535}
-    spritePosition: {x: 87, y: 274}
-  - name: plumeau
+    uvTransform: {x: 4, y: 532}
+    spritePosition: {x: 90, y: 267}
+  - name: plumeau colo
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 301
-      y: 535
-      width: 134
-      height: 95
-    spriteID: 0094a9662018cf44ca7278172882d2b6
+      x: 315
+      y: 271
+      width: 132
+      height: 93
+    spriteID: 916a3663ebbd55c4db7a740094443c06
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -201,9 +201,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 301, y: 535}
-    spritePosition: {x: 86, y: 394}
-  - name: corps
+    uvTransform: {x: 315, y: 271}
+    spritePosition: {x: 89, y: 384}
+  - name: colo corps
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -211,10 +211,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 645
+      y: 639
       width: 147
-      height: 184
-    spriteID: cbfa11d3e3c867642b06d9feb411a5af
+      height: 182
+    spriteID: be73a980d782aaf4b88925dfbc6d83c3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -223,9 +223,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 4, y: 645}
-    spritePosition: {x: 138, y: 97}
-  - name: bras
+    uvTransform: {x: 4, y: 639}
+    spritePosition: {x: 140, y: 89}
+  - name: "colo \xE9p\xE9e"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -235,8 +235,8 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 236
-      height: 260
-    spriteID: 3e47e8b2697036d4fa60e40141688724
+      height: 259
+    spriteID: d99650d79a8e7814aa2df69e1b1e7c12
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -246,19 +246,19 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 238, y: 118}
-  - name: jambe droite
+    spritePosition: {x: 239, y: 110}
+  - name: colo jambe droite
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 428
-      y: 272
-      width: 70
-      height: 119
-    spriteID: 6557ac18198f2d84fa99bf674203e4ba
+      x: 257
+      y: 639
+      width: 92
+      height: 123
+    spriteID: c8ab83c7a6be12b4d944adfd199d201c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -267,20 +267,20 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 428, y: 272}
-    spritePosition: {x: 211, y: 44}
-  - name: jambe gauche
+    uvTransform: {x: 257, y: 639}
+    spritePosition: {x: 192, y: 30}
+  - name: colo jambe gauche
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 317
-      y: 272
-      width: 103
-      height: 131
-    spriteID: bfe0e1e90c7ebc542b7259621a00cb0f
+      x: 159
+      y: 639
+      width: 90
+      height: 137
+    spriteID: 61609848e3ccbcb4f8abab6357729227
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -289,8 +289,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 317, y: 272}
-    spritePosition: {x: 117, y: 42}
+    uvTransform: {x: 159, y: 639}
+    spritePosition: {x: 132, y: 31}
   characterData:
     bones: []
     parts: []
@@ -354,103 +354,103 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: moule 3/4 droite fini
+  - name: Moule 3-4
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: bb34d47334f285a40a04fb7e7ca559eb
-    layerID: 50
+    spriteID: 8fa310bef65cd044398eb67e8ce12ca3
+    layerID: 145
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: coquille haut
-    spriteName: coquille haut
+  - name: colo coquille haut
+    spriteName: colo coquille haut
     isGroup: 0
     parentIndex: 0
-    spriteID: 56e7c6f3ed85eeb46b1a9c7aafdfa8cc
-    layerID: 49
-    mosaicPosition: {x: 4, y: 272}
+    spriteID: 8b2e66e36fe2022488f56102943a8f5c
+    layerID: 141
+    mosaicPosition: {x: 4, y: 271}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: coquille bas
-    spriteName: coquille bas
+  - name: colo coquille bas
+    spriteName: colo coquille bas
     isGroup: 0
     parentIndex: 0
-    spriteID: e25f3518a74822b48b176e38d73e3654
-    layerID: 48
-    mosaicPosition: {x: 4, y: 411}
+    spriteID: a9c607c68939c1c4fba53454ab494d33
+    layerID: 136
+    mosaicPosition: {x: 4, y: 409}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: "t\xEAte"
-    spriteName: "t\xEAte"
+  - name: "colo t\xEAte"
+    spriteName: "colo t\xEAte"
     isGroup: 0
     parentIndex: 0
-    spriteID: e50f107d29b5b7f488841448e23e088a
-    layerID: 47
+    spriteID: 048cd267bfd8bcf4aa52cd968ddea4cd
+    layerID: 132
     mosaicPosition: {x: 248, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: "coquille haut arri\xE8re"
-    spriteName: "coquille haut arri\xE8re"
+  - name: colo parties bas coquille haut
+    spriteName: colo parties bas coquille haut
     isGroup: 0
     parentIndex: 0
-    spriteID: 2559e54b283141e46a91e27bd2c1ee3d
-    layerID: 46
-    mosaicPosition: {x: 4, y: 535}
+    spriteID: 7bf7c3b5996f04547bb5f34d394f0cc4
+    layerID: 129
+    mosaicPosition: {x: 4, y: 532}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: plumeau
-    spriteName: plumeau
+  - name: plumeau colo
+    spriteName: plumeau colo
     isGroup: 0
     parentIndex: 0
-    spriteID: 0094a9662018cf44ca7278172882d2b6
-    layerID: 45
-    mosaicPosition: {x: 301, y: 535}
+    spriteID: 916a3663ebbd55c4db7a740094443c06
+    layerID: 126
+    mosaicPosition: {x: 315, y: 271}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: corps
-    spriteName: corps
+  - name: colo corps
+    spriteName: colo corps
     isGroup: 0
     parentIndex: 0
-    spriteID: cbfa11d3e3c867642b06d9feb411a5af
-    layerID: 44
-    mosaicPosition: {x: 4, y: 645}
+    spriteID: be73a980d782aaf4b88925dfbc6d83c3
+    layerID: 123
+    mosaicPosition: {x: 4, y: 639}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: bras
-    spriteName: bras
+  - name: "colo \xE9p\xE9e"
+    spriteName: "colo \xE9p\xE9e"
     isGroup: 0
     parentIndex: 0
-    spriteID: 3e47e8b2697036d4fa60e40141688724
-    layerID: 43
+    spriteID: d99650d79a8e7814aa2df69e1b1e7c12
+    layerID: 118
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: jambe droite
-    spriteName: jambe droite
+  - name: colo jambe droite
+    spriteName: colo jambe droite
     isGroup: 0
     parentIndex: 0
-    spriteID: 6557ac18198f2d84fa99bf674203e4ba
-    layerID: 42
-    mosaicPosition: {x: 428, y: 272}
+    spriteID: c8ab83c7a6be12b4d944adfd199d201c
+    layerID: 115
+    mosaicPosition: {x: 257, y: 639}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: jambe gauche
-    spriteName: jambe gauche
+  - name: colo jambe gauche
+    spriteName: colo jambe gauche
     isGroup: 0
     parentIndex: 0
-    spriteID: bfe0e1e90c7ebc542b7259621a00cb0f
-    layerID: 41
-    mosaicPosition: {x: 317, y: 272}
+    spriteID: 61609848e3ccbcb4f8abab6357729227
+    layerID: 112
+    mosaicPosition: {x: 159, y: 639}
     flatten: 0
     isImported: 1
     isVisible: 1
