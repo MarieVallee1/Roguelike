@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 
     public static UIManager instance;
     [SerializeField] private TextMeshProUGUI skillInfo;
+    //[SerializeField] private TextMeshProUGUI dialogueBox;
 
 
     private void Awake()
@@ -32,4 +33,6 @@ public class UIManager : MonoBehaviour
             skillInfo.text = "Current Skill :" + PlayerController.instance.currentSkill.name;
         }
     }
+    
+    
 }

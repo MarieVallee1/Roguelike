@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6080050529781916742}
   - component: {fileID: 5503835148159463320}
   - component: {fileID: 6585637243292388939}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Entr\xE9eO"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 1576211204463417804}
   - component: {fileID: 5553649599708600190}
   - component: {fileID: 3622449487445930382}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Entr\xE9eS"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,8 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   roomIsCleared: 0
-  entries: []
-  levelDesign: []
+  levelDesign:
+  - {fileID: 2920823601857670967, guid: b8dda4e04c8c7854f95a70fab26c07b8, type: 3}
   background: []
   door: {fileID: 0}
   blackScreen: {fileID: 3077809854727165515}

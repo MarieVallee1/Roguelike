@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6327504613694652914}
   - component: {fileID: 7867201812961475642}
   - component: {fileID: 2058652254078611704}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Entr\xE9eE"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 6080050529781916742}
   - component: {fileID: 8755694412405372017}
   - component: {fileID: 4583776612411829844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Entr\xE9eO"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 1699065708633758539}
   - component: {fileID: 6140481588647878475}
   - component: {fileID: 3896831658645971537}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Entr\xE9eN"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 1576211204463417804}
   - component: {fileID: 1464119777305903060}
   - component: {fileID: 3107425567850739965}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Entr\xE9eS"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,12 +613,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activated: 0
   roomIsCleared: 0
-  entries:
-  - {fileID: 6140481588647878475}
-  - {fileID: 8755694412405372017}
-  - {fileID: 7867201812961475642}
-  - {fileID: 3107425567850739965}
-  levelDesign: []
+  levelDesign:
+  - {fileID: 2920823601857670967, guid: b8dda4e04c8c7854f95a70fab26c07b8, type: 3}
   background: []
   door: {fileID: 6921487938399915880}
   blackScreen: {fileID: 2013871824077984453}
