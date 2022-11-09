@@ -23,6 +23,7 @@ namespace Ennemy
     private bool pathUpdated = true;
     private bool stopPathfinding = false;
     public float targetDistance = 1;
+    [SerializeField] private float dontPushDistance = 0.01f;
 
     private bool StopPathfinding
     {
@@ -136,7 +137,7 @@ namespace Ennemy
 
         if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
         {
-            Vector2 raycastDirection = target.transform.position - transform.position;
+            Vector2 raycastDirection = (target.transform.position) - transform.position;
             if (Physics2D.BoxCast(transform.position, new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection), raycastDirection, raycastDirection.magnitude,
                     LayerMask.GetMask("Obstacle")))
             {

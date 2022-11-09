@@ -161,11 +161,11 @@ public class IAMoule : MonoBehaviour
     {
         if (rb.velocity.x >= 0.01f)
         {
-            mouleSprite.flipX = true;
+            mouleSprite.flipX = false;
         }
         else if (rb.velocity.x <= 0.01f)
         {
-            mouleSprite.flipX = false;
+            mouleSprite.flipX = true;
         }
     }
 } 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9215006646866032877}
   - component: {fileID: 7135440744265844698}
   - component: {fileID: 6860674512028189146}
+  - component: {fileID: 7016388626834195995}
   m_Layer: 11
   m_Name: Canonnier
   m_TagString: Enemy
@@ -70,10 +71,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.030943274, y: -0.7445905}
+  m_Offset: {x: 0.030943274, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.1}
     oldSize: {x: 2.2755556, y: 2.2755556}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -171,6 +172,17 @@ MonoBehaviour:
   maxPV: 3
   pv: 0
   vulnerable: 1
+--- !u!210 &7016388626834195995
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65909973824017759}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &2246861995514337409
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +228,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04469168, y: -0.025286973}
+  m_Offset: {x: 0.04469168, y: 0.78}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
