@@ -29,7 +29,7 @@ namespace Character
 
         #region Variables
         private Vector2 _direction;
-        private Vector2 _mouseAim;
+        public Vector2 mouseAim;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
 
@@ -138,8 +138,8 @@ namespace Character
             {
                 //Enable the cursor when shooting with the mouse
                 cursor.SetActive(true);
-                _mouseAim = ctx.ReadValue<Vector2>();
-                if(!gamepadOn)aim = new Vector2(_mouseAim.x - GameManager.instance.screenWidth / 2, _mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
+                mouseAim = ctx.ReadValue<Vector2>();
+                if(!gamepadOn)aim = new Vector2(mouseAim.x - GameManager.instance.screenWidth / 2, mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
             
             characterInputs.Character.Parry.performed += ctx =>

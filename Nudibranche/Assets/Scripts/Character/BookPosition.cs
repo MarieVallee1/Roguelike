@@ -7,16 +7,11 @@ namespace Character
     public class BookPosition : MonoBehaviour
     {
         [SerializeField] private Sprite[] bookSprites;
-        private SpriteRenderer _ren;
+        [SerializeField] private SpriteRenderer ren;
         
         private Vector3 _screenPosition;
         private Vector3 _worldPosition;
         private Vector3 _characterPosition;
-
-        private void Awake()
-        {
-            _ren = GetComponent<SpriteRenderer>();
-        }
 
         private void Update()
         {
@@ -41,44 +36,67 @@ namespace Character
 
         private void HandleSpriteRotation()
         {
-            if(transform.rotation.x < 10 && transform.rotation.x > -10)
+            // get the raw angle, in radians
+            float radians = Mathf.Atan2 (PlayerController.instance.aim.x, PlayerController.instance.aim.y);
+ 
+            // up to degrees
+            float degrees = radians * Mathf.Rad2Deg;
+
+
+            if(degrees < 35 && degrees > -35)
             {
-                print("is up ");
+                Debug.Log("up");
+                ren.sprite = bookSprites[0];
+                ren.flipX = true;
             }
             
-            if(transform.rotation.x > 10 && transform.rotation.x < 80)
+            if(degrees > 35 && degrees < 55)
             {
-                print("is up left");
+                Debug.Log("up right");
+                ren.sprite = bookSprites[1];
+                ren.flipX = true;
             } 
             
-            if(transform.rotation.x > 80 && transform.rotation.x < 100)
+            if(degrees > 55 && degrees < 125)
             {
-                print("is left");
+                Debug.Log("right");
+                ren.sprite = bookSprites[2];
+                ren.flipX = true;
             } 
             
-            if(transform.rotation.x > 100 && transform.rotation.x < 170)
+            if(degrees > 125 && degrees < 145)
             {
-                print("is down left");
+                Debug.Log("down right");
+                ren.sprite = bookSprites[3];
+                ren.flipX = true;
             } 
             
-            if(transform.rotation.x > 170 && transform.rotation.x < -170)
+            if(degrees > 145 || degrees < -145)
             {
-                print("is down");
+                Debug.Log("down");
+                ren.sprite = bookSprites[4];
+                ren.flipX = true;
             }
 
-            if (transform.rotation.x < -170 && transform.rotation.x < -80)
+            if (degrees > -145 && degrees < -125)
             {
-                print("is down right");
+                Debug.Log("down left");
+                ren.sprite = bookSprites[5];
+                ren.flipX = false;
             }
 
-            if (transform.rotation.x > -80 && transform.rotation.x < -70)
+            if (degrees > -125 && degrees < -55)
             {
-                print("is right");
+                Debug.Log("left");
+                ren.sprite = bookSprites[6];
+                ren.flipX = false;
             }
 
-            if (transform.rotation.x > -70 && transform.rotation.x > -10)
+            if (degrees > -55 && degrees < -35)
             {
-                print("is up right");
+                Debug.Log("up left");
+                ren.sprite = bookSprites[7];
+                ren.flipX = false;
             }
         }
     }
