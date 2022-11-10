@@ -16,13 +16,15 @@ GameObject:
   - component: {fileID: 6022184843574172176}
   - component: {fileID: 6641259440492536489}
   - component: {fileID: 5311259493662868480}
-  m_Layer: 9
+  - component: {fileID: 1403914480362090138}
+  - component: {fileID: 2671468560159068036}
+  m_Layer: 17
   m_Name: Crevette
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2932920993117357848
 Transform:
   m_ObjectHideFlags: 0
@@ -81,13 +83,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6644752704994047619, guid: 9cac09039bec2404695b703692cd3c87,
+  m_Sprite: {fileID: -5620513961303327971, guid: 7ca4ef973aa2a6048b7b8b693cef993d,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.59, y: 2.81}
+  m_Size: {x: 1.7066667, y: 1.7066667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -111,7 +113,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}
     oldSize: {x: 1.7066667, y: 1.7066667}
-    newSize: {x: 2.59, y: 2.81}
+    newSize: {x: 1.7066667, y: 1.7066667}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -162,6 +164,7 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 150
   targetDistance: 8
+  dontPushDistance: 0.5
   projectileDiameter: 0.5
   usedCrevetteProjectile: {fileID: 11400000, guid: db3c952546a300e47beed223a21124d8,
     type: 2}
@@ -214,6 +217,35 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1403914480362090138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932920993117357847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183748dd497aa473a98ff0cd8cb67fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 3982111695350857898
+  updateError: 1
+  checkTime: 0.2
+--- !u!114 &2671468560159068036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932920993117357847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27294d12be423474fb16ce84c189ecb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6022184843574172176}
 --- !u!1 &3003386238345824868
 GameObject:
   m_ObjectHideFlags: 0
