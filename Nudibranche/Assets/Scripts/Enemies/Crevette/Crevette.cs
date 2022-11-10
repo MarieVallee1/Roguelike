@@ -139,15 +139,15 @@ namespace Ennemy
         {
             Vector2 raycastDirection = (target.transform.position) - transform.position;
             if (Physics2D.BoxCast(transform.position, new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection), raycastDirection, raycastDirection.magnitude,
-                    LayerMask.GetMask("Obstacle")))
-            {
-                StopPathfinding = false;
-                attaque = false;
-            }
-            else
+                    LayerMask.GetMask("ProjectileHitPlayer")))
             {
                 StopPathfinding = true;
                 attaque = true;
+            }
+            else
+            {
+                StopPathfinding = false;
+                attaque = false;
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
         }
