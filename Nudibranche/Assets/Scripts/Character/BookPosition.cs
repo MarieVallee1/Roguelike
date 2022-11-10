@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -45,56 +44,56 @@ namespace Character
 
             if(degrees < 35 && degrees > -35)
             {
-                Debug.Log("up");
+                //Debug.Log("up");
                 ren.sprite = bookSprites[0];
                 ren.flipX = true;
             }
             
             if(degrees > 35 && degrees < 55)
             {
-                Debug.Log("up right");
+                //Debug.Log("up right");
                 ren.sprite = bookSprites[1];
                 ren.flipX = true;
             } 
             
             if(degrees > 55 && degrees < 125)
             {
-                Debug.Log("right");
+                //Debug.Log("right");
                 ren.sprite = bookSprites[2];
                 ren.flipX = true;
             } 
             
             if(degrees > 125 && degrees < 145)
             {
-                Debug.Log("down right");
+                //Debug.Log("down right");
                 ren.sprite = bookSprites[3];
                 ren.flipX = true;
             } 
             
             if(degrees > 145 || degrees < -145)
             {
-                Debug.Log("down");
+                //Debug.Log("down");
                 ren.sprite = bookSprites[4];
                 ren.flipX = true;
             }
 
             if (degrees > -145 && degrees < -125)
             {
-                Debug.Log("down left");
+                //Debug.Log("down left");
                 ren.sprite = bookSprites[5];
                 ren.flipX = false;
             }
 
             if (degrees > -125 && degrees < -55)
             {
-                Debug.Log("left");
+                //Debug.Log("left");
                 ren.sprite = bookSprites[6];
                 ren.flipX = false;
             }
 
             if (degrees > -55 && degrees < -35)
             {
-                Debug.Log("up left");
+                //Debug.Log("up left");
                 ren.sprite = bookSprites[7];
                 ren.flipX = false;
             }
