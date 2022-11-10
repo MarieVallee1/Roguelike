@@ -22,8 +22,7 @@ public class IAMoule : MonoBehaviour
     [SerializeField] private float repulseSpeed = 100;
     
     // Graph //
-    private SpriteRenderer mouleSprite;
-    
+
     // Combat //
     private bool cac;
     private float cacDistance;
@@ -33,7 +32,6 @@ public class IAMoule : MonoBehaviour
 
     private void Start()
     {
-        mouleSprite = GetComponent<SpriteRenderer>();
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         target = PlayerController.instance.transform;
@@ -61,8 +59,6 @@ public class IAMoule : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
-        Flip();
 
         if (!pathUpdated && !stopPathfinding)
         {
@@ -127,6 +123,8 @@ public class IAMoule : MonoBehaviour
             rb.AddForce(repulseForce, ForceMode2D.Impulse);
         }
     }
+    
+    
 
     private void OnCollisionExit2D(Collision2D other)
     {
@@ -138,15 +136,12 @@ public class IAMoule : MonoBehaviour
 
     private IEnumerator Attaque()
     {
-        mouleSprite.color = Color.yellow;
+        // préparation de l'attaque
         yield return new WaitForSeconds(timePrepAttack);
-        mouleSprite.color = Color.red;
-        if (cac)
-        {
-            PlayerController.instance.TakeDamage(damage);
-        }
-        yield return new WaitForSeconds(0.1f);
-        mouleSprite.color = Color.white;
+        // attaque
+        PlayerController.instance.TakeDamage(damage);
+        Debug.Log("Attaque de la moule");
+        
         yield return new WaitForSeconds(timeBetwennAttacks);
         if (cac)
         {
@@ -155,17 +150,6 @@ public class IAMoule : MonoBehaviour
         else
         {
             stopPathfinding = false;
-        }
-    }
-    void Flip()
-    {
-        if (rb.velocity.x >= 0.01f)
-        {
-            mouleSprite.flipX = false;
-        }
-        else if (rb.velocity.x <= 0.01f)
-        {
-            mouleSprite.flipX = true;
         }
     }
 } 
