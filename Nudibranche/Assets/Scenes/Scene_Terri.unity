@@ -1601,6 +1601,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &589697415 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6803333864024400907, guid: cd18ec86a6643e44ab86010ebe9538dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2767891642248742172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &622964059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,6 +2347,12 @@ CanvasRenderer:
 --- !u!4 &969265633 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2767891642094965161, guid: cd18ec86a6643e44ab86010ebe9538dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2767891642248742172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &978734518 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1121497067676704876, guid: cd18ec86a6643e44ab86010ebe9538dd,
     type: 3}
   m_PrefabInstance: {fileID: 2767891642248742172}
   m_PrefabAsset: {fileID: 0}
@@ -8612,6 +8624,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!95 &1773056095 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2767891643812016499, guid: cd18ec86a6643e44ab86010ebe9538dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2767891642248742172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1791156425
 GameObject:
   m_ObjectHideFlags: 0
@@ -9811,6 +9829,26 @@ PrefabInstance:
       propertyPath: visualsTr
       value: 
       objectReference: {fileID: 969265633}
+    - target: {fileID: 2767891642506191957, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: animator.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767891642506191957, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: animator.Array.data[0]
+      value: 
+      objectReference: {fileID: 1773056095}
+    - target: {fileID: 2767891642506191957, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: animator.Array.data[1]
+      value: 
+      objectReference: {fileID: 978734518}
+    - target: {fileID: 2767891642506191957, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: animator.Array.data[2]
+      value: 
+      objectReference: {fileID: 589697415}
     - target: {fileID: 2767891642506191963, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
       propertyPath: m_Name

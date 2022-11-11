@@ -190,6 +190,7 @@ namespace Narration
             
             hearts.DOFade(0, 0.8f);
             
+            
             dialogueBox.transform.DOLocalMoveY(1100, 0.8f);
 
             blackBackground.DOFade(0.5f, 1f);

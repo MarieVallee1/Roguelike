@@ -13,7 +13,7 @@ namespace Character
         private Transform _tr;
         public static PlayerController instance;
         
-        private Animator _animator;
+        [SerializeField] private Animator[] animator;
 
         [Header("References")]
         [SerializeField] private CharacterData characterData;
@@ -72,10 +72,6 @@ namespace Character
             _rb.drag = characterData.drag;
             _health = characterData.health;
             canGethit = true;
-            
-            _animator = GetComponentInChildren<Animator>();
-            _isRunningHash = Animator.StringToHash("isRunning");
-            
         }
         
         
@@ -192,46 +188,25 @@ namespace Character
             if (movementPressed)
             {
                 _rb.AddForce(_direction * characterData.speed,ForceMode2D.Impulse);
+                
+                for (int i = 0; i < animator.Length; i++)
+                {
+                    animator[i].SetBool("isRunning", true);
+                }
             }
-
-            #region Animation
-
-            // if (isMovingUp)
-            // {
-            //     //Back
-            //     _spriteRen.sprite = charaDirSprites[2];
-            // }else if (isMovingDown)
-            // {
-            //     //Front
-            //     _spriteRen.sprite = charaDirSprites[0];
-            // }
-            // else
-            // {
-            //     // 3/4
-            //     _spriteRen.sprite = charaDirSprites[1];
-            // }
-            
-            
-            bool isRunning = _animator.GetBool(_isRunningHash);
-            
-            if (movementPressed) _animator.SetBool(_isRunningHash, true);
-            else _animator.SetBool(_isRunningHash, false);
-
-            #endregion
-  
+            else
+            {
+                for (int i = 0; i < animator.Length; i++)
+                {
+                    animator[i].SetBool("isRunning", false);
+                }
+            }
         }
         private void HandleParry()
         {
             if (isParrying)
             {
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                
-                foreach(Transform child in visualsTr)
-                {
-                    SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
-                    ren.color = Color.red;
-                }
-                
                 _rb.velocity = Vector2.zero;
                 _parryLifeTime -= Time.deltaTime;
                 DisableInputs();
@@ -246,12 +221,6 @@ namespace Character
                 constraints = RigidbodyConstraints2D.None;
                 constraints = RigidbodyConstraints2D.FreezeRotation;
                 _rb.constraints = constraints;
-                
-                foreach(Transform child in visualsTr)
-                {
-                    SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
-                    ren.color = Color.white;
-                }
 
                 parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
                 _nextTimeParry = Time.time + characterData.parryCooldown;
@@ -296,7 +265,10 @@ namespace Character
             characterInputs.UI.Enable();
             
             //Stop the player from running (anim)
-            _animator.SetBool(_isRunningHash, false);
+            for (int i = 0; i < animator.Length; i++)
+            {
+                animator[i].SetBool("isRunning", false);
+            }
         }
         public void EnableInputs()
         {
@@ -335,32 +307,18 @@ namespace Character
             // up to degrees
             float degrees = radians * Mathf.Rad2Deg;
 
-            // bool isUp = _animator.GetBool(_isUpHash);
-            // bool isDown = _animator.GetBool(_isDownHash);
-            // bool isDownRight = _animator.GetBool(_isDownRightHash);
-            // bool isDownLeft = _animator.GetBool(_isDownLeftHash);
-            
-            if (movementPressed) _animator.SetBool(_isRunningHash, true);
-            else _animator.SetBool(_isRunningHash, false);
-
             if(degrees > 55 && degrees < 145)
             {
-                Debug.Log("right");
                 isFacingLeft = false;
-                
                 visuals[0].SetActive(true);
-                //flip
                 visuals[1].SetActive(false);
                 visuals[2].SetActive(false);
             }
 
             if(degrees > 145 || degrees < -145)
             {
-                Debug.Log("down");
                 isFacingLeft = true;
-                
                 visuals[0].SetActive(false);
-                //no flip
                 visuals[1].SetActive(false);
                 visuals[2].SetActive(true);
             }
@@ -369,7 +327,6 @@ namespace Character
             {
                 isFacingLeft = true;
                 visuals[0].SetActive(true);
-                //no flip
                 visuals[1].SetActive(false);
                 visuals[2].SetActive(false);
             }
