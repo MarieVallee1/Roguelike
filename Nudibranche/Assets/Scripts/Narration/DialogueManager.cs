@@ -14,13 +14,11 @@ namespace Narration
         public static DialogueManager instance;
         
         [Header("Boxes")]
-        [SerializeField] private GameObject dialogueBox1;
-        [SerializeField] private GameObject dialogueBox2;
+        [SerializeField] private GameObject dialogueBox;
         [SerializeField] private CanvasGroup choicesBox;
         [SerializeField] private CanvasGroup hearts;
         
         [Header("Images")]
-        [SerializeField] private Image spriteNpc;
         [SerializeField] private Image blackBackground;
         
         [Header("Texts")]
@@ -59,7 +57,11 @@ namespace Narration
             _sentences2 = new Queue<string>();
         }
 
-        
+        private void Update()
+        {
+            Debug.Log(dialogueBox.transform.position);
+        }
+
         public void StartDialogue(Dialogue dialogue)
         {
             _branchTaken = 0;
@@ -188,22 +190,18 @@ namespace Narration
             
             hearts.DOFade(0, 0.8f);
             
-            dialogueBox1.transform.DOLocalMoveX(0, 0.8f);
-            dialogueBox2.transform.DOLocalMoveX(0, 0.8f);
-            
+            dialogueBox.transform.DOLocalMoveY(980, 0.8f);
+
             blackBackground.DOFade(0.5f, 1f);
-            spriteNpc.DOFade(1, 1f);
         }
         private void CloseDialogue()
         {
             Cursor.visible = true;
             TargetCursor.instance.enabled = true;
             
-            dialogueBox1.transform.DOLocalMoveX(2000, 0.8f);
-            dialogueBox2.transform.DOLocalMoveX(-2000, 0.8f);
-            
+            dialogueBox.transform.DOLocalMoveY(0, 0.8f);
+
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
-            spriteNpc.DOFade(0, 0.8f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
         }
         
