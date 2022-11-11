@@ -29,11 +29,8 @@ namespace Narration
         
         [Header("Buttons")]
         [SerializeField] private GameObject choices;
-        
-        [Header("PnJ")]
-        [SerializeField] private Npc scieRano;
-        [SerializeField] private Npc shellock;
-        [SerializeField] private Npc sirène;
+
+        [Header("PnJ")] [SerializeField] private GameObject[] npc;
 
         private Queue<string> _sentences;
         private Queue<string> _sentences1;
@@ -66,7 +63,7 @@ namespace Narration
         {
             _branchTaken = 0;
             PlayerController.instance.enabled = false;
-            OpenDialogue();
+            OpenDialogue(dialogue);
             
             nameTxt.text = dialogue.name;     
             
@@ -183,8 +180,29 @@ namespace Narration
         }
         
         
-        private void OpenDialogue()
+        private void OpenDialogue(Dialogue dialogue)
         {
+            switch (dialogue.skillIndex)
+            {
+                case 0 :
+                    npc[0].SetActive(true);
+                    npc[1].SetActive(false);
+                    npc[2].SetActive(false); 
+                    break;
+                
+                case 1: 
+                    npc[0].SetActive(false);
+                    npc[1].SetActive(true);
+                    npc[2].SetActive(false); 
+                    break;
+                
+                case 2: 
+                    npc[0].SetActive(false);
+                    npc[1].SetActive(false);
+                    npc[2].SetActive(true); 
+                    break;
+            }
+            
             Cursor.visible = true;
             TargetCursor.instance.enabled = false;
             

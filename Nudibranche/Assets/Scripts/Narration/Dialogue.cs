@@ -7,7 +7,6 @@ namespace Narration
     public class Dialogue : ScriptableObject
     {
         public new string name;
-        public Sprite pnjSprite;
         [Space]
         [TextArea(3, 10)]
         public string[] sentences;
