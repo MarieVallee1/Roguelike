@@ -21,15 +21,15 @@ namespace Character
         [SerializeField] private GameObject book;
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform parryCooldown;
-        [SerializeField] private Transform visualTr;
-        [SerializeField] private GameObject visuals;
+        [SerializeField] private Transform visualsTr;
+        [SerializeField] private GameObject[] visuals;
         
         public List<Skills> skills;
         public Skills currentSkill;
 
         #region Variables
         private Vector2 _direction;
-        public Vector2 mouseAim;
+        [HideInInspector] public Vector2 mouseAim;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
 
@@ -84,6 +84,7 @@ namespace Character
             characterPos = _tr.position;
             RestrictMousePos();
             Flip();
+            HandleSpriteRotation();
         }
         private void FixedUpdate()
         {
@@ -192,11 +193,6 @@ namespace Character
             {
                 _rb.AddForce(_direction * characterData.speed,ForceMode2D.Impulse);
             }
-            
-            // //Flips the sprite when facing left
-            if (_direction.x > 0) isFacingLeft = false;
-            if (_direction.x < 0) isFacingLeft = true;
-
 
             #region Animation
 
@@ -230,7 +226,7 @@ namespace Character
             {
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 
-                foreach(Transform child in visualTr)
+                foreach(Transform child in visualsTr)
                 {
                     SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
                     ren.color = Color.red;
@@ -251,7 +247,7 @@ namespace Character
                 constraints = RigidbodyConstraints2D.FreezeRotation;
                 _rb.constraints = constraints;
                 
-                foreach(Transform child in visualTr)
+                foreach(Transform child in visualsTr)
                 {
                     SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
                     ren.color = Color.white;
@@ -292,7 +288,7 @@ namespace Character
         }
         private void Flip()
         {
-            visuals.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
+            visualsTr.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
         }
         public void DisableInputs()
         {
@@ -315,7 +311,7 @@ namespace Character
         {
             canGethit = false;
             
-            foreach(Transform child in visualTr)
+            foreach(Transform child in visualsTr)
             {
                 SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
                 
@@ -329,6 +325,70 @@ namespace Character
             }
 
             canGethit = true;
+        }
+        
+        private void HandleSpriteRotation()
+        {
+            // get the raw angle, in radians
+            float radians = Mathf.Atan2 (aim.x, aim.y);
+ 
+            // up to degrees
+            float degrees = radians * Mathf.Rad2Deg;
+
+            // bool isUp = _animator.GetBool(_isUpHash);
+            // bool isDown = _animator.GetBool(_isDownHash);
+            // bool isDownRight = _animator.GetBool(_isDownRightHash);
+            // bool isDownLeft = _animator.GetBool(_isDownLeftHash);
+            
+            if (movementPressed) _animator.SetBool(_isRunningHash, true);
+            else _animator.SetBool(_isRunningHash, false);
+
+            if(degrees > 55 && degrees < 145)
+            {
+                Debug.Log("right");
+                isFacingLeft = false;
+                
+                visuals[0].SetActive(true);
+                //flip
+                visuals[1].SetActive(false);
+                visuals[2].SetActive(false);
+            }
+
+            if(degrees > 145 || degrees < -145)
+            {
+                Debug.Log("down");
+                isFacingLeft = true;
+                
+                visuals[0].SetActive(false);
+                //no flip
+                visuals[1].SetActive(false);
+                visuals[2].SetActive(true);
+            }
+
+            if (degrees > -145 && degrees < -125)
+            {
+                isFacingLeft = true;
+                visuals[0].SetActive(true);
+                //no flip
+                visuals[1].SetActive(false);
+                visuals[2].SetActive(false);
+            }
+
+            if (degrees > -125 && degrees < -55)
+            {
+                isFacingLeft = true;
+                visuals[0].SetActive(true);
+                visuals[1].SetActive(false);
+                visuals[2].SetActive(false);
+            }
+
+            if (degrees > -55 && degrees < 35)
+            {
+                isFacingLeft = false;
+                visuals[0].SetActive(false);
+                visuals[1].SetActive(true);
+                visuals[2].SetActive(false);
+            }
         }
     }
 }
