@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3027882638127671387}
   - component: {fileID: 7108246036893374575}
   m_Layer: 0
-  m_Name: Untitled-2 (1)
+  m_Name: Vitrine Croliath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
     - {fileID: 433629177153847579}
   - enemies:
     - {fileID: 2516203669715313973}
+  _chosenSpawn:
+    enemies: []
 --- !u!1001 &8163941350126299840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209,6 +211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moule (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4502711793997958835, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
         type: 3}
       propertyPath: m_Enabled
@@ -268,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crevette (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357848, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
