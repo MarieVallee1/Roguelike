@@ -715,10 +715,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1403914480362090138, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: uniqueID
+      value: 7478743270557891071
+      objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_Name
       value: Crevette
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357848, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
@@ -1382,6 +1392,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1542049004 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4518181734986727850, guid: 3f7584bf7d7db5a4c937264e0240f068,
+    type: 3}
+  m_PrefabInstance: {fileID: 4502711793555459989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1598793493 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3368644089839517411, guid: 3f7584bf7d7db5a4c937264e0240f068,
+    type: 3}
+  m_PrefabInstance: {fileID: 4502711793555459989}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1946887431 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5911380311321040829, guid: 3f7584bf7d7db5a4c937264e0240f068,
+    type: 3}
+  m_PrefabInstance: {fileID: 4502711793555459989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &65909973362819542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1537,16 +1565,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2564775127183291457, guid: 3f7584bf7d7db5a4c937264e0240f068,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3643380632096675597, guid: 3f7584bf7d7db5a4c937264e0240f068,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4502711793997958834, guid: 3f7584bf7d7db5a4c937264e0240f068,
         type: 3}
       propertyPath: m_RootOrder
@@ -1607,5 +1625,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moule
       objectReference: {fileID: 0}
+    - target: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: animators.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: animators.Array.data[0]
+      value: 
+      objectReference: {fileID: 1542049004}
+    - target: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: animators.Array.data[1]
+      value: 
+      objectReference: {fileID: 1598793493}
+    - target: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: animators.Array.data[2]
+      value: 
+      objectReference: {fileID: 1946887431}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f7584bf7d7db5a4c937264e0240f068, type: 3}

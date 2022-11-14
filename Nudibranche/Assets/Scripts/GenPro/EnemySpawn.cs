@@ -16,6 +16,7 @@ namespace GenPro
             _chosenSpawn = spawns[Random.Range(0, spawns.Length)];
             foreach (var enemy in _chosenSpawn.enemies)
             {
+                enemy.gameObject.SetActive(true);
                 linkedRoom.AddEnemyToList(enemy);
             }
         }
