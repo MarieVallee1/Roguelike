@@ -63,8 +63,8 @@ namespace GenPro
             CheckFiller2Room(_sideFirstLoop);
             _specialRoom1 = PickSpecialRoomType();
             FirstLoop();
-            _specialRoom2 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
-            _specialRoom3 = SpecialRoom.Character2;
+            _specialRoom2 = SpecialRoom.Character2;
+            _specialRoom3 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
             SecondLoop();
             PlaceSpecialRooms();
         }
@@ -341,7 +341,7 @@ namespace GenPro
         {
             _loopDown = true;
             _nextSide = Side.Down;
-            var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
+            var addSpecialRoom1 = Random.Range(3, 5);
             var addSpecialRoom2 = 0;
             if(!_inFirstLoop) addSpecialRoom2 = PickSpecialRoomPlacement(addSpecialRoom1,5);
             
@@ -394,7 +394,7 @@ namespace GenPro
         {
             _loopDown = true;
             _nextSide = Side.Down;
-            var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
+            var addSpecialRoom1 = Random.Range(3, 5);
             var addSpecialRoom2 = 0;
             if(!_inFirstLoop) addSpecialRoom2 = PickSpecialRoomPlacement(addSpecialRoom1,5);
             
@@ -466,7 +466,7 @@ namespace GenPro
         {
             _loopDown = false;
             _nextSide = Side.Up;
-            var addSpecialRoom2 = PickSpecialRoomPlacement(0,1);
+            var addSpecialRoom2 = PickSpecialRoomPlacement(0,5);
             var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,5);
             if (addSpecialRoom2==1||addSpecialRoom3==1)
             {
