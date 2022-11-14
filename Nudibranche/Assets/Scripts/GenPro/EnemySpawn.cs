@@ -17,6 +17,7 @@ namespace GenPro
             foreach (var enemy in _chosenSpawn.enemies)
             {
                 enemy.gameObject.SetActive(true);
+                enemy.SetReference(this);
                 linkedRoom.AddEnemyToList(enemy);
             }
         }

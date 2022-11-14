@@ -9,6 +9,7 @@ namespace GenPro
     {
         public bool activated, roomIsCleared;
 
+        [SerializeField] private bool isBig;
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] background;
         [SerializeField] private GameObject door;
@@ -57,11 +58,17 @@ namespace GenPro
 
         public void SummonDoor()
         {
-            // door.SetActive(true);
-            // foreach (var enemy in _enemyList)
-            // {
-            //     enemy.Activate();
-            // }
+            door.SetActive(true);
+            foreach (var enemy in _enemyList)
+            {
+                enemy.Activate();
+            }
+
+            var aStar = AstarPath.active;
+            if (isBig) aStar.data.gridGraph.SetDimensions(42,42,1);
+            else aStar.data.gridGraph.SetDimensions(20,20,1);
+            aStar.data.gridGraph.center = transform.position;
+            aStar.data.graphs[0].Scan();
         }
     }
 }

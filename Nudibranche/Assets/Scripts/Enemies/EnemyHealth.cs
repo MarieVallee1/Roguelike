@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GenPro;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -23,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
             if (pv <= 0)
             {
+                GetComponent<ActivateEnemy>().Die();
                 gameObject.SetActive(false);
             }
         }
