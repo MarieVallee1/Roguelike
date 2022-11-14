@@ -57,11 +57,11 @@ namespace GenPro
 
         public void SummonDoor()
         {
-            // door.SetActive(true);
-            // foreach (var enemy in _enemyList)
-            // {
-            //     enemy.Activate();
-            // }
+            door.SetActive(true);
+            foreach (var enemy in _enemyList)
+            {
+                enemy.Activate();
+            }
         }
     }
 }

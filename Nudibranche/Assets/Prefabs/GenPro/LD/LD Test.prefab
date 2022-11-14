@@ -134,9 +134,9 @@ MonoBehaviour:
   linkedRoom: {fileID: 0}
   spawns:
   - enemies:
-    - {fileID: 433629177153847579}
+    - {fileID: 3994308237717406877}
   - enemies:
-    - {fileID: 2516203669715313973}
+    - {fileID: 4835721285114608648}
 --- !u!1001 &8163941350126299840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,49 +219,31 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5053750486947507805, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: levelDesign
+      value: 
+      objectReference: {fileID: 4528478079063512618}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f7584bf7d7db5a4c937264e0240f068, type: 3}
+--- !u!114 &3994308237717406877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5053750486947507805, guid: 3f7584bf7d7db5a4c937264e0240f068,
+    type: 3}
+  m_PrefabInstance: {fileID: 8163941350126299840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5706339876632487026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4502711793997958834, guid: 3f7584bf7d7db5a4c937264e0240f068,
     type: 3}
   m_PrefabInstance: {fileID: 8163941350126299840}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5706339876632487027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4502711793997958835, guid: 3f7584bf7d7db5a4c937264e0240f068,
-    type: 3}
-  m_PrefabInstance: {fileID: 8163941350126299840}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2516203669715313973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5706339876632487027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelDesign: {fileID: 4528478079063512618}
-  enemy: 0
-  scriptMoule: {fileID: 5706339876632487033}
-  scriptCrevette: {fileID: 0}
-  scriptCanonnier: {fileID: 0}
---- !u!114 &5706339876632487033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
-    type: 3}
-  m_PrefabInstance: {fileID: 8163941350126299840}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5706339876632487027}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807adf2e72536cf42969ad5ede1eb03f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8683961571764149783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,6 +321,11 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4294270108456985119, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: levelDesign
+      value: 
+      objectReference: {fileID: 4528478079063512618}
     - target: {fileID: 7336686198961904145, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_Enabled
@@ -346,41 +333,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f08fc7687a542241af46acf85a546e9, type: 3}
---- !u!114 &2112896533082375174 stripped
+--- !u!114 &4835721285114608648 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7336686198961904145, guid: 9f08fc7687a542241af46acf85a546e9,
+  m_CorrespondingSourceObject: {fileID: 4294270108456985119, guid: 9f08fc7687a542241af46acf85a546e9,
     type: 3}
   m_PrefabInstance: {fileID: 8683961571764149783}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5778247036267583744}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275fb09dec885c649b9ae31b31585cc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &5778247036267583744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8683961571764149783}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &433629177153847579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5778247036267583744}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDesign: {fileID: 4528478079063512618}
-  enemy: 0
-  scriptMoule: {fileID: 0}
-  scriptCrevette: {fileID: 2112896533082375174}
-  scriptCanonnier: {fileID: 0}
 --- !u!4 &5778247036267583759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2932920993117357848, guid: 9f08fc7687a542241af46acf85a546e9,
