@@ -20,6 +20,7 @@ public class IAMoule : MonoBehaviour
     private bool pathUpdated = true;
     private bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
+    public Transform mouleFeet;
 
     // Graph //
     [SerializeField] private GameObject[] visuals;
@@ -35,7 +36,8 @@ public class IAMoule : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        target = PlayerController.instance.transform;
+        //target = PlayerController.instance.transform;
+        target = PlayerController.instance.transform.GetChild(6);
 
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
@@ -109,19 +111,13 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
-
-        if (isAttacking)
-        {
-            HandleSpriteRotation(target.position - transform.position);
-        }
-        else
+        
+        if (!isAttacking)
         {
             HandleSpriteRotation(rb.velocity);
         }
 
-        AttaqueRange(); 
-        
-        
+        AttaqueRange();
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -133,8 +129,13 @@ public class IAMoule : MonoBehaviour
     }
     void AttaqueRange()
     {
-        if (Vector2.Distance(transform.position, target.position) < range)
+        if (Physics2D.Raycast(mouleFeet.position, target.position - mouleFeet.position, range,
+                LayerMask.GetMask("Player")))
         {
+            if (!isAttacking)
+            {
+                HandleSpriteRotation(target.position - mouleFeet.position); 
+            }
             cac = true;
             stopPathfinding = true;
             isAttacking = true;
@@ -148,7 +149,6 @@ public class IAMoule : MonoBehaviour
             cac = false;
         }
     }
-
     public void InflictDamages()
     {
         if (cac)
@@ -161,14 +161,17 @@ public class IAMoule : MonoBehaviour
     {
         if (!cac)
         {
+            isAttacking = false;
+            stopPathfinding = false;
+            
             for (int i = 0; i < animators.Length; i++)
             {
                 animators[i].SetBool("Attack", false);
             }
-
-            isAttacking = false;
-            stopPathfinding = false;
+            return;
         }
+        
+        HandleSpriteRotation(target.position - mouleFeet.position);
     }
 
     void HandleSpriteRotation(Vector2 direction)

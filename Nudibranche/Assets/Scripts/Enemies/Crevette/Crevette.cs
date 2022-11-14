@@ -44,7 +44,8 @@ namespace Ennemy
     }
     
     //Graph//
-    private SpriteRenderer crevetteSprite;
+    [SerializeField] private GameObject[] visuals;
+    [SerializeField] private Animator[] animators;
     
     //Combat//
     public float projectileDiameter;
@@ -58,8 +59,7 @@ namespace Ennemy
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        crevetteSprite = GetComponent<SpriteRenderer>();
-        
+
         target = PlayerController.instance.transform;
         
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
@@ -84,8 +84,6 @@ namespace Ennemy
     
     void FixedUpdate()
     {
-        
-        Flip();
         AttackCooldown();
 
         if (!pathUpdated && !stopPathfinding)
@@ -161,6 +159,8 @@ namespace Ennemy
         {
             usedCrevetteProjectile.CrevetteShooting(this, this.transform.position, target.position - transform.position);
         }
+        
+        HandleSpriteRotation(rb.velocity);
     }
 
     public bool AttackCooldown()
@@ -169,15 +169,37 @@ namespace Ennemy
         return false;
     }
     
-    void Flip()
+    void HandleSpriteRotation(Vector2 direction)
     {
-        if (rb.velocity.x >= 0.01f)
+        if (Vector2.Angle(Vector2.down, direction) <= 30)
         {
-            crevetteSprite.flipX = true;
+            visuals[0].SetActive(false);
+            visuals[1].SetActive(true);
+            visuals[2].SetActive(false);
         }
-        else if (rb.velocity.x <= 0.01f)
+
+        if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
         {
-            crevetteSprite.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
+            visuals[0].SetActive(true);
+            visuals[1].SetActive(false);
+            visuals[2].SetActive(false);
+            
+            if (Vector2.Angle(Vector2.left, direction) >= 90)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+
+        if (Vector2.Angle(Vector2.down,direction) >= 150)
+        {
+            visuals[0].SetActive(false);
+            visuals[1].SetActive(false);
+            visuals[2].SetActive(true);
         }
     }
 }
