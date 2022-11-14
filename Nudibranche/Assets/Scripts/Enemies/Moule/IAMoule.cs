@@ -22,11 +22,13 @@ public class IAMoule : MonoBehaviour
     [SerializeField] private float repulseSpeed = 100;
     
     // Graph //
+    [SerializeField] private GameObject[] visuals;
+    [SerializeField] private Animator[] animators;
 
     // Combat //
     private bool cac;
-    private float cacDistance;
-    public float timeBetwennAttacks = 1;
+    public float range = 1;
+    public float attackDuration = 1;
     public float timePrepAttack = 1;
     public int damage = 1;
 
@@ -38,6 +40,7 @@ public class IAMoule : MonoBehaviour
 
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
+        cac = false;
     }
 
     void UpdatePath()
@@ -107,28 +110,31 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
+        HandleWalkingSpriteRotation();
+
+        if (cac == false)
+        {
+            AttaqueRange(); 
+        }
+        
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            cac = true;
-            stopPathfinding = true;
-            StartCoroutine(Attaque());
-        }
-
         if (col.gameObject.CompareTag("Moule") && !cac)
         {
             Vector2 repulseForce = (gameObject.transform.position - col.gameObject.transform.position).normalized * repulseSpeed;
             rb.AddForce(repulseForce, ForceMode2D.Impulse);
         }
     }
-    
-    
-
-    private void OnCollisionExit2D(Collision2D other)
+    void AttaqueRange()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (Vector2.Distance(transform.position, target.position) < range)
+        {
+            cac = true;
+            stopPathfinding = true;
+            StartCoroutine(Attaque());
+        }
+        else
         {
             cac = false;
         }
@@ -136,13 +142,22 @@ public class IAMoule : MonoBehaviour
 
     private IEnumerator Attaque()
     {
+        for (int i = 0; i < animators.Length; i++)
+        {
+            animators[i].SetTrigger("Attack");
+        }
         // préparation de l'attaque
         yield return new WaitForSeconds(timePrepAttack);
         // attaque
-        PlayerController.instance.TakeDamage(damage);
-        Debug.Log("Attaque de la moule");
+        if (cac)
+        {
+            PlayerController.instance.TakeDamage(damage); 
+        }
+        Debug.Log("coup de la moule");
         
-        yield return new WaitForSeconds(timeBetwennAttacks);
+        cac = false;
+
+        yield return new WaitForSeconds(attackDuration);
         if (cac)
         {
             StartCoroutine(Attaque());
@@ -150,6 +165,39 @@ public class IAMoule : MonoBehaviour
         else
         {
             stopPathfinding = false;
+        }
+    }
+
+    void HandleWalkingSpriteRotation()
+    {
+        if (Vector2.Angle(Vector2.down, rb.velocity) <= 30)
+        {
+            visuals[0].SetActive(false);
+            visuals[1].SetActive(true);
+            visuals[2].SetActive(false);
+        }
+
+        if (Vector2.Angle(Vector2.down, rb.velocity) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            visuals[0].SetActive(true);
+            visuals[1].SetActive(false);
+            visuals[2].SetActive(false);
+            if (Vector2.Angle(Vector2.left, rb.velocity) >= 90)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+
+        if (Vector2.Angle(Vector2.down, rb.velocity) >= 150)
+        {
+            visuals[0].SetActive(false);
+            visuals[1].SetActive(false);
+            visuals[2].SetActive(true);
         }
     }
 } 
