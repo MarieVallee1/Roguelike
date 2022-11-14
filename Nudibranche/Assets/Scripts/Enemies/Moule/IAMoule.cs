@@ -20,7 +20,8 @@ public class IAMoule : MonoBehaviour
     private bool pathUpdated = true;
     private bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
-    
+    public Transform mouleFeet;
+
     // Graph //
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
@@ -28,15 +29,15 @@ public class IAMoule : MonoBehaviour
     // Combat //
     private bool cac;
     public float range = 1;
-    public float attackDuration = 1;
-    public float timePrepAttack = 1;
     public int damage = 1;
+    private bool isAttacking;
 
     private void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        target = PlayerController.instance.transform;
+        //target = PlayerController.instance.transform;
+        target = PlayerController.instance.transform.GetChild(6);
 
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
@@ -110,13 +111,13 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
-        HandleWalkingSpriteRotation();
-
-        if (cac == false)
-        {
-            AttaqueRange(); 
-        }
         
+        if (!isAttacking)
+        {
+            HandleSpriteRotation(rb.velocity);
+        }
+
+        AttaqueRange();
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -128,62 +129,68 @@ public class IAMoule : MonoBehaviour
     }
     void AttaqueRange()
     {
-        if (Vector2.Distance(transform.position, target.position) < range)
+        if (Physics2D.Raycast(mouleFeet.position, target.position - mouleFeet.position, range,
+                LayerMask.GetMask("Player")))
         {
+            if (!isAttacking)
+            {
+                HandleSpriteRotation(target.position - mouleFeet.position); 
+            }
             cac = true;
             stopPathfinding = true;
-            StartCoroutine(Attaque());
+            isAttacking = true;
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Attack", true);
+            }
         }
         else
         {
             cac = false;
         }
     }
-
-    private IEnumerator Attaque()
+    public void InflictDamages()
     {
-        for (int i = 0; i < animators.Length; i++)
-        {
-            animators[i].SetTrigger("Attack");
-        }
-        // préparation de l'attaque
-        yield return new WaitForSeconds(timePrepAttack);
-        // attaque
         if (cac)
         {
             PlayerController.instance.TakeDamage(damage); 
         }
-        Debug.Log("coup de la moule");
-        
-        cac = false;
-
-        yield return new WaitForSeconds(attackDuration);
-        if (cac)
-        {
-            StartCoroutine(Attaque());
-        }
-        else
-        {
-            stopPathfinding = false;
-        }
     }
 
-    void HandleWalkingSpriteRotation()
+    public void AttackEnded()
     {
-        if (Vector2.Angle(Vector2.down, rb.velocity) <= 30)
+        if (!cac)
+        {
+            isAttacking = false;
+            stopPathfinding = false;
+            
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Attack", false);
+            }
+            return;
+        }
+        
+        HandleSpriteRotation(target.position - mouleFeet.position);
+    }
+
+    void HandleSpriteRotation(Vector2 direction)
+    {
+        if (Vector2.Angle(Vector2.down, direction) <= 30)
         {
             visuals[0].SetActive(false);
             visuals[1].SetActive(true);
             visuals[2].SetActive(false);
         }
 
-        if (Vector2.Angle(Vector2.down, rb.velocity) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
+        if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
         {
             transform.localScale = new Vector3(1, 1, 1);
             visuals[0].SetActive(true);
             visuals[1].SetActive(false);
             visuals[2].SetActive(false);
-            if (Vector2.Angle(Vector2.left, rb.velocity) >= 90)
+            
+            if (Vector2.Angle(Vector2.left, direction) >= 90)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
@@ -193,7 +200,7 @@ public class IAMoule : MonoBehaviour
             }
         }
 
-        if (Vector2.Angle(Vector2.down, rb.velocity) >= 150)
+        if (Vector2.Angle(Vector2.down,direction) >= 150)
         {
             visuals[0].SetActive(false);
             visuals[1].SetActive(false);
