@@ -47,13 +47,12 @@ namespace Ennemy
     }
     
     // Animator //
-    private Animator animator;
+    public Animator animator;
 
     private void Start()
     {
         target = PlayerController.instance.transform;
         radius = usedOursin.radius;
-        animator = GetComponent<Animator>();
         animator.SetTrigger("Activate");
         enemyHealth = GetComponent<EnemyHealth>();
     }
