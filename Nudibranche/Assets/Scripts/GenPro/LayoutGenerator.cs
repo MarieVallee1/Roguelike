@@ -51,6 +51,8 @@ namespace GenPro
         public List<GameObject> listSalle;
         
         [SerializeField] private Vector3 startPos;
+        [SerializeField] private float roomSize;
+        [SerializeField] private float bigRoomSize;
         [SerializeField] private int filler2RoomApparitionDenominator;
         [SerializeField] private int filler2RoomBigVersionDenominator;
         private void Start()
@@ -63,8 +65,8 @@ namespace GenPro
             CheckFiller2Room(_sideFirstLoop);
             _specialRoom1 = PickSpecialRoomType();
             FirstLoop();
-            _specialRoom2 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
-            _specialRoom3 = SpecialRoom.Character2;
+            _specialRoom2 = SpecialRoom.Character2;
+            _specialRoom3 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
             SecondLoop();
             PlaceSpecialRooms();
         }
@@ -341,7 +343,7 @@ namespace GenPro
         {
             _loopDown = true;
             _nextSide = Side.Down;
-            var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
+            var addSpecialRoom1 = Random.Range(3, 5);
             var addSpecialRoom2 = 0;
             if(!_inFirstLoop) addSpecialRoom2 = PickSpecialRoomPlacement(addSpecialRoom1,5);
             
@@ -394,7 +396,7 @@ namespace GenPro
         {
             _loopDown = true;
             _nextSide = Side.Down;
-            var addSpecialRoom1 = PickSpecialRoomPlacement(0,5);
+            var addSpecialRoom1 = Random.Range(3, 5);
             var addSpecialRoom2 = 0;
             if(!_inFirstLoop) addSpecialRoom2 = PickSpecialRoomPlacement(addSpecialRoom1,5);
             
@@ -466,7 +468,7 @@ namespace GenPro
         {
             _loopDown = false;
             _nextSide = Side.Up;
-            var addSpecialRoom2 = PickSpecialRoomPlacement(0,1);
+            var addSpecialRoom2 = PickSpecialRoomPlacement(0,5);
             var addSpecialRoom3 = PickSpecialRoomPlacement(addSpecialRoom2,5);
             if (addSpecialRoom2==1||addSpecialRoom3==1)
             {
@@ -626,27 +628,31 @@ namespace GenPro
         private void UpPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
             var tempX = oldRoom.position.x;
-            var tempY = oldRoom.position.y + oldRoom.lossyScale.y / 2 + newRoom.lossyScale.y / 2;
+            var tempY = oldRoom.position.y + roomSize;
             if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
                 tempX = oldRoom.gameObject.GetComponent<RefEntry>().entreeNord.transform.position.x;
+                tempY = oldRoom.position.y + roomSize / 2 + bigRoomSize / 2;
             }
             if (big)
             {
                 tempX += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud.transform.position.x;
+                tempY = oldRoom.position.y + roomSize / 2 + bigRoomSize / 2;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
         private void RightPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
-            var tempX = oldRoom.position.x+ oldRoom.lossyScale.x / 2 + newRoom.lossyScale.x / 2;
+            var tempX = oldRoom.position.x+ roomSize;
             var tempY = oldRoom.position.y;
             if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
+                tempX = oldRoom.position.x + roomSize / 2 + bigRoomSize / 2;
                 tempY = oldRoom.gameObject.GetComponent<RefEntry>().entreeEst.transform.position.y;
             }
             if (big)
             {
+                tempX = oldRoom.position.x + roomSize / 2 + bigRoomSize / 2;
                 tempY += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest.transform.position.y;
             }
             _newPos = new Vector3(tempX,tempY, 0);
@@ -654,27 +660,31 @@ namespace GenPro
         private void DownPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
             var tempX = oldRoom.position.x;
-            var tempY = oldRoom.position.y - oldRoom.lossyScale.x / 2 - newRoom.lossyScale.x / 2;
+            var tempY = oldRoom.position.y - roomSize;
             if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
                 tempX = oldRoom.gameObject.GetComponent<RefEntry>().entreeSud.transform.position.x;
+                tempY = oldRoom.position.y - roomSize / 2 - bigRoomSize / 2;
             }
             if (big)
             {
                 tempX += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord.transform.position.x;
+                tempY = oldRoom.position.y - roomSize / 2 - bigRoomSize / 2;
             }
             _newPos = new Vector3(tempX,tempY, 0);
         }
         private void LeftPlacement(Transform oldRoom,Transform newRoom,bool big)
         {
-            var tempX = oldRoom.position.x - oldRoom.lossyScale.x / 2 - newRoom.lossyScale.x / 2;
+            var tempX = oldRoom.position.x - roomSize;
             var tempY = oldRoom.position.y;
             if (oldRoom.gameObject.GetComponent<RefEntry>())
             {
+                tempX = oldRoom.position.x - roomSize / 2 - bigRoomSize / 2;
                 tempY = oldRoom.gameObject.GetComponent<RefEntry>().entreeOuest.transform.position.y;
             }
             if (big)
             {
+                tempX = oldRoom.position.x - roomSize / 2 - bigRoomSize / 2;
                 tempY += -_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst.transform.position.y;
             }
             _newPos = new Vector3(tempX,tempY, 0);
