@@ -8,11 +8,11 @@ public class EventManagerMoule : MonoBehaviour
 
     public void InflictDamages()
     {
-        
+        iaMoule.InflictDamages();
     }
 
     public void AttackEnd()
     {
-        
+        iaMoule.AttackEnded();
     }
 }

@@ -20,7 +20,7 @@ public class IAMoule : MonoBehaviour
     private bool pathUpdated = true;
     private bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
-    
+
     // Graph //
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
@@ -28,9 +28,8 @@ public class IAMoule : MonoBehaviour
     // Combat //
     private bool cac;
     public float range = 1;
-    public float attackDuration = 1;
-    public float timePrepAttack = 1;
     public int damage = 1;
+    private bool isAttacking;
 
     private void Start()
     {
@@ -110,12 +109,18 @@ public class IAMoule : MonoBehaviour
             path = null;
             pathUpdated = false;
         }
-        HandleWalkingSpriteRotation();
 
-        if (cac == false)
+        if (isAttacking)
         {
-            AttaqueRange(); 
+            HandleSpriteRotation(target.position - transform.position);
         }
+        else
+        {
+            HandleSpriteRotation(rb.velocity);
+        }
+
+        AttaqueRange(); 
+        
         
     }
     private void OnCollisionEnter2D(Collision2D col)
@@ -132,7 +137,11 @@ public class IAMoule : MonoBehaviour
         {
             cac = true;
             stopPathfinding = true;
-            StartCoroutine(Attaque());
+            isAttacking = true;
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Attack", true);
+            }
         }
         else
         {
@@ -140,50 +149,45 @@ public class IAMoule : MonoBehaviour
         }
     }
 
-    private IEnumerator Attaque()
+    public void InflictDamages()
     {
-        for (int i = 0; i < animators.Length; i++)
-        {
-            animators[i].SetTrigger("Attack");
-        }
-        // préparation de l'attaque
-        yield return new WaitForSeconds(timePrepAttack);
-        // attaque
         if (cac)
         {
             PlayerController.instance.TakeDamage(damage); 
         }
-        Debug.Log("coup de la moule");
-        
-        cac = false;
+    }
 
-        yield return new WaitForSeconds(attackDuration);
-        if (cac)
+    public void AttackEnded()
+    {
+        if (!cac)
         {
-            StartCoroutine(Attaque());
-        }
-        else
-        {
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Attack", false);
+            }
+
+            isAttacking = false;
             stopPathfinding = false;
         }
     }
 
-    void HandleWalkingSpriteRotation()
+    void HandleSpriteRotation(Vector2 direction)
     {
-        if (Vector2.Angle(Vector2.down, rb.velocity) <= 30)
+        if (Vector2.Angle(Vector2.down, direction) <= 30)
         {
             visuals[0].SetActive(false);
             visuals[1].SetActive(true);
             visuals[2].SetActive(false);
         }
 
-        if (Vector2.Angle(Vector2.down, rb.velocity) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
+        if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
         {
             transform.localScale = new Vector3(1, 1, 1);
             visuals[0].SetActive(true);
             visuals[1].SetActive(false);
             visuals[2].SetActive(false);
-            if (Vector2.Angle(Vector2.left, rb.velocity) >= 90)
+            
+            if (Vector2.Angle(Vector2.left, direction) >= 90)
             {
                 transform.localScale = new Vector3(1, 1, 1);
             }
@@ -193,7 +197,7 @@ public class IAMoule : MonoBehaviour
             }
         }
 
-        if (Vector2.Angle(Vector2.down, rb.velocity) >= 150)
+        if (Vector2.Angle(Vector2.down,direction) >= 150)
         {
             visuals[0].SetActive(false);
             visuals[1].SetActive(false);
