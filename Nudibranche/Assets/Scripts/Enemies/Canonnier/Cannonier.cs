@@ -18,7 +18,8 @@ namespace Ennemy
     public int nbOursinAround = 6;
     public Transform target;
     public int nbOursin = 3;
-    public float timeBetweenAttacks = 3;
+    public int idleBetweenAttacks = 1;
+    private int idleBetweenAttacksCount = 0;
     [SerializeField] private Oursin usedOursin;
 
     // Caché //
@@ -26,26 +27,7 @@ namespace Ennemy
     private bool enableAttack;
     private bool hidden = true;
     private EnemyHealth enemyHealth;
-    private bool Hidden
-    {
-        get { return hidden;}
-        set
-        {
-            if (value != hidden)
-            {
-                if (hidden)
-                {
-                    StartCoroutine(DelayBetweenAttacks());
-                }
-                else
-                {
-                    StopCoroutine(DelayBetweenAttacks());
-                }
-            }
-            hidden = value; 
-        }
-    }
-    
+
     // Animator //
     public Animator animator;
 
@@ -53,7 +35,6 @@ namespace Ennemy
     {
         target = PlayerController.instance.transform;
         radius = usedOursin.radius;
-        animator.SetTrigger("Activate");
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
@@ -62,19 +43,20 @@ namespace Ennemy
         if (Vector2.Distance(transform.position, target.transform.position) <= hiddenDistance)
         {
             animator.SetBool("Hidden", true);
-            Hidden = true;
+            hidden = true;
             enemyHealth.vulnerable = false;
         }
         else
         {
             animator.SetBool("Hidden", false);
-            Hidden = false;
+            hidden = false;
             enemyHealth.vulnerable = true;
         }
     }
 
-    void CreateSpawnList()
+    public void CreateSpawnList()
     {
+        spawnPointList.Clear();
         spawnPointList.Add(target.transform.position);
         for (int i = 0; i < nbOursinAround ; i++)
         {
@@ -92,30 +74,25 @@ namespace Ennemy
         }
     }
     
-    void SpawnOursins()
+    public void SpawnOursins()
     {
-        for (int i = 0; i < nbOursin; i++)
+        if (spawnPointList.Count >= 1)
         {
-            if (spawnPointList.Count != 0)
-            {
-                int x = Random.Range(0, spawnPointList.Count);
-                usedOursin.CannonierShooting(spawnPointList[x]);
-                spawnPointList.Remove(spawnPointList[x]);
-            }
+            int x = Random.Range(0, spawnPointList.Count);
+            usedOursin.CannonierShooting(spawnPointList[x]);
+            spawnPointList.Remove(spawnPointList[x]);
         }
     }
-    public void Attaque()
-    {
-        CreateSpawnList();
-        SpawnOursins();
-        spawnPointList.Clear();
-    }
 
-    IEnumerator DelayBetweenAttacks()
+    public void NumberOfIdleBetweenAttacks()
     {
-        animator.SetTrigger("Shoot");
-        yield return new WaitForSeconds(timeBetweenAttacks);
-        StartCoroutine(DelayBetweenAttacks());
+        idleBetweenAttacksCount += 1;
+        if (idleBetweenAttacksCount == idleBetweenAttacks)
+        {
+            animator.SetTrigger("Shoot");
+            idleBetweenAttacksCount = 0;
+        }
+        
     }
 }
 
