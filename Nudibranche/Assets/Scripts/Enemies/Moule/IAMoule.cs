@@ -19,6 +19,7 @@ public class IAMoule : MonoBehaviour
     private Rigidbody2D rb;
     private bool pathUpdated = true;
     private bool stopPathfinding;
+    private bool _isMoving;
     [SerializeField] private float repulseSpeed = 100;
     public Transform mouleFeet;
 
@@ -118,6 +119,10 @@ public class IAMoule : MonoBehaviour
         }
 
         AttaqueRange();
+
+        //Freeze and Unfreeze the enemy when the player is using a skill
+        if (PlayerController.instance.isUsingSkill && _isMoving) FreezeMovement();
+        if (!PlayerController.instance.isUsingSkill && !_isMoving) UnfreezeMovement(FreezeMovement());
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -207,5 +212,18 @@ public class IAMoule : MonoBehaviour
             visuals[2].SetActive(true);
         }
     }
-    
+
+    private float FreezeMovement()
+    {
+        float currentSpeed = speed;
+        speed = 0;
+        _isMoving = false;
+        return currentSpeed;
+    }
+
+    private void UnfreezeMovement(float previousSpeed)
+    {
+        speed = previousSpeed;
+    }
+
 } 

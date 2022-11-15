@@ -152,17 +152,17 @@ namespace Narration
                 {
                     case 0:
                     {
-                        PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                        PlayerController.instance.currentSkill = PlayerController.instance.currentSkill = dialogue.skillIndex;
                     }
                         break;
                     case 1 :
                     {
-                        PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                        PlayerController.instance.currentSkill = PlayerController.instance.currentSkill = dialogue.skillIndex;
                     }
                         break;
                     case 2 :
                     {
-                        PlayerController.instance.currentSkill = PlayerController.instance.skills[dialogue.skillIndex];
+                        PlayerController.instance.currentSkill = PlayerController.instance.currentSkill = dialogue.skillIndex;
                     }
                         break;
                 }
@@ -245,6 +245,8 @@ namespace Narration
             string sentence = _sentences2.Dequeue();
             dialogueTxt.text = sentence;
         }
+        
+        
         
     }
 }

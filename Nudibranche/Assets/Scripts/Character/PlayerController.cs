@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -25,8 +26,8 @@ namespace Character
         [SerializeField] private Transform visualsTr;
         [SerializeField] private GameObject[] visuals;
         
-        public List<Skills.Skills> skills;
-        public Skills.Skills currentSkill;
+        public int currentSkill;
+        [SerializeField] private SkillsDetails skills;
 
         #region Variables
         private Vector2 _direction;
@@ -53,6 +54,7 @@ namespace Character
         public bool isMovingUp;
         public bool isMovingDown;
         public bool isFacingLeft;
+        public bool isUsingSkill;
         #endregion
 
         private int _isRunningHash;
@@ -256,10 +258,29 @@ namespace Character
         {
             _skillCooldown += Time.deltaTime;
             
-            if(characterInputs.Character.Skill.triggered && _skillCooldown > currentSkill.cooldown)
+            if(characterInputs.Character.Skill.triggered)
             {
-                currentSkill.UseCurrentSkill();
-                _skillCooldown = 0;
+                switch (currentSkill)
+                {
+                    case 0:
+                    {
+                        StartCoroutine(skills.SwordSlash());
+                        isUsingSkill = true;
+                    }
+                        break;
+                    case 1:
+                    {
+                        skills.WrongTrack();
+                        isUsingSkill = true;
+                    }
+                        break;
+                    case 2:
+                    {
+                        skills.CardLaser();
+                        isUsingSkill = true;
+                    }
+                        break;
+                }
             };
         }
  
