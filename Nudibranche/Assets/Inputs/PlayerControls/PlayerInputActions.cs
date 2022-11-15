@@ -89,6 +89,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skill"",
+                    ""type"": ""Button"",
+                    ""id"": ""045c2b38-d428-4700-89ea-52ee3f5bda98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -243,6 +252,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dc6a648-32fc-4e9a-b71f-5d417d9466af"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Skill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e98e689c-f774-4bc4-b358-eb5a80fc0957"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -835,6 +866,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Character_ShootMouse = m_Character.FindAction("ShootMouse", throwIfNotFound: true);
         m_Character_Parry = m_Character.FindAction("Parry", throwIfNotFound: true);
         m_Character_Interact = m_Character.FindAction("Interact", throwIfNotFound: true);
+        m_Character_Skill = m_Character.FindAction("Skill", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -914,6 +946,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_ShootMouse;
     private readonly InputAction m_Character_Parry;
     private readonly InputAction m_Character_Interact;
+    private readonly InputAction m_Character_Skill;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -925,6 +958,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @ShootMouse => m_Wrapper.m_Character_ShootMouse;
         public InputAction @Parry => m_Wrapper.m_Character_Parry;
         public InputAction @Interact => m_Wrapper.m_Character_Interact;
+        public InputAction @Skill => m_Wrapper.m_Character_Skill;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -955,6 +989,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
+                @Skill.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSkill;
+                @Skill.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSkill;
+                @Skill.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnSkill;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -980,6 +1017,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Skill.started += instance.OnSkill;
+                @Skill.performed += instance.OnSkill;
+                @Skill.canceled += instance.OnSkill;
             }
         }
     }
@@ -1124,6 +1164,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnShootMouse(InputAction.CallbackContext context);
         void OnParry(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSkill(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

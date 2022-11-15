@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Projectiles;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Character
@@ -24,8 +25,8 @@ namespace Character
         [SerializeField] private Transform visualsTr;
         [SerializeField] private GameObject[] visuals;
         
-        public List<Skills> skills;
-        public Skills currentSkill;
+        public List<Skills.Skills> skills;
+        public Skills.Skills currentSkill;
 
         #region Variables
         private Vector2 _direction;
@@ -37,6 +38,7 @@ namespace Character
         
         private float _nextTimeParry;
         private float _parryLifeTime;
+        private float _skillCooldown;
         [Space]
         [SerializeField] private float speedDebug;
         
@@ -81,6 +83,7 @@ namespace Character
             RestrictMousePos();
             Flip();
             HandleSpriteRotation();
+            HandleSkillUse();
         }
         private void FixedUpdate()
         {
@@ -247,6 +250,17 @@ namespace Character
         {
             if(Time.time > _nextTimeParry) return true;
             return false;
+        }
+
+        private void HandleSkillUse()
+        {
+            _skillCooldown += Time.deltaTime;
+            
+            if(characterInputs.Character.Skill.triggered && _skillCooldown > currentSkill.cooldown)
+            {
+                currentSkill.UseCurrentSkill();
+                _skillCooldown = 0;
+            };
         }
  
         

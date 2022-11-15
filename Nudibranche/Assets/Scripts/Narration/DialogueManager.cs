@@ -54,11 +54,6 @@ namespace Narration
             _sentences2 = new Queue<string>();
         }
 
-        private void Update()
-        {
-            Debug.Log(dialogueBox.transform.position);
-        }
-
         public void StartDialogue(Dialogue dialogue)
         {
             _branchTaken = 0;
