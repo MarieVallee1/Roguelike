@@ -60,7 +60,7 @@ namespace Ennemy
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        target = PlayerController.instance.transform;
+        target = PlayerController.instance.transform.GetChild(6);
         
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
@@ -136,8 +136,10 @@ namespace Ennemy
         if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
         {
             Vector2 raycastDirection = (target.transform.position) - transform.position;
-            if (Physics2D.BoxCast(transform.position, new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection), raycastDirection, raycastDirection.magnitude,
-                    LayerMask.GetMask("ProjectileHitPlayer")))
+            RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position,
+                new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection),
+                raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("ProjectileHitPlayer", "Obstacle"));
+            if (raycastHit2D.collider.gameObject.layer == 13)
             {
                 StopPathfinding = true;
                 attaque = true;
