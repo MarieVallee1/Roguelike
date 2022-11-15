@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ennemy;
 using UnityEngine;
 
 public class EventManagerCanonnier : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Cannonier canonnier;
+
+    public void CreateSpawnList()
     {
-        
+        canonnier.CreateSpawnList();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Shoot()
     {
-        
+        canonnier.SpawnOursins();
+    }
+
+    public void IdleBetweenAttacks()
+    {
+        canonnier.NumberOfIdleBetweenAttacks();
     }
 }

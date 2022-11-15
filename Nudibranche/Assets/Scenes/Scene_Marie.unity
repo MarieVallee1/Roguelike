@@ -207,24 +207,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3426bdae9be228b4a9b8765f92d9445e, type: 3}
---- !u!1 &54001466 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1118841993608040491, guid: 3040db1b000e8f643a4f2835ebd3e19d,
-    type: 3}
-  m_PrefabInstance: {fileID: 65909973362819542}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &54001469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54001466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683bf9068935de741acfb4464778682b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &132012763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1307,7 +1289,7 @@ PrefabInstance:
     - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357848, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
@@ -2278,6 +2260,18 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 4502711793555459989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1571662768 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 631100555, guid: 3040db1b000e8f643a4f2835ebd3e19d,
+    type: 3}
+  m_PrefabInstance: {fileID: 65909973362819542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871a21c05077c8a4088ff207a72249b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1573984736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2897,6 +2891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54001469, guid: 3040db1b000e8f643a4f2835ebd3e19d, type: 3}
+      propertyPath: canonnier
+      value: 
+      objectReference: {fileID: 1571662768}
     - target: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2905,12 +2903,12 @@ PrefabInstance:
     - target: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -8.42
       objectReference: {fileID: 0}
     - target: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -8.36
       objectReference: {fileID: 0}
     - target: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
         type: 3}
@@ -2956,21 +2954,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canonnier
-      objectReference: {fileID: 0}
-    - target: {fileID: 65909973824017759, guid: 3040db1b000e8f643a4f2835ebd3e19d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3067036382449771357, guid: 3040db1b000e8f643a4f2835ebd3e19d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4204203177485368126, guid: 3040db1b000e8f643a4f2835ebd3e19d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040db1b000e8f643a4f2835ebd3e19d, type: 3}
