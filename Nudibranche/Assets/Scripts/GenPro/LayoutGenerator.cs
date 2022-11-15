@@ -1129,7 +1129,7 @@ namespace GenPro
                         {
                             case 1:
                                 if (_loopDown) _entryBlock = Entry.Ns;
-                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,true);
+                                Filler2RoomBeforeSpecial(_indexForBoss, _sideBoss,false);
                                 PlaceBossRoom(_lastRoomIndex,_nextSide);
                                 if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
                                 else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
@@ -1152,9 +1152,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                if (!_loopDown) _entryBlock = _sideFirstLoop==Side.Right? Entry.Ne : Entry.No;
-                                else _entryBlock = _sideFirstLoop==Side.Right? Entry.Se : Entry.So;
-                                SwitchDefaultSpecial(true,true,true);
+                                SwitchDefaultSpecial(!_loopDown, true, true);
                                 break;
                         }
                         break;
@@ -1188,7 +1186,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(true,true,true);
+                                SwitchDefaultSpecial(false,true,true);
                                 break;
                         }
                         break;
@@ -1209,7 +1207,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
-                                SwitchDefaultSpecial(true,true,true);
+                                SwitchDefaultSpecial(false,true,true);
                                 break;
                         }
                         break;
