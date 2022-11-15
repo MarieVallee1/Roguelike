@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 4518181734986727850}
   - {fileID: 3368644089839517411}
   - {fileID: 5911380311321040829}
-  range: 1
+  range: 0.7
   damage: 1
 --- !u!50 &4502711793997958840
 Rigidbody2D:
@@ -256,6 +256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95606bb8318059d4789981193ab1de49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animators:
+  - {fileID: 4518181734986727850}
+  - {fileID: 3368644089839517411}
+  - {fileID: 5911380311321040829}
   maxPV: 3
   pv: 0
   vulnerable: 1
@@ -295,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDesign: {fileID: 0}
   enemy: 0
   scriptMoule: {fileID: 4502711793997958841}
   scriptCrevette: {fileID: 0}
@@ -361,7 +364,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: bfeeb26a61a0d6f40a14e9b1d229858c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: bfeeb26a61a0d6f40a14e9b1d229858c,
         type: 3}
@@ -916,7 +919,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: 7c4a264c520983f4cb3424681989f158,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 7c4a264c520983f4cb3424681989f158,
         type: 3}
@@ -1027,6 +1030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
       value: 0.17279416
+      objectReference: {fileID: 0}
+    - target: {fileID: 386791141387813222, guid: 7c4a264c520983f4cb3424681989f158,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1637812520476283035, guid: 7c4a264c520983f4cb3424681989f158,
         type: 3}
