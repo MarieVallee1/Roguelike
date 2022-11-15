@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class GameManager : MonoBehaviour
     public float screenWidth = Screen.width;
     public float screenHeight = Screen.height;
     public static GameManager instance;
+    
 
     void Awake()
     {
