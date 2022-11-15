@@ -11,6 +11,8 @@ public class SkillsDetails : MonoBehaviour
 
     public IEnumerator SwordSlash()
     {
+        PlayerController.instance.isUsingSkill = true;
+        
         var enemyDetection = EnemyDetection.instance;
         
         enemyDetection.enabled = true;
@@ -25,9 +27,13 @@ public class SkillsDetails : MonoBehaviour
         {
             _enemiesInSight[i].takeDamage(3);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         
         PlayerController.instance.isUsingSkill = false;
+        
+        yield return new WaitForSeconds(1f);
+        
+       
     }
     public void WrongTrack()
     {

@@ -211,6 +211,11 @@ namespace Character
         {
             if (isParrying)
             {
+                for (int i = 0; i < animator.Length; i++)
+                {
+                    animator[i].SetBool("isParrying", true);
+                }
+                
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 _rb.velocity = Vector2.zero;
                 _parryLifeTime -= Time.deltaTime;
@@ -231,6 +236,11 @@ namespace Character
                 _nextTimeParry = Time.time + characterData.parryCooldown;
                 _parryLifeTime = characterData.parryTime;
                 isParrying = false;
+                
+                for (int i = 0; i < animator.Length; i++)
+                {
+                    animator[i].SetBool("isParrying", false);
+                }
 
                 movementPressed = false;
                 
@@ -253,7 +263,6 @@ namespace Character
             if(Time.time > _nextTimeParry) return true;
             return false;
         }
-
         private void HandleSkillUse()
         {
             _skillCooldown += Time.deltaTime;
@@ -265,19 +274,16 @@ namespace Character
                     case 0:
                     {
                         StartCoroutine(skills.SwordSlash());
-                        isUsingSkill = true;
                     }
                         break;
                     case 1:
                     {
                         skills.WrongTrack();
-                        isUsingSkill = true;
                     }
                         break;
                     case 2:
                     {
                         skills.CardLaser();
-                        isUsingSkill = true;
                     }
                         break;
                 }
