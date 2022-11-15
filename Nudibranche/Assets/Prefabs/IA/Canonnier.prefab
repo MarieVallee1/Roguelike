@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &65909973824017756
 Transform:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   nbOursinAround: 6
   target: {fileID: 0}
   nbOursin: 3
-  timeBetweenAttacks: 6
+  idleBetweenAttacks: 1
   usedOursin: {fileID: 11400000, guid: 82619f54179c8e74d9b440641d22bb3f, type: 2}
   hiddenDistance: 4
   animator: {fileID: 3616473740698360184}
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.030943274, y: 0.27903616}
+  m_Offset: {x: 0.030943274, y: 0.37167335}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.1}
@@ -83,7 +83,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4216135, y: 0.4189849}
+  m_Size: {x: 1.4216135, y: 0.43537855}
   m_EdgeRadius: 0
 --- !u!114 &6860674512028189146
 MonoBehaviour:
@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95606bb8318059d4789981193ab1de49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animators:
+  - {fileID: 3616473740698360184}
   maxPV: 3
   pv: 0
   vulnerable: 1
@@ -673,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683bf9068935de741acfb4464778682b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canonnier: {fileID: 631100555}
 --- !u!4 &2256009883709556808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 1a3e9a1da6cf6ba4493c711c1ef2492a,
