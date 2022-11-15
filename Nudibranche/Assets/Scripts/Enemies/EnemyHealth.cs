@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public Animator animator;
+    public Animator[] animators;
     public int maxPV = 3;
     public int pv;
     public bool vulnerable = true;
@@ -22,7 +22,11 @@ public class EnemyHealth : MonoBehaviour
         if (vulnerable)
         {
             pv -= damage;
-            animator.SetTrigger("TakeDamage");
+
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetTrigger("TakeDamage");
+            }
 
             if (pv <= 0)
             {
