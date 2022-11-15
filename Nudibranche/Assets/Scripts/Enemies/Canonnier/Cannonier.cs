@@ -81,18 +81,16 @@ namespace Ennemy
             int x = Random.Range(0, spawnPointList.Count);
             usedOursin.CannonierShooting(spawnPointList[x]);
             spawnPointList.Remove(spawnPointList[x]);
+            idleBetweenAttacksCount = 0;
         }
     }
-
     public void NumberOfIdleBetweenAttacks()
     {
         idleBetweenAttacksCount += 1;
         if (idleBetweenAttacksCount == idleBetweenAttacks)
         {
             animator.SetTrigger("Shoot");
-            idleBetweenAttacksCount = 0;
         }
-        
     }
 }
 

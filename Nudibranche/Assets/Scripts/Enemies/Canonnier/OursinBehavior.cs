@@ -19,6 +19,7 @@ public class OursinBehavior : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        target = PlayerController.instance.gameObject;
     }
 
     private void OnEnable()
