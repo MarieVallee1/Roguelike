@@ -31,7 +31,7 @@ public class InteractionManager : MonoBehaviour
         Cursor.visible = true;
         TargetCursor.instance.enabled = false;
 
-        textBox.transform.DOLocalMoveY(-500, 0.8f);
+        textBox.transform.DOLocalMoveY(0, 0.8f);
     }
     
     public void StartDialogue(Interaction interaction)
@@ -81,7 +81,7 @@ public class InteractionManager : MonoBehaviour
         Cursor.visible = true;
         TargetCursor.instance.enabled = true;
             
-        textBox.transform.DOLocalMoveY(-2000, 0.8f);
+        textBox.transform.DOLocalMoveY(-1100, 0.8f);
     }
     
 }
