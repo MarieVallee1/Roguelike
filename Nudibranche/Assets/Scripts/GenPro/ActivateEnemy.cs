@@ -6,6 +6,7 @@ namespace GenPro
     public class ActivateEnemy : MonoBehaviour
     {
         private EnemySpawn _levelDesign;
+        private bool _isSet;
         private enum Enemy
         {
             moule,
@@ -23,6 +24,7 @@ namespace GenPro
         public void SetReference(EnemySpawn callingScript)
         {
             _levelDesign = callingScript;
+            _isSet = true;
         }
         
         public void Activate()
@@ -46,7 +48,7 @@ namespace GenPro
 
         public void Die()
         {
-            _levelDesign.linkedRoom.RemoveEnemy(this);
+            if(_isSet)_levelDesign.linkedRoom.RemoveEnemy(this);
         }
     }
 }

@@ -204,7 +204,7 @@ namespace Narration
             hearts.DOFade(0, 0.8f);
             
             
-            dialogueBox.transform.DOLocalMoveY(1100, 0.8f);
+            dialogueBox.transform.DOLocalMoveY(0, 0.8f);
 
             blackBackground.DOFade(0.5f, 1f);
         }
@@ -213,7 +213,7 @@ namespace Narration
             Cursor.visible = true;
             TargetCursor.instance.enabled = true;
             
-            dialogueBox.transform.DOLocalMoveY(0, 0.8f);
+            dialogueBox.transform.DOLocalMoveY(-1100, 0.8f);
 
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
