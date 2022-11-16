@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public int maxPV = 3;
     public int pv;
     public bool vulnerable = true;
+    public ParticleSystem fxDamages;
 
     private void OnEnable()
     {
@@ -22,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
         if (vulnerable)
         {
             pv -= damage;
+            fxDamages.Play();
 
             for (int i = 0; i < animators.Length; i++)
             {
