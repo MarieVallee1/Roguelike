@@ -125,6 +125,7 @@ MonoBehaviour:
   faceArme: {fileID: 1167846066805481034}
   coteArme: {fileID: 2562673286408227517}
   dosArme: {fileID: 6354146736879626861}
+  spriteRotation: 1
   projectileDiameter: 0.5
   usedCrevetteProjectile: {fileID: 11400000, guid: db3c952546a300e47beed223a21124d8,
     type: 2}
@@ -167,10 +168,14 @@ MonoBehaviour:
   - {fileID: 9216741675206347378}
   - {fileID: 7980978090285324146}
   - {fileID: 386382020614019954}
-  maxPV: 50
+  maxPV: 3
   pv: 0
   vulnerable: 1
   fxDamages: {fileID: 8883175212793384576}
+  gameManager: {fileID: 0}
+  enemy: 1
+  perleBlancheData: {fileID: 11400000, guid: 34f1a6c9fe4380041a9cfe5011b62c17, type: 2}
+  perleRougeData: {fileID: 11400000, guid: eeb7f138b3a75974f82f62848420701d, type: 2}
 --- !u!210 &5311259493662868480
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -352,6 +357,7 @@ MonoBehaviour:
   crevettePos: {fileID: 2932920993117357848}
   rb: {fileID: 6022184843574172176}
   dashSpeed: 6
+  crevette: {fileID: 7336686198961904145}
   animators:
   - {fileID: 9216741675206347378}
   - {fileID: 7980978090285324146}
