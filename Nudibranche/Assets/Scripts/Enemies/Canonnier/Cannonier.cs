@@ -30,7 +30,6 @@ namespace Ennemy
 
     // Animator //
     public Animator animator;
-
     private void Start()
     {
         target = PlayerController.instance.transform;
