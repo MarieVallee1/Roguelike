@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Ennemy;
 using Projectiles;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,8 +21,15 @@ public class DodgeBullet : MonoBehaviour
     [SerializeField] private float obstacleDetection = 2;
     [SerializeField] Transform crevettePos;
     [SerializeField] private Rigidbody2D rb;
-    public List<Vector2> dashDirection = new();
+    private List<Vector2> dashDirection = new();
     [SerializeField] private float dashSpeed = 50;
+    private Vector2 dodgeRight;
+    private Vector2 dodgeLeft;
+    private Vector2 dodgeDirection;
+    public Crevette crevette;
+
+    [Header("Visuels")] [SerializeField] 
+    private Animator[] animators;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -53,7 +61,8 @@ public class DodgeBullet : MonoBehaviour
         else
         {
             canDodgeLeft = true;
-            dashDirection.Add(direction.Perpendicular1());
+            dodgeLeft = direction.Perpendicular1();
+            dashDirection.Add(dodgeLeft);
         }
         
         if (Physics2D.Raycast(crevettePos.position, direction.Perpendicular2(), obstacleDetection, LayerMask.GetMask( "Obstacle", "Canonnier","Oursins", "Player")))
@@ -64,12 +73,30 @@ public class DodgeBullet : MonoBehaviour
         else
         {
             canDodgeRight = true;
-            dashDirection.Add(direction.Perpendicular2());
+            dodgeRight = direction.Perpendicular2();
+            dashDirection.Add(dodgeRight);
         }
 
         if (dashDirection.Count != 0)
         {
-            rb.AddForce(dashDirection[Random.Range(0,dashDirection.Count)] * dashSpeed, ForceMode2D.Impulse);
+            crevette.spriteRotation = false;
+            dodgeDirection = dashDirection[Random.Range(0, dashDirection.Count)];
+            rb.AddForce(dodgeDirection * dashSpeed, ForceMode2D.Impulse);
+
+            if (dodgeDirection == dodgeRight)
+            {
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("DodgeRight", true);
+                }
+            }
+            else if (dodgeDirection == dodgeLeft)
+            {
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("DodgeLeft", true);
+                }
+            }
         }
     }
 }

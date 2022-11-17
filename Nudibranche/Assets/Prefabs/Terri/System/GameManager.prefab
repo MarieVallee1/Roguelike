@@ -61,6 +61,10 @@ MonoBehaviour:
     prefab: {fileID: 7203838594528348324, guid: fcbbaaf9bbf52ad47975db9b6a874ad7,
       type: 3}
     numberOfObjects: 3
+  - description: Perle blanche
+    prefab: {fileID: 5231356749787921300, guid: d196c91a57184174f9c3750a973fde84,
+      type: 3}
+    numberOfObjects: 20
 --- !u!114 &1077355175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +79,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenWidth: 1920
   screenHeight: 1080
+  pearlAmount: 0
+  pearlAmountText: {fileID: 0}
+  canonnierPearlDrop: 3
+  moulePearlDrop: 3
+  crevettePearlDrop: 3
+  canonnierLifeDrop: 1
+  mouleLifeDrop: 1
+  crevetteLifeDrop: 1
 --- !u!114 &524779814
 MonoBehaviour:
   m_ObjectHideFlags: 0
