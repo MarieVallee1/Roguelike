@@ -1120,6 +1120,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
+                                if (_loopDown) _entryBlock = Entry.Ns; 
                                 SwitchDefaultSpecial(false,true,true);
                                 break;
                         }
@@ -1152,6 +1153,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
+                                if (_loopDown) _entryBlock = Entry.Ns; 
                                 SwitchDefaultSpecial(!_loopDown, true, true);
                                 break;
                         }
@@ -1186,6 +1188,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
+                                _entryBlock = _sideFirstLoop == Side.Right ? Entry.Se : Entry.So;
                                 SwitchDefaultSpecial(false,true,true);
                                 break;
                         }
@@ -1207,6 +1210,7 @@ namespace GenPro
                                 PlaceCharacterRoom(_lastRoomIndex,_nextSide);
                                 break;
                             default:
+                                _entryBlock = _sideFirstLoop == Side.Right ? Entry.Se : Entry.So;
                                 SwitchDefaultSpecial(false,true,true);
                                 break;
                         }

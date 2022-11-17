@@ -6,6 +6,7 @@ namespace System
     {
         public float screenWidth = Screen.width;
         public float screenHeight = Screen.height;
+        public int pearlAmount;
         public static GameManager instance;
 
 
