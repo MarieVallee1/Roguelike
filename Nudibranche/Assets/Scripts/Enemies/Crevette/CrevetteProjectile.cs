@@ -13,7 +13,7 @@ namespace CrevetteProjectiles
         {
             GameObject usedCrevetteProjectile = PoolingSystem.instance.GetObject(crevetteProjectileName);
 
-            if (usedCrevetteProjectile != null && crevette.AttackCooldown())
+            if (usedCrevetteProjectile != null)
             {
                 //Placement & activation
                 usedCrevetteProjectile.transform.position = initialPos;
@@ -21,7 +21,6 @@ namespace CrevetteProjectiles
                 
                 // Physics
                 usedCrevetteProjectile.GetComponent<Rigidbody2D>().velocity = aim.normalized * projectileSpeed;
-                crevette.nextTimeCast = Time.time + fireRate;
             }
         }
     
@@ -31,9 +30,7 @@ namespace CrevetteProjectiles
         [TextArea] public string description;
 
         [Header("Characteristics")]
-        [Range(0,10)] public float fireRate;
         [Range(0,100)] public float projectileSpeed;
-        [Range(0,10)] public float cooldown;
         [Range(0, 100)] public int damage;
         
     } 
