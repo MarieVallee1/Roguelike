@@ -2153,6 +2153,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &624255754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7336686198961904145, guid: 9f08fc7687a542241af46acf85a546e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1035495163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275fb09dec885c649b9ae31b31585cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &629069361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3512,7 +3524,7 @@ PrefabInstance:
     - target: {fileID: 2041195735637667261, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
@@ -3574,6 +3586,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4913791158076146675, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: crevette
+      value: 
+      objectReference: {fileID: 624255754}
     - target: {fileID: 6073310466419218842, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_IsActive
@@ -3582,7 +3599,7 @@ PrefabInstance:
     - target: {fileID: 7488870148098329965, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f08fc7687a542241af46acf85a546e9, type: 3}

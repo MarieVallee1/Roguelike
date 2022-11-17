@@ -26,6 +26,7 @@ public class DodgeBullet : MonoBehaviour
     private Vector2 dodgeRight;
     private Vector2 dodgeLeft;
     private Vector2 dodgeDirection;
+    public Crevette crevette;
 
     [Header("Visuels")] [SerializeField] 
     private Animator[] animators;
@@ -78,6 +79,7 @@ public class DodgeBullet : MonoBehaviour
 
         if (dashDirection.Count != 0)
         {
+            crevette.spriteRotation = false;
             dodgeDirection = dashDirection[Random.Range(0, dashDirection.Count)];
             rb.AddForce(dodgeDirection * dashSpeed, ForceMode2D.Impulse);
 
