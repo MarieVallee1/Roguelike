@@ -21,6 +21,7 @@ namespace Character
         [SerializeField] private CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
         [SerializeField] private GameObject book;
+        [SerializeField] private Transform bookPos;
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private Transform visualsTr;
@@ -39,7 +40,8 @@ namespace Character
         
         private float _nextTimeParry;
         private float _parryLifeTime;
-        private float _skillCooldown;
+        private float _skillCountdown;
+        public float skillCooldown;
         [Space]
         [SerializeField] private float speedDebug;
         
@@ -85,6 +87,8 @@ namespace Character
             RestrictMousePos();
             Flip();
             HandleSpriteRotation();
+            
+            _skillCountdown += Time.deltaTime;
             HandleSkillUse();
         }
         private void FixedUpdate()
@@ -265,9 +269,7 @@ namespace Character
         }
         private void HandleSkillUse()
         {
-            _skillCooldown += Time.deltaTime;
-            
-            if(characterInputs.Character.Skill.triggered)
+            if(characterInputs.Character.Skill.triggered && _skillCountdown > skillCooldown)
             {
                 switch (currentSkill)
                 {
@@ -278,23 +280,16 @@ namespace Character
                         break;
                     case 1:
                     {
-                        skills.WrongTrack();
+                        skills.WrongTrack(characterPos);
                     }
                         break;
                     case 2:
                     {
-                        skills.CardLaser();
+                        StartCoroutine(skills.CardLaser(bookPos.position, aim));
                     }
                         break;
                 }
             };
-        }
- 
-        
-        public void FreezeCharacter()
-        {
-            DisableInputs();
-            _rb.velocity = Vector2.zero;
         }
         private void Flip()
         {
@@ -315,6 +310,17 @@ namespace Character
         {
             characterInputs.Character.Enable();
             characterInputs.UI.Disable();
+        }
+
+        public void FreezeCharacter()
+        {
+            _rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        }  
+        
+        public void UnfreezeCharacter()
+        {
+            _rb.constraints = RigidbodyConstraints2D.None;
+            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         private void RestrictMousePos()
         {
