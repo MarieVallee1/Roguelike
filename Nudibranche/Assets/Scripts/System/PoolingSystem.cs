@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Objects
+namespace System
 {
     public class PoolingSystem: MonoBehaviour
     {
