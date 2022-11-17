@@ -24,6 +24,7 @@ namespace Ennemy
     private bool stopPathfinding = false;
     public float targetDistance = 1;
     [SerializeField] private float dontPushDistance = 0.01f;
+    private bool isWalking;
 
     private bool StopPathfinding
     {
@@ -46,7 +47,14 @@ namespace Ennemy
     //Graph//
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
-    
+    private bool faceFront;
+    private bool faceSide;
+    private bool faceBack;
+    [SerializeField] private Transform faceArme;
+    [SerializeField] private Transform coteArme;
+    [SerializeField] private Transform dosArme;
+    public bool isDodging;
+
     //Combat//
     public float projectileDiameter;
     [SerializeField] private CrevetteProjectile usedCrevetteProjectile;
@@ -62,7 +70,7 @@ namespace Ennemy
 
         target = PlayerController.instance.transform.GetChild(6);
         
-        InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
+        InvokeRepeating("UpdatePath", 0, .5f);
         pathUpdated = true;
     }
 
@@ -84,8 +92,6 @@ namespace Ennemy
     
     void FixedUpdate()
     {
-        AttackCooldown();
-
         if (!pathUpdated && !stopPathfinding)
         {
             InvokeRepeating("UpdatePath", 0, .5f);
@@ -132,7 +138,13 @@ namespace Ennemy
             path = null;
             pathUpdated = false;
         }
+        
+        CalculateShootRange();
+        
+    }
 
+    void CalculateShootRange()
+    {
         if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
         {
             Vector2 raycastDirection = (target.transform.position) - transform.position;
@@ -143,11 +155,25 @@ namespace Ennemy
             {
                 StopPathfinding = true;
                 attaque = true;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attack", true);
+                }
             }
             else
             {
                 StopPathfinding = false;
                 attaque = false;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attack", false);
+                }
+
+                if (!isDodging)
+                {
+                    HandleSpriteRotation(rb.velocity);  
+                }
+                
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
         }
@@ -155,22 +181,38 @@ namespace Ennemy
         {
             StopPathfinding = false;
             attaque = false;
-        }
-        
-        if (attaque)
-        {
-            usedCrevetteProjectile.CrevetteShooting(this, this.transform.position, target.position - transform.position);
-        }
-        
-        HandleSpriteRotation(rb.velocity);
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Attack", false);
+            }
+            if (!isDodging)
+            {
+                HandleSpriteRotation(rb.velocity);  
+            }
+        } 
     }
 
-    public bool AttackCooldown()
+    public void Shoot()
     {
-        if(Time.time > nextTimeCast) return true;
-        return false;
+        if (!isDodging)
+        {
+            HandleSpriteRotation(target.position - transform.position);
+        }
+        
+        if (faceSide)
+        {
+            usedCrevetteProjectile.CrevetteShooting(this, this.coteArme.position, target.position - transform.position);
+        }
+        else if (faceFront)
+        {
+            usedCrevetteProjectile.CrevetteShooting(this, faceArme.position, target.position - transform.position);
+        }
+        else if (faceBack)
+        {
+            usedCrevetteProjectile.CrevetteShooting(this, this.dosArme.position, target.position - transform.position);
+        }
     }
-    
+
     void HandleSpriteRotation(Vector2 direction)
     {
         if (Vector2.Angle(Vector2.down, direction) <= 30)
@@ -178,6 +220,10 @@ namespace Ennemy
             visuals[0].SetActive(false);
             visuals[1].SetActive(true);
             visuals[2].SetActive(false);
+            
+            faceSide = false;
+            faceFront = true;
+            faceBack = false;
         }
 
         if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
@@ -186,7 +232,11 @@ namespace Ennemy
             visuals[0].SetActive(true);
             visuals[1].SetActive(false);
             visuals[2].SetActive(false);
-            
+
+            faceSide = true;
+            faceFront = false;
+            faceBack = false;
+
             if (Vector2.Angle(Vector2.left, direction) >= 90)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
@@ -202,6 +252,10 @@ namespace Ennemy
             visuals[0].SetActive(false);
             visuals[1].SetActive(false);
             visuals[2].SetActive(true);
+            
+            faceSide = false;
+            faceFront = false;
+            faceBack = true;
         }
     }
 }
