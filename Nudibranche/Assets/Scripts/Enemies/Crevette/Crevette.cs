@@ -53,7 +53,6 @@ namespace Ennemy
     [SerializeField] private Transform faceArme;
     [SerializeField] private Transform coteArme;
     [SerializeField] private Transform dosArme;
-    public bool isDodging;
 
     //Combat//
     public float projectileDiameter;
@@ -169,10 +168,9 @@ namespace Ennemy
                     animators[i].SetBool("Attack", false);
                 }
 
-                if (!isDodging)
-                {
-                    HandleSpriteRotation(rb.velocity);  
-                }
+                
+                HandleSpriteRotation(rb.velocity);  
+                
                 
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
@@ -185,20 +183,15 @@ namespace Ennemy
             {
                 animators[i].SetBool("Attack", false);
             }
-            if (!isDodging)
-            {
-                HandleSpriteRotation(rb.velocity);  
-            }
+            HandleSpriteRotation(rb.velocity);  
+            
         } 
     }
 
     public void Shoot()
     {
-        if (!isDodging)
-        {
-            HandleSpriteRotation(target.position - transform.position);
-        }
-        
+        HandleSpriteRotation(target.position - transform.position);
+
         if (faceSide)
         {
             usedCrevetteProjectile.CrevetteShooting(this, this.coteArme.position, target.position - transform.position);

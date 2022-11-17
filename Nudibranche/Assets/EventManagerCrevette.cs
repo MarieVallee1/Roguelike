@@ -12,9 +12,4 @@ public class EventManagerCrevette : MonoBehaviour
         crevette.Shoot();
     }
 
-    public void DodgeEnd()
-    {
-        crevette.isDodging = false;
-    }
-
 }
