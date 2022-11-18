@@ -10,6 +10,7 @@ public class IAMoule : MonoBehaviour
     // Pathfinding //
     [SerializeField] private Transform target;
     public float speed = 200;
+    public float speedOutOfCamera = 100;
     private Vector2 force;
     private float nextWaypointDistance = 1;
     private Path path;
@@ -21,6 +22,8 @@ public class IAMoule : MonoBehaviour
     private bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
     public Transform mouleFeet;
+    [SerializeField] private Camera mainCam;
+    private bool isVisible;
 
     // Graph //
     [SerializeField] private GameObject[] visuals;
@@ -42,6 +45,11 @@ public class IAMoule : MonoBehaviour
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
         cac = false;
+    }
+
+    private void OnEnable()
+    {
+        isVisible = false;
     }
 
     void UpdatePath()
@@ -86,7 +94,15 @@ public class IAMoule : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        force = direction * speed * Time.deltaTime;
+
+        if (isVisible)
+        {
+            force = direction * speed * Time.deltaTime;
+        }
+        else
+        {
+            force = direction * speedOutOfCamera * Time.deltaTime;
+        }
 
         if (!stopPathfinding)
         {
@@ -119,8 +135,19 @@ public class IAMoule : MonoBehaviour
 
         AttaqueRange();
 
+        VisibleByCamera();
+
         //Freeze and Unfreeze the enemy when the player is using a skill
         if (PlayerController.instance.isUsingSkill) speed -= speed;
+    }
+
+    void VisibleByCamera()
+    {
+        Vector2 viewPos = mainCam.WorldToViewportPoint(transform.position);
+        if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+        {
+            isVisible = true;
+        }
     }
     private void OnCollisionEnter2D(Collision2D col)
     {
