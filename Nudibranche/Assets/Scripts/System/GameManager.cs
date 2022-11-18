@@ -35,7 +35,7 @@ namespace System
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
-            pearlAmountText.text = 0 + "";
+            //pearlAmountText.text = 0 + "";
         }
     }
 }
