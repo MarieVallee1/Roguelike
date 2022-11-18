@@ -12,8 +12,6 @@ public class DodgeBullet : MonoBehaviour
     [Header("Detect Projectile")]
     private GameObject bullet;
     private Vector2 direction;
-    [SerializeField] private int dodgeFrequence = 3;
-    [SerializeField] int bulletDetected;
 
     [Header("Dodge")] 
     private bool canDodgeRight;
@@ -27,9 +25,16 @@ public class DodgeBullet : MonoBehaviour
     private Vector2 dodgeLeft;
     private Vector2 dodgeDirection;
     public Crevette crevette;
+    public float dodgeFrequence = 1;
+    private float timer;
 
     [Header("Visuels")] [SerializeField] 
     private Animator[] animators;
+
+    private void OnEnable()
+    {
+        timer = dodgeFrequence;
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -40,14 +45,17 @@ public class DodgeBullet : MonoBehaviour
 
             if (Physics2D.Raycast(bullet.transform.position, direction, 3, LayerMask.GetMask("ProjectileHitEnemy")))
             {
-                bulletDetected += 1;
-                if (bulletDetected == dodgeFrequence)
+                if (timer >= dodgeFrequence)
                 {
                     Dodge();
-                    bulletDetected = 0;
                 }
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        timer += Time.deltaTime;
     }
 
     void Dodge()
@@ -98,5 +106,7 @@ public class DodgeBullet : MonoBehaviour
                 }
             }
         }
+
+        timer = 0;
     }
 }
