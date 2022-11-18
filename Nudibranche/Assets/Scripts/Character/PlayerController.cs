@@ -38,6 +38,7 @@ namespace Character
         [HideInInspector] public Vector2 characterPos;
 
         [HideInInspector] public float nextTimeCast;
+        [HideInInspector] public float nextTimeBlast;
         
         private float _nextTimeParry;
         private float _parryLifeTime;
@@ -101,6 +102,7 @@ namespace Character
             speedDebug = _rb.velocity.magnitude;
             
             AttackCooldown();
+            BlastCooldown();
             
             HandleParry();
             ParryCooldown();
@@ -264,6 +266,11 @@ namespace Character
         public bool AttackCooldown()
         {
             if(Time.time > nextTimeCast) return true;
+            return false;
+        }   
+        public bool BlastCooldown()
+        {
+            if(Time.time > nextTimeBlast) return true;
             return false;
         }
         private bool ParryCooldown()
