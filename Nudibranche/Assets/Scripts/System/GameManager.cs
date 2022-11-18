@@ -19,9 +19,9 @@ namespace System
         public int canonnierPearlDrop = 3;
         public int moulePearlDrop = 3;
         public int crevettePearlDrop = 3;
-        public int canonnierLifeDrop = 1;
-        public int mouleLifeDrop = 1;
-        public int crevetteLifeDrop = 1;
+        public float canonnierLifeDrop = 0.5f;
+        public float mouleLifeDrop = 0.1f;
+        public float crevetteLifeDrop = 0.3f;
 
 
         void Awake()

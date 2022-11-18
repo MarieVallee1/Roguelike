@@ -124,7 +124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4502711793997958834
 Transform:
   m_ObjectHideFlags: 0
@@ -186,8 +186,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 400
+  speedOutOfCamera: 100
   repulseSpeed: 3
   mouleFeet: {fileID: 1757126910661195916}
+  mainCam: {fileID: 0}
   visuals:
   - {fileID: 2688430040623199882}
   - {fileID: 3643380632096675597}
@@ -956,6 +958,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hit_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024009746357069195, guid: ec3f674830402cc45bce805cf6493db7,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3f674830402cc45bce805cf6493db7, type: 3}

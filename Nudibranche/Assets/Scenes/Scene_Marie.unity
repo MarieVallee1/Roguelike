@@ -3511,10 +3511,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2041195735637667261, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
       propertyPath: m_Name
       value: Crevette
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932920993117357847, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2932920993117357848, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
@@ -3570,6 +3580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073310466419218842, guid: 9f08fc7687a542241af46acf85a546e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6641259440492536489, guid: 9f08fc7687a542241af46acf85a546e9,
         type: 3}
@@ -7092,6 +7107,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1941053056}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1961793747 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2219634737184203492, guid: 8c0a97dfc139ee94ea5b42f730dab689,
+    type: 3}
+  m_PrefabInstance: {fileID: 262798343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1963671054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7920,5 +7941,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Moule
       objectReference: {fileID: 0}
+    - target: {fileID: 4502711793997958835, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502711793997958841, guid: 3f7584bf7d7db5a4c937264e0240f068,
+        type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 1961793747}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f7584bf7d7db5a4c937264e0240f068, type: 3}

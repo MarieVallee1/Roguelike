@@ -6,12 +6,12 @@ using Random = UnityEngine.Random;
 
 public class PerleBehaviour : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
     private Vector2 randomDirection;
     [SerializeField] private float speed = 2;
-    void Start()
+    [SerializeField] private Perle pearlData;
+    private void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
         randomDirection = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)).normalized;
         rb.AddForce(randomDirection*speed, ForceMode2D.Impulse);
     }
@@ -20,8 +20,20 @@ public class PerleBehaviour : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            GameManager.instance.pearlAmount += 1;
-            GameManager.instance.pearlAmountText.text = GameManager.instance.pearlAmount + "";
+            if (pearlData.monney == true)
+            {
+                GameManager.instance.pearlAmount += 1;
+                GameManager.instance.pearlAmountText.text = GameManager.instance.pearlAmount + "";
+            }
+            else
+            {
+                if (Health.instance.health < Health.instance.numberOfHearts)
+                {
+                    Health.instance.health += 1;
+                    Debug.Log("Le joueur récupère un PV");
+                }
+            }
+            
             gameObject.SetActive(false);
         }
     }

@@ -61,17 +61,30 @@ public class EnemyHealth : MonoBehaviour
                 {
                     perleBlancheData.LootDrop((Vector2)transform.position);
                 }
+
+                if (Random.Range(0f, 1f) <= gameManager.mouleLifeDrop)
+                {
+                    perleRougeData.LootDrop(transform.position);
+                }
                 break;
             case Enemy.crevette:
                 for (int i = 0; i < gameManager.crevettePearlDrop; i++)
                 {
                     perleBlancheData.LootDrop((Vector2)transform.position);
                 }
+                if (Random.Range(0f, 1f) <= gameManager.crevetteLifeDrop)
+                {
+                    perleRougeData.LootDrop(transform.position);
+                }
                 break;
             case Enemy.canonnier:
-                for (int i = 0; i < gameManager.canonnierLifeDrop; i++)
+                for (int i = 0; i < gameManager.canonnierPearlDrop; i++)
                 {
                     perleBlancheData.LootDrop((Vector2)transform.position);
+                }
+                if (Random.Range(0f, 1f) <= gameManager.canonnierLifeDrop)
+                {
+                    perleRougeData.LootDrop(transform.position);
                 }
                 break;
         }
