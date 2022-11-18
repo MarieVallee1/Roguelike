@@ -12,10 +12,12 @@ namespace Projectiles
         
         public int multiplier;
         public float projectileDuration;
+        [SerializeField] private AnimationCurve acceleration;
         public Vector2 direction;
 
         private SpriteRenderer _ren;
         private TrailRenderer _trail;
+        private Rigidbody2D _rb;
 
         public Projectile projectileData;
 
@@ -23,6 +25,7 @@ namespace Projectiles
         {
             _ren = GetComponent<SpriteRenderer>();
             _trail = GetComponent<TrailRenderer>();
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         private void OnEnable()
@@ -58,6 +61,7 @@ namespace Projectiles
         private void Update()
         {
             ProjectileLifeTime();
+            Acceleration();
         }
 
         void ProjectileLifeTime()
@@ -71,6 +75,11 @@ namespace Projectiles
             {
                 gameObject.SetActive(false);
             }
+        }
+        
+        void Acceleration()
+        {
+            _rb.AddForce(PlayerController.instance.aim.normalized * acceleration.Evaluate(1));
         }
     }
 }
