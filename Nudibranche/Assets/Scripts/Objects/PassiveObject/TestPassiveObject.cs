@@ -6,7 +6,7 @@ namespace Objects.PassiveObject
         
         public override int GetPrice()
         {
-            return 1;
+            return stats.objectPrice;
         }
     }
 }
