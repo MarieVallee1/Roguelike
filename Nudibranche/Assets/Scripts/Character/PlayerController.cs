@@ -24,6 +24,7 @@ namespace Character
         [SerializeField] private Transform bookPos;
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform parryCooldown;
+        [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private Transform visualsTr;
         [SerializeField] private GameObject[] visuals;
         
@@ -45,7 +46,7 @@ namespace Character
         [Space]
         [SerializeField] private float speedDebug;
         
-        private int _health;
+        public int health;
 
         [Header("State")]
         public bool canGethit;
@@ -76,7 +77,7 @@ namespace Character
 
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
-            _health = characterData.health;
+            health = characterData.health;
             canGethit = true;
         }
         
@@ -171,18 +172,19 @@ namespace Character
             {
                 
                 //Debugs Death :D 
-                if (_health <= 0)
+                if (health <= 0)
                 {
                     Debug.Log("You're dead");
-                    _health = characterData.health;
+                    health = characterData.health;
+                    health = 0;
                 }
                 
                 StartCoroutine(InvulnerabilityFrame());
                 
-                _health -= damage;
+                health -= damage;
                 
                 //Set the UI to the right amount of hearts
-                Health.instance.SetHealth(_health);
+                Health.instance.SetHealth(health);
                 
                 print("I got hit !");
             }
@@ -219,11 +221,13 @@ namespace Character
                 {
                     animator[i].SetBool("isParrying", true);
                 }
-                
+
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 _rb.velocity = Vector2.zero;
                 _parryLifeTime -= Time.deltaTime;
                 DisableInputs();
+                
+                if(parryFeedback.isStopped) parryFeedback.Play();
             }
             
             //End of parry
@@ -315,8 +319,7 @@ namespace Character
         public void FreezeCharacter()
         {
             _rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        }  
-        
+        }
         public void UnfreezeCharacter()
         {
             _rb.constraints = RigidbodyConstraints2D.None;

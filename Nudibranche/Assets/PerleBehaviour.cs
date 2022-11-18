@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,7 +30,7 @@ public class PerleBehaviour : MonoBehaviour
             {
                 if (Health.instance.health < Health.instance.numberOfHearts)
                 {
-                    Health.instance.health += 1;
+                    Health.instance.SetHealth(PlayerController.instance.health += 1);
                     Debug.Log("Le joueur récupère un PV");
                 }
             }

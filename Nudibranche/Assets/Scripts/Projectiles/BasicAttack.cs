@@ -18,11 +18,16 @@ namespace Projectiles
         private TrailRenderer _trail;
 
         public Projectile projectileData;
-        
-        private void OnEnable()
+
+        private void Awake()
         {
             _ren = GetComponent<SpriteRenderer>();
+            _trail = GetComponent<TrailRenderer>();
+        }
 
+        private void OnEnable()
+        {
+            _trail.enabled = true;
             _countdown = 0f;
 
             if (PlayerController.instance.isBuffed)
@@ -58,6 +63,10 @@ namespace Projectiles
         void ProjectileLifeTime()
         {
             _countdown += Time.deltaTime;
+            if (_countdown > projectileDuration/3)
+            {
+                _trail.enabled = false;
+            }
             if (_countdown > projectileDuration)
             {
                 gameObject.SetActive(false);

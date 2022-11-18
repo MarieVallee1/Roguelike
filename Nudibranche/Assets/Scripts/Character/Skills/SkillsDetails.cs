@@ -15,14 +15,8 @@ public class SkillsDetails : MonoBehaviour
     
     [SerializeField] private GameObject bait;
     
-    [SerializeField] private float laserCooldown;
     [SerializeField] private LineRenderer laserBeam;
-    private float _countdown;
-
-    private void Update()
-    {
-        _countdown += Time.deltaTime;
-    }
+    
 
     public IEnumerator SwordSlash()
     {
