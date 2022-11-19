@@ -19,5 +19,7 @@ namespace Character
         public float parryTime;
         [Range(0f, 100f)]
         public float buffDuration;
+        [Range(0f, 50f)]
+        public float repulsionForce;
     }
 }

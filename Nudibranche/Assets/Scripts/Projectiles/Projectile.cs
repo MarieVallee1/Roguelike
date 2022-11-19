@@ -10,26 +10,23 @@ namespace Projectiles
     {
         public void CharacterShooting(PlayerController cc, Vector2 initialPos)
         {
-            for (int i = 0; i < blastLenght; i++)
-            {
-                GameObject usedProjectile = PoolingSystem.instance.GetObject(projectileName);
-
-                if (usedProjectile != null && cc.AttackCooldown() && cc.BlastCooldown())
-                {
-                    //Placement & activation
-                    usedProjectile.transform.position = initialPos;
-                    direction = cc.aim.normalized;
-                    usedProjectile.SetActive(true);
             
-                    //Physic
-                    usedProjectile.GetComponent<Rigidbody2D>().velocity = cc.aim.normalized * projectileSpeed;
+            GameObject usedProjectile = PoolingSystem.instance.GetObject(projectileName);
+
+            if (usedProjectile != null && cc.AttackCooldown())
+            { 
+                //Placement & activation
+                usedProjectile.transform.position = initialPos;
+                direction = cc.aim.normalized;
+                usedProjectile.SetActive(true);
+            
+                //Physic
+                usedProjectile.GetComponent<Rigidbody2D>().velocity = cc.aim.normalized * projectileSpeed;
                 
 
-                    cc.nextTimeCast = Time.time + fireRate;
-                }
-                return;
+                cc.nextTimeCast = Time.time + fireRate;
+                cc.blastTracker -= 1;
             }
-            cc.nextTimeBlast = Time.time + cooldown;
         }
 
         public Vector2 direction;

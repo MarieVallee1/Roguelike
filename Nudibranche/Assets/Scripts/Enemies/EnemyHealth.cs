@@ -1,92 +1,97 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using GenPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyHealth : MonoBehaviour
+namespace Enemies
 {
-    public Animator[] animators;
-    public int maxPV = 3;
-    public int pv;
-    public bool vulnerable = true;
-    public ParticleSystem fxDamages;
-    [SerializeField] private GameManager gameManager;
-
-    private enum Enemy
+    public class EnemyHealth : MonoBehaviour
     {
-        moule,
-        crevette,
-        canonnier
-    }
-
-    [SerializeField] private Enemy enemy;
-    [SerializeField] private Perle perleBlancheData;
-    [SerializeField] private Perle perleRougeData;
-
-    private void OnEnable()
-    {
-        pv = maxPV;
-        vulnerable = true;
-    }
-
-    public void takeDamage(int damage)
-    {
-        if (vulnerable)
+        public Animator[] animators;
+        public ParticleSystem fxDamages;
+    
+        [SerializeField] private Enemy enemy;
+        [SerializeField] private Perle perleBlancheData;
+        [SerializeField] private Perle perleRougeData;
+    
+        private GameManager _gameManager;
+        private enum Enemy
         {
-            pv -= damage;
-            fxDamages.Play();
+            moule,
+            crevette,
+            canonnier
+        }
+    
+        public int maxPV = 3;
+        public int pv;
+        public bool vulnerable = true;
 
-            for (int i = 0; i < animators.Length; i++)
+        private void Awake()
+        {
+            _gameManager = GameManager.instance;
+        }
+        private void OnEnable()
+        {
+            pv = maxPV;
+            vulnerable = true;
+        }
+    
+        public void takeDamage(int damage)
+        {
+            if (vulnerable)
             {
-                animators[i].SetTrigger("TakeDamage");
-            }
+                pv -= damage;
+                fxDamages.Play();
 
-            if (pv <= 0)
-            {
-                DropLoot();
-                GetComponent<ActivateEnemy>().Die();
-                gameObject.SetActive(false);
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetTrigger("TakeDamage");
+                }
+
+                if (pv <= 0)
+                {
+                    DropLoot();
+                    GetComponent<ActivateEnemy>().Die();
+                    gameObject.SetActive(false);
+                }
             }
         }
-    }
-
-    private void DropLoot()
-    {
-        switch (enemy)
+        private void DropLoot()
         {
-            case Enemy.moule:
-                for (int i = 0; i < gameManager.moulePearlDrop; i++)
-                {
-                    perleBlancheData.LootDrop((Vector2)transform.position);
-                }
+            switch (enemy)
+            {
+                case Enemy.moule:
+                    for (int i = 0; i < _gameManager.moulePearlDrop; i++)
+                    {
+                        perleBlancheData.LootDrop((Vector2)transform.position);
+                    }
 
-                if (Random.Range(0f, 1f) <= gameManager.mouleLifeDrop)
-                {
-                    perleRougeData.LootDrop(transform.position);
-                }
-                break;
-            case Enemy.crevette:
-                for (int i = 0; i < gameManager.crevettePearlDrop; i++)
-                {
-                    perleBlancheData.LootDrop((Vector2)transform.position);
-                }
-                if (Random.Range(0f, 1f) <= gameManager.crevetteLifeDrop)
-                {
-                    perleRougeData.LootDrop(transform.position);
-                }
-                break;
-            case Enemy.canonnier:
-                for (int i = 0; i < gameManager.canonnierPearlDrop; i++)
-                {
-                    perleBlancheData.LootDrop((Vector2)transform.position);
-                }
-                if (Random.Range(0f, 1f) <= gameManager.canonnierLifeDrop)
-                {
-                    perleRougeData.LootDrop(transform.position);
-                }
-                break;
+                    if (Random.Range(0f, 1f) <= _gameManager.mouleLifeDrop)
+                    {
+                        perleRougeData.LootDrop(transform.position);
+                    }
+                    break;
+                case Enemy.crevette:
+                    for (int i = 0; i < _gameManager.crevettePearlDrop; i++)
+                    {
+                        perleBlancheData.LootDrop((Vector2)transform.position);
+                    }
+                    if (Random.Range(0f, 1f) <= _gameManager.crevetteLifeDrop)
+                    {
+                        perleRougeData.LootDrop(transform.position);
+                    }
+                    break;
+                case Enemy.canonnier:
+                    for (int i = 0; i < _gameManager.canonnierPearlDrop; i++)
+                    {
+                        perleBlancheData.LootDrop((Vector2)transform.position);
+                    }
+                    if (Random.Range(0f, 1f) <= _gameManager.canonnierLifeDrop)
+                    {
+                        perleRougeData.LootDrop(transform.position);
+                    }
+                    break;
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
-using System;
 using Character;
+using Enemies;
 using UnityEngine;
-using Projectiles;
 
 namespace Projectiles
 {

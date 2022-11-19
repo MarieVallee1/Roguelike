@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character.Skills;
 using DG.Tweening;
 using Projectiles;
 using Unity.VisualScripting;
@@ -27,6 +28,7 @@ namespace Character
         [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private Transform visualsTr;
         [SerializeField] private GameObject[] visuals;
+        [SerializeField] private ParryRepulsion parryRepulsion;
         
         public int currentSkill;
         [SerializeField] private SkillsDetails skills;
@@ -38,11 +40,14 @@ namespace Character
         [HideInInspector] public Vector2 characterPos;
 
         [HideInInspector] public float nextTimeCast;
-        [HideInInspector] public float nextTimeBlast;
+        
+        [Header("Number of Projectile Left")]
+        public int blastTracker;
         
         private float _nextTimeParry;
         private float _parryLifeTime;
         private float _skillCountdown;
+        private float _blastCooldown;
         public float skillCooldown;
         [Space]
         [SerializeField] private float speedDebug;
@@ -63,26 +68,31 @@ namespace Character
 
         private int _isRunningHash;
         [SerializeField] private bool movementPressed;
-        
+
         private void Awake()
         {
             if (instance != null && instance != this)
                 Destroy(gameObject);
- 
+
             instance = this;
-            
+
             characterInputs = new PlayerInputActions();
-            
+
             _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<Transform>();
+        }
 
+        private void Start()
+        {
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
             health = characterData.health;
             canGethit = true;
+            
+            blastTracker = usedProjectile.blastLenght;
+            _blastCooldown = usedProjectile.cooldown;
         }
-        
-        
+
         private void Update()
         {
             characterPos = _tr.position;
@@ -91,19 +101,25 @@ namespace Character
             HandleSpriteRotation();
             
             _skillCountdown += Time.deltaTime;
+
             HandleSkillUse();
         }
         private void FixedUpdate()
         {
             //Shoots the projectile
-            if(isShooting) usedProjectile.CharacterShooting(this, book.transform.position);
+            if(isShooting && blastTracker > 0) usedProjectile.CharacterShooting(this, book.transform.position);
             
             HandleMovement();
             speedDebug = _rb.velocity.magnitude;
             
             AttackCooldown();
-            BlastCooldown();
             
+            if (blastTracker <= 0)
+            {
+                _blastCooldown -= Time.fixedDeltaTime;
+                BlastCooldown(_blastCooldown);
+            }
+
             HandleParry();
             ParryCooldown();
         }
@@ -120,6 +136,8 @@ namespace Character
                 movementPressed = _direction.x != 0 || _direction.y != 0;
                 isMovingUp = _direction.y > 0.7;
                 isMovingDown = _direction.y < -0.7;
+                
+                Debug.Log(_direction);
             };
             
             //Allows to detect which controller is used 
@@ -167,6 +185,7 @@ namespace Character
         {
             if (isParrying)
             {
+                Repulsion();
                 StartCoroutine(Parry());
                 print("I'm Parrying !");
             }
@@ -219,6 +238,8 @@ namespace Character
         {
             if (isParrying)
             {
+                parryRepulsion.enabled = true;
+                
                 for (int i = 0; i < animator.Length; i++)
                 {
                     animator[i].SetBool("isParrying", true);
@@ -227,14 +248,14 @@ namespace Character
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 _rb.velocity = Vector2.zero;
                 _parryLifeTime -= Time.deltaTime;
-                DisableInputs();
-                
+
                 if(parryFeedback.isStopped) parryFeedback.Play();
             }
             
             //End of parry
             if (_parryLifeTime < 0f)
             {
+                parryRepulsion.enabled = false;
                 parryCooldown.localScale = new Vector3(1, 1, 1);
 
                 var constraints = _rb.constraints;
@@ -251,10 +272,6 @@ namespace Character
                 {
                     animator[i].SetBool("isParrying", false);
                 }
-
-                movementPressed = false;
-                
-                EnableInputs();
             }
         }
         private IEnumerator Parry()
@@ -267,11 +284,15 @@ namespace Character
         {
             if(Time.time > nextTimeCast) return true;
             return false;
-        }   
-        public bool BlastCooldown()
+        }
+
+        public void BlastCooldown(float nextTimeBlast)
         {
-            if(Time.time > nextTimeBlast) return true;
-            return false;
+            if (nextTimeBlast <= 0)
+            {
+                blastTracker = usedProjectile.blastLenght;
+                _blastCooldown = usedProjectile.cooldown;
+            }
         }
         private bool ParryCooldown()
         {
@@ -403,6 +424,18 @@ namespace Character
                 visuals[1].SetActive(true);
                 visuals[2].SetActive(false);
             }
+        }
+
+        private void Repulsion()
+        {
+            for (int i = 0; i < parryRepulsion.enemiesNear.Count; i++)
+            {
+                parryRepulsion.enemiesNear[i].GetComponent<IAMoule>().enabled = false;
+                Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNear[i].transform.position;
+               parryRepulsion.enemiesNear[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
+               parryRepulsion.enemiesNear[i].GetComponent<IAMoule>().enabled = true;
+            }
+            parryRepulsion.enabled = false;
         }
     }
 }
