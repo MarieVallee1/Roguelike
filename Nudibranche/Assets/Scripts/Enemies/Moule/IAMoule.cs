@@ -115,6 +115,8 @@ public class IAMoule : MonoBehaviour
         {
             currentWaypoint++;
         }
+        
+        ParryBehavior(PlayerController.instance);
     }
 
     private void Update()
@@ -235,6 +237,16 @@ public class IAMoule : MonoBehaviour
             visuals[0].SetActive(false);
             visuals[1].SetActive(false);
             visuals[2].SetActive(true);
+        }
+    }
+
+    void ParryBehavior(PlayerController pc)
+    {
+        if (cac && pc.isParrying)
+        {
+            Debug.Log("YES");
+            Vector2 dir = pc.characterPos - (Vector2)transform.position;
+            rb.AddForce(-dir * pc.characterData.repulsionForce,ForceMode2D.Impulse);
         }
     }
 } 

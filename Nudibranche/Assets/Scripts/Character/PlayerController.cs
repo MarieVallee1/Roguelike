@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character.Skills;
 using DG.Tweening;
+using Enemies;
 using Projectiles;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,7 +20,8 @@ namespace Character
         [SerializeField] private Animator[] animator;
 
         [Header("References")]
-        [SerializeField] private CharacterData characterData;
+        [SerializeField]
+        public CharacterData characterData;
         [SerializeField] private Projectile usedProjectile;
         [SerializeField] private GameObject book;
         [SerializeField] private Transform bookPos;
@@ -136,8 +138,6 @@ namespace Character
                 movementPressed = _direction.x != 0 || _direction.y != 0;
                 isMovingUp = _direction.y > 0.7;
                 isMovingDown = _direction.y < -0.7;
-                
-                Debug.Log(_direction);
             };
             
             //Allows to detect which controller is used 
@@ -172,6 +172,7 @@ namespace Character
             characterInputs.Character.Parry.performed += ctx =>
             {
                 if (ParryCooldown() && !isParrying) isParrying = true;
+                ParryEnemyDetection();
             };
         }
         private void OnDisable()
@@ -185,7 +186,7 @@ namespace Character
         {
             if (isParrying)
             {
-                Repulsion();
+                // Repulsion();
                 StartCoroutine(Parry());
                 print("I'm Parrying !");
             }
@@ -234,12 +235,22 @@ namespace Character
                 }
             }
         }
+
+        private void ParryEnemyDetection()
+        {
+            if (characterInputs.Character.Parry.triggered)
+            {
+                parryRepulsion.enabled = true;
+            }
+            else
+            {
+                parryRepulsion.enabled = false;
+            }
+        }
         private void HandleParry()
         {
             if (isParrying)
             {
-                parryRepulsion.enabled = true;
-                
                 for (int i = 0; i < animator.Length; i++)
                 {
                     animator[i].SetBool("isParrying", true);
@@ -255,7 +266,6 @@ namespace Character
             //End of parry
             if (_parryLifeTime < 0f)
             {
-                parryRepulsion.enabled = false;
                 parryCooldown.localScale = new Vector3(1, 1, 1);
 
                 var constraints = _rb.constraints;
@@ -276,6 +286,9 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            Time.timeScale = 0.7f;
+            yield return new WaitForSeconds(0.3f);
+            Time.timeScale = 1f;
             isBuffed = true;
             yield return new WaitForSeconds(characterData.buffDuration);
             isBuffed = false;
@@ -426,16 +439,14 @@ namespace Character
             }
         }
 
-        private void Repulsion()
-        {
-            for (int i = 0; i < parryRepulsion.enemiesNear.Count; i++)
-            {
-                parryRepulsion.enemiesNear[i].GetComponent<IAMoule>().enabled = false;
-                Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNear[i].transform.position;
-               parryRepulsion.enemiesNear[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
-               parryRepulsion.enemiesNear[i].GetComponent<IAMoule>().enabled = true;
-            }
-            parryRepulsion.enabled = false;
-        }
+        // private void Repulsion()
+        // {
+        //     for (int i = 0; i < parryRepulsion.enemiesNear.Count; i++)
+        //     {
+        //         Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNear[i].transform.position;
+        //        parryRepulsion.enemiesNear[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
+        //     }
+        //     parryRepulsion.enabled = false;
+        // }
     }
 }
