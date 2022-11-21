@@ -55,6 +55,11 @@ namespace Projectiles
             {
                 gameObject.SetActive(false);
             }
+
+            if (other.CompareTag("Boss"))
+            {
+                other.gameObject.GetComponentInParent<Boss>().TakeDamage(projectileData.damage);
+            }
         }
 
         private void Update()
