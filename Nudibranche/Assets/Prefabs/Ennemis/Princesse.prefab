@@ -39,7 +39,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5242538876644200376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 5242538878400419345}
   - component: {fileID: 5242538878400419350}
   - component: {fileID: 5242538878400419347}
+  - component: {fileID: 7311035146840275627}
   m_Layer: 0
   m_Name: Princesse
   m_TagString: Enemy
@@ -233,14 +234,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547dd8a9abcccfd48b0bb6fe90014c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 200
+  dashSpeed: 600
   circleCenter: {fileID: 5242538876644200379}
   nbOursinsFirstCircle: 8
   firstCircleRadius: 4.5
   nbOursinsSecondCircle: 8
   secondCircleRadius: 7
-  speed: 200
-  dashSpeed: 600
   usedOursin: {fileID: 11400000, guid: 82619f54179c8e74d9b440641d22bb3f, type: 2}
+  firstCircle:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  secondCircle:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
+  roomCenter: {fileID: 0}
+  tourbillonCollider: {fileID: 5242538876644200378}
+  maxHealth: 0
+  health: 0
+  animator: {fileID: 5707356423501620445}
+--- !u!50 &7311035146840275627
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242538878400419351}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &9055052243864948234
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +348,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9055052243864948234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -360,3 +406,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc331a4ff8e99a84789fd07e83f5da96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 5242538878400419347}

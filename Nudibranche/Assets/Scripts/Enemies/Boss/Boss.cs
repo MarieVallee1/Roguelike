@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 using Oursins;
 
 public class Boss : MonoBehaviour
 {
-    [Header("Comportement de base")]
+    [Header("Comportement de base")] 
+    public Transform target;
     [SerializeField] private float speed = 200;
-    
+
     [Header("Ruée")]
     [SerializeField] private float dashSpeed = 600;
     
@@ -22,6 +24,9 @@ public class Boss : MonoBehaviour
     public Vector2[] firstCircle = new Vector2[8];
     public Vector2[] secondCircle = new Vector2[8];
     private int oursinsWave;
+    [SerializeField] private Transform roomCenter;
+    private bool canTourbillon;
+    [SerializeField] private CircleCollider2D tourbillonCollider;
 
     [Header("Health")] 
     [SerializeField] private int maxHealth;
@@ -33,13 +38,33 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        target = PlayerController.instance.transform;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            animator.SetTrigger("Tourbillon");
+            PlacementForShootOursin();
+        }
+    }
+
+    public void PlacementForShootOursin()
+    {
+        if (transform.position.x <= roomCenter.position.x + 7.5f &&
+            transform.position.x >= roomCenter.position.x - 7.5f &&
+            transform.position.y <= roomCenter.position.y + 7.5f &&
+            transform.position.y >= roomCenter.position.y - 7.5f)
+        {
+            canTourbillon = true;
+            // stop moving
+            animator.SetBool("Tourbillon", true);
+            tourbillonCollider.enabled = true;
+        }
+        else
+        {
+            canTourbillon = false;
+            //move toward room center
         }
     }
 
@@ -88,7 +113,9 @@ public class Boss : MonoBehaviour
             {
                 usedOursin.CannonierShooting(secondCircle[i]);
             }
+            tourbillonCollider.enabled = false;
             oursinsWave = 0;
+            animator.SetBool("Tourbillon", true);
         }
     }
 }

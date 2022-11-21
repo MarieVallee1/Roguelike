@@ -1038,18 +1038,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 225209801}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &195173966 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
-    type: 3}
-  m_PrefabInstance: {fileID: 5242538878591125597}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 547dd8a9abcccfd48b0bb6fe90014c7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &205207041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1230,7 +1218,7 @@ GameObject:
   - component: {fileID: 261412204}
   - component: {fileID: 261412203}
   m_Layer: 0
-  m_Name: Room (3)
+  m_Name: Boss Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1777,12 +1765,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8954596676637714615, guid: 995b904c3887a204d90dee488942a91f,
     type: 3}
   m_PrefabInstance: {fileID: 375551324}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &446039411 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5707356423501620445, guid: 6694ad07b51a0b143b1093c5c867d582,
-    type: 3}
-  m_PrefabInstance: {fileID: 5242538878591125597}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &527918951
 PrefabInstance:
@@ -8524,11 +8506,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 812696943670720518, guid: 6694ad07b51a0b143b1093c5c867d582,
-        type: 3}
-      propertyPath: boss
-      value: 
-      objectReference: {fileID: 195173966}
     - target: {fileID: 5242538878400419344, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: m_RootOrder
@@ -8586,9 +8563,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
-      propertyPath: animator
+      propertyPath: roomCenter
       value: 
-      objectReference: {fileID: 446039411}
+      objectReference: {fileID: 261412204}
     - target: {fileID: 5242538878400419351, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: m_Name

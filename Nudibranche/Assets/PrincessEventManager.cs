@@ -13,7 +13,6 @@ public class PrincessEventManager : MonoBehaviour
     
     public void SpawnOursins()
     {
-        Debug.Log("called");
         boss.SpawnOursins();
     }
 }
