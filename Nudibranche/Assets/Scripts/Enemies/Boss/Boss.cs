@@ -14,8 +14,8 @@ public class Boss : MonoBehaviour
 
     [Header("Ruée")]
     [SerializeField] private float dashSpeed = 600;
-    
-    [Header("Tourbillon")]
+
+    [Header("Tourbillon")] public int tourbillonEveryXDamages = 10;
     [SerializeField] private Transform circleCenter;
     [SerializeField] private int nbOursinsFirstCircle = 8;
     [SerializeField] private float firstCircleRadius = 4;
@@ -28,6 +28,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private Transform roomCenter;
     private bool canTourbillon;
     [SerializeField] private CircleCollider2D tourbillonCollider;
+    private int tourbillonCount;
 
     [Header("Health")] 
     [SerializeField] private int maxHealth;
@@ -35,6 +36,8 @@ public class Boss : MonoBehaviour
     
     [Header("Visuels")] 
     [SerializeField] private Animator animator;
+
+    [SerializeField] private ParticleSystem vfxDamage;
 
     private void Start()
     {
@@ -49,6 +52,11 @@ public class Boss : MonoBehaviour
         {
             PlacementForShootOursin();
         }
+
+        if (canTourbillon)
+        {
+            PlacementForShootOursin();
+        }
     }
 
     public void PlacementForShootOursin()
@@ -58,14 +66,13 @@ public class Boss : MonoBehaviour
             transform.position.y <= roomCenter.position.y + 2 &&
             transform.position.y >= roomCenter.position.y -2)
         {
-            canTourbillon = true;
-            rb.velocity = new Vector2(0,0);
+            rb.drag = 100;
             animator.SetBool("Tourbillon", true);
             tourbillonCollider.enabled = true;
+            canTourbillon = false;
         }
         else
         {
-            canTourbillon = false;
             Vector2 force = (roomCenter.position - transform.position).normalized * speed;
             rb.AddForce(force, ForceMode2D.Force);
         }
@@ -119,6 +126,25 @@ public class Boss : MonoBehaviour
             tourbillonCollider.enabled = false;
             oursinsWave = 0;
             animator.SetBool("Tourbillon", false);
+            rb.drag = 100;
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        vfxDamage.Play();
+
+        tourbillonCount += 1;
+        if (tourbillonCount == tourbillonEveryXDamages)
+        {
+            canTourbillon = true;
+            tourbillonCount = 0;
+        }
+
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }
