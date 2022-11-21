@@ -26,10 +26,11 @@ namespace Enemies
         public int pv;
         public bool vulnerable = true;
 
-        private void Awake()
+        private void Start()
         {
             _gameManager = GameManager.instance;
         }
+
         private void OnEnable()
         {
             pv = maxPV;

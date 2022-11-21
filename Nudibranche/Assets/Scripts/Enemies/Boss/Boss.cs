@@ -10,6 +10,7 @@ public class Boss : MonoBehaviour
     [Header("Comportement de base")] 
     public Transform target;
     [SerializeField] private float speed = 200;
+    private Rigidbody2D rb;
 
     [Header("Ruée")]
     [SerializeField] private float dashSpeed = 600;
@@ -39,11 +40,12 @@ public class Boss : MonoBehaviour
     {
         health = maxHealth;
         target = PlayerController.instance.transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             PlacementForShootOursin();
         }
@@ -51,20 +53,21 @@ public class Boss : MonoBehaviour
 
     public void PlacementForShootOursin()
     {
-        if (transform.position.x <= roomCenter.position.x + 7.5f &&
-            transform.position.x >= roomCenter.position.x - 7.5f &&
-            transform.position.y <= roomCenter.position.y + 7.5f &&
-            transform.position.y >= roomCenter.position.y - 7.5f)
+        if (transform.position.x <= roomCenter.position.x + 2 &&
+            transform.position.x >= roomCenter.position.x - 2 &&
+            transform.position.y <= roomCenter.position.y + 2 &&
+            transform.position.y >= roomCenter.position.y -2)
         {
             canTourbillon = true;
-            // stop moving
+            rb.velocity = new Vector2(0,0);
             animator.SetBool("Tourbillon", true);
             tourbillonCollider.enabled = true;
         }
         else
         {
             canTourbillon = false;
-            //move toward room center
+            Vector2 force = (roomCenter.position - transform.position).normalized * speed;
+            rb.AddForce(force, ForceMode2D.Force);
         }
     }
 
@@ -115,7 +118,7 @@ public class Boss : MonoBehaviour
             }
             tourbillonCollider.enabled = false;
             oursinsWave = 0;
-            animator.SetBool("Tourbillon", true);
+            animator.SetBool("Tourbillon", false);
         }
     }
 }
