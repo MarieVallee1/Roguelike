@@ -10,10 +10,11 @@ namespace Projectiles
     {
         public void CharacterShooting(PlayerController cc, Vector2 initialPos)
         {
+            
             GameObject usedProjectile = PoolingSystem.instance.GetObject(projectileName);
 
             if (usedProjectile != null && cc.AttackCooldown())
-            {
+            { 
                 //Placement & activation
                 usedProjectile.transform.position = initialPos;
                 direction = cc.aim.normalized;
@@ -24,6 +25,7 @@ namespace Projectiles
                 
 
                 cc.nextTimeCast = Time.time + fireRate;
+                cc.blastTracker -= 1;
             }
         }
 
@@ -35,8 +37,9 @@ namespace Projectiles
         [TextArea] public string description;
 
         [Header("Characteristics")]
+        [Range(0,10)] public int blastLenght;
         [Range(0,10)] public float fireRate;
-        [Range(0,100)] public float projectileSpeed;
+        public float projectileSpeed;
         [Range(0,10)] public float cooldown;
         [Range(0, 100)] public int damage;
     }

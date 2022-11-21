@@ -1,19 +1,14 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using Enemies;
 using UnityEngine;
 
-public class EnemyDetection : MonoBehaviour
+public class ParryRepulsion : MonoBehaviour
 {
-    public static EnemyDetection instance;
-    private BoxCollider2D _col;
-    public List<EnemyHealth> enemiesInSight;
+    public static ParryRepulsion instance;
+    private CircleCollider2D _col;
+    public List<Rigidbody2D> enemiesNear;
 
     private float _countdown;
-
-    [SerializeField]
-    private float timeToCheck;
-
 
     private void Awake()
     {
@@ -24,14 +19,14 @@ public class EnemyDetection : MonoBehaviour
 
         instance = this;
 
-        _col = GetComponent<BoxCollider2D>();
+        _col = GetComponent<CircleCollider2D>();
         
-        enemiesInSight.Clear();
+        enemiesNear.Clear();
     }
 
     private void OnEnable()
     {
-        enemiesInSight.Clear();
+        enemiesNear.Clear();
         _col.enabled = true;
     }
     
@@ -44,7 +39,7 @@ public class EnemyDetection : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Moule"))
         {
-            enemiesInSight.Add(col.gameObject.GetComponent<EnemyHealth>());
+            enemiesNear.Add(col.gameObject.GetComponent<Rigidbody2D>());
         }
     }
 }

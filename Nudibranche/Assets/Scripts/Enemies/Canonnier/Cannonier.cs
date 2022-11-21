@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Character;
+using Enemies;
 using UnityEngine;
 using Unity.Mathematics;
 using Random = UnityEngine.Random;
