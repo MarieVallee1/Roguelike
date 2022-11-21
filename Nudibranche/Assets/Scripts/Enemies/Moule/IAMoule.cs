@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Character;
 using UnityEngine;
 using Pathfinding;
@@ -19,7 +16,7 @@ public class IAMoule : MonoBehaviour
     private Seeker seeker;
     private Rigidbody2D rb;
     private bool pathUpdated = true;
-    private bool stopPathfinding;
+    public bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
     public Transform mouleFeet;
     [SerializeField] private Camera mainCam;

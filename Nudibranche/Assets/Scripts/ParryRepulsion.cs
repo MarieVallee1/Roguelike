@@ -6,7 +6,8 @@ public class ParryRepulsion : MonoBehaviour
 {
     public static ParryRepulsion instance;
     private CircleCollider2D _col;
-    public List<Rigidbody2D> enemiesNear;
+    public List<Rigidbody2D> enemiesNearRb;
+    public List<IAMoule> enemiesNearPath;
 
     private float _countdown;
 
@@ -21,12 +22,14 @@ public class ParryRepulsion : MonoBehaviour
 
         _col = GetComponent<CircleCollider2D>();
         
-        enemiesNear.Clear();
+        enemiesNearRb.Clear();
+        enemiesNearPath.Clear();
     }
 
     private void OnEnable()
     {
-        enemiesNear.Clear();
+        enemiesNearRb.Clear();
+        enemiesNearPath.Clear();
         _col.enabled = true;
     }
     
@@ -39,7 +42,8 @@ public class ParryRepulsion : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Moule"))
         {
-            enemiesNear.Add(col.gameObject.GetComponent<Rigidbody2D>());
+            enemiesNearPath.Add(col.GetComponent<IAMoule>());
+            enemiesNearRb.Add(col.GetComponent<Rigidbody2D>());
         }
     }
 }

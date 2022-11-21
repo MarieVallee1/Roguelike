@@ -286,6 +286,7 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            Repulsion();
             Time.timeScale = 0.7f;
             yield return new WaitForSeconds(0.3f);
             Time.timeScale = 1f;
@@ -439,14 +440,18 @@ namespace Character
             }
         }
 
-        // private void Repulsion()
-        // {
-        //     for (int i = 0; i < parryRepulsion.enemiesNear.Count; i++)
-        //     {
-        //         Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNear[i].transform.position;
-        //        parryRepulsion.enemiesNear[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
-        //     }
-        //     parryRepulsion.enabled = false;
-        // }
+        private void Repulsion()
+        {
+            for (int i = 0; i < parryRepulsion.enemiesNearRb.Count; i++)
+            {
+                parryRepulsion.enemiesNearPath[i].stopPathfinding = true;
+                
+                Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNearRb[i].transform.position; 
+                parryRepulsion.enemiesNearRb[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
+                
+                parryRepulsion.enemiesNearPath[i].stopPathfinding = false;
+            }
+            parryRepulsion.enabled = false;
+        }
     }
 }

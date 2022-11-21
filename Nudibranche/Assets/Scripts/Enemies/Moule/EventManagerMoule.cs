@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventManagerMoule : MonoBehaviour
 {
     [SerializeField] private IAMoule iaMoule;
-
+    
     public void InflictDamages()
     {
         iaMoule.InflictDamages();
