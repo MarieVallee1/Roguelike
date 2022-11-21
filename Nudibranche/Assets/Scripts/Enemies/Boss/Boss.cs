@@ -11,9 +11,20 @@ public class Boss : MonoBehaviour
     public Transform target;
     [SerializeField] private float speed = 200;
     private Rigidbody2D rb;
+    [SerializeField] private Transform princessFeet;
+
+    private enum Behaviour
+    {
+        walk,
+        hit,
+        rush,
+        oursins,
+    }
+
+    [SerializeField]private Behaviour behaviour;
 
     [Header("Ruée")]
-    [SerializeField] private float dashSpeed = 600;
+    [SerializeField] private float rushSpeed = 600;
 
     [Header("Tourbillon")] public int tourbillonEveryXDamages = 10;
     [SerializeField] private Transform circleCenter;
@@ -42,17 +53,23 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        target = PlayerController.instance.transform;
+        target = PlayerController.instance.transform.GetChild(6);
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            PlacementForShootOursin();
-        }
+        behaviour = Behaviour.walk;
+    }
 
+    private void FixedUpdate()
+    {
+        if (behaviour == Behaviour.walk)
+        {
+            Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * speed * Time.deltaTime;
+            rb.AddForce(force, ForceMode2D.Force);
+        }
+        
         if (canTourbillon)
         {
             PlacementForShootOursin();
@@ -73,7 +90,7 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            Vector2 force = (roomCenter.position - transform.position).normalized * speed;
+            Vector2 force = (roomCenter.position - transform.position).normalized * speed * Time.deltaTime;
             rb.AddForce(force, ForceMode2D.Force);
         }
     }
@@ -126,7 +143,7 @@ public class Boss : MonoBehaviour
             tourbillonCollider.enabled = false;
             oursinsWave = 0;
             animator.SetBool("Tourbillon", false);
-            rb.drag = 100;
+            rb.drag = 1.5f;
         }
     }
 
@@ -139,6 +156,7 @@ public class Boss : MonoBehaviour
         if (tourbillonCount == tourbillonEveryXDamages)
         {
             canTourbillon = true;
+            behaviour = Behaviour.oursins;
             tourbillonCount = 0;
         }
 
