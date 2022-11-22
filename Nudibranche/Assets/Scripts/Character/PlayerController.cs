@@ -192,23 +192,26 @@ namespace Character
             }
             else
             {
-                
-                //Debugs Death :D 
-                if (health <= 0)
+
+                if (canGethit)
                 {
-                    Debug.Log("You're dead");
-                    health = characterData.health;
-                    health = 0;
+                    //Debugs Death :D 
+                    if (health <= 0)
+                    {
+                        Debug.Log("You're dead");
+                        health = characterData.health;
+                        health = 0;
+                    }
+                
+                    StartCoroutine(InvulnerabilityFrame());
+                    health -= damage;
+                
+                    //Set the UI to the right amount of hearts
+                    Health.instance.SetHealth(health);
+                
+                    print("I got hit !");
                 }
-                
-                StartCoroutine(InvulnerabilityFrame());
-                
-                health -= damage;
-                
-                //Set the UI to the right amount of hearts
-                Health.instance.SetHealth(health);
-                
-                print("I got hit !");
+
             }
         }
 
@@ -373,6 +376,7 @@ namespace Character
         }
         private IEnumerator InvulnerabilityFrame()
         {
+            Debug.Log("invulnerable");
             canGethit = false;
             
             foreach(Transform child in visualsTr)
