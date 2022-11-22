@@ -8,6 +8,7 @@ namespace System
         public float screenWidth = Screen.width;
         public float screenHeight = Screen.height;
         public static GameManager instance;
+        public Camera mainCamera;
         
         
         [Header("Perles")]
