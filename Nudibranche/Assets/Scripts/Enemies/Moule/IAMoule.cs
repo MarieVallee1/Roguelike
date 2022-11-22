@@ -1,3 +1,4 @@
+using System;
 using Character;
 using UnityEngine;
 using Pathfinding;
@@ -19,8 +20,9 @@ public class IAMoule : MonoBehaviour
     public bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
     public Transform mouleFeet;
-    [SerializeField] private Camera mainCam;
+    private Camera mainCam;
     private bool isVisible;
+    
 
     // Graph //
     [SerializeField] private GameObject[] visuals;
@@ -42,6 +44,7 @@ public class IAMoule : MonoBehaviour
         InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
         pathUpdated = true;
         cac = false;
+        mainCam = GameManager.instance.mainCamera;
     }
 
     private void OnEnable()
