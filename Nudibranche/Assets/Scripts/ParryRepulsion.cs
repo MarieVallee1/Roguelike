@@ -1,13 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Character;
+using Ennemy;
+using GenPro;
 using UnityEngine;
 
 public class ParryRepulsion : MonoBehaviour
 {
     public static ParryRepulsion instance;
     private CircleCollider2D _col;
-    public List<Rigidbody2D> enemiesNearRb;
-    public List<IAMoule> enemiesNearPath;
+    private ActivateEnemy _enemyType;
+    
 
     private float _countdown;
 
@@ -21,18 +23,12 @@ public class ParryRepulsion : MonoBehaviour
         instance = this;
 
         _col = GetComponent<CircleCollider2D>();
-        
-        enemiesNearRb.Clear();
-        enemiesNearPath.Clear();
     }
 
     private void OnEnable()
     {
-        enemiesNearRb.Clear();
-        enemiesNearPath.Clear();
         _col.enabled = true;
     }
-    
     private void OnDisable()
     {
         _col.enabled = false;
@@ -40,10 +36,36 @@ public class ParryRepulsion : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Moule"))
+        if (col.gameObject.layer == 13) return;
+        if (col.gameObject.layer == 14) return;
+        Debug.Log("Pass");
+        if (!PlayerController.instance.isParrying) return;
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            enemiesNearPath.Add(col.GetComponent<IAMoule>());
-            enemiesNearRb.Add(col.GetComponent<Rigidbody2D>());
+            if (col.gameObject.layer is 11 or 17) return;
+            Test(col);
         }
+
+        if (col.gameObject.CompareTag("Moule"))
+        {
+            if (col.gameObject.layer != 9) return;
+            Test(col);
+        }
+    }
+
+    private void Test(Collider2D col)
+    {
+        _enemyType = col.GetComponent<ActivateEnemy>();
+        switch (_enemyType.enemy)
+        {
+            case ActivateEnemy.Enemy.crevette:
+                col.GetComponent<Crevette>().stopPathfinding = false;
+                break;
+            case ActivateEnemy.Enemy.moule:
+                col.GetComponent<IAMoule>().stopPathfinding = false;
+                break;
+        }
+        Vector2 dir = (Vector2)col.transform.position - PlayerController.instance.characterPos;
+        col.GetComponent<Rigidbody2D>().AddForce(dir.normalized * PlayerController.instance.characterData.repulsionForce,ForceMode2D.Impulse);
     }
 }

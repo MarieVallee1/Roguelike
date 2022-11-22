@@ -289,10 +289,11 @@ namespace Character
         }
         private IEnumerator Parry()
         {
-            Repulsion();
+            parryRepulsion.enabled = true;
             Time.timeScale = 0.7f;
             yield return new WaitForSeconds(0.3f);
             Time.timeScale = 1f;
+            parryRepulsion.enabled = false;
             isBuffed = true;
             yield return new WaitForSeconds(characterData.buffDuration);
             isBuffed = false;
@@ -442,20 +443,6 @@ namespace Character
                 visuals[1].SetActive(true);
                 visuals[2].SetActive(false);
             }
-        }
-
-        private void Repulsion()
-        {
-            for (int i = 0; i < parryRepulsion.enemiesNearRb.Count; i++)
-            {
-                parryRepulsion.enemiesNearPath[i].stopPathfinding = true;
-                
-                Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNearRb[i].transform.position; 
-                parryRepulsion.enemiesNearRb[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
-                
-                parryRepulsion.enemiesNearPath[i].stopPathfinding = false;
-            }
-            parryRepulsion.enabled = false;
         }
     }
 }
