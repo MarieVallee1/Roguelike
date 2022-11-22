@@ -32,9 +32,12 @@ public class Boss : MonoBehaviour
     [SerializeField] private float firstCircleRadius = 4;
     [SerializeField] private int nbOursinsSecondCircle = 8;
     [SerializeField] private float secondCircleRadius;
+    [SerializeField] private int nbOursinsThirdCircle = 8;
+    [SerializeField] private float thirdCircleRadius;
     [SerializeField] private Oursin usedOursin;
-    public Vector2[] firstCircle = new Vector2[8];
-    public Vector2[] secondCircle = new Vector2[8];
+    public Vector2[] firstCircle;
+    public Vector2[] secondCircle;
+    public Vector2[] thirdCircle;
     private int oursinsWave;
     [SerializeField] private Transform roomCenter;
     private bool canTourbillon;
@@ -60,6 +63,9 @@ public class Boss : MonoBehaviour
     private void OnEnable()
     {
         behaviour = Behaviour.walk;
+        firstCircle = new Vector2[nbOursinsFirstCircle];
+        secondCircle = new Vector2[nbOursinsSecondCircle];
+        thirdCircle = new Vector2[nbOursinsThirdCircle];
     }
 
     private void FixedUpdate()
@@ -78,10 +84,10 @@ public class Boss : MonoBehaviour
 
     public void PlacementForShootOursin()
     {
-        if (transform.position.x <= roomCenter.position.x + 2 &&
-            transform.position.x >= roomCenter.position.x - 2 &&
-            transform.position.y <= roomCenter.position.y + 2 &&
-            transform.position.y >= roomCenter.position.y -2)
+        if (transform.position.x <= roomCenter.position.x + 0.5f &&
+            transform.position.x >= roomCenter.position.x - 0.5f &&
+            transform.position.y <= roomCenter.position.y + 0.5f &&
+            transform.position.y >= roomCenter.position.y - 0.5f)
         {
             rb.drag = 100;
             animator.SetBool("Tourbillon", true);
@@ -108,6 +114,12 @@ public class Boss : MonoBehaviour
             Vector2 pos = new Vector2(circleCenter.position.x + Mathf.Cos(2*Mathf.PI/nbOursinsSecondCircle * i + Mathf.PI/nbOursinsSecondCircle) * secondCircleRadius , circleCenter.position.y + Mathf.Sin(2*Mathf.PI/nbOursinsSecondCircle * i + Mathf.PI/nbOursinsSecondCircle) * secondCircleRadius);
             secondCircle[i] = pos;
         }
+        
+        for (int i = 0; i < nbOursinsThirdCircle ; i++)
+        {
+            Vector2 pos = new Vector2(circleCenter.position.x + Mathf.Cos(2*Mathf.PI/nbOursinsThirdCircle * i) * thirdCircleRadius , circleCenter.position.y + Mathf.Sin(2*Mathf.PI/nbOursinsThirdCircle * i) * thirdCircleRadius);
+            thirdCircle[i] = pos;
+        }
     }
 
     public void SpawnOursins()
@@ -118,6 +130,7 @@ public class Boss : MonoBehaviour
             for (int i = 0; i < 8; i+=2)
             {
                 usedOursin.CannonierShooting(firstCircle[i]);
+                usedOursin.CannonierShooting(thirdCircle[i]);
             }
         }
         if (oursinsWave == 2)
@@ -125,6 +138,7 @@ public class Boss : MonoBehaviour
             for (int i = 1; i < 8; i+=2)
             {
                 usedOursin.CannonierShooting(firstCircle[i]);
+                usedOursin.CannonierShooting(thirdCircle[i]);
             }
         }
         if (oursinsWave == 3)
@@ -144,6 +158,7 @@ public class Boss : MonoBehaviour
             oursinsWave = 0;
             animator.SetBool("Tourbillon", false);
             rb.drag = 1.5f;
+            behaviour = Behaviour.walk;
         }
     }
 

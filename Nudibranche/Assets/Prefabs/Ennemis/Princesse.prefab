@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 10
+  speed: 250
   princessFeet: {fileID: 2778496886318315116}
   behaviour: 0
   rushSpeed: 600
@@ -279,6 +279,8 @@ MonoBehaviour:
   firstCircleRadius: 4.5
   nbOursinsSecondCircle: 8
   secondCircleRadius: 7
+  nbOursinsThirdCircle: 8
+  thirdCircleRadius: 8.5
   usedOursin: {fileID: 11400000, guid: 82619f54179c8e74d9b440641d22bb3f, type: 2}
   firstCircle:
   - {x: 0, y: 0}
@@ -298,6 +300,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}
+  thirdCircle: []
   roomCenter: {fileID: 0}
   tourbillonCollider: {fileID: 5242538876644200378}
   maxHealth: 100
