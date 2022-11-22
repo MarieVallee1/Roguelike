@@ -125,7 +125,7 @@ public class IAMoule : MonoBehaviour
         {
             CancelInvoke("UpdatePath");
             seeker.CancelCurrentPathRequest();
-            rb.velocity = new Vector2(0, 0);
+            //rb.velocity = new Vector2(0, 0);
             path = null;
             pathUpdated = false;
         }

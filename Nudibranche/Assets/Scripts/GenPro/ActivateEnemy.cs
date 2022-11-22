@@ -7,7 +7,7 @@ namespace GenPro
     {
         private EnemySpawn _levelDesign;
         private bool _isSet;
-        private enum Enemy
+        public enum Enemy
         {
             moule,
             crevette,
@@ -15,7 +15,7 @@ namespace GenPro
             boss
         }
 
-        [SerializeField] private Enemy enemy;
+        public Enemy enemy;
         [SerializeField] private IAMoule scriptMoule;
         [SerializeField] private Crevette scriptCrevette;
         [SerializeField] private Cannonier scriptCanonnier;

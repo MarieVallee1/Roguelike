@@ -7,24 +7,25 @@ namespace Objects
     {
         [SerializeField] private bool isHealth;
         private Reward _linkedReward;
+        [SerializeField] private Animator anim;
         private void Start()
         {
             if (!isHealth)
             {
-                _linkedReward = ItemManager.Instance.PickItem();
+                //_linkedReward = ItemManager.Instance.PickItem();
             }
         }
-
+        
         private void OnTriggerEnter2D(Collider2D col)
         {
             //Show on Ui name + description
-            throw new NotImplementedException();
+            anim.SetBool("isOpen",true);
         }
-
+        
         private void OnTriggerExit2D(Collider2D other)
         {
             //Mask on Ui name + description
-            throw new NotImplementedException();
+            anim.SetBool("isOpen",false);
         }
 
         private void BuyItem()

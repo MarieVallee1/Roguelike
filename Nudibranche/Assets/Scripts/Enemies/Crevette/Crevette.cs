@@ -21,7 +21,7 @@ namespace Ennemy
     private Seeker seeker;
     private Rigidbody2D rb;
     private bool pathUpdated = true;
-    private bool stopPathfinding = false;
+    public bool stopPathfinding = false;
     public float targetDistance = 1;
     [SerializeField] private float dontPushDistance = 0.01f;
     private bool isWalking;

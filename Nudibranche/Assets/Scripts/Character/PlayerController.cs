@@ -192,23 +192,26 @@ namespace Character
             }
             else
             {
-                
-                //Debugs Death :D 
-                if (health <= 0)
+
+                if (canGethit)
                 {
-                    Debug.Log("You're dead");
-                    health = characterData.health;
-                    health = 0;
+                    //Debugs Death :D 
+                    if (health <= 0)
+                    {
+                        Debug.Log("You're dead");
+                        health = characterData.health;
+                        health = 0;
+                    }
+                
+                    StartCoroutine(InvulnerabilityFrame());
+                    health -= damage;
+                
+                    //Set the UI to the right amount of hearts
+                    Health.instance.SetHealth(health);
+                
+                    print("I got hit !");
                 }
-                
-                StartCoroutine(InvulnerabilityFrame());
-                
-                health -= damage;
-                
-                //Set the UI to the right amount of hearts
-                Health.instance.SetHealth(health);
-                
-                print("I got hit !");
+
             }
         }
 
@@ -286,10 +289,11 @@ namespace Character
         }
         private IEnumerator Parry()
         {
-            Repulsion();
+            parryRepulsion.enabled = true;
             Time.timeScale = 0.7f;
             yield return new WaitForSeconds(0.3f);
             Time.timeScale = 1f;
+            parryRepulsion.enabled = false;
             isBuffed = true;
             yield return new WaitForSeconds(characterData.buffDuration);
             isBuffed = false;
@@ -373,6 +377,7 @@ namespace Character
         }
         private IEnumerator InvulnerabilityFrame()
         {
+            Debug.Log("invulnerable");
             canGethit = false;
             
             foreach(Transform child in visualsTr)
@@ -438,20 +443,6 @@ namespace Character
                 visuals[1].SetActive(true);
                 visuals[2].SetActive(false);
             }
-        }
-
-        private void Repulsion()
-        {
-            for (int i = 0; i < parryRepulsion.enemiesNearRb.Count; i++)
-            {
-                parryRepulsion.enemiesNearPath[i].stopPathfinding = true;
-                
-                Vector2 dir = characterPos - (Vector2)parryRepulsion.enemiesNearRb[i].transform.position; 
-                parryRepulsion.enemiesNearRb[i].AddForce(-dir * characterData.repulsionForce,ForceMode2D.Impulse);
-                
-                parryRepulsion.enemiesNearPath[i].stopPathfinding = false;
-            }
-            parryRepulsion.enabled = false;
         }
     }
 }
