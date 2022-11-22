@@ -20,7 +20,7 @@ namespace Ennemy
     public Transform target;
     public int nbOursin = 3;
     public int idleBetweenAttacks = 1;
-    private int idleBetweenAttacksCount = 0;
+    [SerializeField] private int idleBetweenAttacksCount = 0;
     [SerializeField] private Oursin usedOursin;
 
     // Caché //
@@ -66,7 +66,7 @@ namespace Ennemy
         for (int i = 0; i < spawnPointList.Count; i++)
         {
             if (Physics2D.CircleCast(spawnPointList[i], radius, Vector2.zero, 0,
-                    LayerMask.GetMask("Obstacle", "Canonnier")))
+                    LayerMask.GetMask("Obstacle", "Canonnier", "Mur")))
             {
                 spawnPointList.Remove(spawnPointList[i]);
                 i -= 1;
@@ -87,7 +87,7 @@ namespace Ennemy
     public void NumberOfIdleBetweenAttacks()
     {
         idleBetweenAttacksCount += 1;
-        if (idleBetweenAttacksCount == idleBetweenAttacks)
+        if (idleBetweenAttacksCount >= idleBetweenAttacks)
         {
             animator.SetTrigger("Shoot");
         }

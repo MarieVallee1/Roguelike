@@ -168,14 +168,13 @@ MonoBehaviour:
   - {fileID: 9216741675206347378}
   - {fileID: 7980978090285324146}
   - {fileID: 386382020614019954}
-  maxPV: 3
-  pv: 0
-  vulnerable: 1
   fxDamages: {fileID: 8883175212793384576}
-  gameManager: {fileID: 0}
   enemy: 1
   perleBlancheData: {fileID: 11400000, guid: 34f1a6c9fe4380041a9cfe5011b62c17, type: 2}
   perleRougeData: {fileID: 11400000, guid: eeb7f138b3a75974f82f62848420701d, type: 2}
+  maxPV: 8
+  pv: 0
+  vulnerable: 1
 --- !u!210 &5311259493662868480
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -215,7 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27294d12be423474fb16ce84c189ecb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6022184843574172176}
 --- !u!114 &4294270108456985119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,13 +349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a08bf9b6a00c648b3d18dbfcbc16e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeFrequence: 3
-  bulletDetected: 0
   obstacleDetection: 2
   crevettePos: {fileID: 2932920993117357848}
   rb: {fileID: 6022184843574172176}
   dashSpeed: 6
   crevette: {fileID: 7336686198961904145}
+  dodgeFrequence: 3
   animators:
   - {fileID: 9216741675206347378}
   - {fileID: 7980978090285324146}
@@ -411,7 +408,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: 54000aec564ad5844ac7f9e46bd3ffb8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8403639466954973828, guid: 54000aec564ad5844ac7f9e46bd3ffb8,
         type: 3}
@@ -803,7 +800,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: b63fd1f9dae468f489762403a02da5da,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8403639466954973828, guid: b63fd1f9dae468f489762403a02da5da,
         type: 3}
