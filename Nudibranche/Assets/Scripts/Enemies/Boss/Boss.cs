@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Character;
 using UnityEngine;
 using Oursins;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Boss : MonoBehaviour
 
     [Header("Ruée")]
     [SerializeField] private float rushSpeed = 600;
+    [SerializeField] private float rushRange = 6;
 
     [Header("Tourbillon")] public int tourbillonEveryXDamages = 10;
     [SerializeField] private Transform circleCenter;
@@ -47,6 +49,7 @@ public class Boss : MonoBehaviour
     [Header("Health")] 
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
+    [SerializeField] private Slider healthGauge;
     
     [Header("Visuels")] 
     [SerializeField] private Animator animator;
@@ -62,10 +65,13 @@ public class Boss : MonoBehaviour
 
     private void OnEnable()
     {
+        healthGauge.gameObject.SetActive(true);
         behaviour = Behaviour.walk;
         firstCircle = new Vector2[nbOursinsFirstCircle];
         secondCircle = new Vector2[nbOursinsSecondCircle];
         thirdCircle = new Vector2[nbOursinsThirdCircle];
+        healthGauge.maxValue = maxHealth;
+        healthGauge.value = Single.MaxValue;
     }
 
     private void FixedUpdate()
@@ -79,6 +85,20 @@ public class Boss : MonoBehaviour
         if (canTourbillon)
         {
             PlacementForShootOursin();
+        }
+        
+        if (behaviour != Behaviour.rush)
+        {
+            if (Vector2.Distance(target.position, princessFeet.position) >= rushRange)
+            {
+                behaviour = Behaviour.rush;
+                animator.SetBool("Ruée", true);
+            }
+        }
+
+        if (behaviour == Behaviour.rush)
+        {
+            
         }
     }
 
@@ -166,6 +186,7 @@ public class Boss : MonoBehaviour
     {
         health -= damage;
         vfxDamage.Play();
+        healthGauge.value = health;
 
         tourbillonCount += 1;
         if (tourbillonCount == tourbillonEveryXDamages)
@@ -177,6 +198,7 @@ public class Boss : MonoBehaviour
 
         if (health <= 0)
         {
+            healthGauge.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }

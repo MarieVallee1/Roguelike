@@ -1778,7 +1778,7 @@ public class AstarPath : VersionedMonoBehaviour {
 		watch.Stop();
 		lastScanTime = (float)watch.Elapsed.TotalSeconds;
 
-		System.GC.Collect();
+		//System.GC.Collect();
 
 		if (logPathResults != PathLog.None && logPathResults != PathLog.OnlyErrors) {
 			Debug.Log("Scanning - Process took "+(lastScanTime*1000).ToString("0")+" ms to complete");
