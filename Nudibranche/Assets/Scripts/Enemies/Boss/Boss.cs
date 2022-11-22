@@ -27,6 +27,8 @@ public class Boss : MonoBehaviour
     [Header("Ruée")]
     [SerializeField] private float rushSpeed = 600;
     [SerializeField] private float rushRange = 6;
+    [SerializeField] private float rushTimer = 2;
+    private float timer = 0;
 
     [Header("Tourbillon")] public int tourbillonEveryXDamages = 10;
     [SerializeField] private Transform circleCenter;
@@ -50,6 +52,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
     [SerializeField] private Slider healthGauge;
+    private Vector2 rushTarget;
     
     [Header("Visuels")] 
     [SerializeField] private Animator animator;
@@ -76,6 +79,8 @@ public class Boss : MonoBehaviour
 
     private void FixedUpdate()
     {
+        RushTimer();
+        
         if (behaviour == Behaviour.walk)
         {
             Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * speed * Time.deltaTime;
@@ -87,19 +92,33 @@ public class Boss : MonoBehaviour
             PlacementForShootOursin();
         }
         
-        if (behaviour != Behaviour.rush)
+        if (behaviour == Behaviour.walk)
         {
-            if (Vector2.Distance(target.position, princessFeet.position) >= rushRange)
+            if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timer >= rushTimer)
             {
                 behaviour = Behaviour.rush;
                 animator.SetBool("Ruée", true);
+                rushTarget = target.position;
+                timer = 0;
             }
         }
 
         if (behaviour == Behaviour.rush)
         {
-            
+            Vector2 force = (rushTarget - (Vector2)princessFeet.transform.position).normalized * rushSpeed * Time.deltaTime;
+            rb.AddForce(force, ForceMode2D.Force);
+
+            if (Vector2.Distance(rushTarget, princessFeet.position) <= 1)
+            {
+                animator.SetBool("Ruée", false);
+                behaviour = Behaviour.walk;
+            }
         }
+    }
+
+    void RushTimer()
+    {
+        timer += Time.deltaTime;
     }
 
     public void PlacementForShootOursin()
