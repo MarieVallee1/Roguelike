@@ -1,14 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace Objects
 {
     public class Reward : MonoBehaviour
     {
+        public RewardScriptable stats;
+        public int consumableIndex;
         public bool isOwned;
 
-        public virtual int GetPrice()
+        public int GetPrice()
         {
-            return 0;
+            return stats.objectPrice;
         }
         
         public virtual void OnAcquire()

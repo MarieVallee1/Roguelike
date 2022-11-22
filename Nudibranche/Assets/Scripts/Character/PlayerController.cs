@@ -22,7 +22,7 @@ namespace Character
         [Header("References")]
         [SerializeField]
         public CharacterData characterData;
-        [SerializeField] private Projectile usedProjectile;
+        public Projectile usedProjectile;
         [SerializeField] private GameObject book;
         [SerializeField] private Transform bookPos;
         [SerializeField] private GameObject cursor;
