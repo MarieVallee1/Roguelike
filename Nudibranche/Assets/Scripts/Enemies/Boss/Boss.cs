@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Character;
 using UnityEngine;
 using Oursins;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Boss : MonoBehaviour
 
     [Header("Ruée")]
     [SerializeField] private float rushSpeed = 600;
+    [SerializeField] private float rushRange = 6;
+    [SerializeField] private float rushTimer = 2;
+    private float timer = 0;
 
     [Header("Tourbillon")] public int tourbillonEveryXDamages = 10;
     [SerializeField] private Transform circleCenter;
@@ -32,9 +36,12 @@ public class Boss : MonoBehaviour
     [SerializeField] private float firstCircleRadius = 4;
     [SerializeField] private int nbOursinsSecondCircle = 8;
     [SerializeField] private float secondCircleRadius;
+    [SerializeField] private int nbOursinsThirdCircle = 8;
+    [SerializeField] private float thirdCircleRadius;
     [SerializeField] private Oursin usedOursin;
-    public Vector2[] firstCircle = new Vector2[8];
-    public Vector2[] secondCircle = new Vector2[8];
+    public Vector2[] firstCircle;
+    public Vector2[] secondCircle;
+    public Vector2[] thirdCircle;
     private int oursinsWave;
     [SerializeField] private Transform roomCenter;
     private bool canTourbillon;
@@ -44,6 +51,8 @@ public class Boss : MonoBehaviour
     [Header("Health")] 
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
+    [SerializeField] private Slider healthGauge;
+    private Vector2 rushTarget;
     
     [Header("Visuels")] 
     [SerializeField] private Animator animator;
@@ -59,11 +68,19 @@ public class Boss : MonoBehaviour
 
     private void OnEnable()
     {
+        healthGauge.gameObject.SetActive(true);
         behaviour = Behaviour.walk;
+        firstCircle = new Vector2[nbOursinsFirstCircle];
+        secondCircle = new Vector2[nbOursinsSecondCircle];
+        thirdCircle = new Vector2[nbOursinsThirdCircle];
+        healthGauge.maxValue = maxHealth;
+        healthGauge.value = Single.MaxValue;
     }
 
     private void FixedUpdate()
     {
+        RushTimer();
+        
         if (behaviour == Behaviour.walk)
         {
             Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * speed * Time.deltaTime;
@@ -74,14 +91,42 @@ public class Boss : MonoBehaviour
         {
             PlacementForShootOursin();
         }
+        
+        if (behaviour == Behaviour.walk)
+        {
+            if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timer >= rushTimer)
+            {
+                behaviour = Behaviour.rush;
+                animator.SetBool("Ruée", true);
+                rushTarget = target.position;
+                timer = 0;
+            }
+        }
+
+        if (behaviour == Behaviour.rush)
+        {
+            Vector2 force = (rushTarget - (Vector2)princessFeet.transform.position).normalized * rushSpeed * Time.deltaTime;
+            rb.AddForce(force, ForceMode2D.Force);
+
+            if (Vector2.Distance(rushTarget, princessFeet.position) <= 1)
+            {
+                animator.SetBool("Ruée", false);
+                behaviour = Behaviour.walk;
+            }
+        }
+    }
+
+    void RushTimer()
+    {
+        timer += Time.deltaTime;
     }
 
     public void PlacementForShootOursin()
     {
-        if (transform.position.x <= roomCenter.position.x + 2 &&
-            transform.position.x >= roomCenter.position.x - 2 &&
-            transform.position.y <= roomCenter.position.y + 2 &&
-            transform.position.y >= roomCenter.position.y -2)
+        if (transform.position.x <= roomCenter.position.x + 0.5f &&
+            transform.position.x >= roomCenter.position.x - 0.5f &&
+            transform.position.y <= roomCenter.position.y + 0.5f &&
+            transform.position.y >= roomCenter.position.y - 0.5f)
         {
             rb.drag = 100;
             animator.SetBool("Tourbillon", true);
@@ -108,6 +153,12 @@ public class Boss : MonoBehaviour
             Vector2 pos = new Vector2(circleCenter.position.x + Mathf.Cos(2*Mathf.PI/nbOursinsSecondCircle * i + Mathf.PI/nbOursinsSecondCircle) * secondCircleRadius , circleCenter.position.y + Mathf.Sin(2*Mathf.PI/nbOursinsSecondCircle * i + Mathf.PI/nbOursinsSecondCircle) * secondCircleRadius);
             secondCircle[i] = pos;
         }
+        
+        for (int i = 0; i < nbOursinsThirdCircle ; i++)
+        {
+            Vector2 pos = new Vector2(circleCenter.position.x + Mathf.Cos(2*Mathf.PI/nbOursinsThirdCircle * i) * thirdCircleRadius , circleCenter.position.y + Mathf.Sin(2*Mathf.PI/nbOursinsThirdCircle * i) * thirdCircleRadius);
+            thirdCircle[i] = pos;
+        }
     }
 
     public void SpawnOursins()
@@ -118,6 +169,7 @@ public class Boss : MonoBehaviour
             for (int i = 0; i < 8; i+=2)
             {
                 usedOursin.CannonierShooting(firstCircle[i]);
+                usedOursin.CannonierShooting(thirdCircle[i]);
             }
         }
         if (oursinsWave == 2)
@@ -125,6 +177,7 @@ public class Boss : MonoBehaviour
             for (int i = 1; i < 8; i+=2)
             {
                 usedOursin.CannonierShooting(firstCircle[i]);
+                usedOursin.CannonierShooting(thirdCircle[i]);
             }
         }
         if (oursinsWave == 3)
@@ -144,6 +197,7 @@ public class Boss : MonoBehaviour
             oursinsWave = 0;
             animator.SetBool("Tourbillon", false);
             rb.drag = 1.5f;
+            behaviour = Behaviour.walk;
         }
     }
 
@@ -151,6 +205,7 @@ public class Boss : MonoBehaviour
     {
         health -= damage;
         vfxDamage.Play();
+        healthGauge.value = health;
 
         tourbillonCount += 1;
         if (tourbillonCount == tourbillonEveryXDamages)
@@ -162,6 +217,7 @@ public class Boss : MonoBehaviour
 
         if (health <= 0)
         {
+            healthGauge.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
