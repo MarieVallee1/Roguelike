@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5970828174312297926}
   - component: {fileID: 3542598574958320396}
+  - component: {fileID: 568359633}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -157,6 +158,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &568359633
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376476937253063424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cff84bf233f78d84dac24b6f763cb5aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2767891641745896009
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +426,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0065190196, y: 0.10837954}
+  m_Offset: {x: -0.0065190196, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -416,7 +437,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.70911884, y: 1.118198}
+  m_Size: {x: 0.53, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2767891641856845032
 GameObject:
@@ -1160,7 +1181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: a3736fe132d43cd4d8f72b31020e2063, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1819,14 +1840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d00ea85d16795b47b2c87eed6fb91b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator:
-  - {fileID: 2767891643812016499}
-  - {fileID: 1121497067676704876}
-  - {fileID: 6803333864024400907}
   characterData: {fileID: 11400000, guid: 5c30c9b878eb7fe498ebc3c6d5cf36ed, type: 2}
-  usedProjectile: {fileID: 11400000, guid: adda7bebd8212d54291d5129036ecdd1, type: 2}
   book: {fileID: 2767891643244902265}
   bookPos: {fileID: 2767891642094965161}
+  bookAnim: {fileID: 568359633}
   cursor: {fileID: 2767891642204286396}
   parryCooldown: {fileID: 2767891643500748333}
   parryFeedback: {fileID: 7192627895420522111}
@@ -1835,12 +1852,17 @@ MonoBehaviour:
   - {fileID: 2767891643812016497}
   - {fileID: 3035916374562554110}
   - {fileID: 5779526379083594868}
+  animator:
+  - {fileID: 2767891643812016499}
+  - {fileID: 1121497067676704876}
+  - {fileID: 6803333864024400907}
   parryRepulsion: {fileID: 1153470370799433227}
   currentSkill: 0
   skills: {fileID: 698743843}
   mouseAim: {x: 0, y: 0}
   aim: {x: 0, y: 0}
   characterPos: {x: 0, y: 0}
+  shootDir: {x: 0, y: 0}
   nextTimeCast: 0
   blastTracker: 0
   skillCooldown: 0
@@ -4206,7 +4228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e5aee4bc8bb4346b3d8277be76032c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesNear: []
 --- !u!58 &1573507042902581078
 CircleCollider2D:
   m_ObjectHideFlags: 0
