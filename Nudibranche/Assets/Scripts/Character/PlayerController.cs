@@ -271,8 +271,6 @@ namespace Character
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 _rb.velocity = Vector2.zero;
                 _parryLifeTime -= Time.deltaTime;
-
-                if(parryFeedback.isStopped) parryFeedback.Play();
             }
             
             //End of parry
@@ -298,11 +296,27 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            //Unfreeze Character
+            var constraints = _rb.constraints;
+            constraints = RigidbodyConstraints2D.None;
+            constraints = RigidbodyConstraints2D.FreezeRotation;
+            _rb.constraints = constraints;
+            
+            //Detect enemies near
             parryRepulsion.enabled = true;
+            
+            //Play VFX
+            if(parryFeedback.isStopped) parryFeedback.Play();
+            
+            //Slow Time
             Time.timeScale = 0.7f;
             yield return new WaitForSeconds(0.3f);
             Time.timeScale = 1f;
+            
+            //Stop detecting enemies
             parryRepulsion.enabled = false;
+            
+            //Activate Buff
             isBuffed = true;
             yield return new WaitForSeconds(characterData.buffDuration);
             isBuffed = false;
