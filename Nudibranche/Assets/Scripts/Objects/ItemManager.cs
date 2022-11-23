@@ -15,6 +15,8 @@ namespace Objects
         [Header("Références objets")]
         [SerializeField] private List<Reward> inShop;
         [SerializeField] private Reward[] consumable;
+        public Reward health;
+        [Header("Tableaux d'activation")]
         [SerializeField] private Reward[] onRoomEntrance;
         [SerializeField] private Reward[] onPlayerDeath;
         [SerializeField] private Reward[] onEnemyDeath;
