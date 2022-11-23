@@ -55,6 +55,11 @@ namespace Character
         [SerializeField] private float speedDebug;
         
         public int health;
+        public float speed;
+        public float damage;
+        public float fireRate;
+        public float projectileSize;
+        
 
         [Header("State")]
         public bool canGethit;
@@ -224,7 +229,10 @@ namespace Character
             //Moves the character
             if (movementPressed)
             {
-                _rb.AddForce(_direction * characterData.speed,ForceMode2D.Impulse);
+                if(!isBuffed)speed = characterData.speed;
+                else speed = characterData.speedBuff;
+                
+                _rb.AddForce(_direction * speed,ForceMode2D.Impulse);
                 
                 for (int i = 0; i < animator.Length; i++)
                 {
