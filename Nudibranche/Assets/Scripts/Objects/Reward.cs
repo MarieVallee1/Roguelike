@@ -34,5 +34,8 @@ namespace Objects
 
         public virtual void OnUse()
         {}
+        
+        public virtual void ResetStat()
+        {}
     }
 }
