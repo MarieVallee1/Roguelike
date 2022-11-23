@@ -241,9 +241,8 @@ public class IAMoule : MonoBehaviour
 
     void ParryBehavior(PlayerController pc)
     {
-        if (cac && pc.isParrying)
+        if (isAttacking && pc.isParrying)
         {
-            Debug.Log("YES");
             Vector2 dir = pc.characterPos - (Vector2)transform.position;
             rb.AddForce(-dir * pc.characterData.repulsionForce,ForceMode2D.Impulse);
         }
