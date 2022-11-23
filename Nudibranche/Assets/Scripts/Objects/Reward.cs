@@ -6,7 +6,7 @@ namespace Objects
     public class Reward : MonoBehaviour
     {
         public RewardScriptable stats;
-        public int consumableIndex;
+        [HideInInspector]public int consumableIndex;
         public bool isOwned;
 
         public int GetPrice()
@@ -19,10 +19,16 @@ namespace Objects
         
         public virtual void OnRoomEntrance()
         {}
+        
+        public virtual void OnEnemyHit()
+        {}
+        
+        public virtual void OnObstacleHit()
+        {}
 
         public virtual void OnEnemyDeath()
         {}
-        
+
         public virtual void OnPlayerDeath()
         {}
 

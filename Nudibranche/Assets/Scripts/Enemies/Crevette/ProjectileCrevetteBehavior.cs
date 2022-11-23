@@ -18,6 +18,9 @@ public class ProjectileCrevetteBehavior : MonoBehaviour
             target.GetComponentInParent<PlayerController>().TakeDamage(crevetteProjectileData.damage);
         }
 
-        gameObject.SetActive(false);
+        if (col.CompareTag("Player") || col.CompareTag("Environment"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
