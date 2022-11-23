@@ -1,5 +1,6 @@
 using Character;
 using Enemies;
+using Objects;
 using UnityEngine;
 
 namespace Projectiles
@@ -47,15 +48,19 @@ namespace Projectiles
             if (other.gameObject.CompareTag("Enemy"))
             {
                 other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(_characterData.usedProjectile[_characterData.projectileIndex].damage);
+                gameObject.SetActive(false);
+                ItemManager.Instance.OnEnemyHit();
             }
-            if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment"))
+            if (other.gameObject.CompareTag("Environment"))
             {
                 gameObject.SetActive(false);
+                ItemManager.Instance.OnObstacleHit();
             }
-
-            if (other.CompareTag("Boss"))
+            if (other.gameObject.CompareTag("Boss"))
             {
                 other.gameObject.GetComponentInParent<Boss>().TakeDamage(_characterData.usedProjectile[_characterData.projectileIndex].damage);
+                gameObject.SetActive(false);
+                ItemManager.Instance.OnEnemyHit();
             }
         }
 

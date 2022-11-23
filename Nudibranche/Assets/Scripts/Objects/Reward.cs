@@ -19,6 +19,12 @@ namespace Objects
         
         public virtual void OnRoomEntrance()
         {}
+        
+        public virtual void OnEnemyHit()
+        {}
+        
+        public virtual void OnObstacleHit()
+        {}
 
         public virtual void OnEnemyDeath()
         {}
