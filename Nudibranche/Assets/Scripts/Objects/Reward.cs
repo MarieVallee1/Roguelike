@@ -6,7 +6,7 @@ namespace Objects
     public class Reward : MonoBehaviour
     {
         public RewardScriptable stats;
-        public int consumableIndex;
+        [HideInInspector]public int consumableIndex;
         public bool isOwned;
 
         public int GetPrice()
