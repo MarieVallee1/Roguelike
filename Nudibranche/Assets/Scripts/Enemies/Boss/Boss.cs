@@ -53,7 +53,7 @@ public class Boss : MonoBehaviour
     [Header("Health")] 
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
-    [SerializeField] private Slider healthGauge;
+    private Slider healthGauge;
     private Vector2 rushTarget;
     
     [Header("Visuels")] 
@@ -66,6 +66,7 @@ public class Boss : MonoBehaviour
         health = maxHealth;
         target = PlayerController.instance.transform.GetChild(6);
         rb = GetComponent<Rigidbody2D>();
+        healthGauge = GameManager.instance.bossGauge;
     }
 
     private void OnEnable()
