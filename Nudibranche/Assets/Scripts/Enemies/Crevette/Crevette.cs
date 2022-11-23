@@ -175,7 +175,18 @@ namespace Ennemy
             RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position,
                 new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection),
                 raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("ProjectileHitPlayer", "Obstacle"));
-            if (raycastHit2D.collider.gameObject.layer == 13)
+            if (raycastHit2D.collider.gameObject.layer == 8)
+            {
+                StopPathfinding = false;
+                attaque = false;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attack", false);
+                }
+                
+                HandleSpriteRotation(rb.velocity);
+            }
+            else if (raycastHit2D.collider.gameObject.layer == 13)
             {
                 StopPathfinding = true;
                 attaque = true;
@@ -194,9 +205,8 @@ namespace Ennemy
                 }
 
                 
-                HandleSpriteRotation(rb.velocity);  
-                
-                
+                HandleSpriteRotation(rb.velocity);
+
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
         }

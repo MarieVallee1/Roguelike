@@ -315,7 +315,7 @@ namespace Character
             if (usedProjectile != null && AttackCooldown())
             { 
                 //Camera Shake
-                CinemachineShake.instance.ShakeCamera(0.3f,0.1f);
+                //CinemachineShake.instance.ShakeCamera(0.3f,0.1f);
                 
                 //Anim
                 bookAnim.SetBool("isShooting", true);
