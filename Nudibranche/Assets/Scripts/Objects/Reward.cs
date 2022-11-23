@@ -22,7 +22,7 @@ namespace Objects
 
         public virtual void OnEnemyDeath()
         {}
-        
+
         public virtual void OnPlayerDeath()
         {}
 
