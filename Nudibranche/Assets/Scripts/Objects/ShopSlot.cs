@@ -27,7 +27,7 @@ namespace Objects
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.layer != 6) return;
-            
+            _inZone = true;
             //Show on Ui name + description
             anim.SetBool("isOpen",true);
         }
@@ -35,7 +35,7 @@ namespace Objects
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.layer != 6) return;
-            
+            _inZone = false;
             //Mask on Ui name + description
             anim.SetBool("isOpen",false);
         }
