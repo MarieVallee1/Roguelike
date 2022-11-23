@@ -16,19 +16,19 @@ namespace Character
         private Rigidbody2D _rb;
         private Transform _tr;
         public static PlayerController instance;
-        
-        [SerializeField] private Animator[] animator;
 
         [Header("References")]
         [SerializeField]
         public CharacterData characterData;
         [SerializeField] private GameObject book;
         [SerializeField] private Transform bookPos;
+        [SerializeField] private Animator bookAnim;
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private Transform visualsTr;
         [SerializeField] private GameObject[] visuals;
+        [SerializeField] private Animator[] animator;
         [SerializeField] private ParryRepulsion parryRepulsion;
         
         public int currentSkill;
@@ -109,8 +109,9 @@ namespace Character
         private void FixedUpdate()
         {
             //Shoots the projectile
-            if(isShooting && blastTracker > 0) Shoot();
-            
+            if (isShooting && blastTracker > 0) Shoot();
+            else bookAnim.SetBool("isShooting", false);
+
             HandleMovement();
             speedDebug = _rb.velocity.magnitude;
             
@@ -305,7 +306,12 @@ namespace Character
 
             if (usedProjectile != null && AttackCooldown())
             { 
-                Debug.Log(usedProjectile);
+                //Camera Shake
+               // CinemachineShake.instance.ShakeCamera(2,0.5f);
+                
+                //Anim
+                bookAnim.SetBool("isShooting", true);
+                
                 //Placement & activation
                 usedProjectile.transform.position = book.transform.position;
                 usedProjectile.SetActive(true);
