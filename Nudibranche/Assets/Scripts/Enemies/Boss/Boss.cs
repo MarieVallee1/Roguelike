@@ -23,12 +23,15 @@ public class Boss : MonoBehaviour
     }
 
     [SerializeField]private Behaviour behaviour;
+    [SerializeField] private float attackRange = 2;
+    [SerializeField] private float attackTimer = 2;
+    private float timerForAttack;
 
     [Header("Ruée")]
     [SerializeField] private float rushSpeed = 600;
     [SerializeField] private float rushRange = 6;
     [SerializeField] private float rushTimer = 2;
-    private float timer = 0;
+    private float timerForRush = 0;
 
     [Header("Tourbillon")] public int tourbillonEveryXDamages = 10;
     [SerializeField] private Transform circleCenter;
@@ -45,7 +48,6 @@ public class Boss : MonoBehaviour
     private int oursinsWave;
     [SerializeField] private Transform roomCenter;
     private bool canTourbillon;
-    [SerializeField] private CircleCollider2D tourbillonCollider;
     private int tourbillonCount;
 
     [Header("Health")] 
@@ -79,7 +81,7 @@ public class Boss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RushTimer();
+        Timer();
         
         if (behaviour == Behaviour.walk)
         {
@@ -94,15 +96,38 @@ public class Boss : MonoBehaviour
         
         if (behaviour == Behaviour.walk)
         {
-            if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timer >= rushTimer)
+            if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timerForRush >= rushTimer)
             {
                 behaviour = Behaviour.rush;
                 animator.SetBool("Ruée", true);
                 rushTarget = target.position;
-                timer = 0;
+                timerForRush = 0;
+            }
+            
+            if (Vector2.Distance(target.position, princessFeet.position) <= attackRange)
+            {
+                behaviour = Behaviour.hit;
+                animator.SetTrigger("Attaque");
+                timerForAttack = 0;
             }
         }
 
+        if (behaviour == Behaviour.hit)
+        {
+            if (Vector2.Distance(target.position, princessFeet.position) > attackRange)
+            {
+                behaviour = Behaviour.walk;
+            }
+            else
+            {
+                if (timerForAttack >= attackTimer)
+                {
+                    animator.SetTrigger("Attaque");
+                    timerForAttack = 0;
+                }
+            }
+        }
+        
         if (behaviour == Behaviour.rush)
         {
             Vector2 force = (rushTarget - (Vector2)princessFeet.transform.position).normalized * rushSpeed * Time.deltaTime;
@@ -111,14 +136,18 @@ public class Boss : MonoBehaviour
             if (Vector2.Distance(rushTarget, princessFeet.position) <= 1)
             {
                 animator.SetBool("Ruée", false);
-                behaviour = Behaviour.walk;
+                behaviour = Behaviour.hit;
+                animator.SetTrigger("Attaque");
+                timerForAttack = 0;
             }
         }
     }
 
-    void RushTimer()
+
+    void Timer()
     {
-        timer += Time.deltaTime;
+        timerForRush += Time.deltaTime;
+        timerForAttack += Time.deltaTime;
     }
 
     public void PlacementForShootOursin()
@@ -130,7 +159,6 @@ public class Boss : MonoBehaviour
         {
             rb.drag = 100;
             animator.SetBool("Tourbillon", true);
-            tourbillonCollider.enabled = true;
             canTourbillon = false;
         }
         else
@@ -193,7 +221,6 @@ public class Boss : MonoBehaviour
             {
                 usedOursin.CannonierShooting(secondCircle[i]);
             }
-            tourbillonCollider.enabled = false;
             oursinsWave = 0;
             animator.SetBool("Tourbillon", false);
             rb.drag = 1.5f;
@@ -212,6 +239,7 @@ public class Boss : MonoBehaviour
         {
             canTourbillon = true;
             behaviour = Behaviour.oursins;
+            animator.SetBool("Ruée", false);
             tourbillonCount = 0;
         }
 
