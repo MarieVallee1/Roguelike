@@ -30,6 +30,7 @@ namespace Character
         public float parryTime;
         [Range(0f, 10f)]
         public float buffDuration;
+        public float speedBuff;
         [Range(8f, 50f)]
         public float repulsionForce;
     }
