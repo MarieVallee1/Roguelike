@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace System
 {
@@ -9,6 +10,7 @@ namespace System
         public float screenHeight = Screen.height;
         public static GameManager instance;
         public Camera mainCamera;
+        public Slider bossGauge;
         
         
         [Header("Perles")]
