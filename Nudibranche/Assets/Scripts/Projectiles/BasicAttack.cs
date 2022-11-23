@@ -6,25 +6,22 @@ namespace Projectiles
 {
     public class BasicAttack : MonoBehaviour
     {
-        private int _damages;
-        private float _countdown;
-        
-        public int multiplier;
-        public float projectileDuration;
-        [SerializeField] private AnimationCurve acceleration;
-        public Vector2 direction;
-
         private SpriteRenderer _ren;
         private TrailRenderer _trail;
         private Rigidbody2D _rb;
-
-        public Projectile projectileData;
+        private CharacterData _characterData;
+        
+        private int _damages;
+        private float _countdown;
+    
+        public Vector2 direction;
 
         private void Awake()
         {
             _ren = GetComponent<SpriteRenderer>();
             _trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
+            _characterData = PlayerController.instance.characterData;
         }
 
         private void OnEnable()
@@ -34,7 +31,7 @@ namespace Projectiles
 
             if (PlayerController.instance.isBuffed)
             {
-                _damages *= multiplier;
+                _damages *= _characterData.usedProjectile[_characterData.projectileIndex].damageMultiplier;
                 _ren.color = Color.red;
             }
             else
@@ -42,14 +39,14 @@ namespace Projectiles
                 _ren.color = Color.white;
             }
             
-            direction = projectileData.direction;
+            direction = PlayerController.instance.shootDir;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(projectileData.damage);
+                other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(_characterData.usedProjectile[_characterData.projectileIndex].damage);
             }
             if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Environment"))
             {
@@ -58,7 +55,7 @@ namespace Projectiles
 
             if (other.CompareTag("Boss"))
             {
-                other.gameObject.GetComponentInParent<Boss>().TakeDamage(projectileData.damage);
+                other.gameObject.GetComponentInParent<Boss>().TakeDamage(_characterData.usedProjectile[_characterData.projectileIndex].damage);
             }
         }
 
@@ -71,11 +68,11 @@ namespace Projectiles
         void ProjectileLifeTime()
         {
             _countdown += Time.deltaTime;
-            if (_countdown > projectileDuration/3)
+            if (_countdown > _characterData.usedProjectile[_characterData.projectileIndex].duration/3)
             {
                 _trail.enabled = false;
             }
-            if (_countdown > projectileDuration)
+            if (_countdown > _characterData.usedProjectile[_characterData.projectileIndex].duration)
             {
                 gameObject.SetActive(false);
             }
@@ -83,7 +80,7 @@ namespace Projectiles
         
         void Acceleration()
         {
-            _rb.AddForce(PlayerController.instance.aim.normalized * acceleration.Evaluate(1));
+            _rb.AddForce(PlayerController.instance.aim.normalized * _characterData.usedProjectile[_characterData.projectileIndex].projectileAcceleration.Evaluate(1));
         }
     }
 }

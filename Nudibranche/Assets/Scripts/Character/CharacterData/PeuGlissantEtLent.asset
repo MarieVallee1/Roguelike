@@ -16,6 +16,40 @@ MonoBehaviour:
   maxSpeed: 4
   drag: 10
   health: 3
+  projectileIndex: 0
+  usedProjectile:
+  - usedProjectileName: BasicAttack
+    fireRate: 0.17
+    projectileSpeed: 0.2
+    damage: 1
+    blastLenght: 3
+    blastCooldown: 1.4
+    projectileAcceleration:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 20
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 1.5
+    damageMultiplier: 2
   parryCooldown: 1
   parryTime: 0.5
   buffDuration: 3

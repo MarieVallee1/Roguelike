@@ -22,7 +22,6 @@ namespace Character
         [Header("References")]
         [SerializeField]
         public CharacterData characterData;
-        [SerializeField] private Projectile usedProjectile;
         [SerializeField] private GameObject book;
         [SerializeField] private Transform bookPos;
         [SerializeField] private GameObject cursor;
@@ -40,6 +39,7 @@ namespace Character
         [HideInInspector] public Vector2 mouseAim;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
+        [HideInInspector] public Vector2 shootDir;
 
         [HideInInspector] public float nextTimeCast;
         
@@ -91,8 +91,8 @@ namespace Character
             health = characterData.health;
             canGethit = true;
             
-            blastTracker = usedProjectile.blastLenght;
-            _blastCooldown = usedProjectile.cooldown;
+            blastTracker = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+            _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
         }
 
         private void Update()
@@ -109,7 +109,7 @@ namespace Character
         private void FixedUpdate()
         {
             //Shoots the projectile
-            if(isShooting && blastTracker > 0) usedProjectile.CharacterShooting(this, book.transform.position);
+            if(isShooting && blastTracker > 0) Shoot();
             
             HandleMovement();
             speedDebug = _rb.velocity.magnitude;
@@ -298,18 +298,38 @@ namespace Character
             yield return new WaitForSeconds(characterData.buffDuration);
             isBuffed = false;
         }
+
+        private void Shoot()
+        {
+            GameObject usedProjectile = PoolingSystem.instance.GetObject(characterData.usedProjectile[characterData.projectileIndex].usedProjectileName);
+
+            if (usedProjectile != null && AttackCooldown())
+            { 
+                Debug.Log(usedProjectile);
+                //Placement & activation
+                usedProjectile.transform.position = book.transform.position;
+                usedProjectile.SetActive(true);
+                shootDir = aim.normalized;
+            
+                //Physic
+                usedProjectile.GetComponent<Rigidbody2D>().velocity = shootDir * characterData.usedProjectile[characterData.projectileIndex].projectileSpeed;
+                
+
+                nextTimeCast = Time.time + characterData.usedProjectile[characterData.projectileIndex].fireRate;
+                blastTracker -= 1;
+            }
+        }
         public bool AttackCooldown()
         {
             if(Time.time > nextTimeCast) return true;
             return false;
         }
-
         public void BlastCooldown(float nextTimeBlast)
         {
             if (nextTimeBlast <= 0)
             {
-                blastTracker = usedProjectile.blastLenght;
-                _blastCooldown = usedProjectile.cooldown;
+                blastTracker = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+                _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             }
         }
         private bool ParryCooldown()
@@ -395,7 +415,6 @@ namespace Character
 
             canGethit = true;
         }
-        
         private void HandleSpriteRotation()
         {
             // get the raw angle, in radians
