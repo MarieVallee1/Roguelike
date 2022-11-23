@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Character;
@@ -13,6 +14,7 @@ namespace Ennemy
     //Pathfinding//
     public Transform target;
     public float speed = 150;
+    public float speedOutOfCamera = 50;
     private Vector2 force;
     private float nextWaypointDistance = 1;
     private Path path;
@@ -25,6 +27,8 @@ namespace Ennemy
     public float targetDistance = 1;
     [SerializeField] private float dontPushDistance = 0.01f;
     private bool isWalking;
+    private Camera mainCam;
+    private bool isVisible;
 
     private bool StopPathfinding
     {
@@ -72,6 +76,7 @@ namespace Ennemy
         
         InvokeRepeating("UpdatePath", 0, .5f);
         pathUpdated = true;
+        mainCam = GameManager.instance.mainCamera;
     }
 
     void UpdatePath()
@@ -114,7 +119,15 @@ namespace Ennemy
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        force = direction * speed * Time.deltaTime;
+        
+        if (isVisible)
+        {
+            force = direction * speed * Time.deltaTime;
+        }
+        else
+        {
+            force = direction * speedOutOfCamera * Time.deltaTime;
+        }
 
         if (!stopPathfinding)
         {
@@ -127,6 +140,8 @@ namespace Ennemy
         {
             currentWaypoint++;
         }
+        
+        VisibleByCamera();
     }
     
     void Update()
@@ -142,6 +157,15 @@ namespace Ennemy
         CalculateShootRange();
         
     }
+    
+    void VisibleByCamera()
+    {
+        Vector2 viewPos = mainCam.WorldToViewportPoint(transform.position);
+        if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1)
+        {
+            isVisible = true;
+        }
+    }
 
     void CalculateShootRange()
     {
@@ -151,7 +175,18 @@ namespace Ennemy
             RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position,
                 new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection),
                 raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("ProjectileHitPlayer", "Obstacle"));
-            if (raycastHit2D.collider.gameObject.layer == 13)
+            if (raycastHit2D.collider.gameObject.layer == 8)
+            {
+                StopPathfinding = false;
+                attaque = false;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attack", false);
+                }
+                
+                HandleSpriteRotation(rb.velocity);
+            }
+            else if (raycastHit2D.collider.gameObject.layer == 13)
             {
                 StopPathfinding = true;
                 attaque = true;
@@ -170,9 +205,8 @@ namespace Ennemy
                 }
 
                 
-                HandleSpriteRotation(rb.velocity);  
-                
-                
+                HandleSpriteRotation(rb.velocity);
+
             }
             Debug.DrawRay(transform.position, raycastDirection, Color.red);
         }
@@ -216,6 +250,8 @@ namespace Ennemy
                 visuals[0].SetActive(false);
                 visuals[1].SetActive(true);
                 visuals[2].SetActive(false);
+                
+                transform.localScale = new Vector3(1, 1, 1);
             
                 faceSide = false;
                 faceFront = true;
@@ -248,6 +284,8 @@ namespace Ennemy
                 visuals[0].SetActive(false);
                 visuals[1].SetActive(false);
                 visuals[2].SetActive(true);
+                
+                transform.localScale = new Vector3(1, 1, 1);
             
                 faceSide = false;
                 faceFront = false;

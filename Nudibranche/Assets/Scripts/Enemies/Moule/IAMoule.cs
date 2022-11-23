@@ -23,7 +23,6 @@ public class IAMoule : MonoBehaviour
     private Camera mainCam;
     private bool isVisible;
     
-
     // Graph //
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
@@ -41,7 +40,7 @@ public class IAMoule : MonoBehaviour
         //target = PlayerController.instance.transform;
         target = PlayerController.instance.transform.GetChild(6);
 
-        InvokeRepeating("UpdatePath", 0, .5f);  // TO DO: à mettre ailleurs pour lui donner une conditions de lancement 
+        InvokeRepeating("UpdatePath", 0, .5f);  
         pathUpdated = true;
         cac = false;
         mainCam = GameManager.instance.mainCamera;
