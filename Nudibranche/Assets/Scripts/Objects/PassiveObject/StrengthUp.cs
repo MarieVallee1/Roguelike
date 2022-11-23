@@ -9,6 +9,7 @@ namespace Objects.PassiveObject
         [SerializeField] private Projectile buffedProjectile;
         public override void OnAcquire()
         {
+            //Not how it's supposed to work
             PlayerController.instance.usedProjectile = buffedProjectile;
         }
     }
