@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 5242538878400419350}
   - component: {fileID: 5242538878400419347}
   - component: {fileID: 7311035146840275627}
+  - component: {fileID: 6628964626326601708}
   m_Layer: 0
   m_Name: Princesse
   m_TagString: Untagged
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5242538878400419351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 547dd8a9abcccfd48b0bb6fe90014c7e, type: 3}
   m_Name: 
@@ -229,6 +230,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6628964626326601708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242538878400419351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: 3
+  scriptMoule: {fileID: 0}
+  scriptCrevette: {fileID: 0}
+  scriptCanonnier: {fileID: 0}
+  scriptBoss: {fileID: 5242538878400419347}
 --- !u!1 &7466540499186403332
 GameObject:
   m_ObjectHideFlags: 0

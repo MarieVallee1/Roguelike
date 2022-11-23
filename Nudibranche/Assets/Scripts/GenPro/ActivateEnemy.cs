@@ -19,7 +19,7 @@ namespace GenPro
         [SerializeField] private IAMoule scriptMoule;
         [SerializeField] private Crevette scriptCrevette;
         [SerializeField] private Cannonier scriptCanonnier;
-        //[SerializeField] private Boss scriptBoss;
+        [SerializeField] private Boss scriptBoss;
 
         public void SetReference(EnemySpawn callingScript)
         {
@@ -41,7 +41,7 @@ namespace GenPro
                     scriptCanonnier.enabled = true;
                     break;
                 case Enemy.boss:
-                    //scriptBoss.enabled = true;
+                    scriptBoss.enabled = true;
                     break;
             }
         }
