@@ -18,6 +18,8 @@ namespace Objects
         public Reward health;
         [Header("Tableaux d'activation")]
         [SerializeField] private Reward[] onRoomEntrance;
+        [SerializeField] private Reward[] onEnemyHit;
+        [SerializeField] private Reward[] onObstacleHit;
         [SerializeField] private Reward[] onPlayerDeath;
         [SerializeField] private Reward[] onEnemyDeath;
         [SerializeField] private Reward[] onUse;
@@ -50,6 +52,22 @@ namespace Objects
             }
         }
 
+        public void OnEnemyHit()
+        {
+            foreach (var item in onEnemyHit)
+            {
+                if(item.isOwned) item.OnEnemyHit();
+            }
+        }
+
+        public void OnObstacleHit()
+        {
+            foreach (var item in onObstacleHit)
+            {
+                if(item.isOwned) item.OnObstacleHit();
+            }
+        }
+
         public void OnPlayerDeath()
         {
             foreach (var item in onPlayerDeath)
@@ -57,7 +75,7 @@ namespace Objects
                 if(item.isOwned) item.OnPlayerDeath();
             }
         }
-        
+
         public void OnEnemyDeath()
         {
             foreach (var item in onEnemyDeath)

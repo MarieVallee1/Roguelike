@@ -8,6 +8,7 @@ namespace System
         public static CinemachineShake instance;
         
         private CinemachineVirtualCamera _cinemachineCam;
+        private CinemachineBasicMultiChannelPerlin _cinemachineBasic;
         private float _shakeTimer;
     
         void Awake()
@@ -23,10 +24,9 @@ namespace System
 
         public void ShakeCamera(float intensity, float time)
         {
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-                _cinemachineCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+            _cinemachineBasic = _cinemachineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+            _cinemachineBasic.m_AmplitudeGain = intensity;
             _shakeTimer = time;
         }
 
@@ -37,10 +37,9 @@ namespace System
                 _shakeTimer -= Time.deltaTime;
                 if (_shakeTimer <= 0f)
                 {
-                    CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
-                        _cinemachineCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+                   _cinemachineBasic = _cinemachineCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-                    cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
+                   _cinemachineBasic.m_AmplitudeGain = 0f;
                 }
             }
         }
