@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Character.Skills;
 using DG.Tweening;
-using Enemies;
-using Projectiles;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Character
@@ -178,7 +174,6 @@ namespace Character
             characterInputs.Character.Parry.performed += ctx =>
             {
                 if (ParryCooldown() && !isParrying) isParrying = true;
-                ParryEnemyDetection();
             };
         }
         private void OnDisable()
@@ -192,7 +187,6 @@ namespace Character
         {
             if (isParrying)
             {
-                // Repulsion();
                 StartCoroutine(Parry());
                 print("I'm Parrying !");
             }
@@ -248,17 +242,7 @@ namespace Character
             }
         }
 
-        private void ParryEnemyDetection()
-        {
-            if (characterInputs.Character.Parry.triggered)
-            {
-                parryRepulsion.enabled = true;
-            }
-            else
-            {
-                parryRepulsion.enabled = false;
-            }
-        }
+        
         private void HandleParry()
         {
             if (isParrying)
@@ -296,14 +280,17 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            //Detect enemies near
+            parryRepulsion.enabled = true;
+            yield return new WaitForSeconds(0.2f);
+            //Stop detecting enemies
+            parryRepulsion.enabled = false;
+                
             //Unfreeze Character
             var constraints = _rb.constraints;
             constraints = RigidbodyConstraints2D.None;
             constraints = RigidbodyConstraints2D.FreezeRotation;
             _rb.constraints = constraints;
-            
-            //Detect enemies near
-            parryRepulsion.enabled = true;
             
             //Play VFX
             if(parryFeedback.isStopped) parryFeedback.Play();
@@ -312,9 +299,6 @@ namespace Character
             Time.timeScale = 0.7f;
             yield return new WaitForSeconds(0.3f);
             Time.timeScale = 1f;
-            
-            //Stop detecting enemies
-            parryRepulsion.enabled = false;
             
             //Activate Buff
             isBuffed = true;

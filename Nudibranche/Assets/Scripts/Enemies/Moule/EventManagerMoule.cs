@@ -15,4 +15,9 @@ public class EventManagerMoule : MonoBehaviour
     {
         iaMoule.AttackEnded();
     }
+    
+    public void AttackTiming()
+    {
+        iaMoule.AttackTiming();
+    }
 }

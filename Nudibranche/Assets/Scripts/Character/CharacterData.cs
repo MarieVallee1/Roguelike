@@ -31,7 +31,7 @@ namespace Character
         [Range(0f, 10f)]
         public float buffDuration;
         public float speedBuff;
-        [Range(8f, 50f)]
+        [Range(0f, 50f)]
         public float repulsionForce;
     }
 

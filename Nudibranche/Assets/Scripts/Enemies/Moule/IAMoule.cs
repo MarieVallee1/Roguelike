@@ -114,8 +114,6 @@ public class IAMoule : MonoBehaviour
         {
             currentWaypoint++;
         }
-        
-        ParryBehavior(PlayerController.instance);
     }
 
     private void Update()
@@ -239,12 +237,9 @@ public class IAMoule : MonoBehaviour
         }
     }
 
-    void ParryBehavior(PlayerController pc)
+    public void AttackTiming()
     {
-        if (isAttacking && pc.isParrying)
-        {
-            Vector2 dir = pc.characterPos - (Vector2)transform.position;
-            rb.AddForce(-dir * pc.characterData.repulsionForce,ForceMode2D.Impulse);
-        }
+        //Set the moment when the player can parry the enemy's attack
+        isAttacking = !isAttacking;
     }
 } 
