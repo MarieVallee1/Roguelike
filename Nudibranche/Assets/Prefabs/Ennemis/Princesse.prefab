@@ -31,54 +31,6 @@ Transform:
   m_Father: {fileID: 5242538878400419344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5242538876644200376
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5242538876644200379}
-  - component: {fileID: 5242538876644200378}
-  m_Layer: 10
-  m_Name: ColliderTourbillon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5242538876644200379
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5242538876644200376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 5242538878400419344}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &5242538876644200378
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5242538876644200376}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 3
 --- !u!1 &5242538876782542059
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +101,7 @@ GameObject:
   - component: {fileID: 5242538878400419350}
   - component: {fileID: 5242538878400419347}
   - component: {fileID: 7311035146840275627}
+  - component: {fileID: 6628964626326601708}
   m_Layer: 0
   m_Name: Princesse
   m_TagString: Untagged
@@ -171,7 +124,6 @@ Transform:
   - {fileID: 2778496886318315116}
   - {fileID: 9167224970883765851}
   - {fileID: 5242538876782542058}
-  - {fileID: 5242538876644200379}
   - {fileID: 613208040128684442}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -209,7 +161,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5242538878400419351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 547dd8a9abcccfd48b0bb6fe90014c7e, type: 3}
   m_Name: 
@@ -218,11 +170,13 @@ MonoBehaviour:
   speed: 150
   princessFeet: {fileID: 2778496886318315116}
   behaviour: 0
+  attackRange: 3
+  attackTimer: 2
   rushSpeed: 1300
   rushRange: 6
-  rushTimer: 3
+  rushTimer: 4
   tourbillonEveryXDamages: 20
-  circleCenter: {fileID: 5242538876644200379}
+  circleCenter: {fileID: 208229081203072191}
   nbOursinsFirstCircle: 8
   firstCircleRadius: 4.5
   nbOursinsSecondCircle: 8
@@ -250,7 +204,6 @@ MonoBehaviour:
   - {x: 0, y: 0}
   thirdCircle: []
   roomCenter: {fileID: 0}
-  tourbillonCollider: {fileID: 5242538876644200378}
   maxHealth: 100
   health: 0
   healthGauge: {fileID: 0}
@@ -277,6 +230,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6628964626326601708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242538878400419351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: 3
+  scriptMoule: {fileID: 0}
+  scriptCrevette: {fileID: 0}
+  scriptCanonnier: {fileID: 0}
+  scriptBoss: {fileID: 5242538878400419347}
 --- !u!1 &7466540499186403332
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +257,8 @@ GameObject:
   m_Component:
   - component: {fileID: 208229081203072191}
   - component: {fileID: 1572268446016502148}
+  - component: {fileID: 3600137358961047583}
+  - component: {fileID: 7659536494100545213}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -362,6 +334,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &3600137358961047583
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466540499186403332}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &7659536494100545213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7466540499186403332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ec618523fbdcd4b94f2556360e7f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &9055052243864948234
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +493,7 @@ PrefabInstance:
     - target: {fileID: 5024009746357069193, guid: ec3f674830402cc45bce805cf6493db7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5024009746357069193, guid: ec3f674830402cc45bce805cf6493db7,
         type: 3}
