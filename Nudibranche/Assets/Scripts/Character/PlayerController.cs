@@ -51,7 +51,8 @@ namespace Character
         public int remainingProjectile;
 
         [Header("Equipped Skill")]
-        [SerializeField] private string currentSkill;
+        [SerializeField]
+        public string currentSkill;
         [HideInInspector] public int skillIndex;
 
         private float _nextTimeParry;
