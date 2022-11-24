@@ -57,7 +57,7 @@ namespace Narration
         public void StartDialogue(Dialogue dialogue)
         {
             _branchTaken = 0;
-            PlayerController.instance.enabled = false;
+            PlayerController.Instance.enabled = false;
             OpenDialogue(dialogue);
             
             nameTxt.text = dialogue.name;     
@@ -152,17 +152,17 @@ namespace Narration
                 {
                     case 0:
                     {
-                        PlayerController.instance.currentSkill = PlayerController.instance.currentSkill = dialogue.skillIndex;
+                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.skillIndex;
                     }
                         break;
                     case 1 :
                     {
-                        PlayerController.instance.currentSkill = PlayerController.instance.currentSkill = dialogue.skillIndex;
+                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.skillIndex;
                     }
                         break;
                     case 2 :
                     {
-                        PlayerController.instance.currentSkill = PlayerController.instance.currentSkill = dialogue.skillIndex;
+                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.skillIndex;
                     }
                         break;
                 }
@@ -171,7 +171,7 @@ namespace Narration
             }
 
             CloseDialogue();
-            PlayerController.instance.enabled = true;
+            PlayerController.Instance.enabled = true;
         }
         
         

@@ -30,13 +30,13 @@ public class BackgroundInteraction : MonoBehaviour
     
     void InteractionZone()
     {
-        if (PlayerController.instance.characterInputs.Character.Interact.triggered)
+        if (PlayerController.Instance.characterInputs.Character.Interact.triggered)
         {
             InteractionManager.instance.StartDialogue(interaction);
-            PlayerController.instance.DisableInputs();
+            PlayerController.Instance.DisableInputs();
         }
             
-        if (PlayerController.instance.characterInputs.UI.Interact.triggered)
+        if (PlayerController.Instance.characterInputs.UI.Interact.triggered)
         {
             InteractionManager.instance.DisplayNextSentence();
         }

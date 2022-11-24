@@ -24,7 +24,7 @@ namespace System
         }
         void Update()
         {
-            if(PlayerController.instance.gamepadOn) GamepadLookAhead();
+            if(PlayerController.Instance.gamepadOn) GamepadLookAhead();
             else MouseLookAhead();
         }
 
@@ -32,7 +32,7 @@ namespace System
         private void MouseLookAhead()
         {
             var position = _cursorTr.position;
-            var playerPos = PlayerController.instance.characterPos;
+            var playerPos = PlayerController.Instance.characterPos;
             
             Vector2 lookAheadPos = new Vector2((position.x - playerPos.x) / mouseDistanceModifier, (position.y - playerPos.y) / mouseDistanceModifier);
             
@@ -44,7 +44,7 @@ namespace System
         }
         private void GamepadLookAhead()
         {
-            transform.localPosition = PlayerController.instance.aim;
+            transform.localPosition = PlayerController.Instance.aim;
         }
     }
 }

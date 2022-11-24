@@ -36,7 +36,7 @@ public class InteractionManager : MonoBehaviour
     
     public void StartDialogue(Interaction interaction)
     {
-        PlayerController.instance.enabled = false;
+        PlayerController.Instance.enabled = false;
         OpenDialogue();
 
         _sentences = new Queue<string>();    
@@ -77,7 +77,7 @@ public class InteractionManager : MonoBehaviour
 
     private void CloseInteraction()
     {
-        PlayerController.instance.enabled = true;
+        PlayerController.Instance.enabled = true;
         Cursor.visible = true;
         TargetCursor.instance.enabled = true;
             

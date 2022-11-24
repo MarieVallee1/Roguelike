@@ -119,7 +119,7 @@ namespace Objects
         
         public void SpawnConsumable(int index)
         {
-            Instantiate(onUse[index].gameObject, PlayerController.instance.transform.position, Quaternion.identity);
+            Instantiate(onUse[index].gameObject, PlayerController.Instance.transform.position, Quaternion.identity);
         }
     }
 }

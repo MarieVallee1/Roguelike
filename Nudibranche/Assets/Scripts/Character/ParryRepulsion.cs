@@ -36,7 +36,7 @@ public class ParryRepulsion : MonoBehaviour
         if (col.gameObject.layer == 13) return;
         if (col.gameObject.layer == 14) return;
 
-        if (!PlayerController.instance.isParrying) return;
+        if (!PlayerController.Instance.onParry) return;
         if (col.gameObject.CompareTag("Enemy"))
         {
             if (col.gameObject.layer is 11 or 17) return;
@@ -52,7 +52,7 @@ public class ParryRepulsion : MonoBehaviour
 
     private void Test(Collider2D col)
     {
-        Vector2 dir = (Vector2)col.transform.position - PlayerController.instance.characterPos;
-        col.GetComponent<Rigidbody2D>().AddForce(dir.normalized * PlayerController.instance.characterData.repulsionForce,ForceMode2D.Impulse);
+        Vector2 dir = (Vector2)col.transform.position - PlayerController.Instance.characterPos;
+        col.GetComponent<Rigidbody2D>().AddForce(dir.normalized * PlayerController.Instance.characterData.repulsionForce,ForceMode2D.Impulse);
     }
 }

@@ -28,7 +28,7 @@ namespace Objects
     
         private void InteractionZone()
         {
-            if (PlayerController.instance.characterInputs.Character.Interact.triggered)
+            if (PlayerController.Instance.characterInputs.Character.Interact.triggered)
             {
                 OnPickUp();
             }

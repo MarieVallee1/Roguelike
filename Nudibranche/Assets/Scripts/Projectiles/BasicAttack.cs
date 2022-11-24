@@ -22,7 +22,7 @@ namespace Projectiles
             _ren = GetComponent<SpriteRenderer>();
             _trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
-            _characterData = PlayerController.instance.characterData;
+            _characterData = PlayerController.Instance.characterData;
         }
 
         private void OnEnable()
@@ -30,7 +30,7 @@ namespace Projectiles
             _trail.enabled = true;
             _countdown = 0f;
 
-            if (PlayerController.instance.isBuffed)
+            if (PlayerController.Instance.onBuff)
             {
                 _damages *= _characterData.usedProjectile[_characterData.projectileIndex].damageMultiplier;
                 _ren.color = Color.red;
@@ -40,7 +40,7 @@ namespace Projectiles
                 _ren.color = Color.white;
             }
             
-            direction = PlayerController.instance.shootDir;
+            direction = PlayerController.Instance.shootDir;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -85,7 +85,7 @@ namespace Projectiles
         
         void Acceleration()
         {
-            _rb.AddForce(PlayerController.instance.aim.normalized * _characterData.usedProjectile[_characterData.projectileIndex].projectileAcceleration.Evaluate(1));
+            _rb.AddForce(PlayerController.Instance.aim.normalized * _characterData.usedProjectile[_characterData.projectileIndex].projectileAcceleration.Evaluate(1));
         }
     }
 }

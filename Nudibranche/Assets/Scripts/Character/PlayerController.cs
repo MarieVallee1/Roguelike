@@ -8,48 +8,57 @@ namespace Character
 {
     public class PlayerController : MonoBehaviour
     {
-        public PlayerInputActions characterInputs;
+        // ReSharper disable once InconsistentNaming
+        public static PlayerController Instance;
+        
+        [Header("Character System Related")]
         private Rigidbody2D _rb;
         private Transform _tr;
-        public static PlayerController instance;
-
-        [Header("References")]
-        [SerializeField]
+        public PlayerInputActions characterInputs;
         public CharacterData characterData;
+        [SerializeField] private SkillsDetails skills;
+        [SerializeField] private GameObject cursor;
+        
+        [Header("Book Related")]
         [SerializeField] private GameObject book;
         [SerializeField] private Transform bookPos;
         [SerializeField] private Animator bookAnim;
-        [SerializeField] private GameObject cursor;
+        
+        [Header("Parry Related")]
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private ParticleSystem parryFeedback;
-        [SerializeField] private Transform visualsTr;
-        [SerializeField] private GameObject[] visuals;
-        [SerializeField] private Animator[] animator;
         [SerializeField] private ParryRepulsion parryRepulsion;
         
-        public int currentSkill;
-        [SerializeField] private SkillsDetails skills;
+        [Header("Character Visuals Related")]
+        [SerializeField] private Transform characterVisualsTr;
+        [SerializeField] private GameObject[] characterFaces;
+        [SerializeField] private Animator[] animator;
+
 
         #region Variables
-        private Vector2 _direction;
+        
+        private Vector2 _movementDirection;
         [HideInInspector] public Vector2 mouseAim;
         [HideInInspector] public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
         [HideInInspector] public Vector2 shootDir;
-
-        [HideInInspector] public float nextTimeCast;
+        
+        [HideInInspector] public float nextTimeShoot;
         
         [Header("Number of Projectile Left")]
-        public int blastTracker;
-        
+        public int remainingProjectile;
+
+        [Header("Equipped Skill")]
+        [SerializeField] private string currentSkill;
+        [HideInInspector] public int skillIndex;
+
         private float _nextTimeParry;
         private float _parryLifeTime;
         private float _skillCountdown;
         private float _blastCooldown;
-        public float skillCooldown;
-        [Space]
-        [SerializeField] private float speedDebug;
         
+        [Header("Stats")]
+        public float skillCooldown;
         public int health;
         public float speed;
         public float damage;
@@ -58,76 +67,43 @@ namespace Character
         
 
         [Header("State")]
-        public bool canGethit;
         public bool gamepadOn;
-        public bool isShooting;
-        public bool isParrying;
-        public bool isBuffed;
+        [Space]
+        public bool vulnerable;
+        public bool onShoot;
+        public bool onParry;
+        public bool onBuff;
+        public bool onSkillUse;
+        [Space]
+        public bool movementPressed;
         public bool isMovingUp;
         public bool isMovingDown;
         public bool isFacingLeft;
-        public bool isUsingSkill;
+        
         #endregion
-
-        private int _isRunningHash;
-        [SerializeField] private bool movementPressed;
 
         private void Awake()
         {
-            if (instance != null && instance != this)
+            if (Instance != null && Instance != this)
                 Destroy(gameObject);
 
-            instance = this;
+            Instance = this;
 
             characterInputs = new PlayerInputActions();
 
             _rb = GetComponent<Rigidbody2D>();
             _tr = GetComponent<Transform>();
         }
-
         private void Start()
         {
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
             health = characterData.health;
-            canGethit = true;
-            
-            blastTracker = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+            vulnerable = true;
+            remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
         }
 
-        private void Update()
-        {
-            characterPos = _tr.position;
-            RestrictMousePos();
-            Flip();
-            HandleSpriteRotation();
-            
-            _skillCountdown += Time.deltaTime;
-
-            HandleSkillUse();
-        }
-        private void FixedUpdate()
-        {
-            //Shoots the projectile
-            if (isShooting && blastTracker > 0) Shoot();
-            else bookAnim.SetBool("isShooting", false);
-
-            HandleMovement();
-            speedDebug = _rb.velocity.magnitude;
-            
-            AttackCooldown();
-            
-            if (blastTracker <= 0)
-            {
-                _blastCooldown -= Time.fixedDeltaTime;
-                BlastCooldown(_blastCooldown);
-            }
-
-            HandleParry();
-            ParryCooldown();
-        }
-        
         
         private void OnEnable()
         {
@@ -136,26 +112,26 @@ namespace Character
 
             characterInputs.Character.Movement.performed += ctx =>
             {
-                _direction = ctx.ReadValue<Vector2>();
-                movementPressed = _direction.x != 0 || _direction.y != 0;
-                isMovingUp = _direction.y > 0.7;
-                isMovingDown = _direction.y < -0.7;
+                _movementDirection = ctx.ReadValue<Vector2>();
+                movementPressed = _movementDirection.x != 0 || _movementDirection.y != 0;
+                isMovingUp = _movementDirection.y > 0.7;
+                isMovingDown = _movementDirection.y < -0.7;
             };
             
             //Allows to detect which controller is used 
             characterInputs.Character.ShootGamepad.performed += ctx =>
             {
                 gamepadOn = true;
-                isShooting = true;
+                onShoot = true;
             };
-            characterInputs.Character.ShootGamepad.canceled += ctx => isShooting = false;
+            characterInputs.Character.ShootGamepad.canceled += ctx => onShoot = false;
             characterInputs.Character.ShootMouse.performed += ctx =>
             {
                 gamepadOn = false;
-                isShooting = true;
+                onShoot = true;
             };
-            characterInputs.Character.ShootMouse.canceled += ctx => isShooting = false;
-                characterInputs.Character.AimGamepad.performed += ctx =>
+            characterInputs.Character.ShootMouse.canceled += ctx => onShoot = false;
+            characterInputs.Character.AimGamepad.performed += ctx =>
             {
                 //Disable the cursor when aiming with the gamepad
                 cursor.SetActive(false);
@@ -168,12 +144,14 @@ namespace Character
                 //Enable the cursor when shooting with the mouse
                 cursor.SetActive(true);
                 mouseAim = ctx.ReadValue<Vector2>();
-                if(!gamepadOn)aim = new Vector2(mouseAim.x - GameManager.instance.screenWidth / 2, mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
+                
+                //Adapt the aim of the mouse to the screen size
+                if(!gamepadOn) aim = new Vector2(mouseAim.x - GameManager.instance.screenWidth / 2, mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
             
             characterInputs.Character.Parry.performed += ctx =>
             {
-                if (ParryCooldown() && !isParrying) isParrying = true;
+                if (ParryCooldown() && !onParry) onParry = true;
             };
         }
         private void OnDisable()
@@ -183,9 +161,41 @@ namespace Character
         }
         
         
+        private void Update()
+        {
+            RestrictMousePos();
+            Flip();
+            HandleSpriteRotation();
+            ParryCooldown();
+            AttackCooldown();
+            
+            if (remainingProjectile <= 0)
+            {
+                _blastCooldown -= Time.deltaTime;
+                BlastCooldown(_blastCooldown);
+            }
+            
+            characterPos = _tr.position;
+            _skillCountdown += Time.deltaTime;
+        }
+        private void FixedUpdate()
+        {
+            //Shoots the projectile
+            if (onShoot && remainingProjectile > 0) Shoot();
+            else bookAnim.SetBool("isShooting", false);
+
+            HandleMovement();
+            HandleParry();
+            HandleSkillUse();
+        }
+        
+        
+
+        
+        
         public void TakeDamage(int damage)
         {
-            if (isParrying)
+            if (onParry)
             {
                 StartCoroutine(Parry());
                 print("I'm Parrying !");
@@ -193,7 +203,7 @@ namespace Character
             else
             {
 
-                if (canGethit)
+                if (vulnerable)
                 {
                     //Debugs Death :D 
                     if (health <= 0)
@@ -223,10 +233,10 @@ namespace Character
             //Moves the character
             if (movementPressed)
             {
-                if(!isBuffed)speed = characterData.speed;
+                if(!onBuff)speed = characterData.speed;
                 else speed = characterData.speedBuff;
                 
-                _rb.AddForce(_direction * speed,ForceMode2D.Impulse);
+                _rb.AddForce(_movementDirection * speed,ForceMode2D.Impulse);
                 
                 for (int i = 0; i < animator.Length; i++)
                 {
@@ -245,7 +255,7 @@ namespace Character
         
         private void HandleParry()
         {
-            if (isParrying)
+            if (onParry)
             {
                 for (int i = 0; i < animator.Length; i++)
                 {
@@ -270,7 +280,7 @@ namespace Character
                 parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
                 _nextTimeParry = Time.time + characterData.parryCooldown;
                 _parryLifeTime = characterData.parryTime;
-                isParrying = false;
+                onParry = false;
                 
                 for (int i = 0; i < animator.Length; i++)
                 {
@@ -301,9 +311,9 @@ namespace Character
             Time.timeScale = 1f;
             
             //Activate Buff
-            isBuffed = true;
+            onBuff = true;
             yield return new WaitForSeconds(characterData.buffDuration);
-            isBuffed = false;
+            onBuff = false;
         }
 
         private void Shoot()
@@ -327,20 +337,20 @@ namespace Character
                 usedProjectile.GetComponent<Rigidbody2D>().velocity = shootDir * characterData.usedProjectile[characterData.projectileIndex].projectileSpeed;
                 
 
-                nextTimeCast = Time.time + characterData.usedProjectile[characterData.projectileIndex].fireRate;
-                blastTracker -= 1;
+                nextTimeShoot = Time.time + characterData.usedProjectile[characterData.projectileIndex].fireRate;
+                remainingProjectile -= 1;
             }
         }
         public bool AttackCooldown()
         {
-            if(Time.time > nextTimeCast) return true;
+            if(Time.time > nextTimeShoot) return true;
             return false;
         }
         public void BlastCooldown(float nextTimeBlast)
         {
             if (nextTimeBlast <= 0)
             {
-                blastTracker = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+                remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
                 _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             }
         }
@@ -353,7 +363,7 @@ namespace Character
         {
             if(characterInputs.Character.Skill.triggered && _skillCountdown > skillCooldown)
             {
-                switch (currentSkill)
+                switch (skillIndex)
                 {
                     case 0:
                     {
@@ -375,7 +385,7 @@ namespace Character
         }
         private void Flip()
         {
-            visualsTr.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
+            characterVisualsTr.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
         }
         public void DisableInputs()
         {
@@ -410,9 +420,9 @@ namespace Character
         private IEnumerator InvulnerabilityFrame()
         {
             Debug.Log("invulnerable");
-            canGethit = false;
+            vulnerable = false;
             
-            foreach(Transform child in visualsTr)
+            foreach(Transform child in characterVisualsTr)
             {
                 SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
                 
@@ -425,7 +435,7 @@ namespace Character
                 ren.DOFade(1, 0.1f); 
             }
 
-            canGethit = true;
+            vulnerable = true;
         }
         private void HandleSpriteRotation()
         {
@@ -438,41 +448,41 @@ namespace Character
             if(degrees > 55 && degrees < 145)
             {
                 isFacingLeft = false;
-                visuals[0].SetActive(true);
-                visuals[1].SetActive(false);
-                visuals[2].SetActive(false);
+                characterFaces[0].SetActive(true);
+                characterFaces[1].SetActive(false);
+                characterFaces[2].SetActive(false);
             }
 
             if(degrees > 145 || degrees < -145)
             {
                 isFacingLeft = true;
-                visuals[0].SetActive(false);
-                visuals[1].SetActive(false);
-                visuals[2].SetActive(true);
+                characterFaces[0].SetActive(false);
+                characterFaces[1].SetActive(false);
+                characterFaces[2].SetActive(true);
             }
 
             if (degrees > -145 && degrees < -125)
             {
                 isFacingLeft = true;
-                visuals[0].SetActive(true);
-                visuals[1].SetActive(false);
-                visuals[2].SetActive(false);
+                characterFaces[0].SetActive(true);
+                characterFaces[1].SetActive(false);
+                characterFaces[2].SetActive(false);
             }
 
             if (degrees > -125 && degrees < -55)
             {
                 isFacingLeft = true;
-                visuals[0].SetActive(true);
-                visuals[1].SetActive(false);
-                visuals[2].SetActive(false);
+                characterFaces[0].SetActive(true);
+                characterFaces[1].SetActive(false);
+                characterFaces[2].SetActive(false);
             }
 
             if (degrees > -55 && degrees < 35)
             {
                 isFacingLeft = false;
-                visuals[0].SetActive(false);
-                visuals[1].SetActive(true);
-                visuals[2].SetActive(false);
+                characterFaces[0].SetActive(false);
+                characterFaces[1].SetActive(true);
+                characterFaces[2].SetActive(false);
             }
         }
     }

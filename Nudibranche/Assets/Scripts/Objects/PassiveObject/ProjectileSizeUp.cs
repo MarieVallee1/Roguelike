@@ -9,7 +9,7 @@ namespace Objects.PassiveObject
         
         public override void OnAcquire()
         {
-            PlayerController.instance.projectileSize *= projectileSizeMultiplier;
+            PlayerController.Instance.projectileSize *= projectileSizeMultiplier;
         }
     }
 }

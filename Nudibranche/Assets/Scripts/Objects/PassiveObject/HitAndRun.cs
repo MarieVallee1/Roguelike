@@ -15,13 +15,13 @@ namespace Objects.PassiveObject
         {
             if (_currentStreak == maxStreak) return;
             _currentStreak++;
-            PlayerController.instance.damage = _baseDamage * damageMultiplier * _currentStreak;
+            PlayerController.Instance.damage = _baseDamage * damageMultiplier * _currentStreak;
         }
 
         public override void OnObstacleHit()
         {
             _currentStreak = 0;
-            PlayerController.instance.damage = _baseDamage;
+            PlayerController.Instance.damage = _baseDamage;
         }
 
         public override void ResetStat()

@@ -11,7 +11,7 @@ public class BossDamages : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            PlayerController.instance.TakeDamage(damage);
+            PlayerController.Instance.TakeDamage(damage);
         }
     }
 }

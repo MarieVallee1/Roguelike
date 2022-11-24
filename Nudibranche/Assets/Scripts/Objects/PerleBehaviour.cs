@@ -30,7 +30,7 @@ public class PerleBehaviour : MonoBehaviour
             {
                 if (Health.instance.health < Health.instance.numberOfHearts)
                 {
-                    Health.instance.SetHealth(PlayerController.instance.health += 1);
+                    Health.instance.SetHealth(PlayerController.Instance.health += 1);
                     Debug.Log("Le joueur récupère un PV");
                 }
             }

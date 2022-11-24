@@ -33,7 +33,7 @@ namespace Ennemy
     public Animator animator;
     private void Start()
     {
-        target = PlayerController.instance.transform;
+        target = PlayerController.Instance.transform;
         radius = usedOursin.radius;
         enemyHealth = GetComponent<EnemyHealth>();
     }

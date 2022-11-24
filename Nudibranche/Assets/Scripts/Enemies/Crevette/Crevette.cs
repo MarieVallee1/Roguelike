@@ -72,7 +72,7 @@ namespace Ennemy
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        target = PlayerController.instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(6);
         
         InvokeRepeating("UpdatePath", 0, .5f);
         pathUpdated = true;

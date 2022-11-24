@@ -27,13 +27,13 @@ namespace Narration
 
         void InteractionZone()
         {
-            if (PlayerController.instance.characterInputs.Character.Interact.triggered)
+            if (PlayerController.Instance.characterInputs.Character.Interact.triggered)
             {
                 DialogueManager.instance.StartDialogue(dialogue);
-                PlayerController.instance.DisableInputs();
+                PlayerController.Instance.DisableInputs();
             }
             
-            if (PlayerController.instance.characterInputs.UI.Interact.triggered)
+            if (PlayerController.Instance.characterInputs.UI.Interact.triggered)
             {
                 DialogueManager.instance.ContinueDialogue(dialogue);
             }

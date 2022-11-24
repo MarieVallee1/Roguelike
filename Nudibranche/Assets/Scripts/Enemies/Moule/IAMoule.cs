@@ -38,7 +38,7 @@ public class IAMoule : MonoBehaviour
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         //target = PlayerController.instance.transform;
-        target = PlayerController.instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(6);
 
         InvokeRepeating("UpdatePath", 0, .5f);  
         pathUpdated = true;
@@ -137,7 +137,7 @@ public class IAMoule : MonoBehaviour
         VisibleByCamera();
 
         //Freeze and Unfreeze the enemy when the player is using a skill
-        if (PlayerController.instance.isUsingSkill) speed -= speed;
+        if (PlayerController.Instance.onSkillUse) speed -= speed;
     }
 
     void VisibleByCamera()
@@ -182,7 +182,7 @@ public class IAMoule : MonoBehaviour
     {
         if (cac)
         {
-            PlayerController.instance.TakeDamage(damage); 
+            PlayerController.Instance.TakeDamage(damage); 
         }
     }
 

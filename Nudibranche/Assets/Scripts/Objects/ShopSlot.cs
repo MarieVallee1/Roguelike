@@ -50,7 +50,7 @@ namespace Objects
     
         private void InteractionZone()
         {
-            if (PlayerController.instance.characterInputs.Character.Interact.triggered)
+            if (PlayerController.Instance.characterInputs.Character.Interact.triggered)
             {
                 if (isHealth) BuyHealth();
                 else BuyItem();
@@ -61,7 +61,7 @@ namespace Objects
         {
             if (GameManager.instance.pearlAmount <= _linkedReward.GetPrice()) return;
             GameManager.instance.pearlAmount -= _linkedReward.GetPrice();
-            var player = PlayerController.instance;
+            var player = PlayerController.Instance;
             var maxHealth = player.characterData.health;
             if (player.health < maxHealth) _linkedReward.OnAcquire();
         }

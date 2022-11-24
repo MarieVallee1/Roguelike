@@ -8,7 +8,7 @@ namespace Objects.PassiveObject
         [SerializeField] private float damageMultiplier;
         public override void OnAcquire()
         {
-            PlayerController.instance.damage *= damageMultiplier;
+            PlayerController.Instance.damage *= damageMultiplier;
         }
     }
 }

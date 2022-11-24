@@ -23,7 +23,7 @@ namespace System
         }
         private void Update()
         {
-            if(!PlayerController.instance.gamepadOn) CursorPosition();
+            if(!PlayerController.Instance.gamepadOn) CursorPosition();
         }
         
 

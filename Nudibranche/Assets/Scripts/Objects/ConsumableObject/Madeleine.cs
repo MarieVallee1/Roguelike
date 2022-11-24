@@ -8,7 +8,7 @@ namespace Objects.ConsumableObject
     {
         public override void OnUse()
         {
-            var player = PlayerController.instance;
+            var player = PlayerController.Instance;
             var maxHealth = player.characterData.health;
             if (player.health < maxHealth) player.health = maxHealth;
         }

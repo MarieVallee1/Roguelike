@@ -26,7 +26,7 @@ public class PostProcessing : MonoBehaviour
     {
         float intensity = Mathf.Clamp( _chromaticAberration.intensity.value, 0.1f,0.4f);
         
-        if (PlayerController.instance.isShooting)
+        if (PlayerController.Instance.onShoot)
         {
             intensity += Time.deltaTime;
         }

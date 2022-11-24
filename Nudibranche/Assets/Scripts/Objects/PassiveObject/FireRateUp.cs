@@ -10,7 +10,7 @@ namespace Objects.PassiveObject
         public override void OnAcquire()
         {
             //A revoir avec l'intégration du sytème
-            PlayerController.instance.fireRate *= fireRateMultiplier;
+            PlayerController.Instance.fireRate *= fireRateMultiplier;
         }
     }
 }

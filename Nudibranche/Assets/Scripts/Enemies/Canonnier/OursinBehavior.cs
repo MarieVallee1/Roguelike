@@ -14,7 +14,7 @@ public class OursinBehavior : MonoBehaviour
 
     private void Start()
     {
-        target = PlayerController.instance.gameObject;
+        target = PlayerController.Instance.gameObject;
     }
 
     private void OnEnable()

@@ -21,9 +21,9 @@ namespace Character.Skills
 
         public IEnumerator SwordSlash()
         {
-            PlayerController.instance.FreezeCharacter();
-            PlayerController.instance.DisableInputs();
-            PlayerController.instance.isUsingSkill = true;
+            PlayerController.Instance.FreezeCharacter();
+            PlayerController.Instance.DisableInputs();
+            PlayerController.Instance.onSkillUse = true;
         
             var enemyDetection = EnemyDetection.instance;
         
@@ -41,16 +41,16 @@ namespace Character.Skills
             }
             yield return new WaitForSeconds(2f);
         
-            PlayerController.instance.isUsingSkill = false;
-            PlayerController.instance.skillCooldown = swordSlashCooldown;
+            PlayerController.Instance.onSkillUse = false;
+            PlayerController.Instance.skillCooldown = swordSlashCooldown;
         
-            PlayerController.instance.UnfreezeCharacter();
-            PlayerController.instance.EnableInputs();
+            PlayerController.Instance.UnfreezeCharacter();
+            PlayerController.Instance.EnableInputs();
         }
         public void WrongTrack(Vector3 playerPos)
         { 
-            PlayerController.instance.FreezeCharacter();
-            PlayerController.instance.DisableInputs();
+            PlayerController.Instance.FreezeCharacter();
+            PlayerController.Instance.DisableInputs();
             string baitRef = bait.name;
             GameObject usedProjectile = PoolingSystem.instance.GetObject(baitRef);
        
@@ -60,15 +60,15 @@ namespace Character.Skills
                 usedProjectile.transform.position = playerPos;
                 usedProjectile.SetActive(true);
            
-                PlayerController.instance.skillCooldown = wrongTrackCooldown;
+                PlayerController.Instance.skillCooldown = wrongTrackCooldown;
             }
-            PlayerController.instance.UnfreezeCharacter();
-            PlayerController.instance.EnableInputs();
+            PlayerController.Instance.UnfreezeCharacter();
+            PlayerController.Instance.EnableInputs();
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
         { 
-            PlayerController.instance.FreezeCharacter();
-            PlayerController.instance.DisableInputs();
+            PlayerController.Instance.FreezeCharacter();
+            PlayerController.Instance.DisableInputs();
 
             RaycastHit2D hit;
             hit = Physics2D.Raycast(bookPos, dir, 30);
@@ -78,10 +78,10 @@ namespace Character.Skills
         
             yield return new WaitForSeconds(2);
         
-            PlayerController.instance.UnfreezeCharacter();
-            PlayerController.instance.EnableInputs();
+            PlayerController.Instance.UnfreezeCharacter();
+            PlayerController.Instance.EnableInputs();
         
-            PlayerController.instance.skillCooldown = cardLaserCooldown;
+            PlayerController.Instance.skillCooldown = cardLaserCooldown;
         }
     }
 }

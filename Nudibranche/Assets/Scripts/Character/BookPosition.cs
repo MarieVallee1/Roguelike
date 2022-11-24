@@ -20,15 +20,15 @@ namespace Character
 
         private void SetRotation()
         {
-            if (!PlayerController.instance.gamepadOn)
+            if (!PlayerController.Instance.gamepadOn)
             {
-                float angle = Mathf.Atan2( PlayerController.instance.aim.x ,PlayerController.instance.aim.y) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2( PlayerController.Instance.aim.x ,PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
                 transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
             }
             //Same but with the gamepad
-            if(PlayerController.instance.gamepadOn)
+            if(PlayerController.Instance.gamepadOn)
             {
-                float angle = Mathf.Atan2(PlayerController.instance.aim.x, PlayerController.instance.aim.y) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(PlayerController.Instance.aim.x, PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
                 transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
             }
         }
@@ -36,7 +36,7 @@ namespace Character
         private void HandleSpriteRotation()
         {
             // get the raw angle, in radians
-            float radians = Mathf.Atan2 (PlayerController.instance.aim.x, PlayerController.instance.aim.y);
+            float radians = Mathf.Atan2 (PlayerController.Instance.aim.x, PlayerController.Instance.aim.y);
  
             // up to degrees
             float degrees = radians * Mathf.Rad2Deg;

@@ -64,7 +64,7 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        target = PlayerController.instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(6);
         rb = GetComponent<Rigidbody2D>();
         healthGauge = GameManager.instance.bossGauge;
     }

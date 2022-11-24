@@ -5,9 +5,9 @@ public class TestEnemy : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (PlayerController.instance.canGethit)
+        if (PlayerController.Instance.vulnerable)
         {
-            PlayerController.instance.TakeDamage(1);
+            PlayerController.Instance.TakeDamage(1);
         }
     }
 }

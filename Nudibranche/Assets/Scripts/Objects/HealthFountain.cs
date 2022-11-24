@@ -6,7 +6,7 @@ namespace Objects
     {
         public override void OnAcquire()
         {
-            PlayerController.instance.health += 1;
+            PlayerController.Instance.health += 1;
         }
     }
 }
