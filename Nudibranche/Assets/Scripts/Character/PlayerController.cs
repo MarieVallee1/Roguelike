@@ -58,6 +58,7 @@ namespace Character
         private float _parryLifeTime;
         private float _skillCountdown;
         private float _blastCooldown;
+        private float _reloadCountdown;
         
         [Header("Stats")]
         public float skillCooldown;
@@ -170,6 +171,7 @@ namespace Character
             HandleSpriteRotation();
             ParryCooldown();
             AttackCooldown();
+            BlastReload();
             
             if (remainingProjectile <= 0)
             {
@@ -184,7 +186,10 @@ namespace Character
         {
             //Shoots the projectile
             if (onShoot && remainingProjectile > 0) Shoot();
-            else bookAnim.SetBool("isShooting", false);
+            else
+            {
+                bookAnim.SetBool("isShooting", false);
+            }
 
             HandleMovement();
             HandleParry();
@@ -289,6 +294,9 @@ namespace Character
                 
                 //Decreases the amount of projectile in a blast
                 remainingProjectile -= 1;
+
+                //Reset the reload countdown 
+                _reloadCountdown = 2f;
             }
         }
         private IEnumerator Parry()
@@ -403,12 +411,20 @@ namespace Character
         }
         private void BlastCooldown(float nextTimeBlast)
         {
-            //Handles the amount of projectile in one blast
+            //Handles the amount of projectile in one blast 
             if (nextTimeBlast <= 0)
             {
                 remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
                 _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             }
+        }
+
+        private void BlastReload()
+        {
+            _reloadCountdown -= Time.deltaTime;
+            
+            //Reset the blast if the player is not shooting for a certain time   
+            if(_reloadCountdown <= 0) remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
         }
         private bool ParryCooldown()
         {
