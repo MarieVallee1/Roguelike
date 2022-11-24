@@ -62,27 +62,27 @@ public class DodgeBullet : MonoBehaviour
     void Dodge()
     {
         dashDirection.Clear();
-        if (Physics2D.Raycast(crevettePos.position, direction.Perpendicular1(), obstacleDetection, LayerMask.GetMask( "Obstacle", "Canonnier","Oursins", "Player")))
+        if (Physics2D.Raycast(crevettePos.position, Vector2.Perpendicular(direction), obstacleDetection, LayerMask.GetMask( "Obstacle", "Canonnier","Oursins", "Player")))
         {
-            Debug.DrawRay(crevettePos.position, direction.Perpendicular1()*obstacleDetection, Color.black);
+            Debug.DrawRay(crevettePos.position, Vector2.Perpendicular(direction)*obstacleDetection, Color.black);
             canDodgeLeft = false;
         }
         else
         {
             canDodgeLeft = true;
-            dodgeLeft = direction.Perpendicular1();
+            dodgeLeft = Vector2.Perpendicular(direction);
             dashDirection.Add(dodgeLeft);
         }
         
-        if (Physics2D.Raycast(crevettePos.position, direction.Perpendicular2(), obstacleDetection, LayerMask.GetMask( "Obstacle", "Canonnier","Oursins", "Player")))
+        if (Physics2D.Raycast(crevettePos.position, Vector2.Perpendicular(-direction), obstacleDetection, LayerMask.GetMask( "Obstacle", "Canonnier","Oursins", "Player")))
         {
-            Debug.DrawRay(crevettePos.position, direction.Perpendicular2()*obstacleDetection, Color.black);
+            Debug.DrawRay(crevettePos.position, Vector2.Perpendicular(-direction)*obstacleDetection, Color.black);
             canDodgeRight = false;
         }
         else
         {
             canDodgeRight = true;
-            dodgeRight = direction.Perpendicular2();
+            dodgeRight = Vector2.Perpendicular(-direction);
             dashDirection.Add(dodgeRight);
         }
 
