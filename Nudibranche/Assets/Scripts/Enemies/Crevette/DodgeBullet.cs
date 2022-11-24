@@ -12,6 +12,7 @@ public class DodgeBullet : MonoBehaviour
     [Header("Detect Projectile")]
     private GameObject bullet;
     private Vector2 direction;
+    private Vector2 dir;
 
     [Header("Dodge")] 
     private bool canDodgeRight;

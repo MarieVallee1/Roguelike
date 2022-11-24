@@ -43,7 +43,6 @@ namespace Ennemy
                     rb.velocity = new Vector2(0, 0);
                 }
             }
-
             stopPathfinding = value;
         }
     }

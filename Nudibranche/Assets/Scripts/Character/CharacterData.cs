@@ -16,6 +16,8 @@ namespace Character
         public float drag;
         [Range(0f, 10f)]
         public int health;
+        [Range(0f, 10f)]
+        public int invulnerabilityDuration;
 
         [Header("Projectile")]
         [Tooltip("Define the element you're using in the list")]

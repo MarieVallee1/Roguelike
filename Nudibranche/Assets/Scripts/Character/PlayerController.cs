@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using Character.Skills;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Character
 {
@@ -190,9 +192,6 @@ namespace Character
         }
         
         
-
-        
-        
         public void TakeDamage(int damage)
         {
             if (onParry)
@@ -202,29 +201,39 @@ namespace Character
             }
             else
             {
-
                 if (vulnerable)
                 {
-                    //Debugs Death :D 
+                    //Debugs Death
                     if (health <= 0)
                     {
-                        Debug.Log("You're dead");
+                        print("I'm Dead");
                         health = characterData.health;
                         health = 0;
                     }
                 
-                    StartCoroutine(InvulnerabilityFrame());
+                    //Make the character invulnerable for a certain time
+                    StartCoroutine(InvulnerabilityFrame(characterData.invulnerabilityDuration));
+                    
+                    //Subtract the damage received to the current health
                     health -= damage;
                 
                     //Set the UI to the right amount of hearts
                     Health.instance.SetHealth(health);
-                
-                    print("I got hit !");
+                    
+                    //Debugs the remaining health
+                    print("Remaining health :" + health);
                 }
 
             }
+        }      
+        private IEnumerator InvulnerabilityFrame(float invulnerabilityDuration)
+        {
+            vulnerable = false;
+            //Invulnerability duration
+            yield return new WaitForSeconds(invulnerabilityDuration);
+            vulnerable = true;
         }
-
+        
         
         private void HandleMovement()
         {
@@ -233,11 +242,14 @@ namespace Character
             //Moves the character
             if (movementPressed)
             {
+                //If the player does a successful parry its movement speed is increased
                 if(!onBuff)speed = characterData.speed;
                 else speed = characterData.speedBuff;
                 
+                //Moves the character
                 _rb.AddForce(_movementDirection * speed,ForceMode2D.Impulse);
                 
+                //Handle the running animation of all the faces
                 for (int i = 0; i < animator.Length; i++)
                 {
                     animator[i].SetBool("isRunning", true);
@@ -251,41 +263,32 @@ namespace Character
                 }
             }
         }
-
-        
-        private void HandleParry()
+        private void Shoot()
         {
-            if (onParry)
-            {
-                for (int i = 0; i < animator.Length; i++)
-                {
-                    animator[i].SetBool("isParrying", true);
-                }
+            //Get the projectile type we want to shoot
+            GameObject usedProjectile = PoolingSystem.instance.GetObject(characterData.usedProjectile[characterData.projectileIndex].usedProjectileName);
 
-                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                _rb.velocity = Vector2.zero;
-                _parryLifeTime -= Time.deltaTime;
-            }
-            
-            //End of parry
-            if (_parryLifeTime < 0f)
-            {
-                parryCooldown.localScale = new Vector3(1, 1, 1);
-
-                var constraints = _rb.constraints;
-                constraints = RigidbodyConstraints2D.None;
-                constraints = RigidbodyConstraints2D.FreezeRotation;
-                _rb.constraints = constraints;
-
-                parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
-                _nextTimeParry = Time.time + characterData.parryCooldown;
-                _parryLifeTime = characterData.parryTime;
-                onParry = false;
+            if (usedProjectile != null && AttackCooldown())
+            { 
+                //Camera Shake
+                //CinemachineShake.instance.ShakeCamera(0.3f,0.1f);
                 
-                for (int i = 0; i < animator.Length; i++)
-                {
-                    animator[i].SetBool("isParrying", false);
-                }
+                //Handles the animation of the book when you shoot
+                bookAnim.SetBool("isShooting", true);
+                
+                //Placement & activation of the projectile
+                usedProjectile.transform.position = book.transform.position;
+                usedProjectile.SetActive(true);
+                shootDir = aim.normalized;
+            
+                //Handles the movement of the projectile
+                usedProjectile.GetComponent<Rigidbody2D>().velocity = shootDir * characterData.usedProjectile[characterData.projectileIndex].projectileSpeed;
+
+                //Reset the fire rate
+                nextTimeShoot = Time.time + characterData.usedProjectile[characterData.projectileIndex].fireRate;
+                
+                //Decreases the amount of projectile in a blast
+                remainingProjectile -= 1;
             }
         }
         private IEnumerator Parry()
@@ -315,49 +318,53 @@ namespace Character
             yield return new WaitForSeconds(characterData.buffDuration);
             onBuff = false;
         }
-
-        private void Shoot()
+        private void HandleParry()
         {
-            GameObject usedProjectile = PoolingSystem.instance.GetObject(characterData.usedProjectile[characterData.projectileIndex].usedProjectileName);
-
-            if (usedProjectile != null && AttackCooldown())
-            { 
-                //Camera Shake
-                //CinemachineShake.instance.ShakeCamera(0.3f,0.1f);
-                
-                //Anim
-                bookAnim.SetBool("isShooting", true);
-                
-                //Placement & activation
-                usedProjectile.transform.position = book.transform.position;
-                usedProjectile.SetActive(true);
-                shootDir = aim.normalized;
-            
-                //Physic
-                usedProjectile.GetComponent<Rigidbody2D>().velocity = shootDir * characterData.usedProjectile[characterData.projectileIndex].projectileSpeed;
-                
-
-                nextTimeShoot = Time.time + characterData.usedProjectile[characterData.projectileIndex].fireRate;
-                remainingProjectile -= 1;
-            }
-        }
-        public bool AttackCooldown()
-        {
-            if(Time.time > nextTimeShoot) return true;
-            return false;
-        }
-        public void BlastCooldown(float nextTimeBlast)
-        {
-            if (nextTimeBlast <= 0)
+            if (onParry)
             {
-                remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
-                _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
+                //Handle the parry animation for all faces
+                for (int i = 0; i < animator.Length; i++)
+                {
+                    animator[i].SetBool("isParrying", true);
+                }
+
+                //Freezes the character
+                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                _rb.velocity = Vector2.zero;
+                
+                //Decrease the duration of the parry time through time
+                _parryLifeTime -= Time.deltaTime;
             }
-        }
-        private bool ParryCooldown()
-        {
-            if(Time.time > _nextTimeParry) return true;
-            return false;
+            
+            //End of parry
+            if (_parryLifeTime < 0f)
+            {
+                //Reset the position of the parry cooldown feedback
+                parryCooldown.localScale = new Vector3(1, 1, 1);
+
+                //Unfreezes the character
+                var constraints = _rb.constraints;
+                constraints = RigidbodyConstraints2D.None;
+                constraints = RigidbodyConstraints2D.FreezeRotation;
+                _rb.constraints = constraints;
+
+                //Scale down the parry cooldown feedback
+                parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
+                
+                //Reset the countdown between 2 parry
+                _nextTimeParry = Time.time + characterData.parryCooldown;
+                
+                //Reset the countdown of the parry life time
+                _parryLifeTime = characterData.parryTime;
+                
+                onParry = false;
+                
+                //Reset the position of the parry cooldown feedback
+                for (int i = 0; i < animator.Length; i++)
+                {
+                    animator[i].SetBool("isParrying", false);
+                }
+            }
         }
         private void HandleSkillUse()
         {
@@ -368,28 +375,58 @@ namespace Character
                     case 0:
                     {
                         StartCoroutine(skills.SwordSlash());
+                        currentSkill = "Sword Slash";
                     }
                         break;
                     case 1:
                     {
                         skills.WrongTrack(characterPos);
+                        currentSkill = "Wrong Track";
                     }
                         break;
                     case 2:
                     {
                         StartCoroutine(skills.CardLaser(bookPos.position, aim));
+                        currentSkill = "Card Laser";
                     }
                         break;
                 }
             };
         }
+
+        
+        private bool AttackCooldown()
+        {
+            //Handles the cooldown of the basic attack
+            if(Time.time > nextTimeShoot) return true;
+            return false;
+        }
+        private void BlastCooldown(float nextTimeBlast)
+        {
+            //Handles the amount of projectile in one blast
+            if (nextTimeBlast <= 0)
+            {
+                remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+                _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
+            }
+        }
+        private bool ParryCooldown()
+        {
+            //Handles the cooldown of the parry
+            if(Time.time > _nextTimeParry) return true;
+            return false;
+        }
+        
+        
         private void Flip()
         {
+            //Flips the sprite considering the direction;
             characterVisualsTr.transform.localScale = !isFacingLeft ? new Vector3(-1, 1, 1) : new Vector3(1,1,1);
         }
         public void DisableInputs()
         {
             characterInputs.Character.Disable();
+            //Enables the UI inputs
             characterInputs.UI.Enable();
             
             //Stop the player from running (anim)
@@ -403,7 +440,6 @@ namespace Character
             characterInputs.Character.Enable();
             characterInputs.UI.Disable();
         }
-
         public void FreezeCharacter()
         {
             _rb.constraints = RigidbodyConstraints2D.FreezePosition;
@@ -415,27 +451,8 @@ namespace Character
         }
         private void RestrictMousePos()
         {
+            //The mouse can't go out of the screen
             Display.RelativeMouseAt(characterPos);
-        }
-        private IEnumerator InvulnerabilityFrame()
-        {
-            Debug.Log("invulnerable");
-            vulnerable = false;
-            
-            foreach(Transform child in characterVisualsTr)
-            {
-                SpriteRenderer ren = child.GetComponent<SpriteRenderer>();
-                
-                ren.DOFade(0, 0.1f);
-                yield return new WaitForSeconds(0.1f);
-                ren.DOFade(1, 0.1f); 
-                yield return new WaitForSeconds(0.1f);
-                ren.DOFade(0, 0.1f);
-                yield return new WaitForSeconds(0.1f);
-                ren.DOFade(1, 0.1f); 
-            }
-
-            vulnerable = true;
         }
         private void HandleSpriteRotation()
         {
@@ -463,6 +480,7 @@ namespace Character
 
             if (degrees > -145 && degrees < -125)
             {
+                
                 isFacingLeft = true;
                 characterFaces[0].SetActive(true);
                 characterFaces[1].SetActive(false);
@@ -471,6 +489,7 @@ namespace Character
 
             if (degrees > -125 && degrees < -55)
             {
+               
                 isFacingLeft = true;
                 characterFaces[0].SetActive(true);
                 characterFaces[1].SetActive(false);
