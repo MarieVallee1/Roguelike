@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     
     public void UpdateSkillInfo()
     {
-        skillInfo.text = "Current Skill :" + PlayerController.Instance.skillIndex;
+        skillInfo.text = "Current Skill :" + PlayerController.Instance.currentSkill;
     }
 
     public IEnumerator ScieRanoSlash()
