@@ -5,11 +5,11 @@ namespace Objects.PassiveObject
 {
     public class ProjectileSizeUp : Reward
     {
-        [SerializeField] private float projectileSizeMultiplier;
+        [SerializeField] private float projectileSizeBonus;
         
         public override void OnAcquire()
         {
-            PlayerController.Instance.projectileSize *= projectileSizeMultiplier;
+            PlayerController.Instance.projectileSize += projectileSizeBonus;
         }
     }
 }

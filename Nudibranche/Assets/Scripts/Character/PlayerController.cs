@@ -18,7 +18,7 @@ namespace Character
         private Transform _tr;
         public PlayerInputActions characterInputs;
         public CharacterData characterData;
-        [SerializeField] private SkillsDetails skills;
+        public SkillsDetails skills;
         [SerializeField] private GameObject cursor;
         
         [Header("Book Related")]
@@ -103,6 +103,9 @@ namespace Character
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
             health = characterData.health;
+            damage = characterData.usedProjectile[0].damage;
+            fireRate = characterData.usedProjectile[0].fireRate;
+            projectileSize = characterData.usedProjectile[0].projectileSize;
             vulnerable = true;
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
@@ -291,8 +294,8 @@ namespace Character
                 usedProjectile.GetComponent<Rigidbody2D>().velocity = shootDir * characterData.usedProjectile[characterData.projectileIndex].projectileSpeed;
 
                 //Reset the fire rate
-                nextTimeShoot = Time.time + characterData.usedProjectile[characterData.projectileIndex].fireRate;
-                
+                nextTimeShoot = Time.time + fireRate;
+
                 //Decreases the amount of projectile in a blast
                 remainingProjectile -= 1;
 

@@ -44,6 +44,8 @@ namespace Character
         public string usedProjectileName;
         [Range(0f, 10f)]
         public float fireRate;
+        [Range(0f, 10f)]
+        public float projectileSize;
         [Range(0f, 50f)]
         public float projectileSpeed;
         [Range(0f, 10f)]

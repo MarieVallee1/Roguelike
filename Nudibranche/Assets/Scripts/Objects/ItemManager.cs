@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Character;
 using UnityEngine;
@@ -38,9 +37,9 @@ namespace Objects
         }
 
         //Item calls
-        public void OnUse(int index)
+        public void OnUse()
         {
-            onUse[index].OnUse();
+            onUse[lastConsumable].OnUse();
             lastConsumable = -1;
         }
 

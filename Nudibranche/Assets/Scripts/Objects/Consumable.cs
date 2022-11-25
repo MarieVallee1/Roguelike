@@ -37,6 +37,7 @@ namespace Objects
         private void OnPickUp()
         {
             ItemManager.Instance.CheckConsumable(consumableIndex);
+            Destroy(gameObject);
         }
     }
 }
