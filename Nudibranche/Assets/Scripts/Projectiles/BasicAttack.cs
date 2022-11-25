@@ -12,7 +12,8 @@ namespace Projectiles
         private Rigidbody2D _rb;
         private CharacterData _characterData;
         
-        private int _damages;
+        private float _damages;
+        private float _projectileSize;
         private float _countdown;
     
         public Vector2 direction;
@@ -29,6 +30,11 @@ namespace Projectiles
         {
             _trail.enabled = true;
             _countdown = 0f;
+
+            _damages = PlayerController.Instance.damage;
+            _projectileSize = PlayerController.Instance.projectileSize;
+            
+            transform.lossyScale.Set(_projectileSize,_projectileSize,0);
 
             if (PlayerController.Instance.onBuff)
             {
@@ -47,7 +53,7 @@ namespace Projectiles
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage(_characterData.usedProjectile[_characterData.projectileIndex].damage);
+                other.gameObject.GetComponentInParent<EnemyHealth>().takeDamage((int)_damages);
                 gameObject.SetActive(false);
                 ItemManager.Instance.OnEnemyHit();
             }
@@ -58,7 +64,7 @@ namespace Projectiles
             }
             if (other.gameObject.CompareTag("Boss"))
             {
-                other.gameObject.GetComponentInParent<Boss>().TakeDamage(_characterData.usedProjectile[_characterData.projectileIndex].damage);
+                other.gameObject.GetComponentInParent<Boss>().TakeDamage((int)_damages);
                 gameObject.SetActive(false);
                 ItemManager.Instance.OnEnemyHit();
             }

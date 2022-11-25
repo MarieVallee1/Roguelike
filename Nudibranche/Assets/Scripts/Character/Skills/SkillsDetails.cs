@@ -12,6 +12,7 @@ namespace Character.Skills
         public float swordSlashCooldown;
         public float wrongTrackCooldown;
         public float cardLaserCooldown;
+        [HideInInspector]public float cooldownReduction = 1;
         private List<EnemyHealth> _enemiesInSight;
     
         [SerializeField] private GameObject bait;
@@ -42,7 +43,7 @@ namespace Character.Skills
             yield return new WaitForSeconds(2f);
         
             PlayerController.Instance.onSkillUse = false;
-            PlayerController.Instance.skillCooldown = swordSlashCooldown;
+            PlayerController.Instance.skillCooldown = swordSlashCooldown/cooldownReduction;
         
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
@@ -60,7 +61,7 @@ namespace Character.Skills
                 usedProjectile.transform.position = playerPos;
                 usedProjectile.SetActive(true);
            
-                PlayerController.Instance.skillCooldown = wrongTrackCooldown;
+                PlayerController.Instance.skillCooldown = wrongTrackCooldown/cooldownReduction;
             }
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
@@ -81,7 +82,7 @@ namespace Character.Skills
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
         
-            PlayerController.Instance.skillCooldown = cardLaserCooldown;
+            PlayerController.Instance.skillCooldown = cardLaserCooldown/cooldownReduction;
         }
     }
 }

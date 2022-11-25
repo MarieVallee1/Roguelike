@@ -5,10 +5,10 @@ namespace Objects.PassiveObject
 {
     public class StrengthUp : Reward
     {
-        [SerializeField] private float damageMultiplier;
+        [SerializeField] private int damageBonus;
         public override void OnAcquire()
         {
-            PlayerController.Instance.damage *= damageMultiplier;
+            PlayerController.Instance.damage += damageBonus;
         }
     }
 }

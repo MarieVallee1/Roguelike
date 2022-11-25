@@ -1,5 +1,6 @@
-using System;
 using System.Collections.Generic;
+using Character;
+using Objects;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -58,6 +59,7 @@ namespace GenPro
 
         public void SummonDoor()
         {
+            ItemManager.Instance.OnRoomEntrance();
             door.SetActive(true);
             foreach (var enemy in _enemyList)
             {

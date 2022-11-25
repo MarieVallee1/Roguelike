@@ -5,26 +5,21 @@ namespace Objects.PassiveObject
 {
     public class HitAndRun : Reward
     {
-        [SerializeField] private float damageMultiplier;
+        [SerializeField] private int damageBonus;
         [SerializeField] private int maxStreak;
-
-        private float _baseDamage;
         private int _currentStreak;
         
         public override void OnEnemyHit()
         {
             if (_currentStreak == maxStreak) return;
             _currentStreak++;
-            PlayerController.Instance.damage = _baseDamage * damageMultiplier * _currentStreak;
+            PlayerController.Instance.damage += damageBonus;
         }
 
         public override void OnObstacleHit()
         {
+            PlayerController.Instance.damage -= damageBonus*_currentStreak;
             _currentStreak = 0;
-            PlayerController.Instance.damage = _baseDamage;
         }
-
-        public override void ResetStat()
-        {}
     }
 }

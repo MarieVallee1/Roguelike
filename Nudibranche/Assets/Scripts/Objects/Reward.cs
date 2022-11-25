@@ -13,7 +13,7 @@ namespace Objects
         {
             return stats.objectPrice;
         }
-        
+
         public virtual void OnAcquire()
         {}
         
@@ -33,9 +33,6 @@ namespace Objects
         {}
 
         public virtual void OnUse()
-        {}
-        
-        public virtual void ResetStat()
         {}
     }
 }

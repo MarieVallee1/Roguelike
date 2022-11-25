@@ -56,7 +56,7 @@ namespace Objects
                 else BuyItem();
             }
         }
-
+        
         private void BuyHealth()
         {
             if (GameManager.instance.pearlAmount <= _linkedReward.GetPrice()) return;
