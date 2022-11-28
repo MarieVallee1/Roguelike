@@ -39,7 +39,9 @@ namespace Objects
         //Item calls
         public void OnUse()
         {
+            if (lastConsumable == -1) return;
             onUse[lastConsumable].OnUse();
+            UIManager.instance.UpdateObjectInfo();
             lastConsumable = -1;
         }
 
