@@ -348,6 +348,8 @@ namespace Character
                 _rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 _rb.velocity = Vector2.zero;
                 
+                
+                
                 //Decrease the duration of the parry time through time
                 _parryLifeTime -= Time.deltaTime;
             }
