@@ -60,7 +60,7 @@ namespace Character
         private float _parryLifeTime;
         private float _skillCountdown;
         private float _blastCooldown;
-        private float _reloadCountdown;
+        public float reloadCountdown = 2f;
         
         [Header("Stats")]
         public float skillCooldown;
@@ -256,7 +256,8 @@ namespace Character
             if (movementPressed)
             {
                 //If the player does a successful parry its movement speed is increased
-                if(!onBuff)speed = characterData.speed;
+                if(!onBuff && !onParry)speed = characterData.speed;
+                else if (onParry) speed = characterData.speed / 2f;
                 else speed = characterData.speedBuff;
                 
                 //Moves the character
@@ -304,7 +305,7 @@ namespace Character
                 remainingProjectile -= 1;
 
                 //Reset the reload countdown 
-                _reloadCountdown = 2f;
+                reloadCountdown = 2f;
             }
         }
         private IEnumerator Parry()
@@ -345,8 +346,10 @@ namespace Character
                 }
 
                 //Freezes the character
-                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                _rb.velocity = Vector2.zero;
+                // _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                // _rb.velocity = Vector2.zero;
+                speed /= 2f;
+                
                 
                 //Decrease the duration of the parry time through time
                 _parryLifeTime -= Time.deltaTime;
@@ -359,6 +362,7 @@ namespace Character
                 parryCooldown.localScale = new Vector3(1, 1, 1);
 
                 //Unfreezes the character
+                speed = characterData.speed;
                 var constraints = _rb.constraints;
                 constraints = RigidbodyConstraints2D.None;
                 constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -429,10 +433,10 @@ namespace Character
 
         private void BlastReload()
         {
-            _reloadCountdown -= Time.deltaTime;
+            reloadCountdown -= Time.deltaTime;
             
             //Reset the blast if the player is not shooting for a certain time   
-            if(_reloadCountdown <= 0) remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+            if(reloadCountdown <= 0) remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
         }
         private bool ParryCooldown()
         {

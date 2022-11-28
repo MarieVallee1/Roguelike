@@ -8,6 +8,7 @@ namespace Objects
     public class ItemManager : MonoBehaviour
     {
         public static ItemManager Instance;
+        [SerializeField] private int consumableLuckDivider;
 
         [Header("Consommable actuel")]
         public int lastConsumable = -1;
@@ -94,7 +95,7 @@ namespace Objects
             return _slot switch
             {
                 1 => RandomConsumable(),
-                2 => Random.Range(0, 2) == 0 ? RandomConsumable() : RandomPassiveItem(),
+                2 => Random.Range(0, consumableLuckDivider) == 0 ? RandomConsumable() : RandomPassiveItem(),
                 _ => RandomPassiveItem()
             };
         }
@@ -114,7 +115,7 @@ namespace Objects
 
         public void CheckConsumable(int newIndex)
         {
-            if (lastConsumable!=newIndex) SpawnConsumable(lastConsumable);
+            if (lastConsumable!=newIndex && lastConsumable!=-1) SpawnConsumable(lastConsumable);
             lastConsumable = newIndex;
         }
         

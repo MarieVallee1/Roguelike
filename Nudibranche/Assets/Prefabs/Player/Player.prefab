@@ -147,15 +147,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4882ca3805c04a6438eae6cdae74e16f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.024, y: 1.024}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &568359633
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 5c30c9b878eb7fe498ebc3c6d5cf36ed, type: 2}
   skills: {fileID: 698743843}
   cursor: {fileID: 2767891642204286396}
-  book: {fileID: 2767891643244902265}
+  book: {fileID: 376476937253063424}
   bookPos: {fileID: 2767891642094965161}
   bookAnim: {fileID: 568359633}
   parryCooldown: {fileID: 2767891643500748333}
@@ -1917,6 +1917,7 @@ MonoBehaviour:
   swordSlashCooldown: 5
   wrongTrackCooldown: 5
   cardLaserCooldown: 5
+  cooldownReduction: 1
   bait: {fileID: 5200457633785359971, guid: 5938e52ac5a6290408a58512d6505b9c, type: 3}
   laserBeam: {fileID: 1097736177}
 --- !u!120 &1097736177

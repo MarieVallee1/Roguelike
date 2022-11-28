@@ -22,6 +22,7 @@ public class IAMoule : MonoBehaviour
     public Transform mouleFeet;
     private Camera mainCam;
     private bool isVisible;
+    [SerializeField] private ParticleSystem attackVFX;
     
     // Graph //
     [SerializeField] private GameObject[] visuals;
@@ -241,5 +242,10 @@ public class IAMoule : MonoBehaviour
     {
         //Set the moment when the player can parry the enemy's attack
         isAttacking = !isAttacking;
+    }
+
+    public void PlayAttackVFX()
+    {
+        attackVFX.Play();
     }
 } 
