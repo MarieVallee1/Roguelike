@@ -58,7 +58,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void HandleSelectedButtons()
     {
-        switch (_event.name)
+        switch (_event.currentSelectedGameObject.name)
         {
             case "PlayButton":
             {
