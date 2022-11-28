@@ -22,7 +22,6 @@ namespace Narration
         [SerializeField] private Image blackBackground;
         
         [Header("Texts")]
-        [SerializeField] private TextMeshProUGUI nameTxt;
         [SerializeField] private TextMeshProUGUI dialogueTxt;
         [SerializeField] private TextMeshProUGUI choice1Txt;
         [SerializeField] private TextMeshProUGUI choice2Txt;
@@ -60,8 +59,6 @@ namespace Narration
             _branchTaken = 0;
             PlayerController.Instance.enabled = false;
             OpenDialogue(dialogue);
-            
-            nameTxt.text = dialogue.name;     
             
             _sentences = new Queue<string>();    
             _sentences.Clear();
