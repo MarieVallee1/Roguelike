@@ -60,7 +60,7 @@ namespace Character
         private float _parryLifeTime;
         private float _skillCountdown;
         private float _blastCooldown;
-        private float _reloadCountdown;
+        public float reloadCountdown = 2f;
         
         [Header("Stats")]
         public float skillCooldown;
@@ -304,7 +304,7 @@ namespace Character
                 remainingProjectile -= 1;
 
                 //Reset the reload countdown 
-                _reloadCountdown = 2f;
+                reloadCountdown = 2f;
             }
         }
         private IEnumerator Parry()
@@ -429,10 +429,10 @@ namespace Character
 
         private void BlastReload()
         {
-            _reloadCountdown -= Time.deltaTime;
+            reloadCountdown -= Time.deltaTime;
             
             //Reset the blast if the player is not shooting for a certain time   
-            if(_reloadCountdown <= 0) remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
+            if(reloadCountdown <= 0) remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
         }
         private bool ParryCooldown()
         {
