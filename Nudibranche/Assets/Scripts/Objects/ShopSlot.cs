@@ -70,7 +70,7 @@ namespace Objects
         
         private void BuyItem()
         {
-            if (GameManager.instance.pearlAmount <= _linkedReward.GetPrice()) return;
+            if (GameManager.instance.pearlAmount < _linkedReward.GetPrice()) return;
             GameManager.instance.pearlAmount -= _linkedReward.GetPrice();
             _linkedReward.isOwned = true;
             _linkedReward.OnAcquire();

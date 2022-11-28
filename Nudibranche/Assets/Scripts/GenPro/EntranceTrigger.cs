@@ -17,11 +17,13 @@ namespace GenPro
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.gameObject.layer != 6) return;
             if (!linkedRoom.activated) linkedRoom.Activate();
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (other.gameObject.layer != 6) return;
             if(IsOutside(other.transform.position)) linkedRoom.Deactivate();
             else if(!linkedRoom.roomIsCleared) linkedRoom.SummonDoor();
         }
