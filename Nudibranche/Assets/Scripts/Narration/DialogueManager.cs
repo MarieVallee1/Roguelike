@@ -22,7 +22,6 @@ namespace Narration
         [SerializeField] private Image blackBackground;
         
         [Header("Texts")]
-        [SerializeField] private TextMeshProUGUI nameTxt;
         [SerializeField] private TextMeshProUGUI dialogueTxt;
         [SerializeField] private TextMeshProUGUI choice1Txt;
         [SerializeField] private TextMeshProUGUI choice2Txt;
@@ -30,7 +29,8 @@ namespace Narration
         [Header("Buttons")]
         [SerializeField] private GameObject choices;
 
-        [Header("PnJ")] [SerializeField] private GameObject[] npc;
+        [Header("PnJ")] [SerializeField] private GameObject[] npc; 
+        [SerializeField] private GameObject[] txtBox;
 
         private Queue<string> _sentences;
         private Queue<string> _sentences1;
@@ -59,8 +59,6 @@ namespace Narration
             _branchTaken = 0;
             PlayerController.Instance.enabled = false;
             OpenDialogue(dialogue);
-            
-            nameTxt.text = dialogue.name;     
             
             _sentences = new Queue<string>();    
             _sentences.Clear();
@@ -183,18 +181,30 @@ namespace Narration
                     npc[0].SetActive(true);
                     npc[1].SetActive(false);
                     npc[2].SetActive(false); 
+                    
+                    txtBox[0].SetActive(true);
+                    txtBox[1].SetActive(false);
+                    txtBox[2].SetActive(false); 
                     break;
                 
                 case 1: 
                     npc[0].SetActive(false);
                     npc[1].SetActive(true);
                     npc[2].SetActive(false); 
+                    
+                    txtBox[0].SetActive(false);
+                    txtBox[1].SetActive(true);
+                    txtBox[2].SetActive(false); 
                     break;
                 
                 case 2: 
                     npc[0].SetActive(false);
                     npc[1].SetActive(false);
                     npc[2].SetActive(true); 
+                    
+                    txtBox[0].SetActive(false);
+                    txtBox[1].SetActive(false);
+                    txtBox[2].SetActive(true); 
                     break;
             }
             
@@ -202,7 +212,6 @@ namespace Narration
             TargetCursor.instance.enabled = false;
             
             hearts.DOFade(0, 0.8f);
-            
             
             dialogueBox.transform.DOLocalMoveY(0, 0.8f);
 

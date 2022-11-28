@@ -30,11 +30,11 @@ namespace Objects
         {
             if (PlayerController.Instance.characterInputs.Character.Interact.triggered)
             {
-                OnPickUp();
+                OnAcquire();
             }
         }
 
-        private void OnPickUp()
+        public override void OnAcquire()
         {
             ItemManager.Instance.CheckConsumable(consumableIndex);
             UIManager.instance.UpdateObjectInfo();
