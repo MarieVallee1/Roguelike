@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Character.Skills;
 using DG.Tweening;
+using Objects;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -160,6 +161,9 @@ namespace Character
             {
                 if (ParryCooldown() && !onParry) onParry = true;
             };
+            
+            //Use the current consumable 
+            characterInputs.Character.Objects.performed += ctx => ItemManager.Instance.OnUse();
         }
         private void OnDisable()
         {
@@ -406,7 +410,7 @@ namespace Character
             };
         }
 
-        
+
         private bool AttackCooldown()
         {
             //Handles the cooldown of the basic attack
