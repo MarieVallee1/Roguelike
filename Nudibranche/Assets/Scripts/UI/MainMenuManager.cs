@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,7 +29,7 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
-        blackScreen.DOFade(0, 3f).onComplete = DisableBlackScreen;
+        blackScreen.DOFade(0, 2f).onComplete = DisableBlackScreen;
     }
 
     private void Update()
@@ -43,7 +44,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartButton()
     {
-        SceneManager.LoadScene("Scene_Terri");
+        blackScreen.DOKill();
+        blackScreen.enabled = true;
+        blackScreen.DOFade(1, 3f).onComplete = LaunchGame;
     }
 
     public void OptionsButton()
@@ -56,9 +59,14 @@ public class MainMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    private void LaunchGame()
+    {
+        SceneManager.LoadScene("Scene_Terri");
+    }
+
     private void HandleSelectedButtons()
     {
-        switch (_event.name)
+        switch (_event.currentSelectedGameObject.name)
         {
             case "PlayButton":
             {
