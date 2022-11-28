@@ -114,7 +114,7 @@ namespace Objects
 
         public void CheckConsumable(int newIndex)
         {
-            if (lastConsumable!=newIndex) SpawnConsumable(lastConsumable);
+            if (lastConsumable!=newIndex && lastConsumable!=-1) SpawnConsumable(lastConsumable);
             lastConsumable = newIndex;
         }
         
