@@ -86,7 +86,7 @@ public class Boss : MonoBehaviour
         
         if (behaviour == Behaviour.walk)
         {
-            Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * speed * Time.deltaTime;
+            Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * (speed * Time.deltaTime);
             rb.AddForce(force, ForceMode2D.Force);
         }
         

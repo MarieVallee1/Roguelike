@@ -33,12 +33,35 @@ namespace System
                 Destroy(gameObject);
  
             instance = this;
+
+            _startTime = Time.time;
         }
         void Start()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             //pearlAmountText.text = 0 + "";
+        }
+        
+        //Score
+
+        [Header("Score")]
+        [SerializeField] private int roomScore;
+        
+        private int _score;
+        private float _startTime;
+        private int _clearedRoomAmount;
+        
+        public void AddScore()
+        {
+            //_score += roomScore;
+        }
+
+        public int FinalScore()
+        {
+            var endTime = Time.time - _startTime;
+            _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
+            return (int)(_score / endTime);
         }
     }
 }
