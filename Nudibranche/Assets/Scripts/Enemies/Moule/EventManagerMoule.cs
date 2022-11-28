@@ -20,4 +20,9 @@ public class EventManagerMoule : MonoBehaviour
     {
         iaMoule.AttackTiming();
     }
+    
+    public void PlayAttackVFX()
+    {
+        iaMoule.PlayAttackVFX();
+    }
 }
