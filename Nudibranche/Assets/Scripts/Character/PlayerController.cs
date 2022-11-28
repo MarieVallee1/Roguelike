@@ -256,7 +256,8 @@ namespace Character
             if (movementPressed)
             {
                 //If the player does a successful parry its movement speed is increased
-                if(!onBuff)speed = characterData.speed;
+                if(!onBuff && !onParry)speed = characterData.speed;
+                else if (onParry) speed = characterData.speed / 2f;
                 else speed = characterData.speedBuff;
                 
                 //Moves the character
@@ -345,9 +346,9 @@ namespace Character
                 }
 
                 //Freezes the character
-                _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                _rb.velocity = Vector2.zero;
-                
+                // _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                // _rb.velocity = Vector2.zero;
+                speed /= 2f;
                 
                 
                 //Decrease the duration of the parry time through time
@@ -361,6 +362,7 @@ namespace Character
                 parryCooldown.localScale = new Vector3(1, 1, 1);
 
                 //Unfreezes the character
+                speed = characterData.speed;
                 var constraints = _rb.constraints;
                 constraints = RigidbodyConstraints2D.None;
                 constraints = RigidbodyConstraints2D.FreezeRotation;
