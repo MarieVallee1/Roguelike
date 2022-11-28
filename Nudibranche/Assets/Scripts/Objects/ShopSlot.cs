@@ -8,6 +8,7 @@ namespace Objects
     public class ShopSlot : MonoBehaviour
     {
         [SerializeField] private bool isHealth;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Animator anim;
         [SerializeField] private TextMeshProUGUI itemName;
         [SerializeField] private TextMeshProUGUI itemDescription;
@@ -19,6 +20,7 @@ namespace Objects
         private void Start()
         {
             _linkedReward = isHealth ? ItemManager.Instance.health : ItemManager.Instance.PickItem();
+            spriteRenderer.sprite = _linkedReward.stats.objectImage;
             itemName.text = _linkedReward.stats.objectName;
             itemDescription.text = _linkedReward.stats.objectDescription;
             itemPrice.text = _linkedReward.stats.objectPrice + "";
