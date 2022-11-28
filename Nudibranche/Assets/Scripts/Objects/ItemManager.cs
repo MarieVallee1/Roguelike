@@ -10,7 +10,7 @@ namespace Objects
         public static ItemManager Instance;
 
         [Header("Consommable actuel")]
-        [SerializeField] private int lastConsumable = -1;
+        public int lastConsumable = -1;
         [Header("Références objets")]
         [SerializeField] private List<Reward> inShop;
         [SerializeField] private Reward[] consumable;
@@ -39,7 +39,9 @@ namespace Objects
         //Item calls
         public void OnUse()
         {
+            if (lastConsumable == -1) return;
             onUse[lastConsumable].OnUse();
+            UIManager.instance.UpdateObjectInfo();
             lastConsumable = -1;
         }
 
