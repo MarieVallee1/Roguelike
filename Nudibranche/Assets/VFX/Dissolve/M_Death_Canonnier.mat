@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Death
-  m_Shader: {fileID: -6465566751694194690, guid: f9bee3a6e95096c48acae9124fafb178,
+  m_Name: M_Death_Canonnier
+  m_Shader: {fileID: -6465566751694194690, guid: 8162e5286fd5566489b5c31a3100ed66,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,8 +21,9 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
+    - _Texture2D:
+        m_Texture: {fileID: -8328923581568760697, guid: 4a87c1d8740411e4ba8d6a948b01d372,
+          type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -39,8 +40,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DissolveAmount: -0.08
-    - _DissolveScale: 0
+    - _Dissolve: 1.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorDissolve: {r: 69.40291, g: 0, b: 2.6104789, a: 1}
   m_BuildTextureStacks: []
