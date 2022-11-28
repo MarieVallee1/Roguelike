@@ -15,7 +15,9 @@ namespace Objects
         }
 
         public virtual void OnAcquire()
-        {}
+        {
+            UIManager.instance.UpdateObjectInfo();
+        }
         
         public virtual void OnRoomEntrance()
         {}
