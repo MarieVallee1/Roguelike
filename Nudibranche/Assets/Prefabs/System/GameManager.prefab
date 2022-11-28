@@ -60,7 +60,7 @@ MonoBehaviour:
   - description: Projectile Joueur
     prefab: {fileID: 7203838594528348324, guid: fcbbaaf9bbf52ad47975db9b6a874ad7,
       type: 3}
-    numberOfObjects: 5
+    numberOfObjects: 6
   - description: Bait
     prefab: {fileID: 5200457633785359971, guid: 5938e52ac5a6290408a58512d6505b9c,
       type: 3}
@@ -92,6 +92,7 @@ MonoBehaviour:
   screenWidth: 1920
   screenHeight: 1080
   mainCamera: {fileID: 0}
+  bossGauge: {fileID: 0}
   pearlAmount: 0
   pearlAmountText: {fileID: 0}
   canonnierPearlDrop: 3
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillInfo: {fileID: 0}
+  objectInfo: {fileID: 0}
   slashEffects: {fileID: 0}
   blackScreen: {fileID: 0}
 --- !u!114 &524779819
