@@ -59,18 +59,21 @@ namespace GenPro
 
         public void SummonDoor()
         {
-            ItemManager.Instance.OnRoomEntrance();
-            door.SetActive(true);
-            foreach (var enemy in _enemyList)
+            if (_enemyList.Count ==0) roomIsCleared = true;
+            else
             {
-                enemy.Activate();
+                ItemManager.Instance.OnRoomEntrance();
+                door.SetActive(true);
+                foreach (var enemy in _enemyList)
+                {
+                    enemy.Activate();
+                }
+                var aStar = AstarPath.active;
+                if (isBig) aStar.data.gridGraph.SetDimensions(42,42,1);
+                else aStar.data.gridGraph.SetDimensions(20,20,1);
+                aStar.data.gridGraph.center = transform.position;
+                aStar.data.graphs[0].Scan();
             }
-
-            var aStar = AstarPath.active;
-            if (isBig) aStar.data.gridGraph.SetDimensions(42,42,1);
-            else aStar.data.gridGraph.SetDimensions(20,20,1);
-            aStar.data.gridGraph.center = transform.position;
-            aStar.data.graphs[0].Scan();
         }
     }
 }
