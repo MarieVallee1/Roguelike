@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace GenPro
@@ -25,7 +26,11 @@ namespace GenPro
         {
             if (other.gameObject.layer != 6) return;
             if(IsOutside(other.transform.position)) linkedRoom.Deactivate();
-            else if(!linkedRoom.roomIsCleared) linkedRoom.SummonDoor();
+            else
+            {
+                GameManager.instance.currentRoom = linkedRoom;
+                if(!linkedRoom.roomIsCleared) linkedRoom.SummonDoor();
+            }
         }
 
         private bool IsOutside(Vector3 playerPos)
