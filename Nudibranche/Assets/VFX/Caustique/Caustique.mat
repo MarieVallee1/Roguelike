@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6798601789227290567
+--- !u!114 &-5836207121428872143
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shadow
-  m_Shader: {fileID: -6465566751694194690, guid: 07053c76264ee6a4c93ba9af3ff72bf3,
+  m_Name: Caustique
+  m_Shader: {fileID: -6465566751694194690, guid: 44b3631e0947ed447bbdb4fa8aaad779,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -48,7 +48,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Power: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _RippleDensity: 31.4
+    - _RippleSpeed: -0.8
+    - _WaveSpeed: 5.37
+    m_Colors:
+    - _Color: {r: 0.4575472, g: 0.89273536, b: 1, a: 0}
   m_BuildTextureStacks: []
