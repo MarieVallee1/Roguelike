@@ -69,6 +69,7 @@ namespace GenPro
             _specialRoom3 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
             SecondLoop();
             PlaceSpecialRooms();
+            GameManager.instance.startRoom = listSalle[0].GetComponent<RoomManager>();
         }
         private void CheckFiller2Room(Side side)
         {

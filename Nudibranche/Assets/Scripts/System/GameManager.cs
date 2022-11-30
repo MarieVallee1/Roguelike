@@ -1,3 +1,4 @@
+using GenPro;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -57,7 +58,7 @@ namespace System
         
         public void AddScore()
         {
-            //_score += roomScore;
+            _score += roomScore;
         }
 
         public int FinalScore()
@@ -65,6 +66,18 @@ namespace System
             var endTime = Time.time - _startTime;
             _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
             return (int)(_score / endTime);
+        }
+        
+        //Fonctions pour TP
+
+        [HideInInspector] public RoomManager startRoom;
+        [HideInInspector] public RoomManager currentRoom;
+
+        public void ReloadStart()
+        {
+            currentRoom.Deactivate();
+            startRoom.Activate();
+            currentRoom = startRoom;
         }
     }
 }
