@@ -63,9 +63,7 @@ namespace Ennemy
     [SerializeField] private CrevetteProjectile usedCrevetteProjectile;
     private bool attaque;
     public float nextTimeCast;
-
-    //Health//
-    public int pv = 5;
+    
     void Start()
     {
         seeker = GetComponent<Seeker>();
