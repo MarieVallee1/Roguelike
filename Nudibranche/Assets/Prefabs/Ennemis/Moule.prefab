@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 400
+  speed: 800
   speedOutOfCamera: 30
   stopPathfinding: 0
   repulseSpeed: 3
@@ -215,13 +215,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 8e81f3fdd58051b4bb7115b45286d857, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &4502711793997958843
 BoxCollider2D:
