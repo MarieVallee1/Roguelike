@@ -32,6 +32,7 @@ namespace CrevetteProjectiles
         [Header("Characteristics")]
         [Range(0,100)] public float projectileSpeed;
         [Range(0, 100)] public int damage;
+        [Range(0, 100)] public int projectileLifeTime;
         
     } 
 }
