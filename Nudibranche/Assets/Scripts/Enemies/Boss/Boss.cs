@@ -53,7 +53,7 @@ public class Boss : MonoBehaviour
     [Header("Health")] 
     [SerializeField] private int maxHealth;
     [SerializeField] private int health;
-    private Slider healthGauge;
+    public Slider healthGauge;
     private Vector2 rushTarget;
     
     [Header("Visuels")] 
@@ -66,11 +66,12 @@ public class Boss : MonoBehaviour
         health = maxHealth;
         target = PlayerController.Instance.transform.GetChild(6);
         rb = GetComponent<Rigidbody2D>();
-        healthGauge = GameManager.instance.bossGauge;
+        
     }
 
     private void OnEnable()
     {
+        healthGauge = GameManager.instance.bossGauge;
         healthGauge.gameObject.SetActive(true);
         behaviour = Behaviour.walk;
         firstCircle = new Vector2[nbOursinsFirstCircle];
