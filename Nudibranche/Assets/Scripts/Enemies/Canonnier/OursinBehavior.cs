@@ -11,10 +11,12 @@ public class OursinBehavior : MonoBehaviour
     public Oursin oursinData;
     private bool dangerous = false;
     private GameObject target;
+    private PlayerController _playerController;
 
     private void Start()
     {
         target = PlayerController.Instance.gameObject;
+        _playerController = PlayerController.Instance;
     }
 
     private void OnEnable()
@@ -38,7 +40,13 @@ public class OursinBehavior : MonoBehaviour
         if (other.CompareTag("Player") && dangerous)
         {
             target = other.gameObject;
-            target.GetComponent<PlayerController>().TakeDamage(oursinData.damage);
+
+            if (_playerController.onParry)
+            {
+                _playerController.TakeDamage(oursinData.damage);
+                Disappear();
+            }
+            else _playerController.TakeDamage(oursinData.damage);
         }
     }
 }

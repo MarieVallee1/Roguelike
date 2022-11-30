@@ -139,6 +139,8 @@ public class IAMoule : MonoBehaviour
 
         //Freeze and Unfreeze the enemy when the player is using a skill
         if (PlayerController.Instance.onSkillUse) speed -= speed;
+        
+        OutOfRange();
     }
 
     void VisibleByCamera()
@@ -202,6 +204,11 @@ public class IAMoule : MonoBehaviour
         }
         
         HandleSpriteRotation(target.position - mouleFeet.position);
+    }
+
+    private void OutOfRange()
+    {
+        if(!cac) stopPathfinding = false;
     }
 
     void HandleSpriteRotation(Vector2 direction)
