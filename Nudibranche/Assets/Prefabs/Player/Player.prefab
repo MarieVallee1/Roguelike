@@ -1843,6 +1843,7 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 5c30c9b878eb7fe498ebc3c6d5cf36ed, type: 2}
   skills: {fileID: 698743843}
   cursor: {fileID: 2767891642204286396}
+  startRoomTp: {fileID: 0}
   book: {fileID: 376476937253063424}
   bookPos: {fileID: 2767891642094965161}
   bookAnim: {fileID: 568359633}
@@ -1866,6 +1867,7 @@ MonoBehaviour:
   remainingProjectile: 0
   currentSkill: 0
   skillIndex: 0
+  reloadCountdown: 2
   skillCooldown: 0
   health: 0
   speed: 0
@@ -4101,7 +4103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2767891643812016498
 Transform:
   m_ObjectHideFlags: 0
@@ -4248,7 +4250,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.25
+  m_Radius: 1.5
 --- !u!1001 &2767891641756658679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4692,7 +4694,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: 565d2f6a63014cb42af01172b9617d7c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 565d2f6a63014cb42af01172b9617d7c,
         type: 3}

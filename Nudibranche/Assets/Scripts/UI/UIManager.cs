@@ -52,6 +52,11 @@ public class UIManager : MonoBehaviour
             objectInfo.text = "" + ItemManager.Instance.lastConsumable;
         }
     }
+    
+    public void BlackScreenFade()
+    {
+        blackScreen.SetTrigger(FadeIt);
+    } 
 
     public IEnumerator ScieRanoSlash()
     {

@@ -107,6 +107,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Teleportation"",
+                    ""type"": ""Button"",
+                    ""id"": ""e47f2d40-868b-4bd7-864f-28abf9a43bad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -305,6 +314,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Objects"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf5797ea-a369-4f34-84a8-ba797c52c677"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Teleportation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64443757-8d68-4513-b213-2cd59bd39d25"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Teleportation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -910,6 +941,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Character_Interact = m_Character.FindAction("Interact", throwIfNotFound: true);
         m_Character_Skill = m_Character.FindAction("Skill", throwIfNotFound: true);
         m_Character_Objects = m_Character.FindAction("Objects", throwIfNotFound: true);
+        m_Character_Teleportation = m_Character.FindAction("Teleportation", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -991,6 +1023,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Interact;
     private readonly InputAction m_Character_Skill;
     private readonly InputAction m_Character_Objects;
+    private readonly InputAction m_Character_Teleportation;
     public struct CharacterActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1004,6 +1037,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Character_Interact;
         public InputAction @Skill => m_Wrapper.m_Character_Skill;
         public InputAction @Objects => m_Wrapper.m_Character_Objects;
+        public InputAction @Teleportation => m_Wrapper.m_Character_Teleportation;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1040,6 +1074,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Objects.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnObjects;
                 @Objects.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnObjects;
                 @Objects.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnObjects;
+                @Teleportation.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnTeleportation;
+                @Teleportation.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnTeleportation;
+                @Teleportation.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnTeleportation;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -1071,6 +1108,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Objects.started += instance.OnObjects;
                 @Objects.performed += instance.OnObjects;
                 @Objects.canceled += instance.OnObjects;
+                @Teleportation.started += instance.OnTeleportation;
+                @Teleportation.performed += instance.OnTeleportation;
+                @Teleportation.canceled += instance.OnTeleportation;
             }
         }
     }
@@ -1217,6 +1257,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
         void OnObjects(InputAction.CallbackContext context);
+        void OnTeleportation(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

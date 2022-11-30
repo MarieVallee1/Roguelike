@@ -21,6 +21,7 @@ namespace Character
         public CharacterData characterData;
         public SkillsDetails skills;
         [SerializeField] private GameObject cursor;
+        [SerializeField] private Transform startRoomTp;
         
         [Header("Book Related")]
         [SerializeField] private GameObject book;
@@ -164,6 +165,8 @@ namespace Character
             
             //Use the current consumable 
             characterInputs.Character.Objects.performed += ctx => ItemManager.Instance.OnUse();
+            
+            characterInputs.Character.Teleportation.performed += ctx => StartCoroutine(HandleTeleportation());
         }
         private void OnDisable()
         {
@@ -414,6 +417,15 @@ namespace Character
             };
         }
 
+        private IEnumerator HandleTeleportation()
+        {
+            UIManager.instance.BlackScreenFade();
+            yield return new WaitForSeconds(1f);
+            _tr.position = startRoomTp.position;
+            yield return new WaitForSeconds(1f);
+            UIManager.instance.BlackScreenFade();
+        }
+        
 
         private bool AttackCooldown()
         {

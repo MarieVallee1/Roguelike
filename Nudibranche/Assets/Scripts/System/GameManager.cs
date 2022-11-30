@@ -16,6 +16,9 @@ namespace System
         [Header("Perles")]
         public int pearlAmount;
 
+        [Header("State")]
+        public bool inCombat;
+
         public TMP_Text pearlAmountText;
         
         [Header("Ennemies Drop")]

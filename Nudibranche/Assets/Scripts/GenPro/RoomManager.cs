@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Character;
 using Objects;
@@ -53,6 +54,7 @@ namespace GenPro
         {
             _enemyList.Remove(enemy);
             if (_enemyList.Count != 0) return;
+            GameManager.instance.inCombat = false;
             door.SetActive(false);
             roomIsCleared = true;
         }
@@ -62,6 +64,7 @@ namespace GenPro
             if (_enemyList.Count ==0) roomIsCleared = true;
             else
             {
+                GameManager.instance.inCombat = true;
                 ItemManager.Instance.OnRoomEntrance();
                 door.SetActive(true);
                 foreach (var enemy in _enemyList)
