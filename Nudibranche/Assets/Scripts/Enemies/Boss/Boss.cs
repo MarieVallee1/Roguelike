@@ -66,7 +66,6 @@ public class Boss : MonoBehaviour
         health = maxHealth;
         target = PlayerController.Instance.transform.GetChild(6);
         rb = GetComponent<Rigidbody2D>();
-        
     }
 
     private void OnEnable()
