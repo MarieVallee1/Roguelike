@@ -46,7 +46,8 @@ namespace System
             Cursor.lockState = CursorLockMode.Confined;
             //pearlAmountText.text = 0 + "";
         }
-        
+
+
         //Score
 
         [Header("Score")]
@@ -67,7 +68,7 @@ namespace System
             _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
             return (int)(_score / endTime);
         }
-        
+
         //Fonctions pour TP
 
         [HideInInspector] public RoomManager startRoom;
