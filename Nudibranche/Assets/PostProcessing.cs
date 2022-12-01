@@ -27,7 +27,7 @@ public class PostProcessing : MonoBehaviour
 
     private void ChromaticAberrationFeedback()
     {
-        float intensity = Mathf.Clamp( _chromaticAberration.intensity.value, 0.1f,0.4f);
+        float intensity = Mathf.Clamp( _chromaticAberration.intensity.value, 0f,0.10f);
         
         if (PlayerController.Instance.onShoot)
         {
