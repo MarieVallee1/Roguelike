@@ -9748,6 +9748,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6611676933435914945}
+  - component: {fileID: 2796308255134217311}
   m_Layer: 0
   m_Name: LD Grande salle (1)
   m_TagString: Untagged
@@ -9873,6 +9874,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2796308255134217311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6611676933435914944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 439e0d45ecad44e4a91747505aef5f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedRoom: {fileID: 0}
+  spawns:
+  - enemies:
+    - {fileID: 754160761980928554}
+    - {fileID: 754160762351991381}
+    - {fileID: 754160761644093506}
+    - {fileID: 754160762048674542}
 --- !u!1 &6611676933441414158
 GameObject:
   m_ObjectHideFlags: 0
@@ -37485,6 +37505,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040db1b000e8f643a4f2835ebd3e19d, type: 3}
+--- !u!114 &754160762048674542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3335421215002069458, guid: 3040db1b000e8f643a4f2835ebd3e19d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6611676933284236480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6569430112945740188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
@@ -37719,6 +37751,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040db1b000e8f643a4f2835ebd3e19d, type: 3}
+--- !u!114 &754160761980928554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3335421215002069458, guid: 3040db1b000e8f643a4f2835ebd3e19d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6611676933351977988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6569430113014325592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
@@ -38482,6 +38526,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040db1b000e8f643a4f2835ebd3e19d, type: 3}
+--- !u!114 &754160762351991381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3335421215002069458, guid: 3040db1b000e8f643a4f2835ebd3e19d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6611676933534567547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6569430113167300903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
@@ -39855,6 +39911,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3040db1b000e8f643a4f2835ebd3e19d, type: 3}
+--- !u!114 &754160761644093506 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -3335421215002069458, guid: 3040db1b000e8f643a4f2835ebd3e19d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6611676933957248620}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c913cab0e8d3cac418ff04e32727ffb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6569430112541209392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 65909973824017756, guid: 3040db1b000e8f643a4f2835ebd3e19d,
