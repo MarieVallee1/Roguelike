@@ -152,10 +152,9 @@ namespace Character
             {
                 //Enable the cursor when shooting with the mouse
                 cursor.SetActive(true);
-                mouseAim = ctx.ReadValue<Vector2>();
-                
+
                 //Adapt the aim of the mouse to the screen size
-                if(!gamepadOn) aim = new Vector2(mouseAim.x - GameManager.instance.screenWidth / 2, mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
+                if(!gamepadOn) aim = new Vector2(mouseAim.x - GameManager.instance.screenWidth / 2, mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;*/
             };
             
             characterInputs.Character.Parry.performed += ctx =>
@@ -177,6 +176,7 @@ namespace Character
         
         private void Update()
         {
+            HandleMouseLook();
             RestrictMousePos();
             Flip();
             HandleSpriteRotation();
@@ -279,6 +279,11 @@ namespace Character
                     animator[i].SetBool("isRunning", false);
                 }
             }
+        }
+
+        private void HandleMouseLook()
+        {
+            aim = cursor.transform.position - transform.position;
         }
         private void Shoot()
         {
