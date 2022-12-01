@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1077355175}
   - component: {fileID: 524779814}
   - component: {fileID: 524779818}
-  - component: {fileID: 524779819}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -94,6 +93,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   bossGauge: {fileID: 0}
   pearlAmount: 0
+  inCombat: 0
   pearlAmountText: {fileID: 0}
   canonnierPearlDrop: 3
   moulePearlDrop: 3
@@ -101,6 +101,9 @@ MonoBehaviour:
   canonnierLifeDrop: 0.5
   mouleLifeDrop: 0.1
   crevetteLifeDrop: 0.3
+  roomScore: 0
+  startRoom: {fileID: 0}
+  currentRoom: {fileID: 0}
 --- !u!114 &524779814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +120,6 @@ MonoBehaviour:
   choicesBox: {fileID: 0}
   hearts: {fileID: 0}
   blackBackground: {fileID: 0}
-  nameTxt: {fileID: 0}
   dialogueTxt: {fileID: 0}
   choice1Txt: {fileID: 0}
   choice2Txt: {fileID: 0}
@@ -142,21 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63170ea47b9e2542b56c37b3a7c0d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillInfo: {fileID: 0}
+  portraits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   objectInfo: {fileID: 0}
   slashEffects: {fileID: 0}
   blackScreen: {fileID: 0}
---- !u!114 &524779819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4072053401284253054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 914aa340702299147aef290f3d418bf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textBox: {fileID: 0}
-  interactionTxt: {fileID: 0}

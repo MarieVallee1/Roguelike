@@ -10,11 +10,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-
     public static UIManager instance;
-    [SerializeField] private TextMeshProUGUI skillInfo;
+
+    [SerializeField] private List<GameObject> portraits;
+
     [SerializeField] private TextMeshProUGUI objectInfo;
-    //[SerializeField] private TextMeshProUGUI dialogueBox;
     [SerializeField] private ParticleSystem slashEffects;
     [SerializeField] private Animator blackScreen;
     private static readonly int FadeIt = Animator.StringToHash("FadeIt");
@@ -37,7 +37,26 @@ public class UIManager : MonoBehaviour
     
     public void UpdateSkillInfo()
     {
-        skillInfo.text = "Current Skill :" + PlayerController.Instance.currentSkill;
+        switch (PlayerController.Instance.skillIndex)
+        {
+            case 0: 
+                portraits[0].SetActive(true);
+                portraits[1].SetActive(false);
+                portraits[2].SetActive(false);
+                break;
+            
+            case 1: 
+                portraits[0].SetActive(false);
+                portraits[1].SetActive(true);
+                portraits[2].SetActive(false);
+                break;
+            
+            case 2:
+                portraits[0].SetActive(false);
+                portraits[1].SetActive(false);
+                portraits[2].SetActive(true);
+                break;
+        }
     }
     
     public void UpdateObjectInfo()
