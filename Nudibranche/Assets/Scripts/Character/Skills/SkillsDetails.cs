@@ -72,8 +72,11 @@ namespace Character.Skills
             PlayerController.Instance.DisableInputs();
 
             RaycastHit2D hit;
-            hit = Physics2D.Raycast(bookPos, dir, 30);
-        
+            // hit = Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(1,1), PlayerController.Instance.,
+            //     Quaternion.identity, 40f);
+            
+            
+
             laserBeam.SetPosition(0,bookPos);
             laserBeam.SetPosition(1,(Vector2)bookPos + dir);
         
