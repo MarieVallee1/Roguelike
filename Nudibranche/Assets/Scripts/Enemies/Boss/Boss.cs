@@ -155,8 +155,8 @@ public class Boss : MonoBehaviour
     {
         if (transform.position.x <= roomCenter.position.x + 0.5f &&
             transform.position.x >= roomCenter.position.x - 0.5f &&
-            transform.position.y <= roomCenter.position.y + 0.5f &&
-            transform.position.y >= roomCenter.position.y - 0.5f)
+            transform.position.y <= roomCenter.position.y &&
+            transform.position.y >= roomCenter.position.y - 1f)
         {
             rb.drag = 100;
             animator.SetBool("Tourbillon", true);
