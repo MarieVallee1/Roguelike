@@ -18,7 +18,6 @@ namespace Ennemy
     private float radius = 2;
     public int nbOursinAround = 6;
     public Transform target;
-    public int nbOursin = 3;
     public int idleBetweenAttacks = 1;
     [SerializeField] private int idleBetweenAttacksCount = 0;
     [SerializeField] private Oursin usedOursin;
@@ -33,7 +32,7 @@ namespace Ennemy
     public Animator animator;
     private void Start()
     {
-        target = PlayerController.Instance.transform;
+        target = PlayerController.Instance.gameObject.transform.GetChild(6);
         radius = usedOursin.radius;
         enemyHealth = GetComponent<EnemyHealth>();
     }

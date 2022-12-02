@@ -32,8 +32,7 @@ public class OursinBehavior : MonoBehaviour
     public void Disappear()
     {
         dangerous = false;
-        gameObject.SetActive(false);
-        
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnTriggerStay2D(Collider2D other)
