@@ -51,10 +51,7 @@ namespace Character
         
         [Header("Number of Projectile Left")]
         public int remainingProjectile;
-
-        [Header("Equipped Skill")]
-        [SerializeField]
-        public string currentSkill;
+        
         [HideInInspector] public int skillIndex;
 
         private float _nextTimeParry;
@@ -403,19 +400,16 @@ namespace Character
                     case 0:
                     {
                         StartCoroutine(skills.SwordSlash());
-                        currentSkill = "Sword Slash";
                     }
                         break;
                     case 1:
                     {
                         skills.WrongTrack(characterPos);
-                        currentSkill = "Wrong Track";
                     }
                         break;
                     case 2:
                     {
                         StartCoroutine(skills.CardLaser(bookPos.position, aim));
-                        currentSkill = "Card Laser";
                     }
                         break;
                 }
