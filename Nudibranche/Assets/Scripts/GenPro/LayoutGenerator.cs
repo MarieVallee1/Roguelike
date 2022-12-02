@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
@@ -10,7 +11,7 @@ namespace GenPro
 {
     public class LayoutGenerator : MonoBehaviour
     {
-        private Object[] _currentRoomPool;
+        private List<GameObject> _currentRoomPool = new List<GameObject>();
         private int _chosenRoom, _shopPosition,_checkShopPosition;
         private Transform _newRoom;
         private int _lastRoomIndex, _indexForBoss,_indexForCharacter1, _indexForCharacter2, _savedIndex;
@@ -55,6 +56,39 @@ namespace GenPro
         [SerializeField] private float bigRoomSize;
         [SerializeField] private int filler2RoomApparitionDenominator;
         [SerializeField] private int filler2RoomBigVersionDenominator;
+        
+        [Header("Références Room")]
+        [Header("2Room")]
+        [SerializeField] private GameObject twoRoomEO;
+        [SerializeField] private GameObject twoRoomNE;
+        [SerializeField] private GameObject twoRoomNO;
+        [SerializeField] private GameObject twoRoomNS;
+        [SerializeField] private GameObject twoRoomSE;
+        [SerializeField] private GameObject twoRoomSO;
+        [Header("3Room")]
+        [SerializeField] private GameObject threeRoomNEO;
+        [SerializeField] private GameObject threeRoomNSE;
+        [SerializeField] private GameObject threeRoomNSO;
+        [SerializeField] private GameObject threeRoomSEO;
+        [Header("4Room")]
+        [SerializeField] private GameObject fourRoom;
+        [Header("BigRoom")]
+        [SerializeField] private GameObject[] bigRooms;
+        [Header("BossRoom")]
+        [SerializeField] private GameObject[] bossRooms;
+        [Header("CharacterRoom")]
+        [SerializeField] private GameObject[] characterRooms;
+        [Header("ShopRoom")]
+        [SerializeField] private GameObject shopRoomEO;
+        [SerializeField] private GameObject shopRoomNE;
+        [SerializeField] private GameObject shopRoomNO;
+        [SerializeField] private GameObject shopRoomNS;
+        [SerializeField] private GameObject shopRoomSE;
+        [SerializeField] private GameObject shopRoomSO;
+        [SerializeField] private GameObject shopFourRoom;
+        [Header("StartRoom")]
+        [SerializeField] private GameObject startRoom;
+        
         private void Start()
         {
             ChooseShopPosition();
@@ -693,7 +727,8 @@ namespace GenPro
         #region PlaceRoom
         private void PlaceStartRoom()
         {
-            _currentRoomPool = Resources.LoadAll("StartRoom", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(startRoom);
             InstantiateRoom(0,Side.Start,false);
             _lastRoomIndex--;
         }
@@ -701,25 +736,29 @@ namespace GenPro
         {
             if (Random.Range(0,2)==0)
             {
-                _currentRoomPool = Resources.LoadAll("3Room/SEO", typeof(GameObject));
+                _currentRoomPool.Clear();
+                _currentRoomPool.Add(threeRoomSEO);
                 PickARoomAtRandom();
                 InstantiateRoom(0,Side.Up,false);
                 return false;
             }
-            _currentRoomPool = Resources.LoadAll("4Room", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(fourRoom);
             PickARoomAtRandom();
             InstantiateRoom(0,Side.Up,false);
             return true;
         }
         private void PlaceBossRoom(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("BossRoom", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.AddRange(bossRooms);
             ChooseSpecialRoom(side);
             InstantiateRoom(indexOldRoom,side,false);
         }
         private void PlaceCharacterRoom(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("CharacterRoom", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.AddRange(characterRooms);
             ChooseSpecialRoom(side);
             InstantiateRoom(indexOldRoom,side,false);
         }
@@ -730,79 +769,91 @@ namespace GenPro
         }
         private void Place4Room(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("4Room", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(fourRoom);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
         }
         private void Place3RoomNeo(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("3Room/NEO", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(threeRoomNEO);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
         }
         private void Place3RoomNse(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("3Room/NSE", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(threeRoomNSE);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
         }
         private void Place3RoomNso(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("3Room/NSO", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(threeRoomNSO);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
         }
         private void Place3RoomSeo(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("3Room/SEO", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(threeRoomSEO);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
         }
         private void Place2RoomEo(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("2Room/EO", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(twoRoomEO);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
             _nextSide = side == Side.Right ? Side.Right : Side.Left;
         }
         private void Place2RoomNe(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("2Room/NE", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(twoRoomNE);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
             _nextSide = side == Side.Left ? Side.Up : Side.Right;
         }
         private void Place2RoomNo(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("2Room/NO", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(twoRoomNO);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
             _nextSide = side == Side.Right ? Side.Up : Side.Left;
         }
         private void Place2RoomNs(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("2Room/NS", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(twoRoomNS);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
             _nextSide = side == Side.Down ? Side.Down : Side.Up;
         }
         private void Place2RoomSe(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("2Room/SE", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(twoRoomSE);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
             _nextSide = side == Side.Left ? Side.Down : Side.Right;
         }
         private void Place2RoomSo(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("2Room/SO", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.Add(twoRoomSO);
             PickARoomAtRandom();
             InstantiateRoom(indexOldRoom,side,false);
             _nextSide = side == Side.Right ? Side.Down : Side.Left;
         }
         private void PlaceBigRoom(int indexOldRoom,Side side)
         {
-            _currentRoomPool = Resources.LoadAll("BigRoom", typeof(GameObject));
+            _currentRoomPool.Clear();
+            _currentRoomPool.AddRange(bigRooms);
             ChooseSpecialRoom(side);
             InstantiateRoom(indexOldRoom,side,true);
             FindRemainingEntryBigRoom(side);
@@ -838,7 +889,7 @@ namespace GenPro
         }
         private void PickARoomAtRandom()
         {
-            _chosenRoom = Random.Range(0, _currentRoomPool.Length);
+            _chosenRoom = Random.Range(0, _currentRoomPool.Count);
         }
         private SpecialRoom PickSpecialRoomNumber()
         {
@@ -970,36 +1021,43 @@ namespace GenPro
             switch (entry)
             {
                 case Entry.FourRoom:
-                    _currentRoomPool = Resources.LoadAll("Shop4Room", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopFourRoom);
                     PickARoomAtRandom();
                     break;
                 case Entry.Ns:
-                    _currentRoomPool = Resources.LoadAll("Shop2Room/Ns", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopRoomNS);
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Down ? Side.Down : Side.Up;
                     break;
                 case Entry.Ne:
-                    _currentRoomPool = Resources.LoadAll("Shop2Room/Ne", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopRoomNE);
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Left ? Side.Up : Side.Right;
                     break;
                 case Entry.No:
-                    _currentRoomPool = Resources.LoadAll("Shop2Room/No", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopRoomNO);
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Up : Side.Left;
                     break;
                 case Entry.Se:
-                    _currentRoomPool = Resources.LoadAll("Shop2Room/Se", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopRoomSE);
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Left ? Side.Down : Side.Right;
                     break;
                 case Entry.So:
-                    _currentRoomPool = Resources.LoadAll("Shop2Room/So", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopRoomSO);
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Down : Side.Left;
                     break;
                 case Entry.Eo:
-                    _currentRoomPool = Resources.LoadAll("Shop2Room/Eo", typeof(GameObject));
+                    _currentRoomPool.Clear();
+                    _currentRoomPool.Add(shopRoomEO);
                     PickARoomAtRandom();
                     _nextSide = _nextSide == Side.Right ? Side.Right : Side.Left;
                     break;
