@@ -57,7 +57,9 @@ public class Boss : MonoBehaviour
     private Vector2 rushTarget;
     
     [Header("Visuels")] 
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator[] animator;
+
+    [SerializeField] private GameObject[] visuals;
 
     [SerializeField] private ParticleSystem vfxDamage;
 
