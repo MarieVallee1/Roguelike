@@ -57,7 +57,9 @@ public class Boss : MonoBehaviour
     private Vector2 rushTarget;
     
     [Header("Visuels")] 
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator[] animators;
+
+    [SerializeField] private GameObject[] visuals;
 
     [SerializeField] private ParticleSystem vfxDamage;
 
@@ -100,7 +102,10 @@ public class Boss : MonoBehaviour
             if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timerForRush >= rushTimer)
             {
                 behaviour = Behaviour.rush;
-                animator.SetBool("Ruée", true);
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Ruée", true);
+                }
                 rushTarget = target.position;
                 timerForRush = 0;
             }
@@ -108,7 +113,10 @@ public class Boss : MonoBehaviour
             if (Vector2.Distance(target.position, princessFeet.position) <= attackRange)
             {
                 behaviour = Behaviour.hit;
-                animator.SetTrigger("Attaque");
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetTrigger("Attaque");
+                }
                 timerForAttack = 0;
             }
         }
@@ -123,7 +131,10 @@ public class Boss : MonoBehaviour
             {
                 if (timerForAttack >= attackTimer)
                 {
-                    animator.SetTrigger("Attaque");
+                    for (int i = 0; i < animators.Length; i++)
+                    {
+                        animators[i].SetTrigger("Attaque");
+                    }
                     timerForAttack = 0;
                 }
             }
@@ -136,9 +147,15 @@ public class Boss : MonoBehaviour
 
             if (Vector2.Distance(rushTarget, princessFeet.position) <= 1)
             {
-                animator.SetBool("Ruée", false);
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Ruée", false);
+                }
                 behaviour = Behaviour.hit;
-                animator.SetTrigger("Attaque");
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetTrigger("Attaque");
+                }
                 timerForAttack = 0;
             }
         }
@@ -159,7 +176,10 @@ public class Boss : MonoBehaviour
             transform.position.y >= roomCenter.position.y - 1f)
         {
             rb.drag = 100;
-            animator.SetBool("Tourbillon", true);
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Tourbillon", true);
+            }
             canTourbillon = false;
         }
         else
@@ -223,7 +243,10 @@ public class Boss : MonoBehaviour
                 usedOursin.CannonierShooting(secondCircle[i]);
             }
             oursinsWave = 0;
-            animator.SetBool("Tourbillon", false);
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Tourbillon", false);
+            }
             rb.drag = 1.5f;
             behaviour = Behaviour.walk;
         }
@@ -240,7 +263,10 @@ public class Boss : MonoBehaviour
         {
             canTourbillon = true;
             behaviour = Behaviour.oursins;
-            animator.SetBool("Ruée", false);
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Ruée", false);
+            }
             tourbillonCount = 0;
         }
 
