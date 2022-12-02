@@ -33,6 +33,7 @@ public class OursinBehavior : MonoBehaviour
     {
         dangerous = false;
         gameObject.SetActive(false);
+        
     }
 
     private void OnTriggerStay2D(Collider2D other)
