@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -5,12 +6,22 @@ namespace Character
 {
     public class BookPosition : MonoBehaviour
     {
+        public static BookPosition Instance;
+        
         [SerializeField] private Sprite[] bookSprites;
         [SerializeField] private SpriteRenderer ren;
         
         private Vector3 _screenPosition;
         private Vector3 _worldPosition;
         private Vector3 _characterPosition;
+
+        public float directionAngle;
+
+        private void Awake()
+        {
+            if(Instance != null && Instance != this) Destroy(this);
+            Instance = this;
+        }
 
         private void Update()
         {
@@ -39,59 +50,59 @@ namespace Character
             float radians = Mathf.Atan2 (PlayerController.Instance.aim.x, PlayerController.Instance.aim.y);
  
             // up to degrees
-            float degrees = radians * Mathf.Rad2Deg;
+            directionAngle = radians * Mathf.Rad2Deg;
 
 
-            if(degrees < 35 && degrees > -35)
+            if(directionAngle < 35 && directionAngle > -35)
             {
                 //Debug.Log("up");
                 ren.sprite = bookSprites[0];
                 ren.flipX = true;
             }
             
-            if(degrees > 35 && degrees < 55)
+            if(directionAngle > 35 && directionAngle < 55)
             {
                 //Debug.Log("up right");
                 ren.sprite = bookSprites[1];
                 ren.flipX = true;
             } 
             
-            if(degrees > 55 && degrees < 125)
+            if(directionAngle > 55 && directionAngle < 125)
             {
                 //Debug.Log("right");
                 ren.sprite = bookSprites[2];
                 ren.flipX = true;
             } 
             
-            if(degrees > 125 && degrees < 145)
+            if(directionAngle > 125 && directionAngle < 145)
             {
                 //Debug.Log("down right");
                 ren.sprite = bookSprites[3];
                 ren.flipX = true;
             } 
             
-            if(degrees > 145 || degrees < -145)
+            if(directionAngle > 145 || directionAngle < -145)
             {
                 //Debug.Log("down");
                 ren.sprite = bookSprites[4];
                 ren.flipX = true;
             }
 
-            if (degrees > -145 && degrees < -125)
+            if (directionAngle > -145 && directionAngle < -125)
             {
                 //Debug.Log("down left");
                 ren.sprite = bookSprites[5];
                 ren.flipX = false;
             }
 
-            if (degrees > -125 && degrees < -55)
+            if (directionAngle > -125 && directionAngle < -55)
             {
                 //Debug.Log("left");
                 ren.sprite = bookSprites[6];
                 ren.flipX = false;
             }
 
-            if (degrees > -55 && degrees < -35)
+            if (directionAngle > -55 && directionAngle < -35)
             {
                 //Debug.Log("up left");
                 ren.sprite = bookSprites[7];

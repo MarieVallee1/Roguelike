@@ -18,7 +18,11 @@ namespace Character.Skills
         [SerializeField] private GameObject bait;
     
         [SerializeField] private LineRenderer laserBeam;
-    
+
+        private void Update()
+        {
+            Debug.DrawRay(PlayerController.Instance.characterPos,(PlayerController.Instance.aim.normalized)* 35f);
+        }
 
         public IEnumerator SwordSlash()
         {
@@ -70,12 +74,16 @@ namespace Character.Skills
         { 
             PlayerController.Instance.FreezeCharacter();
             PlayerController.Instance.DisableInputs();
+            
+            List<RaycastHit2D> hit = new ();
+            ContactFilter2D filter = new ContactFilter2D();
+            filter.SetLayerMask(LayerMask.GetMask("Moule","Crevette","Canonnier"));
+            Physics2D.BoxCast(PlayerController.Instance.characterPos, Vector2.one, BookPosition.Instance.directionAngle,PlayerController.Instance.aim, filter, hit);
 
-            RaycastHit2D hit;
-            // hit = Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(1,1), PlayerController.Instance.,
-            //     Quaternion.identity, 40f);
-            
-            
+            foreach (var item in hit)
+            {
+                Debug.Log(item.transform.name);
+            }
 
             laserBeam.SetPosition(0,bookPos);
             laserBeam.SetPosition(1,(Vector2)bookPos + dir);
