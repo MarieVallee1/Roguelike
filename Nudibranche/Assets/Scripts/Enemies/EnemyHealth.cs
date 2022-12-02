@@ -9,7 +9,7 @@ namespace Enemies
     {
         public Animator[] animators;
         public ParticleSystem fxDamages;
-    
+        
         [SerializeField] private Enemy enemy;
         [SerializeField] private Perle perleBlancheData;
         [SerializeField] private Perle perleRougeData;
