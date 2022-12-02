@@ -19,6 +19,11 @@ namespace Character.Skills
     
         [SerializeField] private LineRenderer laserBeam;
 
+        private void Awake()
+        {
+            
+        }
+
         private void Update()
         {
             Debug.DrawRay(PlayerController.Instance.characterPos,(PlayerController.Instance.aim.normalized)* 35f);
@@ -78,7 +83,7 @@ namespace Character.Skills
             List<RaycastHit2D> hit = new ();
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(LayerMask.GetMask("Moule","Crevette","Canonnier"));
-            Physics2D.BoxCast(PlayerController.Instance.characterPos, Vector2.one, BookPosition.Instance.directionAngle,PlayerController.Instance.aim, filter, hit);
+            Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(3,3), BookPosition.Instance.directionAngle,PlayerController.Instance.aim, filter, hit);
 
             foreach (var item in hit)
             {
