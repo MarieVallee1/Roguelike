@@ -14,14 +14,16 @@ namespace Character.Skills
         public float cardLaserCooldown;
         [HideInInspector]public float cooldownReduction = 1;
         private List<EnemyHealth> _enemiesInSight;
+        private List<RaycastHit2D> _hit;
+        private ContactFilter2D _filter;
     
         [SerializeField] private GameObject bait;
-    
-        [SerializeField] private LineRenderer laserBeam;
 
         private void Awake()
-        {
-            
+        { 
+            _hit = new ();
+            _filter = new ContactFilter2D();
+            _filter.SetLayerMask(LayerMask.GetMask("Moule","Crevette","Canonnier"));
         }
 
         private void Update()
@@ -47,20 +49,19 @@ namespace Character.Skills
         
             for (int i = 0; i < _enemiesInSight.Count; i++)
             {
-                _enemiesInSight[i].takeDamage(3);
+                _enemiesInSight[i].takeDamage(PlayerController.Instance.characterData.swordSlashDamages);
             }
             yield return new WaitForSeconds(2f);
         
             PlayerController.Instance.onSkillUse = false;
-            PlayerController.Instance.skillCooldown = swordSlashCooldown/cooldownReduction;
+            PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.swordSlashCooldown/cooldownReduction;
         
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
+            PlayerController.Instance.skillCountdown = 0;
         }
         public void WrongTrack(Vector3 playerPos)
-        { 
-            PlayerController.Instance.FreezeCharacter();
-            PlayerController.Instance.DisableInputs();
+        {
             string baitRef = bait.name;
             GameObject usedProjectile = PoolingSystem.instance.GetObject(baitRef);
        
@@ -70,35 +71,30 @@ namespace Character.Skills
                 usedProjectile.transform.position = playerPos;
                 usedProjectile.SetActive(true);
            
-                PlayerController.Instance.skillCooldown = wrongTrackCooldown/cooldownReduction;
+                PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.baitCooldown/cooldownReduction;
+                PlayerController.Instance.skillCountdown = 0;
             }
-            PlayerController.Instance.UnfreezeCharacter();
-            PlayerController.Instance.EnableInputs();
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
         { 
             PlayerController.Instance.FreezeCharacter();
             PlayerController.Instance.DisableInputs();
             
-            List<RaycastHit2D> hit = new ();
-            ContactFilter2D filter = new ContactFilter2D();
-            filter.SetLayerMask(LayerMask.GetMask("Moule","Crevette","Canonnier"));
-            Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(3,3), BookPosition.Instance.directionAngle,PlayerController.Instance.aim, filter, hit);
+            Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(3,3), BookPosition.Instance.directionAngle,PlayerController.Instance.aim, _filter, _hit);
 
-            foreach (var item in hit)
+
+            for (int i = 0; i < _hit.Count; i++)
             {
-                Debug.Log(item.transform.name);
+                _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
             }
 
-            laserBeam.SetPosition(0,bookPos);
-            laserBeam.SetPosition(1,(Vector2)bookPos + dir);
-        
             yield return new WaitForSeconds(2);
         
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
         
-            PlayerController.Instance.skillCooldown = cardLaserCooldown/cooldownReduction;
+            PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.cardLaserCooldown/cooldownReduction;
+            PlayerController.Instance.skillCountdown = 0;
         }
     }
 }

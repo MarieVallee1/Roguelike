@@ -56,7 +56,7 @@ namespace Character
 
         private float _nextTimeParry;
         private float _parryLifeTime;
-        private float _skillCountdown;
+        public float skillCountdown;
         private float _blastCooldown;
         public float reloadCountdown = 2f;
         
@@ -188,7 +188,7 @@ namespace Character
             }
             
             characterPos = _tr.position;
-            _skillCountdown += Time.deltaTime;
+            skillCountdown += Time.deltaTime;
         }
         private void FixedUpdate()
         {
@@ -393,7 +393,7 @@ namespace Character
         }
         private void HandleSkillUse()
         {
-            if(characterInputs.Character.Skill.triggered && _skillCountdown > skillCooldown)
+            if(characterInputs.Character.Skill.triggered && skillCountdown > skillCooldown)
             {
                 switch (skillIndex)
                 {
