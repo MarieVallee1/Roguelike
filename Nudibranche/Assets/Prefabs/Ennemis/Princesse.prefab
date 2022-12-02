@@ -323,7 +323,8 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   healthGauge: {fileID: 0}
-  animator: {fileID: 0}
+  animators: []
+  visuals: []
   vfxDamage: {fileID: 613208040128684443}
 --- !u!50 &7311035146840275627
 Rigidbody2D:
@@ -372,6 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9167224970883765851}
+  - component: {fileID: 438981685469652000}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -397,6 +399,17 @@ Transform:
   m_Father: {fileID: 5242538878400419344}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &438981685469652000
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9055052243864948234}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1001 &962837263185998563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -657,12 +670,12 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
