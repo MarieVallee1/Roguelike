@@ -58,7 +58,6 @@ public class Boss : MonoBehaviour
     
     [Header("Visuels")] 
     [SerializeField] private Animator[] animators;
-
     [SerializeField] private GameObject[] visuals;
 
     [SerializeField] private ParticleSystem vfxDamage;
@@ -102,30 +101,30 @@ public class Boss : MonoBehaviour
             if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timerForRush >= rushTimer)
             {
                 behaviour = Behaviour.rush;
-                for (int i = 0; i < animators.Length; i++)
-                {
-                    animators[i].SetBool("Ruée", true);
-                }
                 rushTarget = target.position;
                 timerForRush = 0;
             }
             
-            if (Vector2.Distance(target.position, princessFeet.position) <= attackRange)
+            if (Vector2.Distance(target.position, princessFeet.position) <= attackRange && timerForAttack >= attackTimer)
             {
                 behaviour = Behaviour.hit;
-                for (int i = 0; i < animators.Length; i++)
-                {
-                    animators[i].SetTrigger("Attaque");
-                }
                 timerForAttack = 0;
             }
         }
 
         if (behaviour == Behaviour.hit)
         {
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Attaque", true);
+            }
             if (Vector2.Distance(target.position, princessFeet.position) > attackRange)
             {
                 behaviour = Behaviour.walk;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attaque", false);
+                }
             }
             else
             {
@@ -133,7 +132,7 @@ public class Boss : MonoBehaviour
                 {
                     for (int i = 0; i < animators.Length; i++)
                     {
-                        animators[i].SetTrigger("Attaque");
+                        animators[i].SetBool("Attaque", true);
                     }
                     timerForAttack = 0;
                 }
@@ -142,10 +141,14 @@ public class Boss : MonoBehaviour
         
         if (behaviour == Behaviour.rush)
         {
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].SetBool("Ruée", true);
+            }
             Vector2 force = (rushTarget - (Vector2)princessFeet.transform.position).normalized * rushSpeed * Time.deltaTime;
             rb.AddForce(force, ForceMode2D.Force);
 
-            if (Vector2.Distance(rushTarget, princessFeet.position) <= 1)
+            if (Vector2.Distance(rushTarget, princessFeet.position) <= 1 )
             {
                 for (int i = 0; i < animators.Length; i++)
                 {
@@ -154,7 +157,7 @@ public class Boss : MonoBehaviour
                 behaviour = Behaviour.hit;
                 for (int i = 0; i < animators.Length; i++)
                 {
-                    animators[i].SetTrigger("Attaque");
+                    animators[i].SetBool("Attaque", true);
                 }
                 timerForAttack = 0;
             }

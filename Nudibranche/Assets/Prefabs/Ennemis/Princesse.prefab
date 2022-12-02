@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5242538878400419344
 Transform:
   m_ObjectHideFlags: 0
@@ -291,8 +291,8 @@ MonoBehaviour:
   rushSpeed: 1300
   rushRange: 6
   rushTimer: 4
-  tourbillonEveryXDamages: 3
-  circleCenter: {fileID: 0}
+  tourbillonEveryXDamages: 20
+  circleCenter: {fileID: 5242538878400419344}
   nbOursinsFirstCircle: 8
   firstCircleRadius: 4.5
   nbOursinsSecondCircle: 8
@@ -323,8 +323,14 @@ MonoBehaviour:
   maxHealth: 100
   health: 0
   healthGauge: {fileID: 0}
-  animators: []
-  visuals: []
+  animators:
+  - {fileID: 1053413791}
+  - {fileID: 686514272}
+  - {fileID: 2144010545}
+  visuals:
+  - {fileID: 1777273066144910598}
+  - {fileID: 4605287719885865265}
+  - {fileID: 773318123509732190}
   vfxDamage: {fileID: 613208040128684443}
 --- !u!50 &7311035146840275627
 Rigidbody2D:
@@ -738,7 +744,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641375124958495623}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
