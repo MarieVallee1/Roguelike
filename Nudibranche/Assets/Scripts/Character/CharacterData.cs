@@ -35,6 +35,16 @@ namespace Character
         public float speedBuff;
         [Range(0f, 50f)]
         public float repulsionForce;
+
+        [Header("Skills")] 
+        public float swordSlashCooldown;
+        public float cardLaserCooldown;
+        public float baitCooldown;
+        
+        public int swordSlashDamages;
+        public int cardLaserDamages;
+        public float baitDuration;
+        
     }
 
     [Serializable]
