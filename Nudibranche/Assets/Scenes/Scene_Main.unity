@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &291256499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2666507814033898425, guid: af43d4320b8594b499e964455fa9b3da,
+    type: 3}
+  m_PrefabInstance: {fileID: 1783035715}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb19d9b5a1f5c8747b907a52f555505a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &302066124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5935839144347847451, guid: 052a7db688c5afb4e9c680e40790bdca,
@@ -833,7 +845,7 @@ PrefabInstance:
     - target: {fileID: 5935839145617098054, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -31.899994
+      value: -31.900024
       objectReference: {fileID: 0}
     - target: {fileID: 5935839145700049764, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
@@ -1052,6 +1064,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6395823856072024633, guid: af43d4320b8594b499e964455fa9b3da,
+        type: 3}
+      propertyPath: inShop.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6395823856072024633, guid: af43d4320b8594b499e964455fa9b3da,
+        type: 3}
+      propertyPath: inShop.Array.data[7]
+      value: 
+      objectReference: {fileID: 291256499}
+    - target: {fileID: 6395823856072024633, guid: af43d4320b8594b499e964455fa9b3da,
+        type: 3}
+      propertyPath: onRoomEntrance.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6395823856072024633, guid: af43d4320b8594b499e964455fa9b3da,
+        type: 3}
+      propertyPath: onRoomEntrance.Array.data[1]
+      value: 
+      objectReference: {fileID: 291256499}
     - target: {fileID: 6395823856072024638, guid: af43d4320b8594b499e964455fa9b3da,
         type: 3}
       propertyPath: m_Name
