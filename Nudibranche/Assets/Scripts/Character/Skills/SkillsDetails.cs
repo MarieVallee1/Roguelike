@@ -58,6 +58,7 @@ namespace Character.Skills
         
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
+            PlayerController.Instance.skillCountdown = 0;
         }
         public void WrongTrack(Vector3 playerPos)
         {
@@ -71,6 +72,7 @@ namespace Character.Skills
                 usedProjectile.SetActive(true);
            
                 PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.baitCooldown/cooldownReduction;
+                PlayerController.Instance.skillCountdown = 0;
             }
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
@@ -84,7 +86,6 @@ namespace Character.Skills
             for (int i = 0; i < _hit.Count; i++)
             {
                 _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
-                Debug.Log(2);
             }
 
             yield return new WaitForSeconds(2);
@@ -93,6 +94,7 @@ namespace Character.Skills
             PlayerController.Instance.EnableInputs();
         
             PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.cardLaserCooldown/cooldownReduction;
+            PlayerController.Instance.skillCountdown = 0;
         }
     }
 }
