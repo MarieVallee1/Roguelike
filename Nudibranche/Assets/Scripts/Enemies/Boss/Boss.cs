@@ -150,16 +150,16 @@ public class Boss : MonoBehaviour
 
             if (Vector2.Distance(rushTarget, princessFeet.position) <= 1 )
             {
-                for (int i = 0; i < animators.Length; i++)
-                {
-                    animators[i].SetBool("Ruée", false);
-                }
                 behaviour = Behaviour.hit;
                 for (int i = 0; i < animators.Length; i++)
                 {
                     animators[i].SetBool("Attaque", true);
                 }
                 timerForAttack = 0;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Ruée", false);
+                }
             }
         }
     }

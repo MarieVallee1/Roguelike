@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5242538878400419344
 Transform:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
   speed: 150
   princessFeet: {fileID: 2778496886318315116}
   behaviour: 0
-  attackRange: 3
+  attackRange: 4
   attackTimer: 2
   rushSpeed: 1300
   rushRange: 6
@@ -722,6 +722,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371470905829679883, guid: f0bcd0f85540c4d44b2c804d02719fdf,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6890252334926130033, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
