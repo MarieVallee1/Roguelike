@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace GenPro
@@ -869,21 +867,25 @@ namespace GenPro
                     if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
                     if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
                     if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
+                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Right:
                     if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
                     if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
                     if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
+                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Down:
                     if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
                     if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
                     if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
+                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Left:
                     if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
                     if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
                     if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
+                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
             }
         }
