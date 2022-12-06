@@ -12,6 +12,7 @@ namespace System
         public static GameManager instance;
         public Camera mainCamera;
         public Slider bossGauge;
+        [SerializeField] private Animator blackScreenAnim;
         
         
         [Header("Perles")]
@@ -42,6 +43,7 @@ namespace System
         }
         void Start()
         {
+            blackScreenAnim.SetTrigger("FadeIt");
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             //pearlAmountText.text = 0 + "";

@@ -56,6 +56,12 @@ public class UIManager : MonoBehaviour
                 portraits[1].SetActive(false);
                 portraits[2].SetActive(true);
                 break;
+            
+            default:
+                portraits[0].SetActive(false);
+                portraits[1].SetActive(false);
+                portraits[2].SetActive(false);
+                break;
         }
     }
     

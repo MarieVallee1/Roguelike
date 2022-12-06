@@ -31,6 +31,7 @@ namespace Character
         [Header("Parry Related")]
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private ParticleSystem parryFeedback;
+        [SerializeField] private ParticleSystem parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
         
         [Header("Character Visuals Related")]
@@ -108,6 +109,9 @@ namespace Character
             vulnerable = true;
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
+            
+            //Set the skill to null
+            skillIndex = 4;
         }
 
         
@@ -156,7 +160,13 @@ namespace Character
             
             characterInputs.Character.Parry.performed += ctx =>
             {
-                if (ParryCooldown() && !onParry) onParry = true;
+                if (ParryCooldown() && !onParry)
+                {
+                    //Plays a VFX when you parry
+                    parryActivationVFX.Play();
+                    
+                    onParry = true;
+                }
             };
             
             //Use the current consumable 
@@ -173,6 +183,7 @@ namespace Character
         
         private void Update()
         {
+            HandleParry();
             HandleMouseLook();
             RestrictMousePos();
             Flip();
@@ -200,7 +211,6 @@ namespace Character
             }
 
             HandleMovement();
-            HandleParry();
             HandleSkillUse();
         }
         
@@ -344,6 +354,8 @@ namespace Character
         {
             if (onParry)
             {
+                
+
                 //Handle the parry animation for all faces
                 for (int i = 0; i < animator.Length; i++)
                 {
@@ -421,6 +433,7 @@ namespace Character
             UIManager.instance.BlackScreenFade();
             yield return new WaitForSeconds(1f);
             _tr.position = startRoomTp.position;
+            GameManager.instance.ReloadStart();
             yield return new WaitForSeconds(1f);
             UIManager.instance.BlackScreenFade();
         }

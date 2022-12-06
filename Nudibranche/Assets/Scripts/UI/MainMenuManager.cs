@@ -161,19 +161,19 @@ namespace UI
             {
                 case "PlayButton":
                 {
-                    cursor.DOAnchorPosY(0, 0.5f);
+                    cursor.DOAnchorPosY(279, 0.5f);
                 }
                     break;
             
                 case "OptionsButton":
                 {
-                    cursor.DOAnchorPosY(-80, 0.5f);
+                    cursor.DOAnchorPosY(205, 0.5f);
                 }
                     break;
             
                 case "QuitButton":
                 {
-                    cursor.DOAnchorPosY(-160, 0.5f);
+                    cursor.DOAnchorPosY(126, 0.5f);
                 }
                     break;
             }
