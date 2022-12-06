@@ -864,27 +864,27 @@ namespace GenPro
             switch (side)
             {
                 case Side.Up:
-                    if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
-                    if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
-                    if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
+                    if (refEntry.entreeNord != default) _nextSide = Side.Up;
+                    if (refEntry.entreeEst != default) _nextSide = Side.Right;
+                    if (refEntry.entreeOuest != default) _nextSide = Side.Left;
                     Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Right:
-                    if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
-                    if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
-                    if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
+                    if (refEntry.entreeNord != default) _nextSide = Side.Up;
+                    if (refEntry.entreeEst != default) _nextSide = Side.Right;
+                    if (refEntry.entreeSud != default) _nextSide = Side.Down;
                     Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Down:
-                    if (refEntry.entreeEst.gameObject != null) _nextSide = Side.Right;
-                    if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
-                    if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
+                    if (refEntry.entreeEst != default) _nextSide = Side.Right;
+                    if (refEntry.entreeSud != default) _nextSide = Side.Down;
+                    if (refEntry.entreeOuest != default) _nextSide = Side.Left;
                     Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Left:
-                    if (refEntry.entreeNord.gameObject != null) _nextSide = Side.Up;
-                    if (refEntry.entreeSud.gameObject != null) _nextSide = Side.Down;
-                    if (refEntry.entreeOuest.gameObject != null) _nextSide = Side.Left;
+                    if (refEntry.entreeNord != default) _nextSide = Side.Up;
+                    if (refEntry.entreeSud != default) _nextSide = Side.Down;
+                    if (refEntry.entreeOuest != default) _nextSide = Side.Left;
                     Debug.Log("Remaining entry : " +_nextSide);
                     break;
             }
@@ -949,7 +949,10 @@ namespace GenPro
                     while (entrySide!=Side.Down)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud.gameObject!=null)
+                        Debug.Log(_currentRoomPool);
+                        Debug.Log(_currentRoomPool[_chosenRoom]);
+                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud);
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud!=default)
                             entrySide = Side.Down;
                     }
                     break;
@@ -957,7 +960,10 @@ namespace GenPro
                     while (entrySide!=Side.Left)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest.gameObject!=null)
+                        Debug.Log(_currentRoomPool);
+                        Debug.Log(_currentRoomPool[_chosenRoom]);
+                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest);
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest != default)
                             entrySide = Side.Left;
                     }
                     break;
@@ -965,7 +971,10 @@ namespace GenPro
                     while (entrySide!=Side.Up)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord.gameObject!=null)
+                        Debug.Log(_currentRoomPool);
+                        Debug.Log(_currentRoomPool[_chosenRoom]);
+                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord);
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord != default)
                             entrySide = Side.Up;
                     }
                     break;
@@ -973,7 +982,10 @@ namespace GenPro
                     while (entrySide!=Side.Right)
                     {
                         PickARoomAtRandom();
-                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst.gameObject!=null)
+                        Debug.Log(_currentRoomPool);
+                        Debug.Log(_currentRoomPool[_chosenRoom]);
+                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst);
+                        if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst != default)
                             entrySide = Side.Right;
                     }
                     break;
