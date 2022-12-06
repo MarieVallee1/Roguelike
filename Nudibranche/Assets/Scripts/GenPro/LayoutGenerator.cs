@@ -867,25 +867,21 @@ namespace GenPro
                     if (refEntry.entreeNord != default) _nextSide = Side.Up;
                     if (refEntry.entreeEst != default) _nextSide = Side.Right;
                     if (refEntry.entreeOuest != default) _nextSide = Side.Left;
-                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Right:
                     if (refEntry.entreeNord != default) _nextSide = Side.Up;
                     if (refEntry.entreeEst != default) _nextSide = Side.Right;
                     if (refEntry.entreeSud != default) _nextSide = Side.Down;
-                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Down:
                     if (refEntry.entreeEst != default) _nextSide = Side.Right;
                     if (refEntry.entreeSud != default) _nextSide = Side.Down;
                     if (refEntry.entreeOuest != default) _nextSide = Side.Left;
-                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
                 case Side.Left:
                     if (refEntry.entreeNord != default) _nextSide = Side.Up;
                     if (refEntry.entreeSud != default) _nextSide = Side.Down;
                     if (refEntry.entreeOuest != default) _nextSide = Side.Left;
-                    Debug.Log("Remaining entry : " +_nextSide);
                     break;
             }
         }
@@ -949,9 +945,6 @@ namespace GenPro
                     while (entrySide!=Side.Down)
                     {
                         PickARoomAtRandom();
-                        Debug.Log(_currentRoomPool);
-                        Debug.Log(_currentRoomPool[_chosenRoom]);
-                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud);
                         if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeSud!=default)
                             entrySide = Side.Down;
                     }
@@ -960,9 +953,6 @@ namespace GenPro
                     while (entrySide!=Side.Left)
                     {
                         PickARoomAtRandom();
-                        Debug.Log(_currentRoomPool);
-                        Debug.Log(_currentRoomPool[_chosenRoom]);
-                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest);
                         if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeOuest != default)
                             entrySide = Side.Left;
                     }
@@ -971,9 +961,6 @@ namespace GenPro
                     while (entrySide!=Side.Up)
                     {
                         PickARoomAtRandom();
-                        Debug.Log(_currentRoomPool);
-                        Debug.Log(_currentRoomPool[_chosenRoom]);
-                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord);
                         if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeNord != default)
                             entrySide = Side.Up;
                     }
@@ -982,9 +969,6 @@ namespace GenPro
                     while (entrySide!=Side.Right)
                     {
                         PickARoomAtRandom();
-                        Debug.Log(_currentRoomPool);
-                        Debug.Log(_currentRoomPool[_chosenRoom]);
-                        Debug.Log(_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst);
                         if (_currentRoomPool[_chosenRoom].GetComponent<RefEntry>().entreeEst != default)
                             entrySide = Side.Right;
                     }
@@ -1302,17 +1286,16 @@ namespace GenPro
             PlaceCharacterRoom(_lastRoomIndex,_nextSide);
         }
 
-        [Header("Debug")] [SerializeField] private bool activateAll;
-
-        private void Update()
-        {
-            if (!activateAll) return;
-            foreach (var salle in listSalle)
-            {
-                salle.GetComponent<RoomManager>()?.Activate();
-            }
-
-            activateAll = false;
-        }
+        // [Header("Debug")] [SerializeField] private bool activateAll;
+        // private void Update()
+        // {
+        //     if (!activateAll) return;
+        //     foreach (var salle in listSalle)
+        //     {
+        //         salle.GetComponent<RoomManager>()?.Activate();
+        //     }
+        //
+        //     activateAll = false;
+        // }
     }
 }
