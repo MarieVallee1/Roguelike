@@ -22,6 +22,7 @@ namespace Character
         public SkillsDetails skills;
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform startRoomTp;
+        [SerializeField] private Transform dashPosition;
         
         [Header("Book Related")]
         [SerializeField] private GameObject book;
@@ -49,6 +50,7 @@ namespace Character
         [HideInInspector] public Vector2 shootDir;
         
         [HideInInspector] public float nextTimeShoot;
+        [HideInInspector] public float nextTimeDash;
         
         [Header("Number of Projectile Left")]
         public int remainingProjectile;
@@ -190,6 +192,7 @@ namespace Character
             HandleSpriteRotation();
             ParryCooldown();
             AttackCooldown();
+            DashCooldown();
             BlastReload();
             
             if (remainingProjectile <= 0)
@@ -198,6 +201,15 @@ namespace Character
                 BlastCooldown(_blastCooldown);
             }
             
+            if (DashCooldown())
+            {
+                Debug.Log("Cooldown Reset");
+                if (characterInputs.Character.Dash.triggered)
+                {
+                    HandleDashUse();
+                }
+            }
+
             characterPos = _tr.position;
             skillCountdown += Time.deltaTime;
         }
@@ -209,7 +221,7 @@ namespace Character
             {
                 bookAnim.SetBool("isShooting", false);
             }
-
+            
             HandleMovement();
             HandleSkillUse();
         }
@@ -428,6 +440,13 @@ namespace Character
             };
         }
 
+        private void HandleDashUse()
+        {
+            _tr.position = dashPosition.position;
+            Debug.Log("I Dash");
+            nextTimeDash = Time.time + characterData.dashCooldown;
+        }
+
         private IEnumerator HandleTeleportation()
         {
             UIManager.instance.BlackScreenFade();
@@ -443,6 +462,12 @@ namespace Character
         {
             //Handles the cooldown of the basic attack
             if(Time.time > nextTimeShoot) return true;
+            return false;
+        }
+        private bool DashCooldown()
+        {
+            //Handles the cooldown of the basic attack
+            if(Time.time > nextTimeDash) return true;
             return false;
         }
         private void BlastCooldown(float nextTimeBlast)

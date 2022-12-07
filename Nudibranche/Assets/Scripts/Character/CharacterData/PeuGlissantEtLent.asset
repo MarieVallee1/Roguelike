@@ -17,15 +17,16 @@ MonoBehaviour:
   drag: 10
   health: 3
   invulnerabilityDuration: 2
+  dashCooldown: 0.8
   projectileIndex: 0
   usedProjectile:
   - usedProjectileName: BasicAttack
-    fireRate: 0.17
+    fireRate: 0
     projectileSize: 0
     projectileSpeed: 0.2
     damage: 1
-    blastLenght: 3
-    blastCooldown: 1.4
+    blastLenght: 1
+    blastCooldown: 0.08
     projectileAcceleration:
       serializedVersion: 2
       m_Curve:

@@ -18,6 +18,8 @@ namespace Character
         public int health;
         [Range(0f, 10f)]
         public int invulnerabilityDuration;
+        [Range(0f, 10f)]
+        public float dashCooldown;
 
         [Header("Projectile")]
         [Tooltip("Define the element you're using in the list")]
