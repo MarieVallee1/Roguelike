@@ -194,6 +194,7 @@ namespace Character
             AttackCooldown();
             DashCooldown();
             BlastReload();
+            HandleSkillUse();
             
             if (remainingProjectile <= 0)
             {
@@ -223,7 +224,6 @@ namespace Character
             }
             
             HandleMovement();
-            HandleSkillUse();
         }
         
         
@@ -443,7 +443,12 @@ namespace Character
         private void HandleDashUse()
         {
             _tr.position = dashPosition.position;
+            
             Debug.Log("I Dash");
+            
+            //Play VFX
+            if(parryFeedback.isStopped) parryFeedback.Play();
+            
             nextTimeDash = Time.time + characterData.dashCooldown;
         }
 

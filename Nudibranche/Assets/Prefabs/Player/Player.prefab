@@ -1845,6 +1845,7 @@ MonoBehaviour:
   skills: {fileID: 698743843}
   cursor: {fileID: 2767891642204286396}
   startRoomTp: {fileID: 0}
+  dashPosition: {fileID: 1509456183685288232}
   book: {fileID: 376476937253063424}
   bookPos: {fileID: 2767891642094965161}
   bookAnim: {fileID: 568359633}
@@ -1866,6 +1867,7 @@ MonoBehaviour:
   characterPos: {x: 0, y: 0}
   shootDir: {x: 0, y: 0}
   nextTimeShoot: 0
+  nextTimeDash: 0
   remainingProjectile: 0
   skillIndex: 0
   skillCountdown: 0
@@ -3584,7 +3586,7 @@ Transform:
   m_GameObject: {fileID: 2767891643500748332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7192627895420522110}
@@ -4203,10 +4205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa85da800c7e03449a78d719ba46e864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseDistanceModifier: 5
+  mouseDistanceModifier: 2
   gamepadDistanceModifier: 2
-  rangeX: 6
-  rangeY: 6
+  rangeX: 12
+  rangeY: 12
 --- !u!1 &7409198216959796211
 GameObject:
   m_ObjectHideFlags: 0
