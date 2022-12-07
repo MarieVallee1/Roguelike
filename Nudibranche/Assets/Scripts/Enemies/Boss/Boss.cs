@@ -89,6 +89,7 @@ public class Boss : MonoBehaviour
         {
             Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * (speed * Time.deltaTime);
             rb.AddForce(force, ForceMode2D.Force);
+            HandleSpriteRotation(target.position - princessFeet.position);
         }
         
         if (canTourbillon)
@@ -279,4 +280,38 @@ public class Boss : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    
+    void HandleSpriteRotation(Vector2 direction)
+        {
+            if (Vector2.Angle(Vector2.down, direction) <= 30)
+            {
+                visuals[0].SetActive(false);
+                visuals[1].SetActive(true);
+                visuals[2].SetActive(false);
+            }
+    
+            if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                visuals[0].SetActive(true);
+                visuals[1].SetActive(false);
+                visuals[2].SetActive(false);
+                
+                if (Vector2.Angle(Vector2.left, direction) >= 90)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+            }
+    
+            if (Vector2.Angle(Vector2.down,direction) >= 150)
+            {
+                visuals[0].SetActive(false);
+                visuals[1].SetActive(false);
+                visuals[2].SetActive(true);
+            }
+        }
 }
