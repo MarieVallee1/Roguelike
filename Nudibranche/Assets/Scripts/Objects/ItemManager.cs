@@ -31,9 +31,9 @@ namespace Objects
             Instance = this;
 
             var i = 0;
-            for (; i < inShop.Count; i++)
+            for (; i < consumable.Length; i++)
             {
-                inShop[i].consumableIndex = i;
+                consumable[i].consumableIndex = i;
             }
         }
 
@@ -121,7 +121,12 @@ namespace Objects
         
         public void SpawnConsumable(int index)
         {
-            Instantiate(onUse[index].gameObject, PlayerController.Instance.transform.position, Quaternion.identity);
+            Instantiate(consumable[index].gameObject, PlayerController.Instance.transform.position, Quaternion.identity);
+        }
+
+        public Reward ConsumableInfo()
+        {
+            return consumable[lastConsumable];
         }
     }
 }

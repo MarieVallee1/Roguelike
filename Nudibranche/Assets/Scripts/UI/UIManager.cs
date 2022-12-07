@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            objectInfo.text = "" + ItemManager.Instance.lastConsumable;
+            objectInfo.text = "" + ItemManager.Instance.ConsumableInfo().stats.objectName;
         }
     }
     
