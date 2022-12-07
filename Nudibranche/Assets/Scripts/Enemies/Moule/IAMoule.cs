@@ -38,7 +38,6 @@ public class IAMoule : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        //target = PlayerController.instance.transform;
         target = PlayerController.Instance.transform.GetChild(6);
 
         InvokeRepeating("UpdatePath", 0, .5f);  
@@ -128,12 +127,12 @@ public class IAMoule : MonoBehaviour
             pathUpdated = false;
         }
         
+        AttaqueRange();
+
         if (!isAttacking)
         {
             HandleSpriteRotation(rb.velocity);
         }
-
-        AttaqueRange();
 
         VisibleByCamera();
 
@@ -166,7 +165,7 @@ public class IAMoule : MonoBehaviour
         {
             if (!isAttacking)
             {
-                HandleSpriteRotation(target.position - mouleFeet.position); 
+                HandleSpriteRotation(target.position - mouleFeet.position);
             }
             cac = true;
             stopPathfinding = true;
@@ -178,7 +177,10 @@ public class IAMoule : MonoBehaviour
         }
         else
         {
-            cac = false;
+            if (!isAttacking)
+            {
+                cac = false;
+            }
         }
     }
     public void InflictDamages()
@@ -189,7 +191,7 @@ public class IAMoule : MonoBehaviour
         }
     }
 
-    public void AttackEnded()
+   public void AttackEnded()
     {
         if (!cac)
         {
