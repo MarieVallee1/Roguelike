@@ -342,21 +342,10 @@ namespace Character
             yield return new WaitForSeconds(0.2f);
             //Stop detecting enemies
             parryRepulsion.enabled = false;
-                
-            //Unfreeze Character
-            var constraints = _rb.constraints;
-            constraints = RigidbodyConstraints2D.None;
-            constraints = RigidbodyConstraints2D.FreezeRotation;
-            _rb.constraints = constraints;
-            
+
             //Play VFX
             if(parryFeedback.isStopped) parryFeedback.Play();
-            
-            //Slow Time
-            Time.timeScale = 0.7f;
-            yield return new WaitForSeconds(0.3f);
-            Time.timeScale = 1f;
-            
+
             //Activate Buff
             onBuff = true;
             yield return new WaitForSeconds(characterData.buffDuration);
@@ -373,11 +362,9 @@ namespace Character
                 {
                     animator[i].SetBool("isParrying", true);
                 }
-
-                //Freezes the character
-                // _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                // _rb.velocity = Vector2.zero;
-                speed /= 2f;
+                
+                //Slow the character speed
+                speed *= 0.75f;
                 
                 
                 //Decrease the duration of the parry time through time
@@ -389,13 +376,6 @@ namespace Character
             {
                 //Reset the position of the parry cooldown feedback
                 parryCooldown.localScale = new Vector3(1, 1, 1);
-
-                //Unfreezes the character
-                speed = characterData.speed;
-                var constraints = _rb.constraints;
-                constraints = RigidbodyConstraints2D.None;
-                constraints = RigidbodyConstraints2D.FreezeRotation;
-                _rb.constraints = constraints;
 
                 //Scale down the parry cooldown feedback
                 parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
