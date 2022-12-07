@@ -8,10 +8,6 @@ namespace Character.Skills
 {
     public class SkillsDetails : MonoBehaviour
     {
-        [Header("Ability Cooldown")]
-        public float swordSlashCooldown;
-        public float wrongTrackCooldown;
-        public float cardLaserCooldown;
         [HideInInspector]public float cooldownReduction = 1;
         private List<EnemyHealth> _enemiesInSight;
         private List<RaycastHit2D> _hit;

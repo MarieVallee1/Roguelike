@@ -111,7 +111,7 @@ namespace Character
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             
             //Set the skill to null
-            skillIndex = 4;
+            skillIndex = 0;
         }
 
         
@@ -494,7 +494,7 @@ namespace Character
         }
         public void FreezeCharacter()
         {
-            _rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         public void UnfreezeCharacter()
         {
