@@ -22,11 +22,11 @@ public class IAMoule : MonoBehaviour
     public Transform mouleFeet;
     private Camera mainCam;
     private bool isVisible;
-    [SerializeField] private ParticleSystem attackVFX;
-    
+
     // Graph //
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
+    [SerializeField] private ParticleSystem[] attackVFX;
 
     // Combat //
     private bool cac;
@@ -38,7 +38,6 @@ public class IAMoule : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
-        //target = PlayerController.instance.transform;
         target = PlayerController.Instance.transform.GetChild(6);
 
         InvokeRepeating("UpdatePath", 0, .5f);  
@@ -128,12 +127,12 @@ public class IAMoule : MonoBehaviour
             pathUpdated = false;
         }
         
+        AttaqueRange();
+
         if (!isAttacking)
         {
             HandleSpriteRotation(rb.velocity);
         }
-
-        AttaqueRange();
 
         VisibleByCamera();
 
@@ -166,7 +165,7 @@ public class IAMoule : MonoBehaviour
         {
             if (!isAttacking)
             {
-                HandleSpriteRotation(target.position - mouleFeet.position); 
+                HandleSpriteRotation(target.position - mouleFeet.position);
             }
             cac = true;
             stopPathfinding = true;
@@ -178,7 +177,10 @@ public class IAMoule : MonoBehaviour
         }
         else
         {
-            cac = false;
+            if (!isAttacking)
+            {
+                cac = false;
+            }
         }
     }
     public void InflictDamages()
@@ -189,7 +191,7 @@ public class IAMoule : MonoBehaviour
         }
     }
 
-    public void AttackEnded()
+   public void AttackEnded()
     {
         if (!cac)
         {
@@ -250,9 +252,11 @@ public class IAMoule : MonoBehaviour
         //Set the moment when the player can parry the enemy's attack
         isAttacking = !isAttacking;
     }
-
     public void PlayAttackVFX()
     {
-        attackVFX.Play();
+        for (int i = 0; i < attackVFX.Length; i++)
+        {
+            attackVFX[i].Play();
+        }
     }
 } 

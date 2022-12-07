@@ -50,9 +50,6 @@ namespace Ennemy
     //Graph//
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
-    private bool faceFront;
-    private bool faceSide;
-    private bool faceBack;
     [SerializeField] private Transform faceArme;
     [SerializeField] private Transform coteArme;
     [SerializeField] private Transform dosArme;
@@ -62,8 +59,8 @@ namespace Ennemy
     public float projectileDiameter;
     [SerializeField] private CrevetteProjectile usedCrevetteProjectile;
     private bool attaque;
-    public float nextTimeCast;
-    
+    private Transform shotOrigin;
+
     void Start()
     {
         seeker = GetComponent<Seeker>();
@@ -74,6 +71,7 @@ namespace Ennemy
         InvokeRepeating("UpdatePath", 0, .5f);
         pathUpdated = true;
         mainCam = GameManager.instance.mainCamera;
+        shotOrigin = faceArme;
     }
 
     void UpdatePath()
@@ -152,7 +150,6 @@ namespace Ennemy
         }
         
         CalculateShootRange();
-        
     }
     
     void VisibleByCamera()
@@ -169,7 +166,7 @@ namespace Ennemy
         if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
         {
             Vector2 raycastDirection = (target.transform.position) - transform.position;
-            RaycastHit2D raycastHit2D = Physics2D.BoxCast(transform.position,
+            RaycastHit2D raycastHit2D = Physics2D.BoxCast(shotOrigin.position,
                 new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection),
                 raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("ProjectileHitPlayer", "Obstacle"));
             if (raycastHit2D.collider.gameObject.layer == 8)
@@ -192,20 +189,7 @@ namespace Ennemy
                     animators[i].SetBool("Attack", true);
                 }
             }
-            else
-            {
-                StopPathfinding = false;
-                attaque = false;
-                for (int i = 0; i < animators.Length; i++)
-                {
-                    animators[i].SetBool("Attack", false);
-                }
-
-                
-                HandleSpriteRotation(rb.velocity);
-
-            }
-            Debug.DrawRay(transform.position, raycastDirection, Color.red);
+            Debug.DrawRay(shotOrigin.position, raycastDirection, Color.red);
         }
         else
         {
@@ -222,24 +206,15 @@ namespace Ennemy
 
     public void Shoot()
     {
-        HandleSpriteRotation(target.position - transform.position);
-
-        if (faceSide)
-        {
-            usedCrevetteProjectile.CrevetteShooting(this, this.coteArme.position, target.position - transform.position);
-        }
-        else if (faceFront)
-        {
-            usedCrevetteProjectile.CrevetteShooting(this, faceArme.position, target.position - transform.position);
-        }
-        else if (faceBack)
-        {
-            usedCrevetteProjectile.CrevetteShooting(this, this.dosArme.position, target.position - transform.position);
-        }
+        HandleSpriteRotation((target.position - transform.position).normalized);
+        
+        usedCrevetteProjectile.CrevetteShooting(this, this.shotOrigin.position, target.position - transform.position);
     }
 
     void HandleSpriteRotation(Vector2 direction)
     {
+        Debug.DrawRay(transform.position, direction * 3, Color.black);
+        Debug.DrawRay(transform.position, Vector3.down*3, Color.magenta);
         if (spriteRotation)
         {
             if (Vector2.Angle(Vector2.down, direction) <= 30)
@@ -249,22 +224,17 @@ namespace Ennemy
                 visuals[2].SetActive(false);
                 
                 transform.localScale = new Vector3(1, 1, 1);
-            
-                faceSide = false;
-                faceFront = true;
-                faceBack = false;
+                shotOrigin = faceArme;
             }
-
-            if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
+            else
+            if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, direction) > 30)
             {
                 transform.localScale = new Vector3(1, 1, 1);
                 visuals[0].SetActive(true);
                 visuals[1].SetActive(false);
                 visuals[2].SetActive(false);
-
-                faceSide = true;
-                faceFront = false;
-                faceBack = false;
+                
+                shotOrigin = coteArme;
 
                 if (Vector2.Angle(Vector2.left, direction) >= 90)
                 {
@@ -275,7 +245,7 @@ namespace Ennemy
                     transform.localScale = new Vector3(1, 1, 1);
                 }
             }
-
+            else
             if (Vector2.Angle(Vector2.down,direction) >= 150)
             {
                 visuals[0].SetActive(false);
@@ -283,13 +253,10 @@ namespace Ennemy
                 visuals[2].SetActive(true);
                 
                 transform.localScale = new Vector3(1, 1, 1);
-            
-                faceSide = false;
-                faceFront = false;
-                faceBack = true;
-            } 
+                
+                shotOrigin = dosArme;
+            }
         }
-        
     }
 }
 }
