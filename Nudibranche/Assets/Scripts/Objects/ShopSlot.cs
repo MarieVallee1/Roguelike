@@ -73,7 +73,8 @@ namespace Objects
             if (GameManager.instance.pearlAmount < _linkedReward.GetPrice()) return;
             GameManager.instance.pearlAmount -= _linkedReward.GetPrice();
             _linkedReward.isOwned = true;
-            _linkedReward.OnAcquire();
+            if(_linkedReward.stats.consumable) _linkedReward.OnAcquire(true);
+            else _linkedReward.OnAcquire();
             gameObject.SetActive(false);
         }
     }

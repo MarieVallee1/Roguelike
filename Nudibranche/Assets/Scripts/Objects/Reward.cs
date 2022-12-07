@@ -34,5 +34,9 @@ namespace Objects
 
         public virtual void OnUse()
         {}
+        
+        //For Consumable Only : DO NOT USE !
+        public virtual void OnAcquire(bool inShop)
+        {}
     }
 }
