@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Character.Skills;
 using DG.Tweening;
 using Objects;
@@ -39,6 +40,7 @@ namespace Character
         [SerializeField] private Transform characterVisualsTr;
         [SerializeField] private GameObject[] characterFaces;
         [SerializeField] private Animator[] animator;
+        public List<SpriteRenderer> visuals;
 
 
         #region Variables
@@ -111,6 +113,7 @@ namespace Character
             vulnerable = true;
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
+            
             
             //Set the skill to null
             skillIndex = 0;
@@ -265,6 +268,10 @@ namespace Character
         {
             vulnerable = false;
             //Invulnerability duration
+            for (int i = 0; i < visuals.Count; i++)
+            {
+                visuals[i].color = new Color(0, 0, 0,0);
+            }
             yield return new WaitForSeconds(invulnerabilityDuration);
             vulnerable = true;
         }
