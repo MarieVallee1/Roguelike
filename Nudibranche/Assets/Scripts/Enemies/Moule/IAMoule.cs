@@ -15,7 +15,7 @@ public class IAMoule : MonoBehaviour
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
     private Seeker seeker;
-    private Rigidbody2D rb;
+    [SerializeField]private Rigidbody2D rb;
     private bool pathUpdated = true;
     public bool stopPathfinding;
     [SerializeField] private float repulseSpeed = 100;
@@ -37,7 +37,6 @@ public class IAMoule : MonoBehaviour
     private void Start()
     {
         seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
         target = PlayerController.Instance.transform.GetChild(6);
 
         InvokeRepeating("UpdatePath", 0, .5f);  
@@ -49,6 +48,7 @@ public class IAMoule : MonoBehaviour
     private void OnEnable()
     {
         isVisible = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     void UpdatePath()
@@ -222,7 +222,7 @@ public class IAMoule : MonoBehaviour
             visuals[2].SetActive(false);
         }
 
-        if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, rb.velocity) > 30)
+        if (Vector2.Angle(Vector2.down, direction) < 150 && Vector2.Angle(Vector2.down, direction) > 30)
         {
             transform.localScale = new Vector3(1, 1, 1);
             visuals[0].SetActive(true);
