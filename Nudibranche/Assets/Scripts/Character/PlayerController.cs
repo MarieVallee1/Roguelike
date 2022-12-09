@@ -210,7 +210,6 @@ namespace Character
             
             if (DashCooldown())
             {
-                Debug.Log("Cooldown Reset");
                 if (characterInputs.Character.Dash.triggered)
                 {
                     HandleDashUse();
