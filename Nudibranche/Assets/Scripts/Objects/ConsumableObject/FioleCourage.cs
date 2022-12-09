@@ -21,9 +21,11 @@ namespace Objects.ConsumableObject
             var player = PlayerController.Instance;
             player.damage += damageBonus;
             player.fireRate -= fireRateBonus;
+            player.onBuff = true;
             yield return new WaitForSeconds(buffDuration);
             player.damage -= damageBonus;
             player.fireRate += fireRateBonus;
+            player.onBuff = false;
         }
     }
 }

@@ -6,6 +6,7 @@ using DG.Tweening;
 using Objects;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -13,12 +14,16 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private List<GameObject> portraits;
+    [SerializeField] private GameObject pauseMenu;
 
+    [SerializeField] private GameObject objectPanel;
     [SerializeField] private TextMeshProUGUI objectInfo;
     [SerializeField] private ParticleSystem slashEffects;
     [SerializeField] private Animator blackScreen;
     private static readonly int FadeIt = Animator.StringToHash("FadeIt");
 
+
+    public bool pauseMenuOn;
 
     private void Awake()
     {
@@ -33,8 +38,15 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         UpdateSkillInfo();
+        pauseMenuOn = false;
     }
-    
+
+    private void Update()
+    {
+        if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
+        if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn) ClosePauseMenu();
+    }
+
     public void UpdateSkillInfo()
     {
         switch (PlayerController.Instance.skillIndex)
@@ -64,23 +76,27 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
-    
     public void UpdateObjectInfo()
     {
         //Displays the object index if the player has an object
         if (ItemManager.Instance.lastConsumable < 0)
         {
-            objectInfo.text = "Null";
+            objectPanel.SetActive(false);
         }
         else
         {
+            objectPanel.gameObject.SetActive(true);
             objectInfo.text = "" + ItemManager.Instance.ConsumableInfo().stats.objectName;
         }
     }
     
-    public void BlackScreenFade()
+    public void BlackScreenFadeIn()
     {
-        blackScreen.SetTrigger(FadeIt);
+        blackScreen.SetBool("Faded", false);
+    } 
+    public void BlackScreenFadeOut()
+    {
+        blackScreen.SetBool("Faded", true);
     } 
 
     public IEnumerator ScieRanoSlash()
@@ -93,4 +109,25 @@ public class UIManager : MonoBehaviour
         blackScreen.SetTrigger(FadeIt);
     }
     
+    private void OpenPauseMenu()
+    {
+        pauseMenuOn = true;
+        pauseMenu.SetActive(true);
+        PlayerController.Instance.DisableInputs();
+        Cursor.visible = true;
+        TargetCursor.instance.enabled = false;
+    }
+    public void ClosePauseMenu()
+    {
+        pauseMenuOn = false;
+        pauseMenu.SetActive(false);
+        PlayerController.Instance.EnableInputs();
+        Cursor.visible = false;
+        TargetCursor.instance.enabled = true;
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("Scene_MainMenu");
+    }
 }

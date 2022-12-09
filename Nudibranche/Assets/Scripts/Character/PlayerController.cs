@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Character.Skills;
 using DG.Tweening;
 using Objects;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Character
@@ -39,6 +41,7 @@ namespace Character
         [SerializeField] private Transform characterVisualsTr;
         [SerializeField] private GameObject[] characterFaces;
         [SerializeField] private Animator[] animator;
+        public List<SpriteRenderer> visuals;
 
 
         #region Variables
@@ -112,8 +115,9 @@ namespace Character
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             
+            
             //Set the skill to null
-            skillIndex = 0;
+            skillIndex = 1;
         }
 
         
@@ -195,6 +199,8 @@ namespace Character
             DashCooldown();
             BlastReload();
             HandleSkillUse();
+
+            if (health <= 0) StartCoroutine(PlayerDeath());
             
             if (remainingProjectile <= 0)
             {
@@ -204,7 +210,6 @@ namespace Character
             
             if (DashCooldown())
             {
-                Debug.Log("Cooldown Reset");
                 if (characterInputs.Character.Dash.triggered)
                 {
                     HandleDashUse();
@@ -238,14 +243,6 @@ namespace Character
             {
                 if (vulnerable)
                 {
-                    //Debugs Death
-                    if (health <= 0)
-                    {
-                        print("I'm Dead");
-                        health = characterData.health;
-                        health = 0;
-                    }
-                
                     //Make the character invulnerable for a certain time
                     StartCoroutine(InvulnerabilityFrame(characterData.invulnerabilityDuration));
                     
@@ -263,12 +260,51 @@ namespace Character
         }      
         private IEnumerator InvulnerabilityFrame(float invulnerabilityDuration)
         {
+            PostProcessing.Instance._chromaticAberration.intensity.value = 1;
+            CinemachineShake.instance.ShakeCamera(1f,0.2f);
+            PostProcessing.Instance.gotHit = true;
             vulnerable = false;
-            //Invulnerability duration
-            yield return new WaitForSeconds(invulnerabilityDuration);
+            
+            for (int i = 0; i < 3; i++)
+            {
+                for (int y = 0; y < visuals.Count; y++)
+                {
+                    Color tmp = visuals[y].color;
+                    tmp.a = 0;
+                    visuals[y].color = tmp;
+                }
+               
+                yield return new WaitForSeconds(0.2f);
+                
+                for (int t = 0; t < visuals.Count; t++)
+                {
+                    Color tmp = visuals[t].color;
+                    tmp.a = 1;
+                    visuals[t].color = tmp;
+                }
+                
+                yield return new WaitForSeconds(0.2f);
+            }
+            yield return new WaitForSeconds(0.5f);
+            
             vulnerable = true;
+            PostProcessing.Instance._chromaticAberration.intensity.value = 0;
         }
-        
+
+        private IEnumerator PlayerDeath()
+        {
+            print("I'm Dead");
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            for (int i = 0; i < animator.Length; i++)
+            {
+                animator[i].SetBool("isDead", true);
+            }
+            yield return new WaitForSeconds(0.5f);
+            UIManager.instance.BlackScreenFadeOut();
+            yield return new WaitForSeconds(1f);
+            //SceneManager.LoadScene("Scene_Terri");
+        }
         
         private void HandleMovement()
         {
@@ -337,6 +373,7 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            vulnerable = false;
             //Detect enemies near
             parryRepulsion.enabled = true;
             yield return new WaitForSeconds(0.2f);
@@ -348,6 +385,8 @@ namespace Character
 
             //Activate Buff
             onBuff = true;
+            yield return new WaitForSeconds(2f);
+            vulnerable = true;
             yield return new WaitForSeconds(characterData.buffDuration);
             onBuff = false;
         }
@@ -419,10 +458,11 @@ namespace Character
                 }
             };
         }
-
         private void HandleDashUse()
         {
             _tr.position = dashPosition.position;
+            PostProcessing.Instance.dashing = true;
+            PostProcessing.Instance._lensDistortion.intensity.value = -0.5f;
             
             Debug.Log("I Dash");
             
@@ -431,15 +471,14 @@ namespace Character
             
             nextTimeDash = Time.time + characterData.dashCooldown;
         }
-
         private IEnumerator HandleTeleportation()
         {
-            UIManager.instance.BlackScreenFade();
+            UIManager.instance.BlackScreenFadeIn();
             yield return new WaitForSeconds(1f);
             _tr.position = startRoomTp.position;
             GameManager.instance.ReloadStart();
             yield return new WaitForSeconds(1f);
-            UIManager.instance.BlackScreenFade();
+            UIManager.instance.BlackScreenFadeOut();
         }
         
 

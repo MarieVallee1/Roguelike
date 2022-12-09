@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Character;
 using UnityEngine;
@@ -22,7 +23,6 @@ namespace Objects
         [SerializeField] private Reward[] onObstacleHit;
         [SerializeField] private Reward[] onPlayerDeath;
         [SerializeField] private Reward[] onEnemyDeath;
-        [SerializeField] private Reward[] onUse;
 
         //Singleton
         private void Awake()
@@ -41,9 +41,9 @@ namespace Objects
         public void OnUse()
         {
             if (lastConsumable == -1) return;
-            onUse[lastConsumable].OnUse();
-            UIManager.instance.UpdateObjectInfo();
+            consumable[lastConsumable].OnUse();
             lastConsumable = -1;
+            UIManager.instance.UpdateObjectInfo();
         }
 
         public void OnRoomEntrance()
@@ -115,13 +115,18 @@ namespace Objects
 
         public void CheckConsumable(int newIndex)
         {
-            if (lastConsumable!=newIndex && lastConsumable!=-1) SpawnConsumable(lastConsumable);
+            if (lastConsumable!=-1) SpawnConsumable(lastConsumable);
             lastConsumable = newIndex;
+        }
+
+        public void SpawnConsumable(Vector3 position)
+        {
+            Instantiate(RandomConsumable().gameObject, position, Quaternion.identity,GameManager.instance.transform);
         }
         
         public void SpawnConsumable(int index)
         {
-            Instantiate(consumable[index].gameObject, PlayerController.Instance.transform.position, Quaternion.identity);
+            Instantiate(consumable[index].gameObject, PlayerController.Instance.transform.position, Quaternion.identity,GameManager.instance.transform);
         }
 
         public Reward ConsumableInfo()

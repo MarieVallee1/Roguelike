@@ -19,7 +19,7 @@ namespace Ennemy
     public int nbOursinAround = 6;
     public Transform target;
     public int idleBetweenAttacks = 1;
-    [SerializeField] private int idleBetweenAttacksCount = 0;
+    private int idleBetweenAttacksCount = 0;
     [SerializeField] private Oursin usedOursin;
 
     // Caché //
@@ -30,11 +30,19 @@ namespace Ennemy
 
     // Animator //
     public Animator animator;
+    private float randomStartTiming;
     private void Start()
     {
         target = PlayerController.Instance.gameObject.transform.GetChild(6);
         radius = usedOursin.radius;
         enemyHealth = GetComponent<EnemyHealth>();
+    }
+
+    private void OnEnable()
+    {
+        randomStartTiming = Random.Range(0f, 3f);
+        Debug.Log(randomStartTiming);
+        StartCoroutine(RandomStart());
     }
 
     void Update()
@@ -90,6 +98,12 @@ namespace Ennemy
         {
             animator.SetTrigger("Shoot");
         }
+    }
+
+    private IEnumerator RandomStart()
+    {
+        yield return new WaitForSeconds(randomStartTiming);
+        animator.SetTrigger("Shoot");
     }
 }
 

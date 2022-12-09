@@ -11,7 +11,7 @@ namespace GenPro
     {
         public bool activated, roomIsCleared;
 
-        [SerializeField] private bool isBig;
+        [SerializeField] private bool isBig, character;
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] background;
         [SerializeField] private GameObject door;
@@ -24,7 +24,17 @@ namespace GenPro
 
         private void Start()
         {
-            _levelDesign = Instantiate(levelDesign[Random.Range(0, levelDesign.Length)], transform);
+            var index = Random.Range(0, levelDesign.Length);
+            if (character)
+            {
+                if (index == GameManager.instance.firstCharacterIndex)
+                {
+                    if (index == 0) index++;
+                    else index--;
+                }
+                GameManager.instance.firstCharacterIndex = index;
+            }
+            _levelDesign = Instantiate(levelDesign[index], transform);
             _levelDesign.GetComponent<EnemySpawn>().ChooseSpawn(this);
             // _background = Instantiate(background[Random.Range(0, background.Length)], transform);
         }

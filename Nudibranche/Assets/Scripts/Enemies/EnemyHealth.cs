@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using GenPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using DG.Tweening;
+using Ennemy;
 
 namespace Enemies
 {
@@ -9,12 +12,17 @@ namespace Enemies
     {
         public Animator[] animators;
         public ParticleSystem fxDamages;
-        
+        public Rigidbody2D rb;
+        public Collider2D collider;
         [SerializeField] private Enemy enemy;
         [SerializeField] private Perle perleBlancheData;
         [SerializeField] private Perle perleRougeData;
-    
         private GameManager _gameManager;
+        public SpriteRenderer[] sprites;
+        private float shaderDissolveValue = 1;
+        public float dissolveDuration = 1;
+        private bool dead;
+
         private enum Enemy
         {
             moule,
@@ -35,11 +43,23 @@ namespace Enemies
         {
             pv = maxPV;
             vulnerable = true;
+            dead = false;
+            shaderDissolveValue = 1;
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
+            }
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].enabled = true;
+            }
+
+            collider.enabled = true;
         }
     
         public void takeDamage(int damage)
         {
-            if (vulnerable)
+            if (vulnerable && !dead)
             {
                 pv -= damage;
                 fxDamages.Play();
@@ -51,12 +71,41 @@ namespace Enemies
 
                 if (pv <= 0)
                 {
-                    DropLoot();
-                    GetComponent<ActivateEnemy>().Die();
-                    gameObject.SetActive(false);
+                    dead = true;
+                    StartCoroutine(Death());
                 }
             }
         }
+
+        private void Update()
+        {
+            if (dead)
+            {
+                for (int i = 0; i < sprites.Length; i++)
+                {
+                    sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
+                }
+            }
+        }
+
+        private IEnumerator Death()
+        {
+            collider.enabled = false;
+            if (rb != null)
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+            for (int i = 0; i < animators.Length; i++)
+            {
+                animators[i].enabled = false;
+            }
+            DropLoot();
+            DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
+            yield return new WaitForSeconds(dissolveDuration);
+            GetComponent<ActivateEnemy>().Die();
+            gameObject.SetActive(false);
+        }
+
         private void DropLoot()
         {
             switch (enemy)
