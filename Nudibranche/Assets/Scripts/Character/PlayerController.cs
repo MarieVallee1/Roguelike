@@ -266,13 +266,31 @@ namespace Character
         }      
         private IEnumerator InvulnerabilityFrame(float invulnerabilityDuration)
         {
+            
             vulnerable = false;
-            //Invulnerability duration
-            for (int i = 0; i < visuals.Count; i++)
+            
+            for (int i = 0; i < 3; i++)
             {
-                visuals[i].color = new Color(0, 0, 0,0);
+                for (int y = 0; y < visuals.Count; y++)
+                {
+                    Color tmp = visuals[y].color;
+                    tmp.a = 0;
+                    visuals[y].color = tmp;
+                }
+               
+                yield return new WaitForSeconds(0.2f);
+                
+                for (int t = 0; t < visuals.Count; t++)
+                {
+                    Color tmp = visuals[t].color;
+                    tmp.a = 1;
+                    visuals[t].color = tmp;
+                }
+                
+                yield return new WaitForSeconds(0.2f);
             }
-            yield return new WaitForSeconds(invulnerabilityDuration);
+            yield return new WaitForSeconds(0.5f);
+            
             vulnerable = true;
         }
         
