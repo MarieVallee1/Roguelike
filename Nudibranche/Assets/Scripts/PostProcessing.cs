@@ -1,3 +1,4 @@
+using System;
 using Character;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -6,10 +7,20 @@ using UnityEngine.Rendering.Universal;
 
 public class PostProcessing : MonoBehaviour
 {
+    public static PostProcessing Instance;
     private Volume _volume;
     private VolumeProfile _profile;
-    private ChromaticAberration _chromaticAberration;
-    private LensDistortion _lensDistortion;
+    public ChromaticAberration _chromaticAberration;
+    public LensDistortion _lensDistortion;
+
+    public bool gotHit;
+    public bool dashing;
+
+    private void Awake()
+    {
+        if(Instance!= null && Instance != this)Destroy(this);
+        Instance = this;
+    }
 
     void Start()
     {
@@ -21,39 +32,47 @@ public class PostProcessing : MonoBehaviour
 
     private void Update()
     {
-        ChromaticAberrationFeedback();
-        LensDistortionFeedback();
+        PlayerShootFeedback();
+        ParryFeedback();
+        if(gotHit)PlayerHitFeedback();
+        if(dashing)PlayerDashingFeedback();
     }
 
-    private void ChromaticAberrationFeedback()
+    private void PlayerShootFeedback()
     {
-        float intensity = Mathf.Clamp( _chromaticAberration.intensity.value, 0f,0.10f);
-        
-        if (PlayerController.Instance.onShoot)
+        if (PlayerController.Instance.onShoot && _chromaticAberration.intensity.value < 0.1f)
         {
-            intensity += Time.deltaTime;
+            _chromaticAberration.intensity.value += Time.deltaTime;
         }
-        else
+        else if(!PlayerController.Instance.onShoot && PlayerController.Instance.vulnerable && _chromaticAberration.intensity.value > 0)
         {
-            intensity -= Time.deltaTime;
+            _chromaticAberration.intensity.value -= Time.deltaTime;
         }
-        
-        _chromaticAberration.intensity.value = intensity;
+    }
+    
+    public void PlayerHitFeedback()
+    {
+        _chromaticAberration.intensity.value -= Time.deltaTime;
+
+        if (_chromaticAberration.intensity.value <= 0) gotHit = false;
     }
 
-    private void LensDistortionFeedback()
+    private void ParryFeedback()
     {
-        float intensity = Mathf.Clamp( _lensDistortion.intensity.value, -0.15f,0f);
-        
-        if (PlayerController.Instance.onParry)
+        if (PlayerController.Instance.onParry &&  _lensDistortion.intensity.value > -0.15f)
         {
-            intensity -= Time.deltaTime;
+            _lensDistortion.intensity.value -= Time.deltaTime;
         }
-        else
+        else if(_lensDistortion.intensity.value == 0f)
         {
-            intensity += Time.deltaTime;
+            _lensDistortion.intensity.value += Time.deltaTime;
         }
-        
-        _lensDistortion.intensity.value = intensity;
+    }
+    
+    public void PlayerDashingFeedback()
+    {
+        _lensDistortion.intensity.value += Time.deltaTime;
+
+        if (_lensDistortion.intensity.value >= 0) dashing = false;
     }
 }

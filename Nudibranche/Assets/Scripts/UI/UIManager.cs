@@ -78,9 +78,13 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    public void BlackScreenFade()
+    public void BlackScreenFadeIn()
     {
-        blackScreen.SetTrigger(FadeIt);
+        blackScreen.SetBool("Faded", false);
+    } 
+    public void BlackScreenFadeOut()
+    {
+        blackScreen.SetBool("Faded", true);
     } 
 
     public IEnumerator ScieRanoSlash()
