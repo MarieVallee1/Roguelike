@@ -6,7 +6,10 @@ namespace Objects
     {
         public override void OnAcquire()
         {
-            PlayerController.Instance.health += 1;
+            var player = PlayerController.Instance;
+            var maxHealth = player.characterData.health;
+            if (player.health < maxHealth) player.health++;
+            Health.instance.SetHealth(player.health);
         }
     }
 }

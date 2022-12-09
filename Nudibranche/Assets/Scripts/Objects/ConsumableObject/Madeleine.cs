@@ -1,6 +1,4 @@
-using System;
 using Character;
-using UnityEngine;
 
 namespace Objects.ConsumableObject
 {
@@ -11,6 +9,7 @@ namespace Objects.ConsumableObject
             var player = PlayerController.Instance;
             var maxHealth = player.characterData.health;
             if (player.health < maxHealth) player.health = maxHealth;
+            Health.instance.SetHealth(player.health);
         }
     }
 }
