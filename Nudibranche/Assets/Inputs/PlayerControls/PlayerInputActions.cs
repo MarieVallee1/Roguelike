@@ -307,7 +307,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8d5cf117-d932-49c3-ae42-c7a86a1b9fb2"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
