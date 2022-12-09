@@ -5,11 +5,11 @@ namespace Objects.PassiveObject
 {
     public class FastReload : Reward
     {
-        [SerializeField] private float reloadBonus;
+        [SerializeField] private float fireRateBonus;
         
         public override void OnAcquire()
         {
-            PlayerController.Instance.reloadCountdown -= reloadBonus;
+            PlayerController.Instance.fireRate -= fireRateBonus;
         }
     }
 }

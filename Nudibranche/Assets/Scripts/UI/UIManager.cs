@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private GameObject pauseMenu;
 
+    [SerializeField] private GameObject objectPanel;
     [SerializeField] private TextMeshProUGUI objectInfo;
     [SerializeField] private ParticleSystem slashEffects;
     [SerializeField] private Animator blackScreen;
@@ -80,10 +81,11 @@ public class UIManager : MonoBehaviour
         //Displays the object index if the player has an object
         if (ItemManager.Instance.lastConsumable < 0)
         {
-            objectInfo.text = "Null";
+            objectPanel.SetActive(false);
         }
         else
         {
+            objectPanel.gameObject.SetActive(true);
             objectInfo.text = "" + ItemManager.Instance.ConsumableInfo().stats.objectName;
         }
     }
