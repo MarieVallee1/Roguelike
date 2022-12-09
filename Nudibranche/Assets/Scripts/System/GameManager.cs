@@ -31,6 +31,8 @@ namespace System
         public float mouleLifeDrop = 0.1f;
         public float crevetteLifeDrop = 0.3f;
 
+        //For Generation
+        [HideInInspector] public int firstCharacterIndex = -1;
 
         void Awake()
         {
