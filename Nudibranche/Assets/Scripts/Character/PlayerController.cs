@@ -310,7 +310,7 @@ namespace Character
             yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
             yield return new WaitForSeconds(1f);
-            //SceneManager.LoadScene("Scene_Terri");
+            SceneManager.LoadScene("Scene_Terri");
         }
         
         private void HandleMovement()

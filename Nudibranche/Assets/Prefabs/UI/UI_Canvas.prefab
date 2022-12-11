@@ -6943,6 +6943,7 @@ GameObject:
   - component: {fileID: 5935839144407360562}
   - component: {fileID: 5935839144347847440}
   - component: {fileID: 5935839144407360561}
+  - component: {fileID: 2305845538073343799}
   m_Layer: 5
   m_Name: Hearts
   m_TagString: Untagged
@@ -6967,12 +6968,12 @@ RectTransform:
   - {fileID: 5935839144125131723}
   m_Father: {fileID: 5935839144522211338}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.91499996}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 9}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!225 &5935839144347847440
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7011,6 +7012,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!111 &2305845538073343799
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5935839144160738112}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 80919a447340d63488a937c4db6cd8cf, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 80919a447340d63488a937c4db6cd8cf, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5935839144164674619
 GameObject:
   m_ObjectHideFlags: 0
