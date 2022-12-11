@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     public int health;
     
     [SerializeField] private Image[] hearts;
+    [SerializeField] private Animation anim;
     
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -42,6 +43,7 @@ public class Health : MonoBehaviour
     
     public void SetHealth(int playerHealth)
     {
+        anim.Play();
         health = playerHealth;
     }
 }

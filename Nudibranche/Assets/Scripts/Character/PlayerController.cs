@@ -188,6 +188,8 @@ namespace Character
         
         private void Update()
         {
+            Debug.DrawRay(characterPos,aim*Vector3.Distance(characterPos, dashPosition.position),Color.red);
+            Debug.Log(CanDash());
             HandleParry();
             HandleMouseLook();
             RestrictMousePos();
@@ -209,7 +211,7 @@ namespace Character
             
             if (DashCooldown())
             {
-                if (characterInputs.Character.Dash.triggered)
+                if (characterInputs.Character.Dash.triggered && CanDash())
                 {
                     HandleDashUse();
                 }
@@ -310,7 +312,7 @@ namespace Character
             yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
             yield return new WaitForSeconds(1f);
-            //SceneManager.LoadScene("Scene_Terri");
+            SceneManager.LoadScene("Scene_Terri");
         }
         
         private void HandleMovement()
@@ -480,6 +482,14 @@ namespace Character
             if(parryFeedback.isStopped) parryFeedback.Play();
             
             nextTimeDash = Time.time + characterData.dashCooldown;
+        }
+
+        private bool CanDash()
+        {
+            RaycastHit2D hit;
+            if (Physics2D.Raycast(characterPos, aim,Vector3.Distance(characterPos, dashPosition.position),layerMask:10)) return false;
+           
+            return true;
         }
         private IEnumerator HandleTeleportation()
         {
