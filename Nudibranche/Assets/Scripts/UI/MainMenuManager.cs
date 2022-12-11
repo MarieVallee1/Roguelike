@@ -37,7 +37,8 @@ namespace UI
         
             //set the alpha to 1
             blackScreen.color = new Color(0, 0, 0, 1);
-        
+            DOTween.KillAll();
+            
             _mainMenuCanvas = mainMenu.GetComponent<CanvasGroup>();
             _optionMenuCanvas = optionMenu.GetComponent<CanvasGroup>();
         }

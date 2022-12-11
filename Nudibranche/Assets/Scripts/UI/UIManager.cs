@@ -6,6 +6,7 @@ using DG.Tweening;
 using Objects;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,11 +16,14 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject continueButton;
 
     [SerializeField] private GameObject objectPanel;
+    [SerializeField] private RectTransform cursor;
     [SerializeField] private TextMeshProUGUI objectInfo;
     [SerializeField] private ParticleSystem slashEffects;
     [SerializeField] private Animator blackScreen;
+    private EventSystem _event;
     private static readonly int FadeIt = Animator.StringToHash("FadeIt");
 
 
@@ -33,7 +37,9 @@ public class UIManager : MonoBehaviour
         }
 
         instance = this;
-
+        
+        _event = EventSystem.current;
+        
         DOTween.KillAll();
     }
     
@@ -47,6 +53,7 @@ public class UIManager : MonoBehaviour
     {
         if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
         if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn) ClosePauseMenu();
+        if(pauseMenuOn)HandleSelectedButtons();
     }
 
     public void UpdateSkillInfo()
@@ -113,6 +120,7 @@ public class UIManager : MonoBehaviour
     
     private void OpenPauseMenu()
     {
+        _event.SetSelectedGameObject(continueButton);
         pauseMenuOn = true;
         pauseMenu.SetActive(true);
         PlayerController.Instance.DisableInputs();
@@ -131,5 +139,30 @@ public class UIManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("Scene_MainMenu");
+    }
+    
+    private void HandleSelectedButtons()
+    {
+        //Moves the cursor depending on the button selected
+        switch (_event.currentSelectedGameObject.name)
+        {
+            case "ContinueButton":
+            {
+                cursor.DOAnchorPosY(137, 0.5f);
+            }
+                break;
+            
+            case "OptionsButton":
+            {
+                cursor.DOAnchorPosY(57, 0.5f);
+            }
+                break;
+            
+            case "QuitButton":
+            {
+                cursor.DOAnchorPosY(-23, 0.5f);
+            }
+                break;
+        }
     }
 }

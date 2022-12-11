@@ -55,7 +55,7 @@ MonoBehaviour:
   - description: Projectile crevette
     prefab: {fileID: 7663758895451724091, guid: 03b074721fda20e47a43d005bd7c35da,
       type: 3}
-    numberOfObjects: 8
+    numberOfObjects: 12
   - description: Projectile Joueur
     prefab: {fileID: 7203838594528348324, guid: fcbbaaf9bbf52ad47975db9b6a874ad7,
       type: 3}
@@ -102,6 +102,7 @@ MonoBehaviour:
   canonnierLifeDrop: 0.5
   mouleLifeDrop: 0.1
   crevetteLifeDrop: 0.3
+  firstCharacterIndex: -1
   roomScore: 0
   startRoom: {fileID: 0}
   currentRoom: {fileID: 0}
@@ -149,6 +150,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pauseMenu: {fileID: 0}
+  continueButton: {fileID: 0}
+  objectPanel: {fileID: 0}
+  cursor: {fileID: 0}
   objectInfo: {fileID: 0}
   slashEffects: {fileID: 0}
   blackScreen: {fileID: 0}
+  pauseMenuOn: 0
