@@ -48,7 +48,7 @@ namespace Character
         
         private Vector2 _movementDirection;
         [HideInInspector] public Vector2 mouseAim;
-        [HideInInspector] public Vector2 aim;
+     public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
         [HideInInspector] public Vector2 shootDir;
         
@@ -117,7 +117,7 @@ namespace Character
             
             
             //Set the skill to null
-            skillIndex = 1;
+            skillIndex = 0;
         }
 
         
@@ -151,17 +151,16 @@ namespace Character
             {
                 //Disable the cursor when aiming with the gamepad
                 cursor.SetActive(false);
+                gamepadOn = true;
                 //Handles the direction of the projectile if shot with the gamepad
-                aim = ctx.ReadValue<Vector2>();
             };
             
             characterInputs.Character.AimMouse.performed += ctx =>
             {
+                gamepadOn = false;
+                
                 //Enable the cursor when shooting with the mouse
                 cursor.SetActive(true);
-
-                // //Adapt the aim of the mouse to the screen size
-                // if(!gamepadOn) aim = new Vector2(mouseAim.x - GameManager.instance.screenWidth / 2, mouseAim.y - GameManager.instance.screenHeight / 2) + characterPos;
             };
             
             characterInputs.Character.Parry.performed += ctx =>
@@ -218,6 +217,14 @@ namespace Character
 
             characterPos = _tr.position;
             skillCountdown += Time.deltaTime;
+
+            if (characterInputs.Character.AimGamepad.triggered)
+            {
+                characterInputs.Character.AimGamepad.performed += ctx =>
+                {
+                    aim = ctx.ReadValue<Vector2>();
+                };
+            }
         }
         private void FixedUpdate()
         {
@@ -338,7 +345,10 @@ namespace Character
 
         private void HandleMouseLook()
         {
-            aim = cursor.transform.position - transform.position;
+            if (!gamepadOn)
+            {
+                aim = cursor.transform.position - transform.position;
+            }
         }
         private void Shoot()
         {

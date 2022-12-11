@@ -940,7 +940,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.5, z: 0.5}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -1254,14 +1254,14 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 1
-          inSlope: -2
-          outSlope: -2
+          time: 0.010715485
+          value: 0.4720491
+          inSlope: -1.9659952
+          outSlope: -1.9659952
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
-          outWeight: 0
+          outWeight: 0.083031364
         - serializedVersion: 3
           time: 1
           value: 0
@@ -5131,9 +5131,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.24}
+  m_Offset: {x: 0, y: -0.3}
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 0.71
 --- !u!114 &7057189537495003266
 MonoBehaviour:
   m_ObjectHideFlags: 0

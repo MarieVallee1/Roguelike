@@ -15,8 +15,11 @@ namespace Projectiles
         private float _damages;
         private float _projectileSize;
         private float _countdown;
+        private float _accelerationCooldown;
+        public float controlDuration;
     
         public Vector2 direction;
+        public Vector2 _lastDir;
 
         private void Awake()
         {
@@ -30,6 +33,7 @@ namespace Projectiles
         {
             _trail.enabled = true;
             _countdown = 0f;
+            _accelerationCooldown = Time.time + controlDuration;
 
             _damages = PlayerController.Instance.damage;
             _projectileSize = PlayerController.Instance.projectileSize;
@@ -91,7 +95,15 @@ namespace Projectiles
         
         void Acceleration()
         {
-            _rb.AddForce(PlayerController.Instance.aim.normalized * _characterData.usedProjectile[_characterData.projectileIndex].projectileAcceleration.Evaluate(1));
+            if (Time.time < _accelerationCooldown)
+            {
+                _rb.AddForce(PlayerController.Instance.aim.normalized * _characterData.usedProjectile[_characterData.projectileIndex].projectileAcceleration.Evaluate(1));
+                _lastDir = PlayerController.Instance.aim;
+            }
+            else
+            {
+                _rb.AddForce(_lastDir.normalized * _characterData.usedProjectile[_characterData.projectileIndex].projectileAcceleration.Evaluate(1));
+            }
         }
     }
 }

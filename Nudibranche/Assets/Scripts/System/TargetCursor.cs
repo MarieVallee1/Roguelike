@@ -24,12 +24,22 @@ namespace System
         private void Update()
         {
             if(!PlayerController.Instance.gamepadOn) CursorPosition();
+            else
+            {
+                GamepadLookAhead();
+            }
         }
         
 
         private void CursorPosition()
         {
             transform.position = new Vector3(cam.ScreenToWorldPoint(Input.mousePosition).x,cam.ScreenToWorldPoint(Input.mousePosition).y,-1);
+            Debug.Log(1);
+        }
+        
+        private void GamepadLookAhead()
+        {
+            transform.position = PlayerController.Instance.aim;
         }
     }
 }
