@@ -41,7 +41,6 @@ namespace Ennemy
     private void OnEnable()
     {
         randomStartTiming = Random.Range(0f, 3f);
-        Debug.Log(randomStartTiming);
         StartCoroutine(RandomStart());
     }
 

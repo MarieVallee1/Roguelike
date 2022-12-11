@@ -209,7 +209,7 @@ namespace Character
             
             if (DashCooldown())
             {
-                if (characterInputs.Character.Dash.triggered)
+                if (characterInputs.Character.Dash.triggered && CanDash())
                 {
                     HandleDashUse();
                 }
@@ -480,6 +480,15 @@ namespace Character
             if(parryFeedback.isStopped) parryFeedback.Play();
             
             nextTimeDash = Time.time + characterData.dashCooldown;
+        }
+
+        private bool CanDash()
+        {
+            RaycastHit2D hit;
+
+            if (Physics2D.Raycast(characterPos, aim,Vector3.Distance(characterPos, dashPosition.position), layerMask:10)) return false;
+           
+            return true;
         }
         private IEnumerator HandleTeleportation()
         {

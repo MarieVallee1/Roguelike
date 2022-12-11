@@ -163,7 +163,6 @@ GameObject:
   - component: {fileID: 7289484784425770954}
   - component: {fileID: 5683985154585273501}
   - component: {fileID: 2395828693895369762}
-  - component: {fileID: 6100711575494654188}
   m_Layer: 8
   m_Name: Etage
   m_TagString: Environment
@@ -2071,22 +2070,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &6100711575494654188
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3906698385667553546}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0.00001
 --- !u!1 &4436480996377751849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,6 +2366,7 @@ GameObject:
   - component: {fileID: 3698398755296315093}
   - component: {fileID: 5490773607078190043}
   - component: {fileID: 4527825151648641117}
+  - component: {fileID: 4655680665193667305}
   m_Layer: 0
   m_Name: Rambarde
   m_TagString: Untagged
@@ -2800,6 +2784,22 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!19719996 &4655680665193667305
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7435594685504621487}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1001 &304353659165146041
 PrefabInstance:
   m_ObjectHideFlags: 0
