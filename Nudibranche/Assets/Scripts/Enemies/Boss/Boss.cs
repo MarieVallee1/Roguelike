@@ -75,7 +75,6 @@ public class Boss : MonoBehaviour
 
     private void OnEnable()
     {
-        dead = false;
         healthGauge = GameManager.instance.bossGauge;
         healthGauge.gameObject.SetActive(true);
         behaviour = Behaviour.walk;
@@ -84,6 +83,7 @@ public class Boss : MonoBehaviour
         thirdCircle = new Vector2[nbOursinsThirdCircle];
         healthGauge.maxValue = maxHealth;
         healthGauge.value = Single.MaxValue;
+        dead = false;
     }
 
     private void Update()
@@ -101,7 +101,7 @@ public class Boss : MonoBehaviour
     {
         Timer();
         
-        if (behaviour == Behaviour.walk)
+        if (behaviour == Behaviour.walk && !dead)
         {
             Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * (speed * Time.deltaTime);
             rb.AddForce(force, ForceMode2D.Force);
@@ -180,7 +180,6 @@ public class Boss : MonoBehaviour
             }
         }
     }
-
 
     void Timer()
     {
@@ -279,6 +278,17 @@ public class Boss : MonoBehaviour
         healthGauge.value = health;
 
         tourbillonCount += 1;
+
+        if (!dead)
+        {
+            if (health <= 0)
+            {
+                healthGauge.gameObject.SetActive(false);
+                dead = true;
+                DeathBeginning();
+            }
+        }
+        
         if (tourbillonCount == tourbillonEveryXDamages)
         {
             canTourbillon = true;
@@ -288,12 +298,6 @@ public class Boss : MonoBehaviour
                 animators[i].SetBool("Ruée", false);
             }
             tourbillonCount = 0;
-        }
-
-        if (health <= 0)
-        {
-            healthGauge.gameObject.SetActive(false);
-            gameObject.SetActive(false);
         }
     }
     
@@ -330,12 +334,18 @@ public class Boss : MonoBehaviour
                 visuals[2].SetActive(true);
             }
         }
-    
-    private IEnumerator Death()
+
+    private void DeathBeginning()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        
-        
+        visuals[0].SetActive(false);
+        visuals[1].SetActive(true);
+        visuals[2].SetActive(false);
+        animators[1].SetTrigger("Mort");
+    }
+    
+    public IEnumerator Death()
+    {
         DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
         yield return new WaitForSeconds(dissolveDuration);
         gameObject.SetActive(false);

@@ -15,4 +15,9 @@ public class PrincessEventManager : MonoBehaviour
     {
         boss.SpawnOursins();
     }
+
+    public void Death()
+    {
+        boss.StartCoroutine("Death");
+    }
 }
