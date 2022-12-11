@@ -5,6 +5,7 @@ using Character;
 using UnityEngine;
 using Oursins;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Boss : MonoBehaviour
 {
@@ -55,12 +56,15 @@ public class Boss : MonoBehaviour
     [SerializeField] private int health;
     public Slider healthGauge;
     private Vector2 rushTarget;
+    private float shaderDissolveValue = 1;
+    public float dissolveDuration = 5;
+    private bool dead;
     
     [Header("Visuels")] 
     [SerializeField] private Animator[] animators;
     [SerializeField] private GameObject[] visuals;
-
     [SerializeField] private ParticleSystem vfxDamage;
+    [SerializeField] private SpriteRenderer[] sprites;
 
     private void Start()
     {
@@ -71,6 +75,7 @@ public class Boss : MonoBehaviour
 
     private void OnEnable()
     {
+        dead = false;
         healthGauge = GameManager.instance.bossGauge;
         healthGauge.gameObject.SetActive(true);
         behaviour = Behaviour.walk;
@@ -79,6 +84,17 @@ public class Boss : MonoBehaviour
         thirdCircle = new Vector2[nbOursinsThirdCircle];
         healthGauge.maxValue = maxHealth;
         healthGauge.value = Single.MaxValue;
+    }
+
+    private void Update()
+    {
+        if (dead)
+        {
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -314,4 +330,14 @@ public class Boss : MonoBehaviour
                 visuals[2].SetActive(true);
             }
         }
+    
+    private IEnumerator Death()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        
+        
+        DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
+        yield return new WaitForSeconds(dissolveDuration);
+        gameObject.SetActive(false);
+    }
 }
