@@ -188,6 +188,8 @@ namespace Character
         
         private void Update()
         {
+            Debug.DrawRay(characterPos,aim*Vector3.Distance(characterPos, dashPosition.position),Color.red);
+            Debug.Log(CanDash());
             HandleParry();
             HandleMouseLook();
             RestrictMousePos();
@@ -485,8 +487,7 @@ namespace Character
         private bool CanDash()
         {
             RaycastHit2D hit;
-
-            if (Physics2D.Raycast(characterPos, aim,Vector3.Distance(characterPos, dashPosition.position), layerMask:10)) return false;
+            if (Physics2D.Raycast(characterPos, aim,Vector3.Distance(characterPos, dashPosition.position),layerMask:10)) return false;
            
             return true;
         }
