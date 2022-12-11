@@ -41,10 +41,12 @@ namespace System
             float y = Mathf.Clamp(lookAheadPos.y, -rangeY, rangeY);
 
             transform.localPosition = new Vector2(x,y);
+            Debug.Log(2);
         }
         private void GamepadLookAhead()
         {
-            transform.localPosition = PlayerController.Instance.aim;
+            Debug.Log(3);
+            transform.localPosition = PlayerController.Instance.aim * gamepadDistanceModifier;
         }
     }
 }

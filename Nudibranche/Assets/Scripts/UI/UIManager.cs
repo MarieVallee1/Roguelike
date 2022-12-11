@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
         }
 
         instance = this;
+
+        DOTween.KillAll();
     }
     
     void Start()
