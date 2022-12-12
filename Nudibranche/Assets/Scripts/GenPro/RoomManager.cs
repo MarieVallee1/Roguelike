@@ -13,9 +13,8 @@ namespace GenPro
 
         [SerializeField] private bool isBig, character;
         [SerializeField] private GameObject[] levelDesign;
-        [SerializeField] private GameObject[] background;
+        [SerializeField] private GameObject[] deactivate;
         [SerializeField] private GameObject door;
-        [SerializeField] private GameObject blackScreen;
 
         private GameObject _levelDesign;
         private GameObject _background;
@@ -36,22 +35,25 @@ namespace GenPro
             }
             _levelDesign = Instantiate(levelDesign[index], transform);
             _levelDesign.GetComponent<EnemySpawn>().ChooseSpawn(this);
-            // _background = Instantiate(background[Random.Range(0, background.Length)], transform);
         }
 
         public void Activate()
         {
             _levelDesign.SetActive(true);
-            //_background.SetActive(true);
-            blackScreen.SetActive(false);
+            foreach (var item in deactivate)
+            {
+                item.SetActive(true);
+            }
             activated = true;
         }
 
         public void Deactivate()
         {
             _levelDesign.SetActive(false);
-            //_background.SetActive(false);
-            blackScreen.SetActive(true);
+            foreach (var item in deactivate)
+            {
+                item.SetActive(false);
+            }
             activated = false;
         }
 
