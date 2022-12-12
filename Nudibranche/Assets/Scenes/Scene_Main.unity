@@ -226,6 +226,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1121450389}
     - target: {fileID: 524779814, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: choice1Txt
+      value: 
+      objectReference: {fileID: 791604791}
+    - target: {fileID: 524779814, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: choice2Txt
       value: 
       objectReference: {fileID: 783191030}
@@ -415,6 +419,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &791604791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5935839144347847444, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &809422861 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8681643685387433195, guid: 052a7db688c5afb4e9c680e40790bdca,
@@ -481,6 +497,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &1035356447 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 2305845538073343799, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1043233921 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5935839144347847449, guid: 052a7db688c5afb4e9c680e40790bdca,
@@ -642,6 +664,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1035356447}
     - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
       propertyPath: hearts.Array.data[0]
