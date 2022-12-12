@@ -591,7 +591,7 @@ namespace GenPro
                 {
                     Place3RoomSeo(_lastRoomIndex,_nextSide);
                     _nextSide = Side.Down;
-                    var specialRoom = (addSpecialRoom2 == 1) ? _specialRoom2 : _specialRoom3;
+                    var specialRoom = (addSpecialRoom2 == 3) ? _specialRoom2 : _specialRoom3;
                     SetSpecialRoom(specialRoom,Side.Right,3);
                 }
                 else if(addSpecialRoom2!=2&&addSpecialRoom3!=2) PossibleShop(Entry.So);
