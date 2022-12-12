@@ -58,7 +58,7 @@ namespace Character
         [Header("Number of Projectile Left")]
         public int remainingProjectile;
         
-        [HideInInspector] public int skillIndex;
+        public int skillIndex;
 
         private float _nextTimeParry;
         private float _parryLifeTime;
@@ -448,27 +448,24 @@ namespace Character
         }
         private void HandleSkillUse()
         {
+            
             if(characterInputs.Character.Skill.triggered && skillCountdown > skillCooldown)
             {
+                
                 switch (skillIndex)
                 {
                     case 0:
-                    {
                         StartCoroutine(skills.SwordSlash());
-                    }
                         break;
                     case 1:
-                    {
                         skills.WrongTrack(characterPos);
-                    }
+                        Debug.Log("skill");
                         break;
                     case 2:
-                    {
                         StartCoroutine(skills.CardLaser(bookPos.position, aim));
-                    }
                         break;
                 }
-            };
+            }
         }
         private void HandleDashUse()
         {

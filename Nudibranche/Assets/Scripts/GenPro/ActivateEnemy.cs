@@ -1,3 +1,4 @@
+using System;
 using Ennemy;
 using UnityEngine;
 
@@ -49,6 +50,25 @@ namespace GenPro
         public void Die()
         {
             if(_isSet)_levelDesign.linkedRoom.RemoveEnemy(this);
+        }
+
+        public void BaitDetection(Transform baitTransform)
+        {
+            switch (enemy)
+            {
+                case Enemy.moule:
+                    scriptMoule.StartCoroutineTarget(baitTransform);
+                    break;
+                case Enemy.crevette:
+                    scriptCrevette.StartCoroutineTarget(baitTransform);
+                    break;
+                case Enemy.canonnier:
+                    scriptCanonnier.StartCoroutineTarget(baitTransform);
+                    break;
+                case Enemy.boss:
+                    scriptBoss.StartCoroutineTarget(baitTransform);
+                    break;
+            }
         }
     }
 }

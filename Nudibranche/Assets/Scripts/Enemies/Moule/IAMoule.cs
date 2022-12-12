@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Character;
 using UnityEngine;
 using Pathfinding;
@@ -6,7 +7,8 @@ using Pathfinding;
 public class IAMoule : MonoBehaviour
 {
     // Pathfinding //
-    [SerializeField] private Transform target;
+    public Transform target;
+    private CharacterData characterData;
     public float speed = 200;
     public float speedOutOfCamera = 100;
     private Vector2 force;
@@ -38,7 +40,7 @@ public class IAMoule : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         target = PlayerController.Instance.transform.GetChild(6);
-
+        characterData = PlayerController.Instance.characterData;
         InvokeRepeating("UpdatePath", 0, .5f);  
         pathUpdated = true;
         cac = false;
@@ -258,5 +260,17 @@ public class IAMoule : MonoBehaviour
         {
             attackVFX[i].Play();
         }
+    }
+
+    public void StartCoroutineTarget(Transform baitTransform)
+    {
+        StartCoroutine(ChangeTarget(baitTransform));
+    }
+
+    private IEnumerator ChangeTarget(Transform baitTransform)
+    {
+        target = baitTransform;
+        yield return new WaitForSeconds(characterData.baitDuration);
+        target = PlayerController.Instance.transform.GetChild(6);
     }
 } 

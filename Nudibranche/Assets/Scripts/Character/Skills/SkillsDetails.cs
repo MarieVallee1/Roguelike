@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemies;
+using GenPro;
 using UnityEngine;
 
 namespace Character.Skills
@@ -60,15 +61,31 @@ namespace Character.Skills
         {
             string baitRef = bait.name;
             GameObject usedProjectile = PoolingSystem.instance.GetObject(baitRef);
+            Transform baitTransform;
        
             if (usedProjectile != null)
             { 
                 //Placement & activation
                 usedProjectile.transform.position = playerPos;
                 usedProjectile.SetActive(true);
+                baitTransform = usedProjectile.transform;
            
                 PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.baitCooldown/cooldownReduction;
                 PlayerController.Instance.skillCountdown = 0;
+                
+                RoomManager currentRoom;
+                currentRoom = GameManager.instance.currentRoom;
+
+                if (currentRoom != null)
+                {
+                    List<ActivateEnemy> scriptList = new();
+                    scriptList = currentRoom._enemyList;
+
+                    for (int i = 0; i < scriptList.Count; i++)
+                    {
+                        scriptList[i].BaitDetection(baitTransform);
+                    } 
+                }
             }
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
