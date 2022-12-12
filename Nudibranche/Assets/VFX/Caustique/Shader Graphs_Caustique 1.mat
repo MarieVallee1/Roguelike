@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Gradient Material
-  m_Shader: {fileID: -6465566751694194690, guid: ba22e460896539e4cb38f07da7b6cbfe,
+  m_Name: Shader Graphs_Caustique 1
+  m_Shader: {fileID: -6465566751694194690, guid: 0e2b5a9e5c8ed9142a8552eb68731b10,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,20 +21,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
+    - _CausticMaterial:
+        m_Texture: {fileID: 2800000, guid: 31358b20400cb3d45bd9470d880b1848, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -51,17 +39,20 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EnableExternalAlpha: 0
+    - _Opacity: 1.47
+    - _Power: 0.38
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RippleDensity: -0.67
+    - _RippleDensity_1: -1.24
+    - _RippleSpeed: 0.02
+    - _RippleSpeed_1: -0.09
     m_Colors:
-    - _BottomColor: {r: 0, g: 0.4056604, b: 0.3275653, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TopColor: {r: 1, g: 1, b: 1, a: 0}
+    - _CausticTest: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.101960786, b: 0.101960786, a: 0.04313726}
+    - _Color_1: {r: 0, g: 0.047058824, b: 0.0627451, a: 0.04313726}
   m_BuildTextureStacks: []
---- !u!114 &3726624281532361603
+--- !u!114 &1851718554802402280
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
