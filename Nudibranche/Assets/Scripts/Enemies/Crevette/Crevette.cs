@@ -13,6 +13,7 @@ namespace Ennemy
 {
     //Pathfinding//
     public Transform target;
+    private CharacterData characterData;
     public float speed = 150;
     public float speedOutOfCamera = 50;
     private Vector2 force;
@@ -67,6 +68,7 @@ namespace Ennemy
         rb = GetComponent<Rigidbody2D>();
 
         target = PlayerController.Instance.transform.GetChild(6);
+        characterData = PlayerController.Instance.characterData;
         
         InvokeRepeating("UpdatePath", 0, .5f);
         pathUpdated = true;
@@ -257,6 +259,18 @@ namespace Ennemy
                 shotOrigin = dosArme;
             }
         }
+    }
+
+    public void StartCoroutineTarget(Transform baitTransform)
+    {
+        StartCoroutine(ChangeTarget(baitTransform));
+    }
+
+    private IEnumerator ChangeTarget(Transform baitTransform)
+    {
+        target = baitTransform;
+        yield return new WaitForSeconds(characterData.baitDuration);
+        target = PlayerController.Instance.transform.GetChild(6);
     }
 }
 }

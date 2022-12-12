@@ -18,6 +18,7 @@ namespace Ennemy
     private float radius = 2;
     public int nbOursinAround = 6;
     public Transform target;
+    private CharacterData characterData;
     public int idleBetweenAttacks = 1;
     private int idleBetweenAttacksCount = 0;
     [SerializeField] private Oursin usedOursin;
@@ -34,6 +35,7 @@ namespace Ennemy
     private void Start()
     {
         target = PlayerController.Instance.gameObject.transform.GetChild(6);
+        characterData = PlayerController.Instance.characterData;
         radius = usedOursin.radius;
         enemyHealth = GetComponent<EnemyHealth>();
     }
@@ -103,6 +105,18 @@ namespace Ennemy
     {
         yield return new WaitForSeconds(randomStartTiming);
         animator.SetTrigger("Shoot");
+    }
+
+    public void StartCoroutineTarget(Transform baitTransform)
+    {
+        StartCoroutine(ChangeTarget(baitTransform));
+    }
+
+    private IEnumerator ChangeTarget(Transform baitTransform)
+    {
+        target = baitTransform;
+        yield return new WaitForSeconds(characterData.baitDuration);
+        target = PlayerController.Instance.transform.GetChild(6);
     }
 }
 

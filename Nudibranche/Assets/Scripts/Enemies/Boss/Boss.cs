@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
 {
     [Header("Comportement de base")] 
     public Transform target;
+    private CharacterData characterData;
     [SerializeField] private float speed = 200;
     private Rigidbody2D rb;
     [SerializeField] private Transform princessFeet;
@@ -71,6 +72,7 @@ public class Boss : MonoBehaviour
     {
         health = maxHealth;
         target = PlayerController.Instance.transform.GetChild(6);
+        characterData = PlayerController.Instance.characterData;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -354,5 +356,18 @@ public class Boss : MonoBehaviour
         SceneManager.LoadScene("Scene_MainMenu");
         
         gameObject.SetActive(false);
+        SceneManager.LoadScene("Scene_MainMenu");
+    }
+    
+    public void StartCoroutineTarget(Transform baitTransform)
+    {
+        StartCoroutine(ChangeTarget(baitTransform));
+    }
+
+    private IEnumerator ChangeTarget(Transform baitTransform)
+    {
+        target = baitTransform;
+        yield return new WaitForSeconds(characterData.baitDuration);
+        target = PlayerController.Instance.transform.GetChild(6);
     }
 }

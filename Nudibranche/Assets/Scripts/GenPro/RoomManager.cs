@@ -18,7 +18,7 @@ namespace GenPro
 
         private GameObject _levelDesign;
         private GameObject _background;
-        private List<ActivateEnemy> _enemyList = new();
+        public List<ActivateEnemy> _enemyList = new();
         private float _lastPos;
 
         private void Start()
