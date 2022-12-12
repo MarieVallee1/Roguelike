@@ -18,11 +18,11 @@ public class BackgroundInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _inZone = true;
+        if(other.CompareTag("Player")) _inZone = true;
     }  
     private void OnTriggerExit2D(Collider2D other)
     {
-        _inZone = false;
+        if(other.CompareTag("Player")) _inZone = false;
     }
     
     private void Update()
