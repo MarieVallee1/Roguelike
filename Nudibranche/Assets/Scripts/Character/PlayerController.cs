@@ -188,7 +188,7 @@ namespace Character
         
         private void Update()
         {
-            Debug.DrawRay(characterPos,aim*Vector3.Distance(characterPos, dashPosition.position),Color.red);
+            Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
             Debug.Log(CanDash());
             HandleParry();
             HandleMouseLook();
@@ -486,9 +486,13 @@ namespace Character
 
         private bool CanDash()
         {
-            RaycastHit2D hit;
-            if (Physics2D.Raycast(characterPos, aim,Vector3.Distance(characterPos, dashPosition.position),layerMask:10)) return false;
-           
+            RaycastHit2D hit = Physics2D.Raycast(characterPos, aim, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
+            if (hit)
+            {
+                Debug.Log(hit.collider.name);
+                return false;
+            }
+            
             return true;
         }
         private IEnumerator HandleTeleportation()
