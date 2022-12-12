@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 namespace Character
 {
@@ -34,7 +35,7 @@ namespace Character
         [Header("Parry Related")]
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private ParticleSystem parryFeedback;
-        [SerializeField] private ParticleSystem parryActivationVFX;
+        [SerializeField] private VisualEffect parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
         
         [Header("Character Visuals Related")]
@@ -189,7 +190,7 @@ namespace Character
         private void Update()
         {
             Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
-            Debug.Log(CanDash());
+            
             HandleParry();
             HandleMouseLook();
             RestrictMousePos();
