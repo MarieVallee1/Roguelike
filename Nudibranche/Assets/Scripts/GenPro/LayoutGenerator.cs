@@ -1286,16 +1286,16 @@ namespace GenPro
             PlaceCharacterRoom(_lastRoomIndex,_nextSide);
         }
 
-        // [Header("Debug")] [SerializeField] private bool activateAll;
-        // private void Update()
-        // {
-        //     if (!activateAll) return;
-        //     foreach (var salle in listSalle)
-        //     {
-        //         salle.GetComponent<RoomManager>()?.Activate();
-        //     }
-        //
-        //     activateAll = false;
-        // }
+        [Header("Debug")] [SerializeField] private bool activateAll;
+        private void Update()
+        {
+            if (!activateAll) return;
+            foreach (var salle in listSalle)
+            {
+                salle.GetComponent<RoomManager>()?.Activate();
+            }
+        
+            activateAll = false;
+        }
     }
 }
