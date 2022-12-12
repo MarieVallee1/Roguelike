@@ -136,7 +136,7 @@ namespace UI
         private void LaunchGame()
         {
             //Launches the game
-            SceneManager.LoadScene("Scene_Terri");
+            SceneManager.LoadScene("Scene_Main");
         }
         private void DisableMainMenu()
         {

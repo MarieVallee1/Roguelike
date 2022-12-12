@@ -351,6 +351,10 @@ public class Boss : MonoBehaviour
     {
         DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
         yield return new WaitForSeconds(dissolveDuration);
+        
+        //Return to Main Menu
+        SceneManager.LoadScene("Scene_MainMenu");
+        
         gameObject.SetActive(false);
         SceneManager.LoadScene("Scene_MainMenu");
     }
