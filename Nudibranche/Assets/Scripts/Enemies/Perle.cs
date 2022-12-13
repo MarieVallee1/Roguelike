@@ -16,6 +16,7 @@ public class Perle : ScriptableObject
             //Placement & activation
             usedPearl.transform.position = spawnPos;
             usedPearl.SetActive(true);
+            usedPearl.transform.SetParent(GameManager.instance.currentRoom.pearlStack.transform);
         }
     }
     

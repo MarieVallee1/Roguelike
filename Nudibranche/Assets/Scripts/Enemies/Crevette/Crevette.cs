@@ -167,31 +167,7 @@ namespace Ennemy
     {
         if (Vector2.Distance(transform.position, target.transform.position) <= targetDistance)
         {
-            Vector2 raycastDirection = (target.transform.position) - transform.position;
-            RaycastHit2D raycastHit2D = Physics2D.BoxCast(shotOrigin.position,
-                new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection),
-                raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("ProjectileHitPlayer", "Obstacle"));
-            Debug.DrawRay(shotOrigin.position, raycastDirection, Color.red);
-            if (raycastHit2D.collider.gameObject.layer == 8)
-            {
-                StopPathfinding = false;
-                attaque = false;
-                for (int i = 0; i < animators.Length; i++)
-                {
-                    animators[i].SetBool("Attack", false);
-                }
-                
-                HandleSpriteRotation(rb.velocity);
-            }
-            else if (raycastHit2D.collider.gameObject.layer == 13)
-            {
-                StopPathfinding = true;
-                attaque = true;
-                for (int i = 0; i < animators.Length; i++)
-                {
-                    animators[i].SetBool("Attack", true);
-                }
-            }
+            RayCast();
         }
         else
         {
@@ -204,6 +180,43 @@ namespace Ennemy
             HandleSpriteRotation(rb.velocity);  
             
         } 
+    }
+
+    private void RayCast()
+    {
+        var shotPos = shotOrigin.position;
+        Vector2 raycastDirection = (target.transform.position) - shotPos;
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(shotPos,
+            new Vector2(projectileDiameter, projectileDiameter), Vector2.Angle(Vector2.right, raycastDirection),
+            raycastDirection, raycastDirection.magnitude, LayerMask.GetMask("ProjectileHitPlayer", "Obstacle"));
+        Debug.DrawRay(shotPos, raycastDirection, Color.red);
+        
+        if (!raycastHit2D) return;
+        switch (raycastHit2D.collider.gameObject.layer)
+        {
+            case 8:
+            {
+                StopPathfinding = false;
+                attaque = false;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attack", false);
+                }
+                
+                HandleSpriteRotation(rb.velocity);
+                break;
+            }
+            case 13:
+            {
+                StopPathfinding = true;
+                attaque = true;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Attack", true);
+                }
+                break;
+            }
+        }
     }
 
     public void Shoot()
