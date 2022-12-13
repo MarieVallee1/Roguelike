@@ -30,12 +30,9 @@ namespace GenPro
             else
             {
                 GameManager.instance.currentRoom = linkedRoom;
+                linkedRoom.SummonDoor();
                 if(linkedRoom.roomIsCleared) linkedRoom.SetArrows();
-                else
-                {
-                    ArrowManager.Instance.MaskEntries();
-                    linkedRoom.SummonDoor();
-                }
+                else ArrowManager.Instance.MaskEntries();
             }
         }
 
