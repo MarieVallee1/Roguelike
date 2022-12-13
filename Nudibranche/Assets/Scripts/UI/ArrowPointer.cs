@@ -13,17 +13,28 @@ namespace UI
         [SerializeField] private float offSet;
         [SerializeField] private float entryDistance;
 
+        private Transform _target;
         private Vector3 _targetPosition;
-        private bool _isOffScreen, _isTooFar, _isEnemy;
+        private bool _isOffScreen, _isTooFar, _isEnemy, _isShown;
 
-        public void SetTarget(Vector3 targetPosition, bool isEnemy)
+        public void SetTarget(Transform targetTransform, bool isEnemy)
         {
+            _target = targetTransform;
             _isEnemy = isEnemy;
-            _targetPosition = targetPosition;
+            _isShown = true;
         }
 
         private void Update()
         {
+            if (!_isShown) return;
+            if (!_target.gameObject.activeInHierarchy)
+            {
+                _isShown = false;
+                return;
+            }
+            
+            _targetPosition = _target.position;
+            
             var direction = _targetPosition - playerCamera.transform.position;
             direction.z = 0f;
             direction.Normalize();
