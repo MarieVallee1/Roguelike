@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace GenPro
@@ -25,11 +26,16 @@ namespace GenPro
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.gameObject.layer != 6) return;
-            if(IsOutside(other.transform.position)) linkedRoom.Deactivate();
+            if(IsOutside(other.transform.position))linkedRoom.Deactivate();
             else
             {
                 GameManager.instance.currentRoom = linkedRoom;
-                if(!linkedRoom.roomIsCleared) linkedRoom.SummonDoor();
+                if(linkedRoom.roomIsCleared) linkedRoom.SetArrows();
+                else
+                {
+                    ArrowManager.Instance.MaskEntries();
+                    linkedRoom.SummonDoor();
+                }
             }
         }
 
