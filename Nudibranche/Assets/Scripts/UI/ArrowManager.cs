@@ -28,9 +28,18 @@ namespace UI
 
         public void SetEntries(Transform[] entries)
         {
+            MaskEntries();
             for (var i = 0; i < entries.Length; i++)
             {
                 entryArrows[i].SetTarget(entries[i],false);
+            }
+        }
+
+        public void MaskEntries()
+        {
+            foreach (var arrow in entryArrows)
+            {
+                arrow.MaskArrow();
             }
         }
     }

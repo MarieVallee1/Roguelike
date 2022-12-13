@@ -50,9 +50,6 @@ namespace GenPro
                 item.SetActive(true);
             }
             activated = true;
-
-            if (!roomIsCleared) return;
-            ArrowManager.Instance.SetEntries(entries);
         }
 
         public void Deactivate()
@@ -109,6 +106,11 @@ namespace GenPro
                 aStar.data.gridGraph.center = transform.position;
                 aStar.data.graphs[0].Scan();
             }
+        }
+
+        public void SetArrows()
+        {
+            ArrowManager.Instance.SetEntries(entries);
         }
     }
 }

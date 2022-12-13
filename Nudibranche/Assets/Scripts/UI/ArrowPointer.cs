@@ -24,12 +24,18 @@ namespace UI
             _isShown = true;
         }
 
+        public void MaskArrow()
+        {
+            image.enabled = false;
+            _isShown = false;
+        }
+
         private void Update()
         {
             if (!_isShown) return;
             if (!_target.gameObject.activeInHierarchy)
             {
-                _isShown = false;
+                MaskArrow();
                 return;
             }
             
