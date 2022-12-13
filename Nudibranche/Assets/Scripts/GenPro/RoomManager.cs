@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Character;
 using Objects;
+using UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,10 +18,13 @@ namespace GenPro
         [SerializeField] private GameObject door;
         public GameObject pearlStack;
 
+        public List<ActivateEnemy> _enemyList = new();
+        public Transform[] entries;
+        
         private GameObject _levelDesign;
         private GameObject _background;
-        public List<ActivateEnemy> _enemyList = new();
         private float _lastPos;
+        private bool _arrowSet;
 
         private void Start()
         {
@@ -46,6 +50,9 @@ namespace GenPro
                 item.SetActive(true);
             }
             activated = true;
+
+            if (!roomIsCleared) return;
+            ArrowManager.Instance.SetEntries(entries);
         }
 
         public void Deactivate()
@@ -66,10 +73,21 @@ namespace GenPro
         public void RemoveEnemy(ActivateEnemy enemy)
         {
             _enemyList.Remove(enemy);
+
+            if (_enemyList.Count < 5)
+            {
+                if (!_arrowSet)
+                {
+                    ArrowManager.Instance.SetEnemies(_enemyList);
+                    _arrowSet = true;
+                }
+            }
+            
             if (_enemyList.Count != 0) return;
             GameManager.instance.inCombat = false;
             door.SetActive(false);
             roomIsCleared = true;
+            ArrowManager.Instance.SetEntries(entries);
         }
 
         public void SummonDoor()
