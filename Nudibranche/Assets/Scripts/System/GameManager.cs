@@ -70,7 +70,7 @@ namespace System
         {
             var endTime = Time.time - _startTime;
             _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
-            return (int)(_score / endTime);
+            return _score;
         }
 
         //Fonctions pour TP
