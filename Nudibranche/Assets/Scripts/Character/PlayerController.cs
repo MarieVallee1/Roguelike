@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Character.Skills;
 using DG.Tweening;
 using Objects;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +27,7 @@ namespace Character
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform startRoomTp;
         [SerializeField] private Transform dashPosition;
+        [SerializeField] private SpriteRenderer tpMat;
         
         [Header("Book Related")]
         [SerializeField] private GameObject book;
@@ -37,19 +39,24 @@ namespace Character
         [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private VisualEffect parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
-        
+
         [Header("Character Visuals Related")]
-        [SerializeField] private Transform characterVisualsTr;
+        [SerializeField] private GameObject characterVisualsTr;
+        [SerializeField] private GameObject dashVFX;
         [SerializeField] private GameObject[] characterFaces;
         [SerializeField] private Animator[] animator;
         public List<SpriteRenderer> visuals;
 
 
+        public float shaderDissolveValue = 2;
+        public float dissolveDuration = 0.5f;
+        public float ressolveDuration = 0.5f;
+        
+        
         #region Variables
         
-        private Vector2 _movementDirection;
-        [HideInInspector] public Vector2 mouseAim;
-     public Vector2 aim;
+        public Vector2 movementDirection;
+        public Vector2 aim;
         [HideInInspector] public Vector2 characterPos;
         [HideInInspector] public Vector2 shootDir;
         
@@ -89,7 +96,8 @@ namespace Character
         public bool isMovingUp;
         public bool isMovingDown;
         public bool isFacingLeft;
-        
+        private static readonly int Dissolve = Shader.PropertyToID("Dissolve");
+
         #endregion
 
         private void Awake()
@@ -115,8 +123,8 @@ namespace Character
             vulnerable = true;
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
-            
-            
+            tpMat.enabled = false;
+
             //Set the skill to null
             skillIndex = 0;
         }
@@ -129,10 +137,10 @@ namespace Character
 
             characterInputs.Character.Movement.performed += ctx =>
             {
-                _movementDirection = ctx.ReadValue<Vector2>();
-                movementPressed = _movementDirection.x != 0 || _movementDirection.y != 0;
-                isMovingUp = _movementDirection.y > 0.7;
-                isMovingDown = _movementDirection.y < -0.7;
+                movementDirection = ctx.ReadValue<Vector2>();
+                movementPressed = movementDirection.x != 0 || movementDirection.y != 0;
+                isMovingUp = movementDirection.y > 0.7;
+                isMovingDown = movementDirection.y < -0.7;
             };
             
             //Allows to detect which controller is used 
@@ -190,6 +198,8 @@ namespace Character
         private void Update()
         {
             Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
+            Debug.Log(shaderDissolveValue);
+            Debug.Log(tpMat.material.GetFloat("_Dissolve"));
             
             HandleParry();
             HandleMouseLook();
@@ -201,6 +211,7 @@ namespace Character
             DashCooldown();
             BlastReload();
             HandleSkillUse();
+            DashExtra();
 
             if (health <= 0) StartCoroutine(PlayerDeath());
             
@@ -214,7 +225,7 @@ namespace Character
             {
                 if (characterInputs.Character.Dash.triggered && CanDash())
                 {
-                    HandleDashUse();
+                    StartCoroutine(HandleDashUse());
                 }
             }
 
@@ -329,7 +340,7 @@ namespace Character
                 else speed = characterData.speedBuff;
                 
                 //Moves the character
-                _rb.AddForce(_movementDirection * speed,ForceMode2D.Impulse);
+                _rb.AddForce(movementDirection * speed,ForceMode2D.Impulse);
                 
                 //Handle the running animation of all the faces
                 for (int i = 0; i < animator.Length; i++)
@@ -468,19 +479,26 @@ namespace Character
                 }
             }
         }
-        private void HandleDashUse()
+        private IEnumerator HandleDashUse()
         {
+            nextTimeDash = Time.time + characterData.dashCooldown;
+            
+            characterVisualsTr.SetActive(false);
+            Instantiate(dashVFX, characterPos, quaternion.identity);
+            
             _tr.position = dashPosition.position;
             PostProcessing.Instance.dashing = true;
             PostProcessing.Instance._lensDistortion.intensity.value = -0.5f;
             
             Debug.Log("I Dash");
             
-            //Play VFX
-            if(parryFeedback.isStopped) parryFeedback.Play();
-            
-            nextTimeDash = Time.time + characterData.dashCooldown;
+            tpMat.enabled = true;
+            ressolveDuration = 0;
+            yield return new WaitForSeconds(0.5f);
+            characterVisualsTr.SetActive(true);
+            tpMat.enabled = false;
         }
+        
 
         private bool CanDash()
         {
@@ -492,6 +510,25 @@ namespace Character
             }
             
             return true;
+        }
+
+        private void DashExtra()
+        {
+            if (dissolveDuration < 1)
+            {
+                shaderDissolveValue = Mathf.Lerp(2, -2, dissolveDuration);
+                dissolveDuration += 1.5f * Time.deltaTime;
+            }
+            else dissolveDuration = 1;
+
+            if (ressolveDuration < 1)
+            {
+                shaderDissolveValue = Mathf.Lerp(-2, 2, ressolveDuration);
+                ressolveDuration += 1.5f * Time.deltaTime;
+            }
+            else ressolveDuration = 1;
+            
+            tpMat.material.SetFloat("_Dissolve", shaderDissolveValue);
         }
         private IEnumerator HandleTeleportation()
         {
