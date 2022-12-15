@@ -27,6 +27,7 @@ namespace Character
         {
             SetRotation();
             HandleSpriteRotation();
+            SetPosition();
         }
 
         private void SetRotation()
@@ -42,6 +43,11 @@ namespace Character
                 float angle = Mathf.Atan2(PlayerController.Instance.aim.x, PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
                 transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
             }
+        }
+
+        private void SetPosition()
+        {
+            transform.DOMove(PlayerController.Instance.characterPos, 0.2f);
         }
 
         private void HandleSpriteRotation()
