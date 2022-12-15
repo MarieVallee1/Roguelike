@@ -89,6 +89,8 @@ namespace GenPro
 
         public void SummonDoor()
         {
+            if (roomIsCleared) return;
+            
             GameManager.instance.AddScore();
             if (_enemyList.Count ==0) roomIsCleared = true;
             else
