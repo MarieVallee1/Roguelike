@@ -29,6 +29,8 @@ public class IAMoule : MonoBehaviour
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private Animator[] animators;
     [SerializeField] private ParticleSystem[] attackVFX;
+    [SerializeField] private ParticleSystem[] slashVFX;
+    [SerializeField] private GameObject vfxSlashProfil;
 
     // Combat //
     private bool cac;
@@ -234,10 +236,12 @@ public class IAMoule : MonoBehaviour
             if (Vector2.Angle(Vector2.left, direction) >= 90)
             {
                 transform.localScale = new Vector3(1, 1, 1);
+                vfxSlashProfil.transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
                 transform.localScale = new Vector3(-1, 1, 1);
+                vfxSlashProfil.transform.localScale = new Vector3(-1, 1, 1);
             }
         }
 
@@ -272,5 +276,13 @@ public class IAMoule : MonoBehaviour
         target = baitTransform;
         yield return new WaitForSeconds(characterData.baitDuration);
         target = PlayerController.Instance.transform.GetChild(6);
+    }
+
+    public void PlaySlashVFX()
+    {
+        for (int i = 0; i < attackVFX.Length; i++)
+        {
+            slashVFX[i].Play();
+        }
     }
 } 
