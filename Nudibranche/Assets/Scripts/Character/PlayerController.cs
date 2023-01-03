@@ -28,6 +28,7 @@ namespace Character
         [SerializeField] private Transform startRoomTp;
         [SerializeField] private Transform dashPosition;
         [SerializeField] private SpriteRenderer tpMat;
+        private Color _charaColor;
         
         [Header("Book Related")]
         [SerializeField] private GameObject book;
@@ -124,6 +125,11 @@ namespace Character
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             tpMat.enabled = false;
+
+            for (int i = 0; i < visuals.Count; i++)
+            {
+                _charaColor = visuals[i].color;
+            }
 
             //Set the skill to null
             skillIndex = 0;
@@ -276,7 +282,7 @@ namespace Character
         }      
         private IEnumerator InvulnerabilityFrame(float invulnerabilityDuration)
         {
-            PostProcessing.Instance._chromaticAberration.intensity.value = 1;
+            //PostProcessing.Instance._chromaticAberration.intensity.value = 1;
             CinemachineShake.instance.ShakeCamera(1f,0.2f);
             PostProcessing.Instance.gotHit = true;
             vulnerable = false;
@@ -301,6 +307,24 @@ namespace Character
                 
                 yield return new WaitForSeconds(0.2f);
             }
+            
+            // for (int i = 0; i < 3; i++)
+            // {
+            //
+            //     for (int y = 0; y < visuals.Count; y++)
+            //     {
+            //         visuals[y].color = Color.white;
+            //     }
+            //    
+            //     yield return new WaitForSeconds(0.2f);
+            //     
+            //     for (int t = 0; t < visuals.Count; t++)
+            //     {
+            //         visuals[t].color = _charaColor;
+            //     }
+            //     
+            //     yield return new WaitForSeconds(0.2f);
+            // }
             yield return new WaitForSeconds(0.5f);
             
             vulnerable = true;
