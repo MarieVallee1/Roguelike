@@ -71,7 +71,7 @@ namespace Ennemy
             spawnPointList.Add( new Vector2(spawnPointList[0].x + Mathf.Cos(2*Mathf.PI/nbOursinAround * i) * radiusSpawn , spawnPointList[0].y + Mathf.Sin(2*Mathf.PI/nbOursinAround * i) * radiusSpawn));
         }
 
-        for (int i = 0; i < spawnPointList.Count; i++)
+        for (int i = 1; i < spawnPointList.Count; i++)
         {
             if (Physics2D.CircleCast(spawnPointList[i], radius, Vector2.zero, 0,
                     LayerMask.GetMask("Obstacle", "Canonnier", "Mur")))
@@ -84,13 +84,18 @@ namespace Ennemy
     
     public void SpawnOursins()
     {
-        if (spawnPointList.Count >= 1)
+       /* if (spawnPointList.Count >= 1)
         {
             int x = Random.Range(0, spawnPointList.Count);
             usedOursin.CannonierShooting(spawnPointList[x]);
             spawnPointList.Remove(spawnPointList[x]);
             idleBetweenAttacksCount = 0;
-        }
+        } */
+        
+        int x = Random.Range(0, spawnPointList.Count);
+        usedOursin.CannonierShooting(spawnPointList[x]);
+        spawnPointList.Remove(spawnPointList[x]);
+        idleBetweenAttacksCount = 0;
     }
     public void NumberOfIdleBetweenAttacks()
     {

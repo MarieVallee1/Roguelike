@@ -200,13 +200,17 @@ public class Boss : MonoBehaviour
             rb.drag = 100;
             for (int i = 0; i < animators.Length; i++)
             {
+                animators[i].SetBool("Attaque", false);
+            }
+            for (int i = 0; i < animators.Length; i++)
+            {
                 animators[i].SetBool("Tourbillon", true);
             }
             canTourbillon = false;
         }
         else
         {
-            Vector2 force = (roomCenter.position - transform.position).normalized * speed * Time.deltaTime;
+            Vector2 force = (roomCenter.position - transform.position).normalized * rushSpeed * Time.deltaTime;
             rb.AddForce(force, ForceMode2D.Force);
         }
     }
