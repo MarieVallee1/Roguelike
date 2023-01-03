@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 754439630}
   - component: {fileID: 754439629}
   m_Layer: 5
-  m_Name: CharacterArrow
+  m_Name: CharacterArrow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.72267824, b: 0.06132078, a: 1}
+  m_Color: {r: 0.15686275, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1447,6 +1447,21 @@ PrefabInstance:
       propertyPath: bossArrow
       value: 
       objectReference: {fileID: 2023338622}
+    - target: {fileID: 6340228474766640151, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: characterArrows.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340228474766640151, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: characterArrows.Array.data[0]
+      value: 
+      objectReference: {fileID: 754439629}
+    - target: {fileID: 6340228474766640151, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: characterArrows.Array.data[1]
+      value: 
+      objectReference: {fileID: 2096129503}
     - target: {fileID: 6885649244334901735, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
@@ -1787,7 +1802,7 @@ GameObject:
   - component: {fileID: 2096129504}
   - component: {fileID: 2096129503}
   m_Layer: 5
-  m_Name: CharacterArrow
+  m_Name: CharacterArrow (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1843,7 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.72156864, b: 0.0627451, a: 1}
+  m_Color: {r: 0.15739894, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
