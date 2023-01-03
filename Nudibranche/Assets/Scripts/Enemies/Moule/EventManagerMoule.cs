@@ -26,4 +26,9 @@ public class EventManagerMoule : MonoBehaviour
     {
         iaMoule.PlayAttackVFX();
     }
+
+    public void PlaySlashVFX()
+    {
+        iaMoule.PlaySlashVFX();
+    }
 }
