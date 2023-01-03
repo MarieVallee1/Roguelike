@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8369733889311435068
+--- !u!114 &-5870248212911121170
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader_Wind_All
-  m_Shader: {fileID: -6465566751694194690, guid: e86847b6b677e274f9cfaf5703b790c5,
+  m_Name: Tornado Material
+  m_Shader: {fileID: -6465566751694194690, guid: 35eb8331e6a89184f9597c4bc38cbffb,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -35,7 +35,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ee2523340e7944c4297a80937a51484c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -52,8 +52,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Dissolve_: 0.78
+    - NoisePower_: 0.96
+    - NoiseScale_: 20.83
+    - TwirlAmount_: 5
+    - _NoiseScale: 20
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _WindIntensity: 0.17
-    m_Colors: []
+    m_Colors:
+    - Color_: {r: 0.0627451, g: 0.03137255, b: 0.20392157, a: 1}
+    - NoiseSpeed_: {r: 0, g: -0.5, b: 0, a: 0}
+    - TwirlCenter_: {r: 1.18, g: 2.31, b: 0, a: 0}
+    - TwirlSpeed_: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
