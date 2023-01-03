@@ -22,6 +22,7 @@ namespace Enemies
         private float shaderDissolveValue = 1;
         public float dissolveDuration = 1;
         private bool dead;
+        [SerializeField] private Material[] charaMat;
 
         private enum Enemy
         {
@@ -59,6 +60,11 @@ namespace Enemies
     
         public void takeDamage(int damage)
         {
+            if (!dead)
+            {
+                StartCoroutine(HitFeedback());
+            }
+            
             if (vulnerable && !dead)
             {
                 pv -= damage;
@@ -77,6 +83,23 @@ namespace Enemies
             }
         }
 
+        private IEnumerator HitFeedback()
+        {
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].material = charaMat[1];
+            }
+
+            yield return new WaitForSeconds(0.1f);
+            
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].material = charaMat[0];
+            }
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+
         private void Update()
         {
             if (dead)
@@ -90,6 +113,11 @@ namespace Enemies
 
         private IEnumerator Death()
         {
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].material = charaMat[0];
+            }
+            
             collider.enabled = false;
             if (rb != null)
             {

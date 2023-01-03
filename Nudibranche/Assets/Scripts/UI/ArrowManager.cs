@@ -22,11 +22,11 @@ namespace UI
 
         public void SetSpecials(Transform bossPos, List<Transform> characterPos)
         {
-            bossArrow.SetTarget(bossPos,false);
-            for (var i = 0; i < characterPos.Count; i++)
-            {
-                characterArrows[i].SetTarget(characterPos[i],false);
-            }
+            // bossArrow.SetTarget(bossPos,false);
+            // for (var i = 0; i < characterPos.Count; i++)
+            // {
+            //     characterArrows[i].SetTarget(characterPos[i],false);
+            // }
         }
 
         public void SetEnemies(IReadOnlyList<ActivateEnemy> enemyList)

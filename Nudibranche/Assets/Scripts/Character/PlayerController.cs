@@ -28,7 +28,7 @@ namespace Character
         [SerializeField] private Transform startRoomTp;
         [SerializeField] private Transform dashPosition;
         [SerializeField] private SpriteRenderer tpMat;
-        private Color _charaColor;
+        [SerializeField] private Material[] charaMat;
         
         [Header("Book Related")]
         [SerializeField] private GameObject book;
@@ -128,7 +128,7 @@ namespace Character
 
             for (int i = 0; i < visuals.Count; i++)
             {
-                _charaColor = visuals[i].color;
+                visuals[i].GetComponent<Renderer>().material = charaMat[0];
             }
 
             //Set the skill to null
@@ -287,44 +287,44 @@ namespace Character
             PostProcessing.Instance.gotHit = true;
             vulnerable = false;
             
-            for (int i = 0; i < 3; i++)
-            {
-                for (int y = 0; y < visuals.Count; y++)
-                {
-                    Color tmp = visuals[y].color;
-                    tmp.a = 0;
-                    visuals[y].color = tmp;
-                }
-               
-                yield return new WaitForSeconds(0.2f);
-                
-                for (int t = 0; t < visuals.Count; t++)
-                {
-                    Color tmp = visuals[t].color;
-                    tmp.a = 1;
-                    visuals[t].color = tmp;
-                }
-                
-                yield return new WaitForSeconds(0.2f);
-            }
-            
             // for (int i = 0; i < 3; i++)
             // {
-            //
             //     for (int y = 0; y < visuals.Count; y++)
             //     {
-            //         visuals[y].color = Color.white;
+            //         Color tmp = visuals[y].color;
+            //         tmp.a = 0;
+            //         visuals[y].color = tmp;
             //     }
             //    
             //     yield return new WaitForSeconds(0.2f);
             //     
             //     for (int t = 0; t < visuals.Count; t++)
             //     {
-            //         visuals[t].color = _charaColor;
+            //         Color tmp = visuals[t].color;
+            //         tmp.a = 1;
+            //         visuals[t].color = tmp;
             //     }
             //     
             //     yield return new WaitForSeconds(0.2f);
             // }
+            
+            for (int i = 0; i < 1; i++)
+            {
+            
+                for (int y = 0; y < visuals.Count; y++)
+                {
+                    visuals[y].GetComponent<Renderer>().material = charaMat[1];
+                }
+               
+                yield return new WaitForSeconds(0.2f);
+                
+                for (int k = 0; k < visuals.Count; k++)
+                {
+                    visuals[k].GetComponent<Renderer>().material = charaMat[0];
+                }
+                
+                yield return new WaitForSeconds(0.2f);
+            }
             yield return new WaitForSeconds(0.5f);
             
             vulnerable = true;
