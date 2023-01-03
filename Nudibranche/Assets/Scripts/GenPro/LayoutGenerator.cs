@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UI;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,6 +20,10 @@ namespace GenPro
         private SpecialRoom _specialRoom1, _specialRoom2, _specialRoom3;
         private bool _secondRoom4Room, _bossRoomIsSet, _inFirstLoop, _loopDown;
         private Entry _entryBlock;
+        
+        //Arrow Set-Up
+        private Transform _bossRoom;
+        private List<Transform> _characterRooms = new List<Transform>();
 
         private enum Side
         {
@@ -102,6 +107,7 @@ namespace GenPro
             SecondLoop();
             PlaceSpecialRooms();
             GameManager.instance.startRoom = listSalle[0].GetComponent<RoomManager>();
+            ArrowManager.Instance.SetSpecials(_bossRoom,_characterRooms);
         }
         private void CheckFiller2Room(Side side)
         {
@@ -752,6 +758,7 @@ namespace GenPro
             _currentRoomPool.AddRange(bossRooms);
             ChooseSpecialRoom(side);
             InstantiateRoom(indexOldRoom,side,false);
+            _bossRoom = listSalle[^1].transform;
         }
         private void PlaceCharacterRoom(int indexOldRoom,Side side)
         {
@@ -759,6 +766,7 @@ namespace GenPro
             _currentRoomPool.AddRange(characterRooms);
             ChooseSpecialRoom(side);
             InstantiateRoom(indexOldRoom,side,false);
+            _characterRooms.Add(listSalle[^1].transform);
         }
         private void PlaceShopRoom(int indexOldRoom,Side side,Entry entry)
         {
