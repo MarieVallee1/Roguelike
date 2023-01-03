@@ -182,10 +182,7 @@ namespace Character
                     onParry = true;
                 }
             };
-            
-            //Use the current consumable 
-            characterInputs.Character.Objects.performed += ctx => ItemManager.Instance.OnUse();
-            
+
             characterInputs.Character.Teleportation.performed += ctx => StartCoroutine(HandleTeleportation());
         }
         private void OnDisable()
