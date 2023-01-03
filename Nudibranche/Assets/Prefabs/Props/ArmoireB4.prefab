@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7960029857334295981}
   - component: {fileID: 8147040456070601486}
   - component: {fileID: 1247690350734359761}
-  - component: {fileID: 1374133360628129}
   m_Layer: 8
   m_Name: Gradient
   m_TagString: Environment
@@ -102,32 +101,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2a8d9248291787041ab8b8546d1ff213, type: 3}
   - {fileID: 21300000, guid: 1ed36f9b136529a4b8e71cd80f98b78e, type: 3}
   - {fileID: 21300000, guid: cbb5cfe3932fbe54aa425230de772cfe, type: 3}
---- !u!61 &1374133360628129
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994582814966378482}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0032465458, y: -0.35225487}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.3}
-    oldSize: {x: 3.2156863, y: 3.2156863}
-    newSize: {x: 4.096, y: 4.096}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.0546188, y: 1.0479937}
-  m_EdgeRadius: 0
 --- !u!1 &5297868471687889821
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5297868471687889822}
   - component: {fileID: 5297868471687889823}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: ProjectileCollider
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -200,7 +173,7 @@ GameObject:
   - component: {fileID: 2006512456846704928}
   m_Layer: 8
   m_Name: ArmoireB4
-  m_TagString: Environment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

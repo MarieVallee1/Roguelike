@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1729808612866224014}
   - component: {fileID: 2036823916192373890}
-  - component: {fileID: 9124624556890262773}
   m_Layer: 8
   m_Name: StatuePoulpe
   m_TagString: Environment
@@ -169,32 +168,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!61 &9124624556890262773
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5196562977723139922}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.3}
-    oldSize: {x: 1.5490196, y: 2.552941}
-    newSize: {x: 4.096, y: 4.096}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.99, y: 0.37}
-  m_EdgeRadius: 0
 --- !u!1 &6840418039991057129
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +181,7 @@ GameObject:
   - component: {fileID: 2632037834378228373}
   m_Layer: 8
   m_Name: StatuePoulpe
-  m_TagString: Environment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +269,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15}
+  m_Offset: {x: 0.0129143, y: -0.33264488}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.3}
@@ -307,7 +280,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99, y: 0.37}
+  m_Size: {x: 1.0158286, y: 0.4327265}
   m_EdgeRadius: 0
 --- !u!1 &8564649447559852072
 GameObject:
@@ -319,7 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8564649447559852075}
   - component: {fileID: 8564649447559852074}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: ProjectileCollider
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -354,7 +327,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.48}
+  m_Offset: {x: 0.020293891, y: 0.31303668}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -365,5 +338,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.12}
+  m_Size: {x: 0.9778613, y: 0.08863664}
   m_EdgeRadius: 0
