@@ -107,6 +107,7 @@ public class UIManager : MonoBehaviour
     
     private void OpenPauseMenu()
     {
+        Time.timeScale = 0;
         _event.SetSelectedGameObject(continueButton);
         pauseMenuOn = true;
         pauseMenu.SetActive(true);
@@ -116,6 +117,7 @@ public class UIManager : MonoBehaviour
     }
     public void ClosePauseMenu()
     {
+        Time.timeScale = 1;
         pauseMenuOn = false;
         pauseMenu.SetActive(false);
         PlayerController.Instance.EnableInputs();
@@ -135,19 +137,19 @@ public class UIManager : MonoBehaviour
         {
             case "ContinueButton":
             {
-                cursor.DOAnchorPosY(137, 0.5f);
+                cursor.DOAnchorPosY(137, 0.5f).SetUpdate(true);
             }
                 break;
             
             case "OptionsButton":
             {
-                cursor.DOAnchorPosY(57, 0.5f);
+                cursor.DOAnchorPosY(57, 0.5f).SetUpdate(true);
             }
                 break;
             
             case "QuitButton":
             {
-                cursor.DOAnchorPosY(-23, 0.5f);
+                cursor.DOAnchorPosY(-23, 0.5f).SetUpdate(true);
             }
                 break;
         }
