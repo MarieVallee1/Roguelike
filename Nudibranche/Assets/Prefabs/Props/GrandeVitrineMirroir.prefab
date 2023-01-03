@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5432325811255672371}
   - component: {fileID: 175945311713271041}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: ProjectileCollider
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 8201585762327601786}
   m_Layer: 8
   m_Name: GrandeVitrineMirroir
-  m_TagString: Environment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,6 @@ GameObject:
   - component: {fileID: 2100033089652127471}
   - component: {fileID: 1124139360744806534}
   - component: {fileID: 5810292772780386827}
-  - component: {fileID: 6356171703524320596}
   m_Layer: 8
   m_Name: Gradient
   m_TagString: Environment
@@ -287,32 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 21300000, guid: 73457a95a9ed5bc479884d9fc163a225, type: 3}
---- !u!61 &6356171703524320596
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7382397045912475871}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.00000023841858, y: -0.08054042}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.3}
-    oldSize: {x: 3.1176472, y: 2.137255}
-    newSize: {x: 3.1176472, y: 2.137255}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.0017295, y: 1.0175815}
-  m_EdgeRadius: 0
 --- !u!1 &8179133635458521357
 GameObject:
   m_ObjectHideFlags: 0
