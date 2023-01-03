@@ -60,7 +60,7 @@ namespace Enemies
     
         public void takeDamage(int damage)
         {
-            if (!dead)
+            if (!dead && vulnerable)
             {
                 StartCoroutine(HitFeedback());
             }
