@@ -19,7 +19,7 @@ namespace Objects
         private bool _inZone;
         private void Start()
         {
-            _linkedReward = isHealth ? ItemManager.Instance.health : ItemManager.Instance.PickItem();
+            _linkedReward = isHealth ? ItemManager.Instance.health : ItemManager.Instance.RandomPassiveItem();
             spriteRenderer.sprite = _linkedReward.stats.objectImage;
             itemName.text = _linkedReward.stats.objectName;
             itemDescription.text = _linkedReward.stats.objectDescription;
