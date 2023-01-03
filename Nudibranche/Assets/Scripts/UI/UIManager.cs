@@ -85,20 +85,7 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
-    public void UpdateObjectInfo()
-    {
-        //Displays the object index if the player has an object
-        if (ItemManager.Instance.lastConsumable < 0)
-        {
-            objectPanel.SetActive(false);
-        }
-        else
-        {
-            objectPanel.gameObject.SetActive(true);
-            objectInfo.text = "" + ItemManager.Instance.ConsumableInfo().stats.objectName;
-        }
-    }
-    
+
     public void BlackScreenFadeIn()
     {
         blackScreen.SetBool("Faded", false);
