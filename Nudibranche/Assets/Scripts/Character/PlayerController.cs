@@ -195,9 +195,7 @@ namespace Character
         private void Update()
         {
             Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
-            Debug.Log(shaderDissolveValue);
-            Debug.Log(tpMat.material.GetFloat("_Dissolve"));
-            
+
             HandleParry();
             HandleMouseLook();
             RestrictMousePos();
