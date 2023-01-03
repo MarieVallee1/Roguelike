@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7885702660362545853}
   m_Layer: 8
   m_Name: StatueEspadon
-  m_TagString: Environment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4553979209374984195}
   - component: {fileID: 4553979209374984194}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: ProjectileCollider
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: 0.48}
+  m_Offset: {x: -0.06721926, y: 0.48}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -170,7 +170,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.05, y: 0.2}
+  m_Size: {x: 1.9392338, y: 0.19999999}
   m_EdgeRadius: 0
 --- !u!1 &5982107457675150235
 GameObject:
@@ -266,7 +266,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8116831043997188052}
   - component: {fileID: 5386695942800286139}
-  - component: {fileID: 5864467356065885722}
   m_Layer: 8
   m_Name: StatueEspadon
   m_TagString: Environment
@@ -341,29 +340,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!61 &5864467356065885722
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7212836656823777785}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: -0.26}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.24}
-    oldSize: {x: 2.5019608, y: 3.4509804}
-    newSize: {x: 4.096, y: 4.096}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.99, y: 0.72}
-  m_EdgeRadius: 0

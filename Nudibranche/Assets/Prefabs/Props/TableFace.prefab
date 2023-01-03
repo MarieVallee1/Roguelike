@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4023049925911797176}
   - component: {fileID: 3154201661241234310}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: ProjectileCollider
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -68,7 +68,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3916316619374858879}
   - component: {fileID: 7640117894363451336}
-  - component: {fileID: 1542930641109852166}
   m_Layer: 8
   m_Name: TableFace
   m_TagString: Environment
@@ -143,32 +142,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1542930641109852166
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7180593056977521955}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.11981869}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.827451, y: 2.792157}
-    newSize: {x: 9.32, y: 14.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5478745, y: 2.3528233}
-  m_EdgeRadius: 0
 --- !u!1 &7257370647006414710
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +155,7 @@ GameObject:
   - component: {fileID: 5367855450225830695}
   m_Layer: 8
   m_Name: TableFace
-  m_TagString: Environment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
