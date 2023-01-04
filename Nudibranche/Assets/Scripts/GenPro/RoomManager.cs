@@ -17,6 +17,7 @@ namespace GenPro
         [SerializeField] private GameObject[] deactivate;
         [SerializeField] private GameObject door;
         public GameObject pearlStack;
+        [SerializeField] private GameObject minimapIcon;
 
         public List<ActivateEnemy> _enemyList = new();
         public Transform[] entries;
@@ -89,9 +90,12 @@ namespace GenPro
 
         public void SummonDoor()
         {
+            Minimap.Minimap.Instance.MinimapUpdate(transform);
             if (roomIsCleared) return;
             
             GameManager.instance.AddScore();
+            minimapIcon.SetActive(true);
+            
             if (_enemyList.Count ==0) roomIsCleared = true;
             else
             {
