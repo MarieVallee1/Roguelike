@@ -8,7 +8,7 @@ namespace Projectiles
     public class BasicAttack : MonoBehaviour
     {
         private SpriteRenderer _ren;
-        private TrailRenderer _trail;
+        // private TrailRenderer _trail;
         private Rigidbody2D _rb;
         private CharacterData _characterData;
         
@@ -24,14 +24,14 @@ namespace Projectiles
         private void Awake()
         {
             _ren = GetComponent<SpriteRenderer>();
-            _trail = GetComponent<TrailRenderer>();
+            //_trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
             _characterData = PlayerController.Instance.characterData;
         }
 
         private void OnEnable()
         {
-            _trail.enabled = true;
+            //_trail.enabled = true;
             _countdown = 0f;
             _accelerationCooldown = Time.time + controlDuration;
 
@@ -83,10 +83,10 @@ namespace Projectiles
         void ProjectileLifeTime()
         {
             _countdown += Time.deltaTime;
-            if (_countdown > _characterData.usedProjectile[_characterData.projectileIndex].duration/3)
-            {
-                _trail.enabled = false;
-            }
+            // if (_countdown > _characterData.usedProjectile[_characterData.projectileIndex].duration/3)
+            // {
+            //     _trail.enabled = false;
+            // }
             if (_countdown > _characterData.usedProjectile[_characterData.projectileIndex].duration)
             {
                 gameObject.SetActive(false);

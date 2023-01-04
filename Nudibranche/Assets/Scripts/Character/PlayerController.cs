@@ -398,6 +398,15 @@ namespace Character
                 
                 //Placement & activation of the projectile
                 usedProjectile.transform.position = book.transform.position;
+                
+                // get the raw angle, in radians
+                float radians = Mathf.Atan2 (aim.x, aim.y);
+ 
+                // up to degrees
+                float directionAngle = radians * Mathf.Rad2Deg;
+                var transformRotation = usedProjectile.transform.rotation;
+                transformRotation.z = directionAngle;
+                
                 usedProjectile.SetActive(true);
                 shootDir = aim.normalized;
             
