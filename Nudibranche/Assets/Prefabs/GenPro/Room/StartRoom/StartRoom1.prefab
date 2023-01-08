@@ -141,7 +141,8 @@ MonoBehaviour:
   - {fileID: 7066838736862067373}
   door: {fileID: 2996863895338876458}
   pearlStack: {fileID: 7066838736862067373}
-  minimapIcon: {fileID: 8230358364991482208}
+  minimapIcon: {fileID: 2925155643940625261}
+  iconSprite: {fileID: 21300000, guid: d5895ec5c093b75478807e44d6172d24, type: 3}
   _enemyList: []
   entries:
   - {fileID: 456630526600015099}
@@ -662,17 +663,23 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8799035146269568060, guid: 2df89d03b7dd1664889d27b05e21fd1b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d5895ec5c093b75478807e44d6172d24,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2df89d03b7dd1664889d27b05e21fd1b, type: 3}
---- !u!4 &5738282117030634209 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2100427269998253488, guid: 2df89d03b7dd1664889d27b05e21fd1b,
+--- !u!212 &2925155643940625261 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8799035146269568060, guid: 2df89d03b7dd1664889d27b05e21fd1b,
     type: 3}
   m_PrefabInstance: {fileID: 5945963547872491345}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8230358364991482208 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2358853782133481009, guid: 2df89d03b7dd1664889d27b05e21fd1b,
+--- !u!4 &5738282117030634209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2100427269998253488, guid: 2df89d03b7dd1664889d27b05e21fd1b,
     type: 3}
   m_PrefabInstance: {fileID: 5945963547872491345}
   m_PrefabAsset: {fileID: 0}

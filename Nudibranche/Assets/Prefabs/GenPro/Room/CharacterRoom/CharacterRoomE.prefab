@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activated: 0
-  roomIsCleared: 1
+  roomIsCleared: 0
   isBig: 0
   character: 1
   levelDesign:
@@ -87,7 +87,8 @@ MonoBehaviour:
   - {fileID: 7153350893780406896}
   door: {fileID: 6649305176679327111}
   pearlStack: {fileID: 7153350893780406896}
-  minimapIcon: {fileID: 2490208706405748170}
+  minimapIcon: {fileID: 8660098016127123399}
+  iconSprite: {fileID: 21300000, guid: 78541529e6e68034cbf34ba91658e5e9, type: 3}
   _enemyList: []
   entries:
   - {fileID: 2240446320899031295}
@@ -340,9 +341,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 158376522036630523}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2490208706405748170 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2358853782133481009, guid: 2df89d03b7dd1664889d27b05e21fd1b,
+--- !u!212 &8660098016127123399 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8799035146269568060, guid: 2df89d03b7dd1664889d27b05e21fd1b,
     type: 3}
   m_PrefabInstance: {fileID: 158376522036630523}
   m_PrefabAsset: {fileID: 0}

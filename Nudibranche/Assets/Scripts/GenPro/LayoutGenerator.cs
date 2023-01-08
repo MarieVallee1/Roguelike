@@ -1300,7 +1300,9 @@ namespace GenPro
             if (!activateAll) return;
             foreach (var salle in listSalle)
             {
-                salle.GetComponent<RoomManager>()?.Activate();
+                var roomManager = salle.GetComponent<RoomManager>();
+                roomManager.Activate();
+                roomManager.minimapIcon.gameObject.SetActive(true);
             }
         
             activateAll = false;

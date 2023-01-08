@@ -9,16 +9,22 @@ namespace GenPro
         public RoomManager linkedRoom;
         [SerializeField] private Spawn[] spawns;
         private Spawn _chosenSpawn;
+        [SerializeField] private bool character;
+        [SerializeField] private GameObject characterIcon;
 
         public void ChooseSpawn(RoomManager currentRoom)
         {
             linkedRoom = currentRoom;
-            _chosenSpawn = spawns[Random.Range(0, spawns.Length)];
-            foreach (var enemy in _chosenSpawn.enemies)
+            if (character) Instantiate(characterIcon, linkedRoom.minimapIcon.transform);
+            else
             {
-                enemy.gameObject.SetActive(true);
-                enemy.SetReference(this);
-                linkedRoom.AddEnemyToList(enemy);
+                _chosenSpawn = spawns[Random.Range(0, spawns.Length)];
+                foreach (var enemy in _chosenSpawn.enemies)
+                {
+                    enemy.gameObject.SetActive(true);
+                    enemy.SetReference(this);
+                    linkedRoom.AddEnemyToList(enemy);
+                }
             }
         }
     }

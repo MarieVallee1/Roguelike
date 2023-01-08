@@ -17,7 +17,8 @@ namespace GenPro
         [SerializeField] private GameObject[] deactivate;
         [SerializeField] private GameObject door;
         public GameObject pearlStack;
-        [SerializeField] private GameObject minimapIcon;
+        public SpriteRenderer minimapIcon;
+        [SerializeField] private Sprite iconSprite;
 
         public List<ActivateEnemy> _enemyList = new();
         public Transform[] entries;
@@ -39,6 +40,7 @@ namespace GenPro
                 }
                 GameManager.instance.firstCharacterIndex = index;
             }
+            minimapIcon.sprite = iconSprite;
             _levelDesign = Instantiate(levelDesign[index], transform);
             _levelDesign.GetComponent<EnemySpawn>().ChooseSpawn(this);
         }
@@ -94,8 +96,8 @@ namespace GenPro
             if (roomIsCleared) return;
             
             GameManager.instance.AddScore();
-            minimapIcon.SetActive(true);
-            
+            minimapIcon.gameObject.SetActive(true);
+
             if (_enemyList.Count ==0) roomIsCleared = true;
             else
             {
