@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +15,6 @@ namespace UI
 
         [Header("Menu References")]
         [SerializeField] private RectTransform cursor;
-        public Image blackScreen;
         [SerializeField] private GameObject mainMenu;
         private CanvasGroup _mainMenuCanvas;
         [SerializeField] private GameObject optionMenu;
@@ -25,6 +26,8 @@ namespace UI
         [SerializeField] private GameObject firstOptionSelected;
         [SerializeField] private GameObject optionReturnButton;
 
+        [SerializeField] private Animator blackScreenAnim;
+        
         private string _selectedButtons;
     
         [Header("States")]
@@ -34,15 +37,17 @@ namespace UI
     
         private void Awake()
         {
+            Time.timeScale = 1;
+            
             _inputActions = new PlayerInputActions();
             _event = EventSystem.current;
-        
-            //set the alpha to 1
-            blackScreen.color = new Color(0, 0, 0, 1);
+
             DOTween.KillAll();
-            
             _mainMenuCanvas = mainMenu.GetComponent<CanvasGroup>();
             _optionMenuCanvas = optionMenu.GetComponent<CanvasGroup>();
+            
+            //Manages the first black screen
+            blackScreenAnim.SetBool("Faded", false);
         }
         private void OnEnable()
         {
@@ -86,8 +91,7 @@ namespace UI
         }
         void Start()
         {
-            //Manages the first black screen
-            blackScreen.DOFade(0, 2f).onComplete = DisableBlackScreen;
+            EnableButtonFunction();
 
             mainMenuOpen = true;
             optionMenuOpen = false;
@@ -97,18 +101,19 @@ namespace UI
             //Manages the cursor in the main menu
             if(mainMenuOpen) HandleSelectedButtons();
         }
-
-
+        
+        
 
         public void StartButton()
         {
             DisableButtonFunction();
             
             //Fades to black before launching the game
-            blackScreen.DOKill();
-            blackScreen.enabled = true;
-            blackScreen.DOFade(1, 3f).onComplete = LaunchGame;
+            blackScreenAnim.SetBool("Faded", true);
+
             _inputActions.Disable();
+            
+            StartCoroutine(LaunchGame());
         }
         public void OpenOptionsButton()
         {
@@ -137,8 +142,9 @@ namespace UI
         }
 
 
-        private void LaunchGame()
+        private IEnumerator LaunchGame()
         {
+            yield return new WaitForSeconds(1f);
             //Launches the game
             SceneManager.LoadScene("Scene_Main");
         }
@@ -152,42 +158,42 @@ namespace UI
             optionMenu.SetActive(false);
             optionMenuOpen = false;
         }
-        private void DisableBlackScreen()
-        {
-            blackScreen.enabled = false;
-        }
-    
-    
-    
+     
+        
+
         private void HandleSelectedButtons()
         {
-            //Moves the cursor depending on the button selected
-            switch (_event.currentSelectedGameObject.name)
+            if (_event.currentSelectedGameObject != null)
             {
-                case "PlayButton":
+                //Moves the cursor depending on the button selected
+                switch (_event.currentSelectedGameObject.name)
                 {
-                    cursor.DOKill();
-                    cursor.DOAnchorPosY(279, 0.5f);
-                }
-                    break;
+                    case "PlayButton":
+                    {
+                        cursor.DOKill();
+                        cursor.DOAnchorPosY(279, 0.5f);
+                    }
+                        break;
             
-                case "OptionsButton":
-                {
-                    cursor.DOKill();
-                    cursor.DOAnchorPosY(205, 0.5f);
-                }
-                    break;
+                    case "OptionsButton":
+                    {
+                        cursor.DOKill();
+                        cursor.DOAnchorPosY(205, 0.5f);
+                    }
+                        break;
             
-                case "QuitButton":
-                {
-                    cursor.DOKill();
-                    cursor.DOAnchorPosY(126, 0.5f);
-                }
-                    break;
+                    case "QuitButton":
+                    {
+                        cursor.DOKill();
+                        cursor.DOAnchorPosY(126, 0.5f);
+                    }
+                        break;
                 
-                default: print("Nothing Selected");
-                    break;
+                    default: print("Nothing Selected");
+                        break;
+                }
             }
+            
         }
 
         public void PlayButtonµIsSelected()
@@ -210,6 +216,13 @@ namespace UI
             playButton.GetComponent<Button>().interactable = false;
             optionButton.GetComponent<Button>().interactable = false;
             quitButton.GetComponent<Button>().interactable = false;
+        }
+        
+        private void EnableButtonFunction()
+        {
+            playButton.GetComponent<Button>().interactable = true;
+            optionButton.GetComponent<Button>().interactable = true;
+            quitButton.GetComponent<Button>().interactable = true;
         }
     }
 }
