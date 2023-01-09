@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PrincessEventManager : MonoBehaviour
 {
     [SerializeField] private Boss boss;
+    [SerializeField] private VisualEffect tornade;
 
     public void CreateSpawnList()
     {
@@ -19,5 +21,13 @@ public class PrincessEventManager : MonoBehaviour
     public void Death()
     {
         boss.StartCoroutine("Death");
+    }
+
+    public void Tornade()
+    {
+        if (boss.behaviour == Boss.Behaviour.oursins)
+        {
+            tornade.Play();
+        }
     }
 }
