@@ -509,21 +509,34 @@ namespace Character
         }
         private IEnumerator HandleDashUse()
         {
+            //Cooldown
             nextTimeDash = Time.time + characterData.dashCooldown;
             
+            //Rigged Sprite deactivation
             characterVisualsTr.SetActive(false);
+            
+            //VFX Previous position
             Instantiate(dashVFX, characterPos, quaternion.identity);
             
+            //Teleportation
             _tr.position = dashPosition.position;
+            
+            //Post Process feedback
+            PostProcessing.Instance._lensDistortion.intensity.value = 0f;
             PostProcessing.Instance.dashing = true;
             PostProcessing.Instance._lensDistortion.intensity.value = -0.5f;
-            
+
             Debug.Log("I Dash");
             
+            //Dissolve Material activation
             tpMat.enabled = true;
             ressolveDuration = 0;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
+            
+            //Rigged Sprite activation
             characterVisualsTr.SetActive(true);
+            
+            //Dissolve Material deactivation
             tpMat.enabled = false;
         }
         
@@ -552,7 +565,7 @@ namespace Character
             if (ressolveDuration < 1)
             {
                 shaderDissolveValue = Mathf.Lerp(-2, 2, ressolveDuration);
-                ressolveDuration += 1.5f * Time.deltaTime;
+                ressolveDuration += 1.4f * Time.deltaTime;
             }
             else ressolveDuration = 1;
             
