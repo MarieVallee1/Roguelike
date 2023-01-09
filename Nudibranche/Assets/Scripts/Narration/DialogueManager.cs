@@ -89,6 +89,9 @@ namespace Narration
         public void ContinueDialogue(Dialogue dialogue)
         {
             DisplayNextSentence(dialogue);
+            Debug.Log(_sentences.Count);
+            Debug.Log(_sentences1.Count);
+            Debug.Log(_sentences2.Count);
         }
         private void DisplayNextSentence(Dialogue dialogue)
         {
@@ -205,6 +208,19 @@ namespace Narration
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(true); 
+                    break;
+                
+                case 3 :
+                    npc[0].SetActive(false);
+                    npc[1].SetActive(false);
+                    npc[2].SetActive(true); 
+                    
+                    txtBox[0].SetActive(false);
+                    txtBox[1].SetActive(false);
+                    txtBox[2].SetActive(true); 
+                    break;
+                
+                default: print("no skill index read");
                     break;
             }
             
