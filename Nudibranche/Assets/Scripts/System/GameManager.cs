@@ -45,7 +45,7 @@ namespace System
         }
         void Start()
         {
-            blackScreenAnim.SetTrigger("FadeIt");
+            blackScreenAnim.SetBool("Faded",false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
             //pearlAmountText.text = 0 + "";
