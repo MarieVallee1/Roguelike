@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 248132471}
   - component: {fileID: 248132470}
   - component: {fileID: 248132469}
+  - component: {fileID: 248132472}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -576,7 +577,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -645,6 +646,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248132467}
   m_CullTransparentMesh: 1
+--- !u!114 &248132472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248132467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 256592822}
+          m_TargetAssemblyTypeName: UI.MainMenuManager, Assembly-CSharp
+          m_MethodName: "OptionButton\xB5IsSelected"
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &256592821
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +709,8 @@ MonoBehaviour:
   mainMenu: {fileID: 772267957}
   optionMenu: {fileID: 1848553371}
   optionButton: {fileID: 248132467}
+  playButton: {fileID: 1850577104}
+  quitButton: {fileID: 1657674400}
   firstOptionSelected: {fileID: 110637246}
   optionReturnButton: {fileID: 1722311199}
   mainMenuOpen: 0
@@ -2957,6 +2989,7 @@ GameObject:
   - component: {fileID: 1657674404}
   - component: {fileID: 1657674403}
   - component: {fileID: 1657674402}
+  - component: {fileID: 1657674405}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -3010,7 +3043,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3079,6 +3112,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657674400}
   m_CullTransparentMesh: 1
+--- !u!114 &1657674405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657674400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 256592822}
+          m_TargetAssemblyTypeName: UI.MainMenuManager, Assembly-CSharp
+          m_MethodName: "QuitButton\xB5IsSelected"
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1665772775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,7 +3367,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.55283344, y: 0.5372709}
   m_AnchorMax: {x: 0.83456254, y: 0.5832032}
-  m_AnchoredPosition: {x: -4.093628, y: -302.00003}
+  m_AnchoredPosition: {x: -4.093628, y: -302.00006}
   m_SizeDelta: {x: -183.29431, y: -3.9999619}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722311201
@@ -3817,6 +3879,7 @@ GameObject:
   - component: {fileID: 1850577108}
   - component: {fileID: 1850577107}
   - component: {fileID: 1850577106}
+  - component: {fileID: 1850577109}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -3870,7 +3933,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3939,6 +4002,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850577104}
   m_CullTransparentMesh: 1
+--- !u!114 &1850577109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850577104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 256592822}
+          m_TargetAssemblyTypeName: UI.MainMenuManager, Assembly-CSharp
+          m_MethodName: "PlayButton\xB5IsSelected"
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1934913008
 GameObject:
   m_ObjectHideFlags: 0

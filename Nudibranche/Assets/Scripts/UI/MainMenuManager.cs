@@ -20,6 +20,8 @@ namespace UI
         private CanvasGroup _optionMenuCanvas;
 
         [SerializeField] private GameObject optionButton;
+        [SerializeField] private GameObject playButton;
+        [SerializeField] private GameObject quitButton;
         [SerializeField] private GameObject firstOptionSelected;
         [SerializeField] private GameObject optionReturnButton;
 
@@ -100,6 +102,8 @@ namespace UI
 
         public void StartButton()
         {
+            DisableButtonFunction();
+            
             //Fades to black before launching the game
             blackScreen.DOKill();
             blackScreen.enabled = true;
@@ -162,22 +166,50 @@ namespace UI
             {
                 case "PlayButton":
                 {
+                    cursor.DOKill();
                     cursor.DOAnchorPosY(279, 0.5f);
                 }
                     break;
             
                 case "OptionsButton":
                 {
+                    cursor.DOKill();
                     cursor.DOAnchorPosY(205, 0.5f);
                 }
                     break;
             
                 case "QuitButton":
                 {
+                    cursor.DOKill();
                     cursor.DOAnchorPosY(126, 0.5f);
                 }
                     break;
+                
+                default: print("Nothing Selected");
+                    break;
             }
+        }
+
+        public void PlayButtonµIsSelected()
+        {
+            _event.SetSelectedGameObject(playButton);
+        } 
+        
+        public void OptionButtonµIsSelected()
+        {
+            _event.SetSelectedGameObject(optionButton);
+        } 
+        
+        public void QuitButtonµIsSelected()
+        {
+            _event.SetSelectedGameObject(quitButton);
+        }
+
+        private void DisableButtonFunction()
+        {
+            playButton.GetComponent<Button>().interactable = false;
+            optionButton.GetComponent<Button>().interactable = false;
+            quitButton.GetComponent<Button>().interactable = false;
         }
     }
 }
