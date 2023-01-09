@@ -17,7 +17,7 @@ public class Boss : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private Transform princessFeet;
 
-    private enum Behaviour
+    public enum Behaviour
     {
         walk,
         hit,
@@ -25,7 +25,7 @@ public class Boss : MonoBehaviour
         oursins,
     }
 
-    [SerializeField]private Behaviour behaviour;
+    public Behaviour behaviour;
     [SerializeField] private float attackRange = 2;
     [SerializeField] private float attackTimer = 2;
     private float timerForAttack;
@@ -52,6 +52,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private Transform roomCenter;
     private bool canTourbillon;
     private int tourbillonCount;
+    [SerializeField] private Collider2D bossCollider;
+    [SerializeField] private Collider2D tourbillonCollider;
 
     [Header("Health")] 
     [SerializeField] private int maxHealth;
@@ -206,6 +208,9 @@ public class Boss : MonoBehaviour
             {
                 animators[i].SetBool("Tourbillon", true);
             }
+
+            bossCollider.enabled = false;
+            tourbillonCollider.enabled = true;
             canTourbillon = false;
         }
         else
@@ -274,6 +279,8 @@ public class Boss : MonoBehaviour
                 animators[i].SetBool("Tourbillon", false);
             }
             rb.drag = 1.5f;
+            bossCollider.enabled = true;
+            tourbillonCollider.enabled = false;
             behaviour = Behaviour.walk;
         }
     }
