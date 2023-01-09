@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject optionButton;
+    [SerializeField] private GameObject quitButton;
 
     [SerializeField] private GameObject objectPanel;
     [SerializeField] private RectTransform cursor;
@@ -97,12 +99,12 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator ScieRanoSlash()
     {
-        blackScreen.SetTrigger(FadeIt);
+        BlackScreenFadeOut();
         yield return new WaitForSeconds(0.5f);
         slashEffects.Play();
         yield return new WaitForSeconds(1f);
         slashEffects.Stop();
-        blackScreen.SetTrigger(FadeIt);
+        BlackScreenFadeIn();
     }
     
     private void OpenPauseMenu()
@@ -153,5 +155,20 @@ public class UIManager : MonoBehaviour
             }
                 break;
         }
+    }
+    
+    public void PlayButtonµIsSelected()
+    {
+        _event.SetSelectedGameObject(continueButton);
+    } 
+        
+    public void OptionButtonµIsSelected()
+    {
+        _event.SetSelectedGameObject(optionButton);
+    } 
+        
+    public void QuitButtonµIsSelected()
+    {
+        _event.SetSelectedGameObject(quitButton);
     }
 }
