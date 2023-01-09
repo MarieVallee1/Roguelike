@@ -37,6 +37,8 @@ namespace UI
     
         private void Awake()
         {
+            Time.timeScale = 1;
+            
             _inputActions = new PlayerInputActions();
             _event = EventSystem.current;
 
