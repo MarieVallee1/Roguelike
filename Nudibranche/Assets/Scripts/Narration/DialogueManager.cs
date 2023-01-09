@@ -89,22 +89,18 @@ namespace Narration
         public void ContinueDialogue(Dialogue dialogue)
         {
             DisplayNextSentence(dialogue);
-            Debug.Log(_sentences.Count);
-            Debug.Log(_sentences1.Count);
-            Debug.Log(_sentences2.Count);
         }
         private void DisplayNextSentence(Dialogue dialogue)
         {
-            if (_sentences.Count == 0 && _branchTaken == 0)
+            if (_sentences.Count == 0 && _branchTaken == 0 && !dialogue.noChoiceDialogue)
             {
                 OpenChoices();
                 choice1Txt.text = dialogue.choices[0];
                 choice2Txt.text = dialogue.choices[1];
                 return;
-                
             }
 
-            if (_sentences.Count <= 0 && _branchTaken == 0 || _sentences1.Count <= 0 || _sentences2.Count <= 0)
+            if (_sentences.Count <= 0 && _branchTaken == 0 || _sentences1.Count <= 0 && _branchTaken == 1 || _sentences2.Count <= 0 && _branchTaken == 2)
             {
                 EndDialogue(dialogue);
                 return;
