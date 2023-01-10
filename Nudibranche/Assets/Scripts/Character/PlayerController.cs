@@ -539,7 +539,7 @@ namespace Character
 
         private bool CanDash()
         {
-            RaycastHit2D hit = Physics2D.Raycast(characterPos, aim, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
+            RaycastHit2D hit = Physics2D.Raycast(characterPos, movementDirection, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
             if (hit)
             {
                 Debug.Log(hit.collider.name);
