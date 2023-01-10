@@ -2493,6 +2493,8 @@ MonoBehaviour:
   linkedRoom: {fileID: 0}
   spawns:
   - enemies: []
+  character: 0
+  characterIcon: {fileID: 0}
 --- !u!1 &6469809957023605935
 GameObject:
   m_ObjectHideFlags: 0
@@ -7083,7 +7085,12 @@ PrefabInstance:
     - target: {fileID: 850083845814071648, guid: 0e95e94af9c57e54c9b4d8530e800f28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 850083845814071648, guid: 0e95e94af9c57e54c9b4d8530e800f28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4706429302915589517, guid: 0e95e94af9c57e54c9b4d8530e800f28,
         type: 3}
@@ -7150,10 +7157,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5037408908152544597, guid: 0e95e94af9c57e54c9b4d8530e800f28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7366266159865637506, guid: 0e95e94af9c57e54c9b4d8530e800f28,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366266159865637506, guid: 0e95e94af9c57e54c9b4d8530e800f28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e95e94af9c57e54c9b4d8530e800f28, type: 3}
