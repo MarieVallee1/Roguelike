@@ -210,6 +210,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &450824898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2831030599512942929, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &458583912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3614156071107138711, guid: 06e06f63567c62c4cb29e0eca6c50934,
@@ -1021,6 +1033,21 @@ PrefabInstance:
       objectReference: {fileID: 1035356447}
     - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
+      propertyPath: health
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: numberOfHearts
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: hearts.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
       objectReference: {fileID: 1443121370}
@@ -1034,6 +1061,16 @@ PrefabInstance:
       propertyPath: hearts.Array.data[2]
       value: 
       objectReference: {fileID: 998533727}
+    - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: hearts.Array.data[3]
+      value: 
+      objectReference: {fileID: 1971746157}
+    - target: {fileID: 2767891642506191956, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: hearts.Array.data[4]
+      value: 
+      objectReference: {fileID: 450824898}
     - target: {fileID: 2767891642506191963, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
       propertyPath: m_Name
@@ -1400,11 +1437,51 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 2258826095062245026, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258826095062245026, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258826095062245026, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258826095062245026, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2360511957017811668, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 2831030599512942929, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.759434
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831030599512942929, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.9398585
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831030599512942929, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831030599512942929, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3532227265284809414, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
@@ -1430,26 +1507,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5935839144347847442, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839144347847442, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5935839144370920328, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2071291493}
-    - target: {fileID: 5935839144370920328, guid: 052a7db688c5afb4e9c680e40790bdca,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Choices1
-      objectReference: {fileID: 0}
     - target: {fileID: 5935839144621968810, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2071291493}
-    - target: {fileID: 5935839144621968810, guid: 052a7db688c5afb4e9c680e40790bdca,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Choices2
-      objectReference: {fileID: 0}
     - target: {fileID: 5935839145272465506, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1469,6 +1546,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145329044546, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145329044546, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145329044546, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145329044546, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145329044546, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -118
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145617098054, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145617098054, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145617098054, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145617098054, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935839145617098054, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -132
       objectReference: {fileID: 0}
     - target: {fileID: 5935839145700049764, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
@@ -1605,11 +1732,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 527196574}
-    - target: {fileID: 5935839146023408798, guid: 052a7db688c5afb4e9c680e40790bdca,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6885649244334901735, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
@@ -1620,6 +1742,26 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 7036686520311635722, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036686520311635722, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036686520311635722, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036686520311635722, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7053632495393746609, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
@@ -1825,6 +1967,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1971746157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6075454764253466724, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2004511239 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5935839144347847535, guid: 052a7db688c5afb4e9c680e40790bdca,
