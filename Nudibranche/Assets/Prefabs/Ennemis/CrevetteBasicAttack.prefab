@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8695434701232346140}
-  - {fileID: 7179299343836943588}
+  - {fileID: 6860754270950855100}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,7 +142,7 @@ MonoBehaviour:
   crevetteProjectileData: {fileID: 11400000, guid: db3c952546a300e47beed223a21124d8,
     type: 2}
   projectileLifeTime: 0
---- !u!1001 &2320433811747738718
+--- !u!1001 &2063883785104658694
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -188,6 +188,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TrailModule.dieWithParticles
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2140854298265806256, guid: 7ba892263bec55a45b3073eb74e7dc9a,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2140854298265806256, guid: 7ba892263bec55a45b3073eb74e7dc9a,
         type: 3}
@@ -293,6 +298,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TrailModule.worldSpace
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2140854298884001467, guid: 7ba892263bec55a45b3073eb74e7dc9a,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2140854298884001467, guid: 7ba892263bec55a45b3073eb74e7dc9a,
         type: 3}
@@ -482,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 7624496878921423553, guid: 7ba892263bec55a45b3073eb74e7dc9a,
         type: 3}
       propertyPath: m_Name
-      value: EnemyProjectile (1)
+      value: EnemyProjectile (2)
       objectReference: {fileID: 0}
     - target: {fileID: 7624496878921423553, guid: 7ba892263bec55a45b3073eb74e7dc9a,
         type: 3}
@@ -491,11 +501,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ba892263bec55a45b3073eb74e7dc9a, type: 3}
---- !u!4 &7179299343836943588 stripped
+--- !u!4 &6860754270950855100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4868999187517079738, guid: 7ba892263bec55a45b3073eb74e7dc9a,
     type: 3}
-  m_PrefabInstance: {fileID: 2320433811747738718}
+  m_PrefabInstance: {fileID: 2063883785104658694}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4268932220297680038
 PrefabInstance:
