@@ -84,18 +84,20 @@ namespace Ennemy
     
     public void SpawnOursins()
     {
-       /* if (spawnPointList.Count >= 1)
+        if (spawnPointList.Count >= 1)
         {
             int x = Random.Range(0, spawnPointList.Count);
             usedOursin.CannonierShooting(spawnPointList[x]);
             spawnPointList.Remove(spawnPointList[x]);
             idleBetweenAttacksCount = 0;
-        } */
+        }
         
+       /*
         int x = Random.Range(0, spawnPointList.Count);
         usedOursin.CannonierShooting(spawnPointList[x]);
         spawnPointList.Remove(spawnPointList[x]);
         idleBetweenAttacksCount = 0;
+        */
     }
     public void NumberOfIdleBetweenAttacks()
     {
