@@ -4,7 +4,7 @@ namespace Objects.PassiveObject
     {
         public override void OnAcquire()
         {
-            //Health.instance.
+            Health.instance.GainSpecialHeart();
         }
     }
 }
