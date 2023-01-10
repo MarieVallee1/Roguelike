@@ -15,6 +15,7 @@ namespace GenPro
         [SerializeField] private bool isBig, character;
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] deactivate;
+        [SerializeField] private GameObject[] shaderCouloir;
         [SerializeField] private GameObject door;
         public GameObject pearlStack;
         public SpriteRenderer minimapIcon;

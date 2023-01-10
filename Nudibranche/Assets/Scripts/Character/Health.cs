@@ -46,4 +46,11 @@ public class Health : MonoBehaviour
         anim.Play();
         health = playerHealth;
     }
+
+    //Life Power Up Object
+    public void GainSpecialHeart()
+    {
+        numberOfHearts = 5;
+        health = 5;
+    }
 }
