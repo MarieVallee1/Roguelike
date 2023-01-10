@@ -1,3 +1,4 @@
+using Character;
 using GenPro;
 using UnityEngine;
 using TMPro;
@@ -13,8 +14,8 @@ namespace System
         public Camera mainCamera;
         public Slider bossGauge;
         [SerializeField] private Animator blackScreenAnim;
-        
-        
+        public bool cheatDeath;
+
         [Header("Perles")]
         public int pearlAmount;
 
@@ -34,6 +35,10 @@ namespace System
         //For Generation
         [HideInInspector] public int firstCharacterIndex = -1;
 
+        //Position References
+        public Vector3 hubPos;
+        public Vector3 shopPos;
+        public Vector3 bossPos;
         void Awake()
         {
             if (instance != null && instance != this)
@@ -45,6 +50,7 @@ namespace System
         }
         void Start()
         {
+            cheatDeath = false;
             blackScreenAnim.SetBool("Faded",false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Confined;
@@ -84,5 +90,23 @@ namespace System
             startRoom.Activate();
             currentRoom = startRoom;
         }
+
+        
+        //Cheat Codes
+        public void CheatDeath()
+        {
+            cheatDeath = !cheatDeath;
+        }
+
+        public void MoreMoney()
+        {
+            pearlAmount += 100;
+        }
+
+        public void TpHub()
+        {
+            PlayerController.Instance.characterPos = new Vector2(0, 0);
+        }
+        
     }
 }

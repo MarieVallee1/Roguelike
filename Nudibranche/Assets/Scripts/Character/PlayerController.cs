@@ -216,7 +216,7 @@ namespace Character
             HandleSkillUse();
             DashExtra();
 
-            if (health <= 0) StartCoroutine(PlayerDeath());
+            if (health <= 0 && !GameManager.instance.cheatDeath) StartCoroutine(PlayerDeath());
             
             if (remainingProjectile <= 0)
             {
