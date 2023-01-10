@@ -27,7 +27,7 @@ namespace Ennemy
     public float hiddenDistance = 1;
     private bool enableAttack;
     private bool hidden = true;
-    private EnemyHealth enemyHealth;
+    public EnemyHealth enemyHealth;
 
     // Animator //
     public Animator animator;
@@ -52,13 +52,11 @@ namespace Ennemy
         {
             animator.SetBool("Hidden", true);
             hidden = true;
-            enemyHealth.vulnerable = false;
         }
         else
         {
             animator.SetBool("Hidden", false);
             hidden = false;
-            enemyHealth.vulnerable = true;
         }
     }
 

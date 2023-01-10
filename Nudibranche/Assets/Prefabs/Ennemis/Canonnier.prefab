@@ -58,6 +58,7 @@ MonoBehaviour:
   idleBetweenAttacks: 1
   usedOursin: {fileID: 11400000, guid: 82619f54179c8e74d9b440641d22bb3f, type: 2}
   hiddenDistance: 4
+  enemyHealth: {fileID: 0}
   animator: {fileID: 3616473740698360184}
 --- !u!61 &631100557
 BoxCollider2D:
@@ -131,7 +132,7 @@ MonoBehaviour:
   charaMat:
   - {fileID: 2100000, guid: 1e097ecdeb03af84da6b8595eec439c7, type: 2}
   - {fileID: 2100000, guid: c31acb6c0fd6f7b4db5a19a52528b3cf, type: 2}
-  maxPV: 8
+  maxPV: 5
   pv: 0
   vulnerable: 1
 --- !u!210 &7016388626834195995

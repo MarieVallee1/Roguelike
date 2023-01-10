@@ -21,4 +21,14 @@ public class EventManagerCanonnier : MonoBehaviour
     {
         canonnier.NumberOfIdleBetweenAttacks();
     }
+
+    public void Hidden()
+    {
+        canonnier.enemyHealth.vulnerable = false;
+    }
+
+    public void NotHidden()
+    {
+        canonnier.enemyHealth.vulnerable = true;
+    }
 }
