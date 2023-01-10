@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2344958485449084434
+--- !u!1 &8459863492355342974
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4544994676552821275}
-  - component: {fileID: 450284140930952769}
+  - component: {fileID: 8751971749663218459}
+  - component: {fileID: 8687421181081348052}
   m_Layer: 0
-  m_Name: FastReload
+  m_Name: HealthUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4544994676552821275
+--- !u!4 &8751971749663218459
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2344958485449084434}
+  m_GameObject: {fileID: 8459863492355342974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,19 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &450284140930952769
+--- !u!114 &8687421181081348052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2344958485449084434}
+  m_GameObject: {fileID: 8459863492355342974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c3f0ada3cd580e4cb344d6db9a16c85, type: 3}
+  m_Script: {fileID: 11500000, guid: b007b376aacb1314b83926d10c326a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 0a6e87f575e2e3e4db10492b640f6d21, type: 2}
+  stats: {fileID: 11400000, guid: b7390075b16a7d34f95ffaf5db6ae486, type: 2}
   consumableIndex: 0
   isOwned: 0
-  fireRateBonus: 1
