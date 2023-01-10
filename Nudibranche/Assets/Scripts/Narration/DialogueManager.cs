@@ -92,16 +92,15 @@ namespace Narration
         }
         private void DisplayNextSentence(Dialogue dialogue)
         {
-            if (_sentences.Count == 0 && _branchTaken == 0)
+            if (_sentences.Count == 0 && _branchTaken == 0 && !dialogue.noChoiceDialogue)
             {
                 OpenChoices();
                 choice1Txt.text = dialogue.choices[0];
                 choice2Txt.text = dialogue.choices[1];
                 return;
-                
             }
 
-            if (_sentences.Count <= 0 && _branchTaken == 0 || _sentences1.Count <= 0 || _sentences2.Count <= 0)
+            if (_sentences.Count <= 0 && _branchTaken == 0 || _sentences1.Count <= 0 && _branchTaken == 1 || _sentences2.Count <= 0 && _branchTaken == 2)
             {
                 EndDialogue(dialogue);
                 return;
@@ -205,6 +204,19 @@ namespace Narration
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(true); 
+                    break;
+                
+                case 3 :
+                    npc[0].SetActive(false);
+                    npc[1].SetActive(false);
+                    npc[2].SetActive(true); 
+                    
+                    txtBox[0].SetActive(false);
+                    txtBox[1].SetActive(false);
+                    txtBox[2].SetActive(true); 
+                    break;
+                
+                default: print("no skill index read");
                     break;
             }
             
