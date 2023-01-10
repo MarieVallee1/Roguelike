@@ -399,9 +399,9 @@ namespace Character
                 bookAnim.SetBool("isShooting", true);
                 
                 //Placement & activation of the projectile
-                usedProjectile.transform.position = book.transform.position;
+                usedProjectile.transform.position = bookPos.transform.position;
 
-                usedProjectile.transform.eulerAngles = (-BookPosition.Instance.transform.eulerAngles);
+                //usedProjectile.transform.eulerAngles = (-BookPosition.Instance.transform.eulerAngles);
                 
                 usedProjectile.SetActive(true);
                 shootDir = aim.normalized;
