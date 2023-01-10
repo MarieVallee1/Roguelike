@@ -78,6 +78,7 @@ namespace Character
         [Header("Stats")]
         public float skillCooldown;
         public int health;
+        public float dashCooldown;
         public float speed;
         public float damage;
         public float fireRate;
@@ -118,6 +119,7 @@ namespace Character
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
             health = characterData.health;
+            dashCooldown = characterData.dashCooldown;
             damage = characterData.usedProjectile[0].damage;
             fireRate = characterData.usedProjectile[0].fireRate;
             projectileSize = characterData.usedProjectile[0].projectileSize;
@@ -504,7 +506,7 @@ namespace Character
         private IEnumerator HandleDashUse()
         {
             //Cooldown
-            nextTimeDash = Time.time + characterData.dashCooldown;
+            nextTimeDash = Time.time + dashCooldown;
             
             //Rigged Sprite deactivation
             characterVisualsTr.SetActive(false);
@@ -537,7 +539,7 @@ namespace Character
 
         private bool CanDash()
         {
-            RaycastHit2D hit = Physics2D.Raycast(characterPos, aim, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
+            RaycastHit2D hit = Physics2D.Raycast(characterPos, movementDirection, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
             if (hit)
             {
                 Debug.Log(hit.collider.name);
