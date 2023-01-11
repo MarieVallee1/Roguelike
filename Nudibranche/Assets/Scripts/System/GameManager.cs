@@ -119,16 +119,19 @@ namespace System
 
         public void TpHub()
         {
+            ReloadStart();
             PlayerController.Instance.transform.position = hubPos;
         }
         
         public void TpShop()
         {
+            ReloadShop();
             PlayerController.Instance.transform.position = shopPos;
         }
         
         public void TpBoss()
         {
+            ReloadBoss();
             PlayerController.Instance.transform.position = bossPos;
         }
         
