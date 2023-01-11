@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject bossButton;
     [SerializeField] private GameObject moneyButton;
     [SerializeField] private GameObject invulnerabilityButton;
-    [SerializeField] private GameObject firstOptionSelected;
     [SerializeField] private CanvasGroup pauseButtons;
     [SerializeField] private GameObject pauseButtonGroup;
     [SerializeField] private CanvasGroup optionButtons;
@@ -239,18 +238,15 @@ public class UIManager : MonoBehaviour
     public void PlayButtonIsSelected()
     {
         _event.SetSelectedGameObject(continueButton);
-    } 
-    
+    }
     public void CheatButtonIsSelected()
     {
         _event.SetSelectedGameObject(cheatButton);
-    } 
-        
+    }
     public void OptionButtonIsSelected()
     {
         _event.SetSelectedGameObject(optionButton);
-    } 
-        
+    }
     public void QuitButtonIsSelected()
     {
         _event.SetSelectedGameObject(quitButton);
@@ -275,30 +271,5 @@ public class UIManager : MonoBehaviour
     public void InvulnerabilityButtonIsSelected()
     {
         _event.SetSelectedGameObject(invulnerabilityButton);
-    }
-    
-    
-    
-    
-    private void EnableOptionMenu()
-    {
-        optionMenu.SetActive(true);
-        optionMenuOn = true;
-    }
-    private void DisableOptionMenu()
-    {
-        optionMenu.SetActive(false);
-        optionMenuOn = false;
-    }
-    
-    private void EnableCheatMenu()
-    {
-        optionMenu.SetActive(true);
-        optionMenuOn = true;
-    }
-    private void DisableCheatMenu()
-    {
-        optionMenu.SetActive(false);
-        optionMenuOn = false;
     }
 }

@@ -2154,7 +2154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d00ea85d16795b47b2c87eed6fb91b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: 5c30c9b878eb7fe498ebc3c6d5cf36ed, type: 2}
+  characterData: {fileID: 11400000, guid: ae12ecb41d1d9924db11e1b2d09e16f3, type: 2}
   skills: {fileID: 698743843}
   cursor: {fileID: 2767891642204286396}
   startRoomTp: {fileID: 0}
@@ -2196,6 +2196,7 @@ MonoBehaviour:
   reloadCountdown: 2
   skillCooldown: 0
   health: 0
+  dashCooldown: 0
   speed: 0
   damage: 0
   fireRate: 0
@@ -2222,9 +2223,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4d43cdbad366847a18830b849ccbc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfHearts: 3
-  health: 3
+  numberOfHearts: 4
+  health: 4
   hearts:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

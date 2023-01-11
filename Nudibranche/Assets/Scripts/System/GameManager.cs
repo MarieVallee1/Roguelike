@@ -101,6 +101,7 @@ namespace System
         public void MoreMoney()
         {
             pearlAmount += 100;
+            pearlAmountText.text = "" + pearlAmount;
         }
 
         public void TpHub()
