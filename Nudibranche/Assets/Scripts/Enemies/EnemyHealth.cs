@@ -60,13 +60,9 @@ namespace Enemies
     
         public void takeDamage(int damage)
         {
-            if (!dead && vulnerable)
-            {
-                StartCoroutine(HitFeedback());
-            }
-            
             if (vulnerable && !dead)
             {
+                StartCoroutine(HitFeedback());
                 pv -= damage;
                 fxDamages.Play();
 
