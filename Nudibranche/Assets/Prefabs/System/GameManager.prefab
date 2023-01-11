@@ -95,6 +95,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   bossGauge: {fileID: 0}
   blackScreenAnim: {fileID: 0}
+  cheatDeath: 0
   pearlAmount: 0
   inCombat: 0
   pearlAmountText: {fileID: 0}
@@ -105,6 +106,9 @@ MonoBehaviour:
   mouleLifeDrop: 0.1
   crevetteLifeDrop: 0.3
   firstCharacterIndex: -1
+  hubPos: {x: 0, y: 0, z: 0}
+  shopPos: {x: 0, y: 0, z: 0}
+  bossPos: {x: 0, y: 0, z: 0}
   roomScore: 0
   startRoom: {fileID: 0}
   currentRoom: {fileID: 0}
@@ -154,14 +158,29 @@ MonoBehaviour:
   - {fileID: 0}
   pauseMenu: {fileID: 0}
   continueButton: {fileID: 0}
+  cheatButton: {fileID: 0}
   optionButton: {fileID: 0}
   quitButton: {fileID: 0}
+  hubButton: {fileID: 0}
+  shopButton: {fileID: 0}
+  bossButton: {fileID: 0}
+  moneyButton: {fileID: 0}
+  invulnerabilityButton: {fileID: 0}
+  firstOptionSelected: {fileID: 0}
+  pauseButtons: {fileID: 0}
+  pauseButtonGroup: {fileID: 0}
+  optionButtons: {fileID: 0}
+  optionMenu: {fileID: 0}
+  cheatMenu: {fileID: 0}
+  cheatButtons: {fileID: 0}
   objectPanel: {fileID: 0}
   cursor: {fileID: 0}
   objectInfo: {fileID: 0}
   slashEffects: {fileID: 0}
   blackScreen: {fileID: 0}
   pauseMenuOn: 0
+  optionMenuOn: 0
+  cheatMenuOn: 0
 --- !u!114 &1666002448340423143
 MonoBehaviour:
   m_ObjectHideFlags: 0
