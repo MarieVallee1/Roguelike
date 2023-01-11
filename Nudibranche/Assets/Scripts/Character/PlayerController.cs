@@ -134,7 +134,7 @@ namespace Character
             }
 
             //Set the skill to null
-            skillIndex = 3;
+            //skillIndex = 0;
         }
 
         

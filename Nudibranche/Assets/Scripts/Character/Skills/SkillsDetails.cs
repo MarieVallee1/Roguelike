@@ -48,7 +48,7 @@ namespace Character.Skills
             {
                 _enemiesInSight[i].takeDamage(PlayerController.Instance.characterData.swordSlashDamages);
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.6f);
         
             PlayerController.Instance.onSkillUse = false;
             PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.swordSlashCooldown/cooldownReduction;
