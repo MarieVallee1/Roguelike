@@ -36,7 +36,7 @@ namespace GenPro
             {
                 if (index == GameManager.instance.firstCharacterIndex)
                 {
-                    if (index == 0) index++;
+                    if (index == 0) index = levelDesign.Length - 1;
                     else index--;
                 }
                 GameManager.instance.firstCharacterIndex = index;

@@ -11,22 +11,11 @@ namespace UI
         
         [SerializeField] private ArrowPointer[] enemyArrows;
         [SerializeField] private ArrowPointer[] entryArrows;
-        [SerializeField] private ArrowPointer bossArrow;
-        [SerializeField] private ArrowPointer[] characterArrows;
 
         private void Awake()
         {
             if (Instance != null && Instance != this) Destroy(gameObject);
             Instance = this;
-        }
-
-        public void SetSpecials(Transform bossPos, List<Transform> characterPos)
-        {
-            // bossArrow.SetTarget(bossPos,false);
-            // for (var i = 0; i < characterPos.Count; i++)
-            // {
-            //     characterArrows[i].SetTarget(characterPos[i],false);
-            // }
         }
 
         public void SetEnemies(IReadOnlyList<ActivateEnemy> enemyList)
