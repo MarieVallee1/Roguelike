@@ -141,18 +141,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &393737405
+--- !u!225 &393737405 stripped
 CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 393737405, guid: 06e06f63567c62c4cb29e0eca6c50934,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393737402}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &408785758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,70 +240,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &458583916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458583912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2071291492}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: "PlayButton\xB5IsSelected"
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &520769156 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3614156071777257934, guid: 06e06f63567c62c4cb29e0eca6c50934,
     type: 3}
   m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &520769161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520769156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2071291492}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: "OptionButton\xB5IsSelected"
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &527196573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -453,6 +389,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1511997206}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: cheatMenu
+      value: 
+      objectReference: {fileID: 1579774107}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 413891449}
@@ -465,17 +405,37 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 996851958}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: cheatButton
+      value: 
+      objectReference: {fileID: 1540488704}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: cheatButtons
+      value: 
+      objectReference: {fileID: 1579774109}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: optionButton
       value: 
       objectReference: {fileID: 520769156}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: pauseButtons
+      value: 
+      objectReference: {fileID: 393737405}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: slashEffects
       value: 
       objectReference: {fileID: 1763130983}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: optionButtons
+      value: 
+      objectReference: {fileID: 1579774109}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: continueButton
       value: 
       objectReference: {fileID: 458583912}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: pauseButtonGroup
+      value: 
+      objectReference: {fileID: 393737402}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: portraits.Array.data[0]
       value: 
@@ -699,35 +659,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &804407177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 804407172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2071291492}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: "QuitButton\xB5IsSelected"
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &809422861 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8681643685387433195, guid: 052a7db688c5afb4e9c680e40790bdca,
@@ -1144,15 +1075,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 458583916, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
+    - target: {fileID: 520769161, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
+    - target: {fileID: 804407177, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
+    - target: {fileID: 1540488706, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
     - target: {fileID: 3614156070216873474, guid: 06e06f63567c62c4cb29e0eca6c50934,
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156070216873474, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3614156070216873502, guid: 06e06f63567c62c4cb29e0eca6c50934,
         type: 3}
@@ -1264,91 +1206,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2071291492}
-    - target: {fileID: 3614156071107138709, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClosePauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071107138710, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071107138710, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071107138710, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071107138710, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3614156071777257932, guid: 06e06f63567c62c4cb29e0eca6c50934,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 894699033}
-    - target: {fileID: 3614156071777257932, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071777257933, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071777257933, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071777257933, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071777257933, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3614156071957279100, guid: 06e06f63567c62c4cb29e0eca6c50934,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2071291492}
-    - target: {fileID: 3614156071957279100, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToMainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071957279101, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071957279101, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071957279101, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3614156071957279101, guid: 06e06f63567c62c4cb29e0eca6c50934,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
 --- !u!224 &1511997206 stripped
@@ -1368,6 +1235,12 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2219634737184203492, guid: 8c0a97dfc139ee94ea5b42f730dab689,
     type: 3}
   m_PrefabInstance: {fileID: 1886088964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1540488704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3037238911282934171, guid: 06e06f63567c62c4cb29e0eca6c50934,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1572035754
 PrefabInstance:
@@ -1443,6 +1316,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2901068f8ba611b49bf1b5095dfcee54, type: 3}
+--- !u!1 &1579774107 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7002250653797181407, guid: 06e06f63567c62c4cb29e0eca6c50934,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494999457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1579774109 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 4294031262660786242, guid: 06e06f63567c62c4cb29e0eca6c50934,
+    type: 3}
+  m_PrefabInstance: {fileID: 1494999457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1611030631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5935839144347847450, guid: 052a7db688c5afb4e9c680e40790bdca,
