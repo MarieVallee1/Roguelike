@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject cheatButton;
     [SerializeField] private GameObject optionButton;
     [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject hubButton;
+    [SerializeField] private GameObject shopButton;
+    [SerializeField] private GameObject bossButton;
+    [SerializeField] private GameObject moneyButton;
+    [SerializeField] private GameObject invulnerabilityButton;
     [SerializeField] private GameObject firstOptionSelected;
     [SerializeField] private CanvasGroup pauseButtons;
     [SerializeField] private GameObject pauseButtonGroup;
@@ -39,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     public bool pauseMenuOn;
     public bool optionMenuOn;
+    public bool cheatMenuOn;
     
     private void Awake()
     {
@@ -63,7 +69,8 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
-        if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn) ClosePauseMenu();
+        if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn && !cheatMenuOn) ClosePauseMenu();
+        if(PlayerController.Instance.characterInputs.UI.Escape.triggered && cheatMenuOn) CloseCheatMenuButton();
         if(pauseMenuOn)HandleSelectedButtons();
     }
 
@@ -141,14 +148,36 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("Scene_MainMenu");
     }
     
-    public void OpenOptionsMenu()
+    public void CheatButton()
     {
         //Fades one menu to let the other appear
-        pauseButtons.DOFade(0, 0.5f).onComplete = DisablePauseMenu;
-        EnableOptionMenu();
-        optionButtons.DOFade(1, 0.5f);
+        //pauseButtons.DOFade(0, 0.5f).onComplete = OpenCheat;
+        OpenCheat();
+    }
 
-        _event.SetSelectedGameObject(firstOptionSelected);
+    private void OpenCheat()
+    {
+        pauseButtonGroup.SetActive(false);
+        cheatMenuOn = true;
+        cheatMenu.SetActive(true);
+        cheatButtons.alpha = 1;
+        //cheatButtons.DOFade(1, 0.5f);
+    }
+
+    private void CloseCheatMenuButton()
+    {
+        //cheatButtons.DOFade(0, 0.5f).onComplete = CloseCheatMenu();
+        cheatButtons.alpha = 0;
+        CloseCheatMenu();
+    }
+    
+    private void CloseCheatMenu()
+    {
+        cheatMenu.SetActive(false);
+        cheatMenuOn = false;
+        pauseButtonGroup.SetActive(true);
+        pauseButtons.alpha = 1;
+        //pauseButtons.DOFade(1, 0.5f);
     }
     
     private void HandleSelectedButtons()
@@ -179,6 +208,31 @@ public class UIManager : MonoBehaviour
                 cursor.DOAnchorPosY(90, 0.5f).SetUpdate(true);
             }
                 break;
+            case "TpHubButton":
+            {
+                cursor.DOAnchorPosY(128, 0.5f).SetUpdate(true);
+            }
+                break;
+            case "TpShop":
+            {
+                cursor.DOAnchorPosY(86, 0.5f).SetUpdate(true);
+            }
+                break;
+            case "TpBoss":
+            {
+                cursor.DOAnchorPosY(42, 0.5f).SetUpdate(true);
+            }
+                break;
+            case "Money":
+            {
+                cursor.DOAnchorPosY(-17, 0.5f).SetUpdate(true);
+            }
+                break;
+            case "Invulnerability":
+            {
+                cursor.DOAnchorPosY(-71, 0.5f).SetUpdate(true);
+            }
+                break;
         }
     }
     
@@ -201,15 +255,31 @@ public class UIManager : MonoBehaviour
     {
         _event.SetSelectedGameObject(quitButton);
     }
-
-    private void DisablePauseMenu()
+    
+    public void HubButtonIsSelected()
     {
-        pauseButtonGroup.SetActive(false);
+        _event.SetSelectedGameObject(hubButton);
     }
-    private void EnablePauseMenu()
+    public void ShopButtonIsSelected()
     {
-        pauseButtonGroup.SetActive(true);
+        _event.SetSelectedGameObject(shopButton);
     }
+    public void BossButtonIsSelected()
+    {
+        _event.SetSelectedGameObject(bossButton);
+    }
+    public void MoneyButtonIsSelected()
+    {
+        _event.SetSelectedGameObject(moneyButton);
+    }
+    public void InvulnerabilityButtonIsSelected()
+    {
+        _event.SetSelectedGameObject(invulnerabilityButton);
+    }
+    
+    
+    
+    
     private void EnableOptionMenu()
     {
         optionMenu.SetActive(true);

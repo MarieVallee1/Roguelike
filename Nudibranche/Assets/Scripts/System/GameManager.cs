@@ -105,17 +105,17 @@ namespace System
 
         public void TpHub()
         {
-            PlayerController.Instance.characterPos = hubPos;
+            PlayerController.Instance.transform.position = hubPos;
         }
         
         public void TpShop()
         {
-            PlayerController.Instance.characterPos = shopPos;
+            PlayerController.Instance.transform.position = shopPos;
         }
         
         public void TpBoss()
         {
-            PlayerController.Instance.characterPos = bossPos;
+            PlayerController.Instance.transform.position = bossPos;
         }
         
     }
