@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject continueButton;
+    [SerializeField] private GameObject cheatButton;
     [SerializeField] private GameObject optionButton;
     [SerializeField] private GameObject quitButton;
     [SerializeField] private GameObject firstOptionSelected;
@@ -24,6 +25,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseButtonGroup;
     [SerializeField] private CanvasGroup optionButtons;
     [SerializeField] private GameObject optionMenu;
+    [SerializeField] private GameObject cheatMenu;
+    [SerializeField] private CanvasGroup cheatButtons;
 
     [SerializeField] private GameObject objectPanel;
     [SerializeField] private RectTransform cursor;
@@ -155,35 +158,46 @@ public class UIManager : MonoBehaviour
         {
             case "ContinueButton":
             {
-                cursor.DOAnchorPosY(137, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(145, 0.5f).SetUpdate(true);
             }
                 break;
             
             case "OptionsButton":
             {
-                cursor.DOAnchorPosY(57, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(28, 0.5f).SetUpdate(true);
             }
                 break;
             
             case "QuitButton":
             {
-                cursor.DOAnchorPosY(-23, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(-32, 0.5f).SetUpdate(true);
+            }
+                break;
+            
+            case "CheatButton":
+            {
+                cursor.DOAnchorPosY(90, 0.5f).SetUpdate(true);
             }
                 break;
         }
     }
     
-    public void PlayButtonµIsSelected()
+    public void PlayButtonIsSelected()
     {
         _event.SetSelectedGameObject(continueButton);
     } 
+    
+    public void CheatButtonIsSelected()
+    {
+        _event.SetSelectedGameObject(cheatButton);
+    } 
         
-    public void OptionButtonµIsSelected()
+    public void OptionButtonIsSelected()
     {
         _event.SetSelectedGameObject(optionButton);
     } 
         
-    public void QuitButtonµIsSelected()
+    public void QuitButtonIsSelected()
     {
         _event.SetSelectedGameObject(quitButton);
     }
@@ -202,6 +216,17 @@ public class UIManager : MonoBehaviour
         optionMenuOn = true;
     }
     private void DisableOptionMenu()
+    {
+        optionMenu.SetActive(false);
+        optionMenuOn = false;
+    }
+    
+    private void EnableCheatMenu()
+    {
+        optionMenu.SetActive(true);
+        optionMenuOn = true;
+    }
+    private void DisableCheatMenu()
     {
         optionMenu.SetActive(false);
         optionMenuOn = false;
