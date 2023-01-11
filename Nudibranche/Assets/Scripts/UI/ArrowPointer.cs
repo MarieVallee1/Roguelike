@@ -44,7 +44,7 @@ namespace UI
             var direction = _targetPosition - playerCamera.transform.position;
             direction.z = 0f;
             direction.Normalize();
-            pointerRectTransform.localRotation = Quaternion.FromToRotation(Vector3.down, direction);
+            pointerRectTransform.localRotation = Quaternion.FromToRotation(Vector3.up, direction);
 
             var targetPositionScreenPoint = playerCamera.WorldToScreenPoint(_targetPosition);
 
