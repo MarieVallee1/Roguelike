@@ -171,21 +171,21 @@ namespace UI
                     case "PlayButton":
                     {
                         cursor.DOKill();
-                        cursor.DOAnchorPosY(279, 0.5f);
+                        cursor.DOAnchorPosY(278, 0.5f);
                     }
                         break;
             
                     case "OptionsButton":
                     {
                         cursor.DOKill();
-                        cursor.DOAnchorPosY(205, 0.5f);
+                        cursor.DOAnchorPosY(200, 0.5f);
                     }
                         break;
             
                     case "QuitButton":
                     {
                         cursor.DOKill();
-                        cursor.DOAnchorPosY(126, 0.5f);
+                        cursor.DOAnchorPosY(130, 0.5f);
                     }
                         break;
                 
