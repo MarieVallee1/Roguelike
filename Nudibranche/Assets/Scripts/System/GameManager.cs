@@ -82,6 +82,8 @@ namespace System
         //Fonctions pour TP
 
         [HideInInspector] public RoomManager startRoom;
+        [HideInInspector] public RoomManager shopRoom;
+        [HideInInspector] public RoomManager bossRoom;
         [HideInInspector] public RoomManager currentRoom;
 
         public void ReloadStart()
@@ -90,7 +92,18 @@ namespace System
             startRoom.Activate();
             currentRoom = startRoom;
         }
-
+        public void ReloadShop()
+        {
+            currentRoom.Deactivate();
+            shopRoom.Activate();
+            currentRoom = shopRoom;
+        }
+        public void ReloadBoss()
+        {
+            currentRoom.Deactivate();
+            bossRoom.Activate();
+            currentRoom = bossRoom;
+        }
         
         //Cheat Codes
         public void CheatDeath()
@@ -101,20 +114,24 @@ namespace System
         public void MoreMoney()
         {
             pearlAmount += 100;
+            pearlAmountText.text = "" + pearlAmount;
         }
 
         public void TpHub()
         {
+            ReloadStart();
             PlayerController.Instance.transform.position = hubPos;
         }
         
         public void TpShop()
         {
+            ReloadShop();
             PlayerController.Instance.transform.position = shopPos;
         }
         
         public void TpBoss()
         {
+            ReloadBoss();
             PlayerController.Instance.transform.position = bossPos;
         }
         
