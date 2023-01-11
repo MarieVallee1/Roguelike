@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject optionButton;
     [SerializeField] private GameObject quitButton;
+    [SerializeField] private GameObject firstOptionSelected;
+    [SerializeField] private CanvasGroup pauseButtons;
+    [SerializeField] private GameObject pauseButtonGroup;
+    [SerializeField] private CanvasGroup optionButtons;
+    [SerializeField] private GameObject optionMenu;
 
     [SerializeField] private GameObject objectPanel;
     [SerializeField] private RectTransform cursor;
@@ -27,10 +32,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Animator blackScreen;
     private EventSystem _event;
     private static readonly int FadeIt = Animator.StringToHash("FadeIt");
-
+    
 
     public bool pauseMenuOn;
-
+    public bool optionMenuOn;
+    
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -132,6 +138,16 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("Scene_MainMenu");
     }
     
+    public void OpenOptionsMenu()
+    {
+        //Fades one menu to let the other appear
+        pauseButtons.DOFade(0, 0.5f).onComplete = DisablePauseMenu;
+        EnableOptionMenu();
+        optionButtons.DOFade(1, 0.5f);
+
+        _event.SetSelectedGameObject(firstOptionSelected);
+    }
+    
     private void HandleSelectedButtons()
     {
         //Moves the cursor depending on the button selected
@@ -170,5 +186,24 @@ public class UIManager : MonoBehaviour
     public void QuitButtonµIsSelected()
     {
         _event.SetSelectedGameObject(quitButton);
+    }
+
+    private void DisablePauseMenu()
+    {
+        pauseButtonGroup.SetActive(false);
+    }
+    private void EnablePauseMenu()
+    {
+        pauseButtonGroup.SetActive(true);
+    }
+    private void EnableOptionMenu()
+    {
+        optionMenu.SetActive(true);
+        optionMenuOn = true;
+    }
+    private void DisableOptionMenu()
+    {
+        optionMenu.SetActive(false);
+        optionMenuOn = false;
     }
 }

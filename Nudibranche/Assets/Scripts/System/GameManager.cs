@@ -105,7 +105,17 @@ namespace System
 
         public void TpHub()
         {
-            PlayerController.Instance.characterPos = new Vector2(0, 0);
+            PlayerController.Instance.characterPos = hubPos;
+        }
+        
+        public void TpShop()
+        {
+            PlayerController.Instance.characterPos = shopPos;
+        }
+        
+        public void TpBoss()
+        {
+            PlayerController.Instance.characterPos = bossPos;
         }
         
     }
