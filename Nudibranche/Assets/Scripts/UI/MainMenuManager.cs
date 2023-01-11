@@ -224,5 +224,11 @@ namespace UI
             optionButton.GetComponent<Button>().interactable = true;
             quitButton.GetComponent<Button>().interactable = true;
         }
+
+
+        public void Fullscreen()
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        }
     }
 }
