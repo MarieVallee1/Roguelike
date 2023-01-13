@@ -89,6 +89,7 @@ namespace GenPro
             door.SetActive(false);
             roomIsCleared = true;
             ArrowManager.Instance.SetEntries(entries);
+            AudioList.Instance.StartMusic(AudioList.Music.main,true);
         }
 
         public void SummonDoor()
@@ -114,6 +115,7 @@ namespace GenPro
                 else aStar.data.gridGraph.SetDimensions(20,20,1);
                 aStar.data.gridGraph.center = transform.position;
                 aStar.data.graphs[0].Scan();
+                AudioList.Instance.StartMusic(AudioList.Music.combat,true);
             }
         }
 
