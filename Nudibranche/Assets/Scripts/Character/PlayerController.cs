@@ -40,6 +40,7 @@ namespace Character
         [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private VisualEffect parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
+        [SerializeField] private GameObject buffVFX;
 
         [Header("Character Visuals Related")]
         [SerializeField] private GameObject characterVisualsTr;
@@ -215,6 +216,7 @@ namespace Character
             BlastReload();
             HandleSkillUse();
             DashExtra();
+            HandleBuffFeedback();
 
             if (health <= 0 && !GameManager.instance.cheatDeath) StartCoroutine(PlayerDeath());
             
@@ -378,6 +380,12 @@ namespace Character
             }
         }
 
+        private void HandleBuffFeedback()
+        {
+            if(onBuff) buffVFX.SetActive(true);
+            else buffVFX.SetActive(false);
+        }
+
         private void HandleMouseLook()
         {
             if (!gamepadOn)
@@ -524,9 +532,11 @@ namespace Character
 
             Debug.Log("I Dash");
             
+            yield return new WaitForSeconds(0.2f);
             //Dissolve Material activation
             tpMat.enabled = true;
             ressolveDuration = 0;
+
             yield return new WaitForSeconds(0.4f);
             
             //Rigged Sprite activation
