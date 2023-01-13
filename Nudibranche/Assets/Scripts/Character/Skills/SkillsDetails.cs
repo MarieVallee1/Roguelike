@@ -33,6 +33,7 @@ namespace Character.Skills
             PlayerController.Instance.FreezeCharacter();
             PlayerController.Instance.DisableInputs();
             PlayerController.Instance.onSkillUse = true;
+            PlayerController.Instance.vulnerable = false;
         
             var enemyDetection = EnemyDetection.instance;
         
@@ -56,6 +57,7 @@ namespace Character.Skills
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
             PlayerController.Instance.skillCountdown = 0;
+            PlayerController.Instance.vulnerable = true;
         }
         public void WrongTrack(Vector3 playerPos)
         {
@@ -90,6 +92,7 @@ namespace Character.Skills
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
         { 
+            PlayerController.Instance.vulnerable = false;
             PlayerController.Instance.FreezeCharacter();
             PlayerController.Instance.DisableInputs();
             
@@ -101,10 +104,11 @@ namespace Character.Skills
                 _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
             }
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
         
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
+            PlayerController.Instance.vulnerable = true;
         
             PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.cardLaserCooldown/cooldownReduction;
             PlayerController.Instance.skillCountdown = 0;
