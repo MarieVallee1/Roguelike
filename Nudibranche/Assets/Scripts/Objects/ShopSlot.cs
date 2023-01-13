@@ -56,6 +56,7 @@ namespace Objects
             {
                 if (isHealth) BuyHealth();
                 else BuyItem();
+                //UIManager.instance.
             }
         }
         
