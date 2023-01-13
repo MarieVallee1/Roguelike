@@ -2177,6 +2177,7 @@ MonoBehaviour:
   parryFeedback: {fileID: 3337446439088505044}
   parryActivationVFX: {fileID: 1327235678}
   parryRepulsion: {fileID: 1153470370799433227}
+  buffVFX: {fileID: 6775482850406355863}
   characterVisualsTr: {fileID: 2767891642094965160}
   dashVFX: {fileID: 4196795531210394323, guid: 32b736a5462569f4d9a46465d17c86d3, type: 3}
   characterFaces:
@@ -4766,6 +4767,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerUp Parade
       objectReference: {fileID: 0}
+    - target: {fileID: 6775482850115196572, guid: 7671f3beb55b42e4ead5c2e2c4461d07,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7466209680772162986, guid: 7671f3beb55b42e4ead5c2e2c4461d07,
         type: 3}
       propertyPath: m_SortingOrder
@@ -4776,6 +4782,12 @@ PrefabInstance:
 --- !u!4 &2096696324367379277 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2096696323585486406, guid: 7671f3beb55b42e4ead5c2e2c4461d07,
+    type: 3}
+  m_PrefabInstance: {fileID: 786875659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6775482850406355863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6775482850115196572, guid: 7671f3beb55b42e4ead5c2e2c4461d07,
     type: 3}
   m_PrefabInstance: {fileID: 786875659}
   m_PrefabAsset: {fileID: 0}
