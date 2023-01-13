@@ -532,9 +532,11 @@ namespace Character
 
             Debug.Log("I Dash");
             
+            yield return new WaitForSeconds(0.2f);
             //Dissolve Material activation
             tpMat.enabled = true;
             ressolveDuration = 0;
+
             yield return new WaitForSeconds(0.4f);
             
             //Rigged Sprite activation
