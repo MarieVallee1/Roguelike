@@ -1291,6 +1291,7 @@ namespace GenPro
             PlaceCharacterRoom(_lastRoomIndex,_nextSide);
         }
 
+        #if UNITY_EDITOR 
         [Header("Debug")] [SerializeField] private bool activateAll;
         private void Update()
         {
@@ -1304,5 +1305,6 @@ namespace GenPro
         
             activateAll = false;
         }
+        #endif
     }
 }
