@@ -1697,6 +1697,8 @@ GameObject:
   - component: {fileID: 5490773607078190043}
   - component: {fileID: 4527825151648641117}
   - component: {fileID: 4655680665193667305}
+  - component: {fileID: 7431725074347898078}
+  - component: {fileID: 2893614323487931143}
   m_Layer: 0
   m_Name: Rambarde
   m_TagString: Environment
@@ -2154,10 +2156,111 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!50 &7431725074347898078
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7435594685504621487}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &2893614323487931143
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7435594685504621487}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 6.013212, y: 3.0028892}
+      - {x: 6.013212, y: 4.0100713}
+      - {x: 6.0121713, y: 4.010101}
+      - {x: 6.012142, y: 5.0141687}
+      - {x: 6.0056767, y: 5.0141983}
+      - {x: 6.0056477, y: 6.011376}
+      - {x: 3.002697, y: 6.011347}
+      - {x: 3.0027263, y: 5.004194}
+      - {x: 5.004989, y: 5.004164}
+      - {x: 5.005018, y: 4.0069866}
+      - {x: 5.0176153, y: 4.00691}
+      - {x: 5.0120187, y: 4.004095}
+      - {x: 5.0120187, y: 3.3247113}
+      - {x: 5.0180078, y: 3.0028892}
+    - - {x: -4.990303, y: 3.0028892}
+      - {x: -4.990244, y: 4.0051246}
+      - {x: -4.9888983, y: 4.0051537}
+      - {x: -4.9888687, y: 5.004194}
+      - {x: -4, y: 5.004164}
+      - {x: -3.999971, y: 5}
+      - {x: -3, y: 5.000029}
+      - {x: -3.0000293, y: 6}
+      - {x: -3.990121, y: 6.0000296}
+      - {x: -3.99015, y: 6.011376}
+      - {x: -5.9960804, y: 6.011347}
+      - {x: -5.996088, y: 4.0054793}
+      - {x: -5.9974556, y: 4.004101}
+      - {x: -5.9974265, y: 3.0028892}
+    - - {x: 5.00985, y: -5.9961796}
+      - {x: 5.0099087, y: -5.995062}
+      - {x: 6.0121713, y: -5.995033}
+      - {x: 6.012142, y: -4.9938397}
+      - {x: 5.009879, y: -4.9938107}
+      - {x: 5.0099087, y: -4.9930134}
+      - {x: 6.0121713, y: -4.9929843}
+      - {x: 6.012201, y: -3.9948757}
+      - {x: 6.0132413, y: -3.9948463}
+      - {x: 6.013212, y: -2.9876935}
+      - {x: 5.0239305, y: -2.987701}
+      - {x: 5.0179787, y: -2.9936635}
+      - {x: 5.0179863, y: -3.9829636}
+      - {x: 5.0207663, y: -3.9858313}
+      - {x: 5.004989, y: -3.9858603}
+      - {x: 5.00496, y: -4.9889975}
+      - {x: 3.0039196, y: -4.989027}
+      - {x: 3.003949, y: -5.9961796}
+    - - {x: -2.9943523, y: -5.9961796}
+      - {x: -2.9943523, y: -4.9889975}
+      - {x: -4.9888983, y: -4.988968}
+      - {x: -4.988928, y: -3.989929}
+      - {x: -4.9902735, y: -3.9898992}
+      - {x: -4.990303, y: -2.9876935}
+      - {x: -5.9915032, y: -2.987701}
+      - {x: -5.9974556, y: -2.9936635}
+      - {x: -5.997448, y: -3.9829636}
+      - {x: -5.9905705, y: -3.989929}
+      - {x: -5.9960804, y: -3.989958}
+      - {x: -5.9960513, y: -5.9961796}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1001 &304353659165146041
 PrefabInstance:
   m_ObjectHideFlags: 0

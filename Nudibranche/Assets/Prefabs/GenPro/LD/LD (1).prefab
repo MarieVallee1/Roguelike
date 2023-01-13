@@ -57,7 +57,9 @@ GameObject:
   - component: {fileID: 6243738205350058898}
   - component: {fileID: 3807257401261095728}
   - component: {fileID: 3266055360907948664}
-  - component: {fileID: 547451122893530847}
+  - component: {fileID: 8312484544019014244}
+  - component: {fileID: 1199914218419316440}
+  - component: {fileID: 1179930418756433024}
   m_Layer: 8
   m_Name: Rambarde
   m_TagString: Environment
@@ -573,8 +575,29 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!19719996 &547451122893530847
-TilemapCollider2D:
+--- !u!50 &8312484544019014244
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397508594797746620}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &1199914218419316440
+CompositeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -586,6 +609,44 @@ TilemapCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 10.00985, y: 3.0041938}
+      - {x: 10.00985, y: 4.011376}
+      - {x: 6.002697, y: 4.011347}
+      - {x: 6.002726, y: 3.0041938}
+    - - {x: 3.00985, y: 3.0041938}
+      - {x: 3.00985, y: 4.011376}
+      - {x: -9.997303, y: 4.011347}
+      - {x: -9.997273, y: 3.0041938}
+    - - {x: 10.00985, y: -5.9961796}
+      - {x: 10.00985, y: -4.9889975}
+      - {x: -2.9960804, y: -4.989027}
+      - {x: -2.9960513, y: -5.9961796}
+    - - {x: -5.9943523, y: -5.9961796}
+      - {x: -5.9943523, y: -4.9889975}
+      - {x: -9.997303, y: -4.989027}
+      - {x: -9.997273, y: -5.9961796}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!19719996 &1179930418756433024
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3397508594797746620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001

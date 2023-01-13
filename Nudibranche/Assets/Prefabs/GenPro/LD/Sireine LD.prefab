@@ -935,6 +935,8 @@ GameObject:
   - component: {fileID: 836106766528392733}
   - component: {fileID: 4813142828392849548}
   - component: {fileID: 1894374883482786008}
+  - component: {fileID: 3507736980002397188}
+  - component: {fileID: 939735511413891146}
   m_Layer: 0
   m_Name: Rambarde
   m_TagString: Environment
@@ -1352,10 +1354,87 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!50 &3507736980002397188
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358488838004062250}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &939735511413891146
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2358488838004062250}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 5.0056477, y: -2.9961798}
+      - {x: 5.0057063, y: -0.9961798}
+      - {x: 7.0056767, y: -0.9961505}
+      - {x: 7.0057063, y: 0.0069867}
+      - {x: 7.0121713, y: 0.007016}
+      - {x: 7.012201, y: 1.0038202}
+      - {x: 10.009879, y: 1.0038495}
+      - {x: 10.00985, y: 2.0110025}
+      - {x: 7.002697, y: 2.0109732}
+      - {x: 7.0026674, y: 2.0061603}
+      - {x: 6.004455, y: 2.006131}
+      - {x: 6.00496, y: 0.0110023}
+      - {x: 5.002697, y: 0.010973}
+      - {x: 5.0026674, y: 0.0061603}
+      - {x: 4.0044546, y: 0.006131}
+      - {x: 4.0044255, y: -1.9889976}
+      - {x: 3.0039196, y: -1.9890268}
+      - {x: 3.003949, y: -2.9961798}
+    - - {x: -2.9943523, y: -2.9961798}
+      - {x: -2.9943523, y: -1.9889976}
+      - {x: -3.9888985, y: -1.9889683}
+      - {x: -3.9889276, y: 0.0061603}
+      - {x: -4.990121, y: 0.0061897}
+      - {x: -4.99015, y: 0.0110023}
+      - {x: -5.9888983, y: 0.0110317}
+      - {x: -5.988928, y: 2.0061603}
+      - {x: -6.990121, y: 2.0061896}
+      - {x: -6.9901505, y: 2.0110025}
+      - {x: -9.997303, y: 2.0109732}
+      - {x: -9.997273, y: 1.0038202}
+      - {x: -6.99608, y: 1.0037909}
+      - {x: -6.9960504, y: -0.9961798}
+      - {x: -4.9960804, y: -0.9962092}
+      - {x: -4.9960513, y: -2.9961798}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1001 &326602007015613732
 PrefabInstance:
   m_ObjectHideFlags: 0
