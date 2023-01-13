@@ -22,6 +22,7 @@ namespace Ennemy
     public int idleBetweenAttacks = 1;
     private int idleBetweenAttacksCount = 0;
     [SerializeField] private Oursin usedOursin;
+    public ParticleSystem shootVFX;
 
     // Caché //
     public float hiddenDistance = 1;

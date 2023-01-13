@@ -36,4 +36,9 @@ public class EventManagerCanonnier : MonoBehaviour
     {
         canonnier.enemyHealth.vulnerable = true;
     }
+    
+    public void ExplosionVFX()
+    {
+        canonnier.shootVFX.Play();
+    }
 }
