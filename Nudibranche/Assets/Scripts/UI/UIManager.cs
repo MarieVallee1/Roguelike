@@ -34,7 +34,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject cheatMenu;
     [SerializeField] private CanvasGroup cheatButtons;
 
-    [SerializeField] private GameObject objectPanel;
+    [SerializeField] private Animation pearlPanelAnim;
+    [SerializeField] private ParticleSystem pearlPanelVFX;
     [SerializeField] private RectTransform cursor;
     [SerializeField] private TextMeshProUGUI objectInfo;
     [SerializeField] private ParticleSystem slashEffects;
@@ -74,7 +75,18 @@ public class UIManager : MonoBehaviour
         if(PlayerController.Instance.characterInputs.UI.Escape.triggered && cheatMenuOn) CloseCheatMenuButton();
         if(pauseMenuOn)HandleSelectedButtons();
     }
-
+    
+    
+    public void UpdateUiPearl()
+    {
+        GameManager.instance.pearlAmountText.text = GameManager.instance.pearlAmount + "";
+    } 
+        public void PearlUpFeedback()
+    {
+        pearlPanelAnim.Play();
+        pearlPanelVFX.Play();
+    }
+    
     public void UpdateSkillInfo()
     {
         switch (PlayerController.Instance.skillIndex)

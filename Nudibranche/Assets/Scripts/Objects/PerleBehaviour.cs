@@ -44,6 +44,7 @@ public class PerleBehaviour : MonoBehaviour
             if ((!pearlData.monney && Health.instance.health < Health.instance.numberOfHearts) || pearlData.monney)
             {
                 getPearl = true;
+                UIManager.instance.PearlUpFeedback();
             }
         }
     }
