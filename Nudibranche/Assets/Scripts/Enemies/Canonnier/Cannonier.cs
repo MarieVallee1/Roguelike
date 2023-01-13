@@ -79,6 +79,16 @@ namespace Ennemy
             }
         }
     }
+
+    public void SpawnFirstOursin()
+    {
+        if (spawnPointList.Count >= 1)
+        {
+            usedOursin.CannonierShooting(spawnPointList[0]);
+            spawnPointList.Remove(spawnPointList[0]);
+            idleBetweenAttacksCount = 0;
+        }
+    }
     
     public void SpawnOursins()
     {
@@ -89,13 +99,6 @@ namespace Ennemy
             spawnPointList.Remove(spawnPointList[x]);
             idleBetweenAttacksCount = 0;
         }
-        
-       /*
-        int x = Random.Range(0, spawnPointList.Count);
-        usedOursin.CannonierShooting(spawnPointList[x]);
-        spawnPointList.Remove(spawnPointList[x]);
-        idleBetweenAttacksCount = 0;
-        */
     }
     public void NumberOfIdleBetweenAttacks()
     {
