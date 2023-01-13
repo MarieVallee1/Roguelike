@@ -7,6 +7,8 @@ namespace Projectiles
 {
     public class BasicAttack : MonoBehaviour
     {
+        [SerializeField] private AudioSource audioSource;
+        
         private SpriteRenderer _ren;
         // private TrailRenderer _trail;
         private Rigidbody2D _rb;
@@ -31,6 +33,7 @@ namespace Projectiles
 
         private void OnEnable()
         {
+            audioSource.PlayOneShot(AudioList.Instance.basicAttack);
             //_trail.enabled = true;
             _countdown = 0f;
             _accelerationCooldown = Time.time + controlDuration;
