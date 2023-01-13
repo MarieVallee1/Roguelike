@@ -522,19 +522,21 @@ namespace Character
             //VFX Previous position
             Instantiate(dashVFX, characterPos, quaternion.identity);
             
-            //Teleportation
-            _tr.position = dashPosition.position;
-            
             //Post Process feedback
             PostProcessing.Instance._lensDistortion.intensity.value = 0f;
             PostProcessing.Instance.dashing = true;
             PostProcessing.Instance._lensDistortion.intensity.value = -0.5f;
 
             Debug.Log("I Dash");
-            
+
             //Dissolve Material activation
             tpMat.enabled = true;
             ressolveDuration = 0;
+            
+            yield return new WaitForSeconds(0.1f);
+            //Teleportation
+            _tr.position = dashPosition.position;
+
             yield return new WaitForSeconds(0.4f);
             
             //Rigged Sprite activation
