@@ -533,6 +533,7 @@ namespace Character
             tpMat.enabled = true;
             ressolveDuration = 0;
             
+            yield return new WaitForSeconds(0.1f);
             //Teleportation
             _tr.position = dashPosition.position;
 
