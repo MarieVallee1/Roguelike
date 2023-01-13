@@ -102,7 +102,9 @@ namespace GenPro
             _specialRoom3 = !_bossRoomIsSet ? SpecialRoom.Boss : SpecialRoom.Character1;
             SecondLoop();
             PlaceSpecialRooms();
-            GameManager.instance.startRoom = listSalle[0].GetComponent<RoomManager>();
+            var start = listSalle[0].GetComponent<RoomManager>();
+            GameManager.instance.startRoom = start;
+            GameManager.instance.currentRoom = start;
         }
         private void CheckFiller2Room(Side side)
         {
@@ -766,7 +768,7 @@ namespace GenPro
         {
             ChooseShopRoom(entry);
             InstantiateRoom(indexOldRoom,side,false);
-            GameManager.instance.bossRoom = listSalle[^1].GetComponent<RoomManager>();
+            GameManager.instance.shopRoom = listSalle[^1].GetComponent<RoomManager>();
         }
         private void Place4Room(int indexOldRoom,Side side)
         {

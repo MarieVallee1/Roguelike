@@ -100,6 +100,7 @@ namespace System
         }
         public void ReloadBoss()
         {
+            Debug.Log(bossRoom);
             currentRoom.Deactivate();
             bossRoom.Activate();
             currentRoom = bossRoom;
