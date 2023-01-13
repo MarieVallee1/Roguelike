@@ -40,6 +40,7 @@ namespace Character
         [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private VisualEffect parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
+        [SerializeField] private GameObject buffVFX;
 
         [Header("Character Visuals Related")]
         [SerializeField] private GameObject characterVisualsTr;
@@ -215,6 +216,7 @@ namespace Character
             BlastReload();
             HandleSkillUse();
             DashExtra();
+            HandleBuffFeedback();
 
             if (health <= 0 && !GameManager.instance.cheatDeath) StartCoroutine(PlayerDeath());
             
@@ -376,6 +378,12 @@ namespace Character
                     animator[i].SetBool("isRunning", false);
                 }
             }
+        }
+
+        private void HandleBuffFeedback()
+        {
+            if(onBuff) buffVFX.SetActive(true);
+            else buffVFX.SetActive(false);
         }
 
         private void HandleMouseLook()
