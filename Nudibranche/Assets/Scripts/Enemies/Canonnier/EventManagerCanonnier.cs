@@ -12,6 +12,11 @@ public class EventManagerCanonnier : MonoBehaviour
         canonnier.CreateSpawnList();
     }
 
+    public void FirstShoot()
+    {
+        canonnier.SpawnFirstOursin();
+    }
+
     public void Shoot()
     {
         canonnier.SpawnOursins();

@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41893fd95fdaf434885d54e6317842aa, type: 3}
+  m_Name: NewPeuGlissantEtLent
+  m_EditorClassIdentifier: 
+  speed: 1
+  maxSpeed: 10
+  drag: 9.8
+  health: 4
+  invulnerabilityDuration: 2
+  dashCooldown: 1.5
+  projectileIndex: 0
+  usedProjectile:
+  - usedProjectileName: BasicAttack
+    fireRate: 0
+    projectileSize: 0
+    projectileSpeed: 1.5
+    damage: 1
+    blastLenght: 1
+    blastCooldown: 0.29
+    projectileAcceleration:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.95777535
+        value: 19.777311
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 10
+    damageMultiplier: 2
+  parryCooldown: 1
+  parryTime: 0.5
+  buffDuration: 2
+  speedBuff: 1.3
+  repulsionForce: 8
+  swordSlashCooldown: 3
+  cardLaserCooldown: 3
+  baitCooldown: 3
+  swordSlashDamages: 10
+  cardLaserDamages: 10
+  baitDuration: 5

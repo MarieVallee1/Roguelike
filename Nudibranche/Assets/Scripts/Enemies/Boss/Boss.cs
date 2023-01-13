@@ -69,6 +69,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject[] visuals;
     [SerializeField] private ParticleSystem vfxDamage;
     [SerializeField] private SpriteRenderer[] sprites;
+    [SerializeField] private Material[] charaMat;
 
     private void Start()
     {
@@ -287,6 +288,8 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        StartCoroutine(HitFeedback());
+        
         health -= damage;
         vfxDamage.Play();
         healthGauge.value = health;
@@ -360,6 +363,11 @@ public class Boss : MonoBehaviour
     
     public IEnumerator Death()
     {
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].material = charaMat[0];
+        }
+        
         DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
         yield return new WaitForSeconds(dissolveDuration);
         
@@ -380,5 +388,22 @@ public class Boss : MonoBehaviour
         target = baitTransform;
         yield return new WaitForSeconds(characterData.baitDuration);
         target = PlayerController.Instance.transform.GetChild(6);
+    }
+    
+    private IEnumerator HitFeedback()
+    {
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].material = charaMat[1];
+        }
+
+        yield return new WaitForSeconds(0.1f);
+            
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            sprites[i].material = charaMat[0];
+        }
+            
+        yield return new WaitForSeconds(0.1f);
     }
 }

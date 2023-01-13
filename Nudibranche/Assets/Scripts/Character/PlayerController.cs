@@ -40,6 +40,7 @@ namespace Character
         [SerializeField] private ParticleSystem parryFeedback;
         [SerializeField] private VisualEffect parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
+        [SerializeField] private GameObject buffVFX;
 
         [Header("Character Visuals Related")]
         [SerializeField] private GameObject characterVisualsTr;
@@ -78,6 +79,7 @@ namespace Character
         [Header("Stats")]
         public float skillCooldown;
         public int health;
+        public float dashCooldown;
         public float speed;
         public float damage;
         public float fireRate;
@@ -118,6 +120,7 @@ namespace Character
             _parryLifeTime = characterData.parryTime;
             _rb.drag = characterData.drag;
             health = characterData.health;
+            dashCooldown = characterData.dashCooldown;
             damage = characterData.usedProjectile[0].damage;
             fireRate = characterData.usedProjectile[0].fireRate;
             projectileSize = characterData.usedProjectile[0].projectileSize;
@@ -132,7 +135,7 @@ namespace Character
             }
 
             //Set the skill to null
-            skillIndex = 3;
+            //skillIndex = 0;
         }
 
         
@@ -213,8 +216,9 @@ namespace Character
             BlastReload();
             HandleSkillUse();
             DashExtra();
+            HandleBuffFeedback();
 
-            if (health <= 0) StartCoroutine(PlayerDeath());
+            if (health <= 0 && !GameManager.instance.cheatDeath) StartCoroutine(PlayerDeath());
             
             if (remainingProjectile <= 0)
             {
@@ -376,6 +380,12 @@ namespace Character
             }
         }
 
+        private void HandleBuffFeedback()
+        {
+            if(onBuff) buffVFX.SetActive(true);
+            else buffVFX.SetActive(false);
+        }
+
         private void HandleMouseLook()
         {
             if (!gamepadOn)
@@ -397,9 +407,9 @@ namespace Character
                 bookAnim.SetBool("isShooting", true);
                 
                 //Placement & activation of the projectile
-                usedProjectile.transform.position = book.transform.position;
+                usedProjectile.transform.position = bookPos.transform.position;
 
-                usedProjectile.transform.eulerAngles = (-BookPosition.Instance.transform.eulerAngles);
+                //usedProjectile.transform.eulerAngles = (-BookPosition.Instance.transform.eulerAngles);
                 
                 usedProjectile.SetActive(true);
                 shootDir = aim.normalized;
@@ -504,7 +514,7 @@ namespace Character
         private IEnumerator HandleDashUse()
         {
             //Cooldown
-            nextTimeDash = Time.time + characterData.dashCooldown;
+            nextTimeDash = Time.time + dashCooldown;
             
             //Rigged Sprite deactivation
             characterVisualsTr.SetActive(false);
@@ -512,19 +522,21 @@ namespace Character
             //VFX Previous position
             Instantiate(dashVFX, characterPos, quaternion.identity);
             
-            //Teleportation
-            _tr.position = dashPosition.position;
-            
             //Post Process feedback
             PostProcessing.Instance._lensDistortion.intensity.value = 0f;
             PostProcessing.Instance.dashing = true;
             PostProcessing.Instance._lensDistortion.intensity.value = -0.5f;
 
             Debug.Log("I Dash");
-            
+
             //Dissolve Material activation
             tpMat.enabled = true;
             ressolveDuration = 0;
+            
+            yield return new WaitForSeconds(0.1f);
+            //Teleportation
+            _tr.position = dashPosition.position;
+
             yield return new WaitForSeconds(0.4f);
             
             //Rigged Sprite activation
@@ -537,7 +549,7 @@ namespace Character
 
         private bool CanDash()
         {
-            RaycastHit2D hit = Physics2D.Raycast(characterPos, aim, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
+            RaycastHit2D hit = Physics2D.Raycast(characterPos, movementDirection, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
             if (hit)
             {
                 Debug.Log(hit.collider.name);
