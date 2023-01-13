@@ -319,6 +319,8 @@ GameObject:
   - component: {fileID: 7006962392503051272}
   - component: {fileID: 7006962392503051273}
   - component: {fileID: 7006962392503051274}
+  - component: {fileID: 3228873207354723648}
+  - component: {fileID: 3101546688704541329}
   m_Layer: 8
   m_Name: Rambarde
   m_TagString: Environment
@@ -618,10 +620,63 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!50 &3228873207354723648
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7006962392503051276}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &3101546688704541329
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7006962392503051276}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths:
+    - - {x: -0.000029300001, y: -6}
+      - {x: -0.000029300001, y: -5}
+      - {x: -0.9943233, y: -4.9999704}
+      - {x: -0.99435264, y: -2.988624}
+      - {x: -9.997303, y: -2.9886532}
+      - {x: -9.997273, y: -3.9958065}
+      - {x: -1.9955456, y: -3.995836}
+      - {x: -1.9955164, y: -5.993944}
+      - {x: -1, y: -5.9939737}
+      - {x: -0.99997073, y: -6}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &7006962392546964285
 GameObject:
   m_ObjectHideFlags: 0

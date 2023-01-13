@@ -86,6 +86,8 @@ GameObject:
   - component: {fileID: 5683985154585273501}
   - component: {fileID: 2395828693895369762}
   - component: {fileID: 6100711575494654188}
+  - component: {fileID: 3784777974792489215}
+  - component: {fileID: 2882632544688146465}
   m_Layer: 8
   m_Name: Rambarde
   m_TagString: Environment
@@ -510,11 +512,78 @@ TilemapCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!50 &3784777974792489215
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906698385667553546}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &2882632544688146465
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906698385667553546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 5.0056477, y: 1.0038202}
+      - {x: 5.0057063, y: 2.0069866}
+      - {x: 5.0121713, y: 2.007016}
+      - {x: 5.012142, y: 10.014169}
+      - {x: 4.004989, y: 10.014139}
+      - {x: 4.00496, y: 2.0110025}
+      - {x: 3.0097268, y: 2.0110319}
+      - {x: 3.0096977, y: 2.0141687}
+      - {x: 2.0085044, y: 2.0141397}
+      - {x: 2.0085337, y: 1.0069867}
+      - {x: 3.002697, y: 1.0069573}
+      - {x: 3.0027263, y: 1.0038202}
+    - - {x: -2.99015, y: 1.0038202}
+      - {x: -2.99015, y: 2.0110025}
+      - {x: -3.9888985, y: 2.0110319}
+      - {x: -3.9889276, y: 10.010072}
+      - {x: -4.9960804, y: 10.010042}
+      - {x: -4.9960513, y: 1.0038202}
+    - - {x: -1.986788, y: 1.0069867}
+      - {x: -1.986788, y: 2.0141687}
+      - {x: -2.9760695, y: 2.014161}
+      - {x: -2.9820216, y: 2.0081985}
+      - {x: -2.982014, y: 1.0129389}
+      - {x: -2.976051, y: 1.0069867}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
 --- !u!1 &4707866686212878283
 GameObject:
   m_ObjectHideFlags: 0
