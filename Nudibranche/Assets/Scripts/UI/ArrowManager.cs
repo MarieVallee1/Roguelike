@@ -26,12 +26,12 @@ namespace UI
             }
         }
 
-        public void SetEntries(Transform[] entries)
+        public void SetEntries(EntranceTrigger[] entries)
         {
             MaskEntries();
             for (var i = 0; i < entries.Length; i++)
             {
-                entryArrows[i].SetTarget(entries[i],false);
+                entryArrows[i].SetTarget(entries[i].transform,false);
             }
         }
 

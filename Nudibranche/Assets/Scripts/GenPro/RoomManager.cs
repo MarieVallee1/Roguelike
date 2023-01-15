@@ -22,7 +22,7 @@ namespace GenPro
         [SerializeField] private Sprite iconSprite;
 
         public List<ActivateEnemy> _enemyList = new();
-        public Transform[] entries;
+        public EntranceTrigger[] entries;
         
         private GameObject _levelDesign;
         private GameObject _background;
@@ -88,7 +88,7 @@ namespace GenPro
             GameManager.instance.inCombat = false;
             door.SetActive(false);
             roomIsCleared = true;
-            ArrowManager.Instance.SetEntries(entries);
+            SetArrows();
             AudioList.Instance.StartMusic(AudioList.Music.main,true);
         }
 
