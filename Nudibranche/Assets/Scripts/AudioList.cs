@@ -37,6 +37,9 @@ public class AudioList : MonoBehaviour
     [SerializeField] private AudioClip endingTheme;
     [SerializeField] [Range(0, 1)] private float endingVolume;
 
+    [Header("UI")]
+    public AudioClip uiClick;
+
     [Header("Player")]
     public AudioClip basicAttack;
     public AudioClip stepSound;

@@ -14,6 +14,7 @@ namespace UI
         private EventSystem _event;
 
         [Header("Menu References")]
+        [SerializeField] private AudioSource audioSource;
         [SerializeField] private RectTransform cursor;
         [SerializeField] private GameObject mainMenu;
         private CanvasGroup _mainMenuCanvas;
@@ -106,8 +107,9 @@ namespace UI
 
         public void StartButton()
         {
-            DisableButtonFunction();
+            PlayClickAudio();
             
+            DisableButtonFunction();
             //Fades to black before launching the game
             blackScreenAnim.SetBool("Faded", true);
 
@@ -117,6 +119,8 @@ namespace UI
         }
         public void OpenOptionsButton()
         {
+            PlayClickAudio();
+            
             //Fades one menu to let the other appear
             _mainMenuCanvas.DOFade(0, 0.5f).onComplete = DisableMainMenu;
             optionMenu.SetActive(true);
@@ -127,6 +131,8 @@ namespace UI
         }
         public void QuitOptionsButton()
         {
+            PlayClickAudio();
+            
             //Fades one menu to let the other appear
             _optionMenuCanvas.DOFade(0, 0.5f).onComplete = DisableOptionsMenu;
             mainMenu.SetActive(true);
@@ -137,6 +143,8 @@ namespace UI
         }
         public void QuitButton()
         {
+            PlayClickAudio();
+            
             //Quits the game
             Application.Quit();
         }
@@ -229,6 +237,11 @@ namespace UI
         public void Fullscreen()
         {
             Screen.fullScreen = !Screen.fullScreen;
+        }
+
+        private void PlayClickAudio()
+        {
+            audioSource.PlayOneShot(AudioList.Instance.uiClick);
         }
     }
 }
