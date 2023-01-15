@@ -239,6 +239,7 @@ namespace UI
             Screen.fullScreen = !Screen.fullScreen;
         }
 
+        //Audio
         private void PlayClickAudio()
         {
             audioSource.PlayOneShot(AudioList.Instance.uiClick);

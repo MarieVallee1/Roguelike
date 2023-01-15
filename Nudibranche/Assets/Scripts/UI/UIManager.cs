@@ -13,6 +13,9 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+    
+    //Audio
+    [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private List<GameObject> portraitsOver;
@@ -172,6 +175,8 @@ public class UIManager : MonoBehaviour
     }
     public void ClosePauseMenu()
     {
+        PlayClickAudio();
+        
         Time.timeScale = 1;
         pauseMenuOn = false;
         pauseMenu.SetActive(false);
@@ -182,11 +187,15 @@ public class UIManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        PlayClickAudio();
+        AudioList.Instance.StartMusic(AudioList.Music.menu,true);
         SceneManager.LoadScene("Scene_MainMenu");
     }
     
     public void CheatButton()
     {
+        PlayClickAudio();
+        
         //Fades one menu to let the other appear
         //pauseButtons.DOFade(0, 0.5f).onComplete = OpenCheat;
         OpenCheat();
@@ -203,6 +212,8 @@ public class UIManager : MonoBehaviour
 
     private void CloseCheatMenuButton()
     {
+        PlayClickAudio();
+        
         //cheatButtons.DOFade(0, 0.5f).onComplete = CloseCheatMenu();
         cheatButtons.alpha = 0;
         CloseCheatMenu();
@@ -210,6 +221,8 @@ public class UIManager : MonoBehaviour
     
     private void CloseCheatMenu()
     {
+        PlayClickAudio();
+        
         cheatMenu.SetActive(false);
         cheatMenuOn = false;
         pauseButtonGroup.SetActive(true);
@@ -309,5 +322,11 @@ public class UIManager : MonoBehaviour
     public void InvulnerabilityButtonIsSelected()
     {
         _event.SetSelectedGameObject(invulnerabilityButton);
+    }
+    
+    //Audio
+    private void PlayClickAudio()
+    {
+        audioSource.PlayOneShot(AudioList.Instance.uiClick);
     }
 }

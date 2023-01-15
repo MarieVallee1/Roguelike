@@ -23,6 +23,9 @@ namespace Enemies
         public float dissolveDuration = 1;
         private bool dead;
         [SerializeField] private Material[] charaMat;
+        
+        //Audio
+        [SerializeField] private AudioSource audioSource;
 
         private enum Enemy
         {
@@ -107,6 +110,8 @@ namespace Enemies
 
         private IEnumerator Death()
         {
+            audioSource.PlayOneShot(AudioList.Instance.enemyDeath);
+            
             for (int i = 0; i < sprites.Length; i++)
             {
                 sprites[i].material = charaMat[0];

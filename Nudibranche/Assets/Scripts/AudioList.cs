@@ -44,6 +44,9 @@ public class AudioList : MonoBehaviour
     public AudioClip basicAttack;
     public AudioClip stepSound;
 
+    [Header("Enemy")]
+    public AudioClip enemyDeath;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
