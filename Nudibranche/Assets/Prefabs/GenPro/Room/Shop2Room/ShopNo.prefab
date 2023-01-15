@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 1283134091656957256}
   side: 3
+  trigger: {fileID: 0}
 --- !u!61 &6453614308785891290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133,6 +134,7 @@ MonoBehaviour:
   roomIsCleared: 0
   isBig: 0
   character: 0
+  characterMusic: 1
   levelDesign:
   - {fileID: 6468920130677711714, guid: 48d91080dd7c5d745b105db0901ac81f, type: 3}
   deactivate:
@@ -200,6 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 1283134091656957256}
   side: 0
+  trigger: {fileID: 0}
 --- !u!61 &1868290373577005340
 BoxCollider2D:
   m_ObjectHideFlags: 0

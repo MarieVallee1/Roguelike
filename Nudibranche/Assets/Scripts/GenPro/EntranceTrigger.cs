@@ -57,6 +57,7 @@ namespace GenPro
             {
                 linkedRoom.ResetTriggers();
                 linkedRoom.Deactivate();
+                linkedRoom.IsCharacter(false);
             }
             else
             {
@@ -65,6 +66,7 @@ namespace GenPro
                 linkedRoom.SummonDoor();
                 if(linkedRoom.roomIsCleared) linkedRoom.SetArrows();
                 else ArrowManager.Instance.MaskEntries();
+                linkedRoom.IsCharacter(true);
             }
         }
 

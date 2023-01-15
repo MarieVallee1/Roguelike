@@ -12,7 +12,7 @@ namespace GenPro
     {
         public bool activated, roomIsCleared;
 
-        [SerializeField] private bool isBig, character;
+        [SerializeField] private bool isBig, character, characterMusic;
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] deactivate;
         [SerializeField] private GameObject[] shaderCouloir;
@@ -138,6 +138,12 @@ namespace GenPro
             {
                 entry.ResetTrigger();
             }
+        }
+
+        public void IsCharacter(bool inside)
+        {
+            if (!characterMusic) return;
+            AudioList.Instance.StartMusic(inside ? AudioList.Music.character : AudioList.Music.main, true);
         }
     }
 }
