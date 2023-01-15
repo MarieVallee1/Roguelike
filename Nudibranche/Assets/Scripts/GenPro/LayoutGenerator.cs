@@ -106,6 +106,7 @@ namespace GenPro
             start.SetTriggers();
             GameManager.instance.startRoom = start;
             GameManager.instance.currentRoom = start;
+            AudioList.Instance.StartMusic(AudioList.Music.main,true);
         }
         private void CheckFiller2Room(Side side)
         {

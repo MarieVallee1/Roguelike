@@ -9,7 +9,9 @@ public class AudioList : MonoBehaviour
         main,
         menu,
         combat,
-        boss
+        boss,
+        character,
+        ending
     }
     
     public static AudioList Instance;
@@ -30,6 +32,10 @@ public class AudioList : MonoBehaviour
     [SerializeField] [Range(0, 1)] private float combatVolume;
     [SerializeField] private AudioClip bossBattleTheme;
     [SerializeField] [Range(0, 1)] private float bossVolume;
+    [SerializeField] private AudioClip characterTheme;
+    [SerializeField] [Range(0, 1)] private float characterVolume;
+    [SerializeField] private AudioClip endingTheme;
+    [SerializeField] [Range(0, 1)] private float endingVolume;
 
     [Header("Player")]
     public AudioClip basicAttack;
@@ -38,13 +44,17 @@ public class AudioList : MonoBehaviour
     private void Awake()
     {
         if (Instance != null && Instance != this) Destroy(gameObject);
-        Instance = this;
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void Start()
     {
         //Test
-        StartMusic(Music.boss,true);
+        StartMusic(Music.menu,true);
         _notFirstCall = true;
     }
 
@@ -73,6 +83,16 @@ public class AudioList : MonoBehaviour
                 _currentSource.clip = combatTheme;
                 _targetVolume = combatVolume;
                 break;
+            case Music.character:
+                _currentSource.clip = characterTheme;
+                _targetVolume = characterVolume;
+                break;
+            case Music.ending:
+                _currentSource.clip = endingTheme;
+                _targetVolume = endingVolume;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(music), music, null);
         }
         _currentSource.loop = loop;
         _currentSource.Play();
