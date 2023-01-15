@@ -103,6 +103,7 @@ namespace GenPro
             SecondLoop();
             PlaceSpecialRooms();
             var start = listSalle[0].GetComponent<RoomManager>();
+            start.SetTriggers();
             GameManager.instance.startRoom = start;
             GameManager.instance.currentRoom = start;
         }

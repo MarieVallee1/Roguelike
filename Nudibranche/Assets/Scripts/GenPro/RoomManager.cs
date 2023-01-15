@@ -123,5 +123,21 @@ namespace GenPro
         {
             ArrowManager.Instance.SetEntries(entries);
         }
+
+        public void SetTriggers()
+        {
+            foreach (var entry in entries)
+            {
+                entry.SetTrigger();
+            }
+        }
+        
+        public void ResetTriggers()
+        {
+            foreach (var entry in entries)
+            {
+                entry.ResetTrigger();
+            }
+        }
     }
 }
