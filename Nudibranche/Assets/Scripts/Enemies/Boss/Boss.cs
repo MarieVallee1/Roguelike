@@ -70,6 +70,9 @@ public class Boss : MonoBehaviour
     [SerializeField] private ParticleSystem vfxDamage;
     [SerializeField] private SpriteRenderer[] sprites;
     [SerializeField] private Material[] charaMat;
+    
+    //Activation
+    [SerializeField] private Collider2D projectileHit;
 
     private void Start()
     {
@@ -81,6 +84,8 @@ public class Boss : MonoBehaviour
 
     private void OnEnable()
     {
+        projectileHit.enabled = true;
+        bossCollider.enabled = true;
         healthGauge = GameManager.instance.bossGauge;
         healthGauge.gameObject.SetActive(true);
         behaviour = Behaviour.walk;
@@ -354,6 +359,7 @@ public class Boss : MonoBehaviour
 
     private void DeathBeginning()
     {
+        AudioList.Instance.StartMusic(AudioList.Music.ending,false);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         visuals[0].SetActive(false);
         visuals[1].SetActive(true);

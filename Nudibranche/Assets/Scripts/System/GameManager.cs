@@ -96,6 +96,7 @@ namespace System
         {
             currentRoom.Deactivate();
             shopRoom.Activate();
+            AudioList.Instance.StartMusic(AudioList.Music.character,true);
             currentRoom = shopRoom;
         }
         public void ReloadBoss()

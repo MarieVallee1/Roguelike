@@ -33,6 +33,9 @@ namespace Ennemy
     // Animator //
     public Animator animator;
     private float randomStartTiming;
+    
+    //Activation
+    [SerializeField] private Collider2D projectileHit;
     private void Start()
     {
         target = PlayerController.Instance.gameObject.transform.GetChild(6);
@@ -44,6 +47,7 @@ namespace Ennemy
     private void OnEnable()
     {
         randomStartTiming = Random.Range(0f, 3f);
+        projectileHit.enabled = true;
         StartCoroutine(RandomStart());
     }
 

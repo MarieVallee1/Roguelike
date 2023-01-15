@@ -54,8 +54,6 @@ namespace Enemies
             {
                 animators[i].enabled = true;
             }
-
-            collider.enabled = true;
         }
     
         public void takeDamage(int damage)

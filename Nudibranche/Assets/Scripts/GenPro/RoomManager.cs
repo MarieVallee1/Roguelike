@@ -103,6 +103,7 @@ namespace GenPro
             if (_enemyList.Count ==0) roomIsCleared = true;
             else
             {
+                AudioList.Instance.StartMusic(AudioList.Music.combat,true);
                 GameManager.instance.inCombat = true;
                 ItemManager.Instance.OnRoomEntrance();
                 door.SetActive(true);
@@ -115,7 +116,6 @@ namespace GenPro
                 else aStar.data.gridGraph.SetDimensions(20,20,1);
                 aStar.data.gridGraph.center = transform.position;
                 aStar.data.graphs[0].Scan();
-                AudioList.Instance.StartMusic(AudioList.Music.combat,true);
             }
         }
 

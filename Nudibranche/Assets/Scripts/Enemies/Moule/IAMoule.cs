@@ -37,6 +37,9 @@ public class IAMoule : MonoBehaviour
     public float range = 1;
     public int damage = 1;
     private bool isAttacking;
+    
+    //Activation
+    [SerializeField] private Collider2D projectileHit;
 
     private void Start()
     {
@@ -52,6 +55,7 @@ public class IAMoule : MonoBehaviour
     private void OnEnable()
     {
         isVisible = false;
+        projectileHit.enabled = true;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 

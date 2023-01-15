@@ -62,6 +62,14 @@ namespace Ennemy
     private bool attaque;
     private Transform shotOrigin;
 
+    //Activation
+    [SerializeField] private Collider2D projectileHit;
+
+    private void OnEnable()
+    {
+        projectileHit.enabled = true;
+    }
+
     void Start()
     {
         seeker = GetComponent<Seeker>();

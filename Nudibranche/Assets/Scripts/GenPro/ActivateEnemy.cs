@@ -43,6 +43,7 @@ namespace GenPro
                     break;
                 case Enemy.boss:
                     scriptBoss.enabled = true;
+                    AudioList.Instance.StartMusic(AudioList.Music.boss,true);
                     break;
             }
         }
