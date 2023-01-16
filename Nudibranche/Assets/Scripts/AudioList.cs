@@ -43,6 +43,7 @@ public class AudioList : MonoBehaviour
 
     [Header("Player")]
     public AudioClip basicAttack;
+    public AudioClip playerDash;
 
     [Header("Enemy")]
     public AudioClip enemyDeath;
