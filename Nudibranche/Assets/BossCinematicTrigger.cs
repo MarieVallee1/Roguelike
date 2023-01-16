@@ -27,7 +27,7 @@ public class BossCinematicTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerController.Instance.characterInputs.UI.Interact.triggered && _inZone)
+        if (PlayerController.Instance.characterInputs.Character.Interact.triggered && _inZone)
         {
             DialogueManager.instance.ContinueDialogue(dialogue);
         }
