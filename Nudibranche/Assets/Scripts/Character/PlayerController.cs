@@ -94,6 +94,7 @@ namespace Character
         public bool onParry;
         public bool onBuff;
         public bool onSkillUse;
+        public bool isDead;
         [Space]
         public bool movementPressed;
         public bool isMovingUp;
@@ -218,7 +219,11 @@ namespace Character
             DashExtra();
             HandleBuffFeedback();
 
-            if (health <= 0 && !GameManager.instance.cheatDeath) StartCoroutine(PlayerDeath());
+            if (health <= 0 && !GameManager.instance.cheatDeath)
+            {
+                isDead = true;
+                StartCoroutine(PlayerDeath());
+            }
             
             if (remainingProjectile <= 0)
             {
@@ -347,7 +352,9 @@ namespace Character
             yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
             yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Scene_Main");
+            ScoreManager.instance.UpdateAllScore();
+            UIManager.instance.OpenDeathScreen();
+            //SceneManager.LoadScene("Scene_Main");
         }
         
         private void HandleMovement()
