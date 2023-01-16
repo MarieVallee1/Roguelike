@@ -213,6 +213,11 @@ public class UIManager : MonoBehaviour
         deathScreen.SetActive(true);
         deathScreenAlpha.DOFade(1, 1f);
     }
+    public void CloseDeathScreen()
+    {
+        deathScreenAlpha.DOFade(0, 1f);
+        deathScreen.SetActive(true);
+    }
     private void OpenCheat()
     {
         pauseButtonGroup.SetActive(false);
