@@ -41,7 +41,7 @@ public class PerleBehaviour : MonoBehaviour
         
         if (col.CompareTag("Player"))
         {
-            if ((!pearlData.monney && Health.instance.health < Health.instance.numberOfHearts) || pearlData.monney)
+            if ((!pearlData.monney && PlayerController.Instance.health < Health.instance.numberOfHearts) || pearlData.monney)
             {
                 getPearl = true;
                 UIManager.instance.PearlUpFeedback();
@@ -62,7 +62,7 @@ public class PerleBehaviour : MonoBehaviour
             }
             else
             {
-                if (Health.instance.health < Health.instance.numberOfHearts)
+                if (PlayerController.Instance.health < Health.instance.numberOfHearts)
                 {
                     Health.instance.SetHealth(PlayerController.Instance.health += 1);
                 }
