@@ -18,6 +18,7 @@ public class AudioList : MonoBehaviour
 
     [SerializeField] private AudioSource audioSource0;
     [SerializeField] private AudioSource audioSource1;
+    [SerializeField] private AudioSource audioSourceOneShot;
     [SerializeField] private float fadeDuration;
     private bool _playOn1, _notFirstCall;
     private float _targetVolume;
@@ -47,6 +48,10 @@ public class AudioList : MonoBehaviour
     public AudioClip enemyDeath;
     public AudioClip urchinLaunch;
     public AudioClip urchinLanding;
+
+    [Header("Non-spatialize")]
+    public AudioClip buyInShop;
+    [Range(0, 1)] public float buyInShopVolume;
 
     private void Awake()
     {
@@ -115,5 +120,10 @@ public class AudioList : MonoBehaviour
     private void FadeOut()
     {
         _currentSource.DOFade(0f, fadeDuration);
+    }
+
+    public void PlayOneShot(AudioClip clip, float volumeScale)
+    {
+        audioSourceOneShot.PlayOneShot(clip,volumeScale);
     }
 }
