@@ -12,6 +12,7 @@ public class OursinBehavior : MonoBehaviour
     private bool dangerous = false;
     private GameObject target;
     private PlayerController _playerController;
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class OursinBehavior : MonoBehaviour
 
     private void OnEnable()
     {
+        
         dangerous = false;
     }
 
@@ -48,5 +50,10 @@ public class OursinBehavior : MonoBehaviour
             }
             else _playerController.TakeDamage(oursinData.damage);
         }
+    }
+
+    public void PlaySound()
+    {
+        audioSource.PlayOneShot(AudioList.Instance.urchinLanding);
     }
 }
