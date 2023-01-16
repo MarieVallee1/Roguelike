@@ -14,15 +14,18 @@ namespace Enemies
         public ParticleSystem fxDamages;
         public Rigidbody2D rb;
         public Collider2D collider;
+        [SerializeField] private Collider2D projectileHit;
         [SerializeField] private Enemy enemy;
         [SerializeField] private Perle perleBlancheData;
         [SerializeField] private Perle perleRougeData;
         private GameManager _gameManager;
         public SpriteRenderer[] sprites;
         private float shaderDissolveValue = 1;
+        private float shaderShadowValue = 0.33f;
         public float dissolveDuration = 1;
         private bool dead;
         [SerializeField] private Material[] charaMat;
+        [SerializeField] private SpriteRenderer shadow;
         
         //Audio
         [SerializeField] private AudioSource audioSource;
@@ -105,6 +108,8 @@ namespace Enemies
                 {
                     sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
                 }
+                
+                shadow.material.SetFloat("_Force", shaderShadowValue);
             }
         }
 
@@ -116,8 +121,8 @@ namespace Enemies
             {
                 sprites[i].material = charaMat[0];
             }
-            
             collider.enabled = false;
+            projectileHit.enabled = false;
             if (rb != null)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -127,7 +132,9 @@ namespace Enemies
                 animators[i].enabled = false;
             }
             DropLoot();
+            
             DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
+            DOTween.To(()=> shaderShadowValue, x=> shaderShadowValue = x, 1, dissolveDuration);
             yield return new WaitForSeconds(dissolveDuration);
             GetComponent<ActivateEnemy>().Die();
             gameObject.SetActive(false);
