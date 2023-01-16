@@ -357,7 +357,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 3
-      m_TileMatrixIndex: 0
+      m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -481,7 +481,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 34a9504bb5b19e7439e71093f27c08ff, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: ef3d22fe8d7e7bf46841faa63e217ce5, type: 2}
+    m_Data: {fileID: 11400000, guid: 068c48dc1e31f864186e4d9010b6f411, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 83c48ef4c7c095e429b8c74694c97be0, type: 2}
   m_TileSpriteArray:
@@ -492,11 +492,11 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -619813098, guid: 14a63e132854c9448825c7b7fafdc1cb, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 840161847, guid: 14a63e132854c9448825c7b7fafdc1cb, type: 3}
+    m_Data: {fileID: 1547717487, guid: 29aac91354d868b41b7e61aab06068ce, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -938412061, guid: b804b03da2ca90e4cac9c84bfed112f6, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data:
       e00: 1
       e01: 0
@@ -514,7 +514,7 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data:
       e00: 1
       e01: 0
@@ -665,16 +665,20 @@ CompositeCollider2D:
   m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
-    - - {x: -0.000029300001, y: -6}
-      - {x: -0.000029300001, y: -5}
-      - {x: -0.9943233, y: -4.9999704}
+    - - {x: -0.99435264, y: -4.986752}
       - {x: -0.99435264, y: -2.988624}
       - {x: -9.997303, y: -2.9886532}
       - {x: -9.997273, y: -3.9958065}
       - {x: -1.9955456, y: -3.995836}
-      - {x: -1.9955164, y: -5.993944}
-      - {x: -1, y: -5.9939737}
-      - {x: -0.99997073, y: -6}
+      - {x: -1.9955164, y: -4.986752}
+    - - {x: -2.00001, y: -5.9999747}
+      - {x: 0, y: -5.999971}
+      - {x: -0.000029300001, y: -5}
+      - {x: -0.9943133, y: -5.000029}
+      - {x: -0.9943486, y: -5.993954}
+      - {x: -0.99999, y: -5.993925}
+      - {x: -1.0000252, y: -4.99999}
+      - {x: -2.00001, y: -5.0000253}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!1 &7006962392546964285
