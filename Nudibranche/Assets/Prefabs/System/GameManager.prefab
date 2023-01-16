@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 524779814}
   - component: {fileID: 524779818}
   - component: {fileID: 1951215584578119472}
+  - component: {fileID: 2071291500}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -175,6 +176,7 @@ MonoBehaviour:
   shopButton: {fileID: 0}
   bossButton: {fileID: 0}
   moneyButton: {fileID: 0}
+  deathScreen: {fileID: 0}
   invulnerabilityButton: {fileID: 0}
   pauseButtons: {fileID: 0}
   pauseButtonGroup: {fileID: 0}
@@ -182,6 +184,7 @@ MonoBehaviour:
   optionMenu: {fileID: 0}
   cheatMenu: {fileID: 0}
   cheatButtons: {fileID: 0}
+  deathScreenAlpha: {fileID: 0}
   pearlPanelAnim: {fileID: 0}
   pearlPanelVFX: {fileID: 0}
   cursor: {fileID: 0}
@@ -287,3 +290,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2071291500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072053401284253054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae8ddf823af08b4cae568ac1d610671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTxt:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allScore: 

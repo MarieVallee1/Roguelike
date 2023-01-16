@@ -3817,7 +3817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &737822630520298049
 Transform:
   m_ObjectHideFlags: 0
@@ -9184,7 +9184,7 @@ PrefabInstance:
     - target: {fileID: 773318123509732190, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1050505131813475006, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
@@ -9194,7 +9194,7 @@ PrefabInstance:
     - target: {fileID: 1777273066144910598, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2778496886318315116, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
@@ -9299,7 +9299,7 @@ PrefabInstance:
     - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: speed
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
@@ -9309,13 +9309,23 @@ PrefabInstance:
     - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
+        type: 3}
+      propertyPath: rushRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: roomCenter
       value: 
       objectReference: {fileID: 737822630520298049}
+    - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
+        type: 3}
+      propertyPath: attackRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: healthGauge
@@ -9476,6 +9486,11 @@ PrefabInstance:
       propertyPath: sprites.Array.data[27]
       value: 
       objectReference: {fileID: 1235898290771698621}
+    - target: {fileID: 5242538878400419347, guid: 6694ad07b51a0b143b1093c5c867d582,
+        type: 3}
+      propertyPath: tourbillonEveryXDamages
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5242538878400419351, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: m_Name
@@ -9524,6 +9539,11 @@ PrefabInstance:
     - target: {fileID: 8423781705364692232, guid: 6694ad07b51a0b143b1093c5c867d582,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795939166138105446, guid: 6694ad07b51a0b143b1093c5c867d582,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8845277742931386058, guid: 6694ad07b51a0b143b1093c5c867d582,
@@ -9642,7 +9662,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.47963464, y: -0.010305224}
