@@ -240,7 +240,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4502711793997958835}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -278,6 +278,7 @@ MonoBehaviour:
   fxDamages: {fileID: 7615895006733444278}
   rb: {fileID: 4502711793997958840}
   collider: {fileID: 4502711793997958843}
+  projectileHit: {fileID: 3227326388118780164}
   enemy: 0
   perleBlancheData: {fileID: 11400000, guid: 34f1a6c9fe4380041a9cfe5011b62c17, type: 2}
   perleRougeData: {fileID: 11400000, guid: eeb7f138b3a75974f82f62848420701d, type: 2}
@@ -311,6 +312,7 @@ MonoBehaviour:
   charaMat:
   - {fileID: 2100000, guid: 1e097ecdeb03af84da6b8595eec439c7, type: 2}
   - {fileID: 2100000, guid: c31acb6c0fd6f7b4db5a19a52528b3cf, type: 2}
+  shadow: {fileID: 9221520385246221277}
   audioSource: {fileID: 876233988965761282}
   maxPV: 7
   pv: 0

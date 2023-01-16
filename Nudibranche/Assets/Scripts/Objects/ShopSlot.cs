@@ -62,11 +62,15 @@ namespace Objects
         
         private void BuyHealth()
         {
+            var player = PlayerController.Instance;
+            var maxHealth = Health.instance.numberOfHearts;
+            if (player.health >= maxHealth) return;
             if (GameManager.instance.pearlAmount <= _linkedReward.GetPrice()) return;
             GameManager.instance.pearlAmount -= _linkedReward.GetPrice();
-            var player = PlayerController.Instance;
-            var maxHealth = player.characterData.health;
-            if (player.health < maxHealth) _linkedReward.OnAcquire();
+            _linkedReward.OnAcquire();
+            
+            var sound = AudioList.Instance;
+            sound.PlayOneShot(sound.buyInShop,sound.buyInShopVolume);
         }
         
         private void BuyItem()
@@ -77,6 +81,9 @@ namespace Objects
             if(_linkedReward.stats.consumable) _linkedReward.OnAcquire(true);
             else _linkedReward.OnAcquire();
             gameObject.SetActive(false);
+            
+            var sound = AudioList.Instance;
+            sound.PlayOneShot(sound.buyInShop,sound.buyInShopVolume);
         }
     }
 }

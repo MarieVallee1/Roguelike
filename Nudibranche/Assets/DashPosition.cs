@@ -49,11 +49,11 @@ namespace System
         
         private void MouseLookAhead()
         {
-            transform.localPosition = PlayerController.Instance.movementDirection.normalized * mouseDistanceModifier;
+            if(PlayerController.Instance.characterInputs.Character.Dash.triggered) transform.localPosition = PlayerController.Instance.movementDirection.normalized * mouseDistanceModifier;
         }
         private void GamepadLookAhead()
         {
-            transform.localPosition = PlayerController.Instance.movementDirection.normalized * gamepadDistanceModifier;
+            if(PlayerController.Instance.characterInputs.Character.Dash.triggered) transform.localPosition = PlayerController.Instance.movementDirection.normalized * gamepadDistanceModifier;
         }
     }
 }

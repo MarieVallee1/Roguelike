@@ -103,7 +103,7 @@ namespace GenPro
             if (_enemyList.Count ==0) roomIsCleared = true;
             else
             {
-                AudioList.Instance.StartMusic(AudioList.Music.combat,true);
+                AudioList.Instance.StartMusic(_enemyList[0].enemy==ActivateEnemy.Enemy.boss?AudioList.Music.boss : AudioList.Music.combat,true);
                 GameManager.instance.inCombat = true;
                 ItemManager.Instance.OnRoomEntrance();
                 door.SetActive(true);

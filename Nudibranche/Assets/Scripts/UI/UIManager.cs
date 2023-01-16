@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject shopButton;
     [SerializeField] private GameObject bossButton;
     [SerializeField] private GameObject moneyButton;
+    [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject invulnerabilityButton;
     [SerializeField] private CanvasGroup pauseButtons;
     [SerializeField] private GameObject pauseButtonGroup;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject optionMenu;
     [SerializeField] private GameObject cheatMenu;
     [SerializeField] private CanvasGroup cheatButtons;
+    [SerializeField] private CanvasGroup deathScreenAlpha;
 
     [SerializeField] private Animation pearlPanelAnim;
     [SerializeField] private ParticleSystem pearlPanelVFX;
@@ -50,6 +52,7 @@ public class UIManager : MonoBehaviour
     public bool pauseMenuOn;
     public bool optionMenuOn;
     public bool cheatMenuOn;
+    
     
     private void Awake()
     {
@@ -73,10 +76,14 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
-        if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn && !cheatMenuOn) ClosePauseMenu();
-        if(PlayerController.Instance.characterInputs.UI.Escape.triggered && cheatMenuOn) CloseCheatMenuButton();
-        if(pauseMenuOn)HandleSelectedButtons();
+        if (!PlayerController.Instance.isDead)
+        {
+            if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
+            if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn && !cheatMenuOn) ClosePauseMenu();
+            if(PlayerController.Instance.characterInputs.UI.Escape.triggered && cheatMenuOn) CloseCheatMenuButton();
+            if(pauseMenuOn)HandleSelectedButtons();
+        }
+        
     }
     
     
@@ -84,7 +91,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.pearlAmountText.text = GameManager.instance.pearlAmount + "";
     } 
-        public void PearlUpFeedback()
+    public void PearlUpFeedback()
     {
         pearlPanelAnim.Play();
         pearlPanelVFX.Play();
@@ -201,6 +208,16 @@ public class UIManager : MonoBehaviour
         OpenCheat();
     }
 
+    public void OpenDeathScreen()
+    {
+        deathScreen.SetActive(true);
+        deathScreenAlpha.DOFade(1, 1f);
+    }
+    public void CloseDeathScreen()
+    {
+        deathScreenAlpha.DOFade(0, 1f);
+        deathScreen.SetActive(true);
+    }
     private void OpenCheat()
     {
         pauseButtonGroup.SetActive(false);

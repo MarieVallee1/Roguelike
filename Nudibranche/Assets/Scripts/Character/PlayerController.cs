@@ -8,6 +8,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 
@@ -94,6 +95,7 @@ namespace Character
         public bool onParry;
         public bool onBuff;
         public bool onSkillUse;
+        public bool isDead;
         [Space]
         public bool movementPressed;
         public bool isMovingUp;
@@ -204,7 +206,8 @@ namespace Character
         private void Update()
         {
             Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
-
+            
+            
             HandleParry();
             HandleMouseLook();
             RestrictMousePos();
@@ -218,7 +221,11 @@ namespace Character
             DashExtra();
             HandleBuffFeedback();
 
-            if (health <= 0 && !GameManager.instance.cheatDeath) StartCoroutine(PlayerDeath());
+            if (health <= 0 && !GameManager.instance.cheatDeath && !isDead)
+            {
+                isDead = true;
+                StartCoroutine(PlayerDeath());
+            }
             
             if (remainingProjectile <= 0)
             {
@@ -346,6 +353,11 @@ namespace Character
             }
             yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
+            yield return new WaitForSeconds(1f);
+            UIManager.instance.OpenDeathScreen();
+            ScoreManager.instance.UpdateAllScore();
+            yield return new WaitForSeconds(4f);
+            UIManager.instance.CloseDeathScreen();
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Scene_Main");
         }
