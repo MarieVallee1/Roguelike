@@ -171,7 +171,7 @@ MonoBehaviour:
   speed: 150
   princessFeet: {fileID: 2778496886318315116}
   behaviour: 0
-  attackRange: 4
+  attackRange: 6
   attackTimer: 2
   rushSpeed: 1300
   rushRange: 6
@@ -355,7 +355,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: bd5a46654dcee144389881a45b946d06,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: bd5a46654dcee144389881a45b946d06,
         type: 3}
@@ -523,6 +523,32 @@ CircleCollider2D:
   m_Offset: {x: 1.8866925, y: 0.028145341}
   serializedVersion: 2
   m_Radius: 0.31822988
+--- !u!61 &8795939166138105446
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157561387698083651}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5481452, y: -0.013330853}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2942708, y: 0.055431988}
+  m_EdgeRadius: 0
 --- !u!114 &1335566868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +808,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8208751903171576316, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
