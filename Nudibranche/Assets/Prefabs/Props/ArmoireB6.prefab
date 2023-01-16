@@ -226,7 +226,7 @@ SpriteRenderer:
   m_Size: {x: 4.096, y: 4.096}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!114 &1010133617885564850
@@ -336,12 +336,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c7beaa25136d6b74a88ffd62ae2c3322, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dc56d50f6ecfd1439c94a3ec264dcb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.096, y: 4.096}
+  m_Size: {x: 3.2156863, y: 3.2156863}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -360,9 +360,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: c7beaa25136d6b74a88ffd62ae2c3322, type: 3}
-  - {fileID: 21300000, guid: 6a0e2d1156f1a9d449804c768822afc7, type: 3}
-  - {fileID: 21300000, guid: ccb76e1b1a8151641be8d9192e61b92c, type: 3}
+  - {fileID: 21300000, guid: 6dc56d50f6ecfd1439c94a3ec264dcb4, type: 3}
+  - {fileID: 21300000, guid: b3bdb12ceb2508549b879b6e4ce6cdff, type: 3}
+  - {fileID: 21300000, guid: 23a52bcf0c61b734481766f069e997fe, type: 3}
 --- !u!61 &5162873607580048755
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -381,7 +381,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.3}
     oldSize: {x: 3.2156863, y: 3.2156863}
-    newSize: {x: 4.096, y: 4.096}
+    newSize: {x: 3.2156863, y: 3.2156863}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -438,9 +438,14 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 681085928621644011, guid: c92362f9090a13042804e7b9402da1ac,
         type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 681085928621644011, guid: c92362f9090a13042804e7b9402da1ac,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 87b043485d1613f48b54c704f1f8b4d1, type: 2}
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 681085928621644020, guid: c92362f9090a13042804e7b9402da1ac,
         type: 3}
       propertyPath: m_RootOrder

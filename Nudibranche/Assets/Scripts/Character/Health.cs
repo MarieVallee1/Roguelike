@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public static Health instance;
     
     public int numberOfHearts;
-    public int health;
+    public PlayerController player;
     
     [SerializeField] private Image[] hearts;
     [SerializeField] private Animation anim;
@@ -29,11 +29,11 @@ public class Health : MonoBehaviour
     }
     private void Update()
     {
-        if (health > hearts.Length) health = hearts.Length;
+        if (player.health > hearts.Length) player.health = hearts.Length;
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < health) hearts[i].sprite = fullHeart;
+            if (i < player.health) hearts[i].sprite = fullHeart;
             else hearts[i].sprite = emptyHeart;
 
             if (i < numberOfHearts) hearts[i].enabled = true;
@@ -44,13 +44,13 @@ public class Health : MonoBehaviour
     public void SetHealth(int playerHealth)
     {
         anim.Play();
-        health = playerHealth;
+        player.health = playerHealth;
     }
 
     //Life Power Up Object
     public void GainSpecialHeart()
     {
         numberOfHearts = 5;
-        health = 5;
+        player.health = 5;
     }
 }

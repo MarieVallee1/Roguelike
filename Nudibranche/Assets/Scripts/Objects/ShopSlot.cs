@@ -62,11 +62,12 @@ namespace Objects
         
         private void BuyHealth()
         {
+            var player = PlayerController.Instance;
+            var maxHealth = Health.instance.numberOfHearts;
+            if (player.health >= maxHealth) return;
             if (GameManager.instance.pearlAmount <= _linkedReward.GetPrice()) return;
             GameManager.instance.pearlAmount -= _linkedReward.GetPrice();
-            var player = PlayerController.Instance;
-            var maxHealth = player.characterData.health;
-            if (player.health < maxHealth) _linkedReward.OnAcquire();
+            _linkedReward.OnAcquire();
         }
         
         private void BuyItem()
