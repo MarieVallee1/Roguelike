@@ -61,7 +61,7 @@ namespace Character
 
             if(directionAngle < 35 && directionAngle > -35)
             {
-                //Debug.Log("up");
+                //Debug.Log("up");d
                 ren.sprite = bookSprites[0];
                 ren.flipX = true;
             }
