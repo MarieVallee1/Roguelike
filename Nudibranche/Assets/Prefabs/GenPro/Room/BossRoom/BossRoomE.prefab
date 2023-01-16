@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 8690019223489604574}
   side: 1
+  trigger: {fileID: 0}
 --- !u!61 &6857555348000450431
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,6 +150,7 @@ MonoBehaviour:
   roomIsCleared: 0
   isBig: 0
   character: 0
+  characterMusic: 0
   levelDesign:
   - {fileID: 3057050327266104315, guid: 937d26f5b1aee3143a26eb4894a5844f, type: 3}
   deactivate:
@@ -525,12 +527,12 @@ PrefabInstance:
     - target: {fileID: 726865928048152027, guid: a35b2cda08137314c943e378263c14b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.75
+      value: 11.78
       objectReference: {fileID: 0}
     - target: {fileID: 726865928048152027, guid: a35b2cda08137314c943e378263c14b8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 726865928048152027, guid: a35b2cda08137314c943e378263c14b8,
         type: 3}
