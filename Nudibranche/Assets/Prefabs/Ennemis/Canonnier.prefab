@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6860674512028189146}
   - component: {fileID: 7016388626834195995}
   - component: {fileID: -3335421215002069458}
+  - component: {fileID: 6743584103371623}
   - component: {fileID: 6317117506898410478}
   m_Layer: 11
   m_Name: Canonnier
@@ -65,6 +66,7 @@ MonoBehaviour:
   enemyHealth: {fileID: 0}
   animator: {fileID: 3616473740698360184}
   projectileHit: {fileID: 6142729410387526767}
+  audioSource: {fileID: 6743584103371623}
 --- !u!61 &631100557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108,6 +110,7 @@ MonoBehaviour:
   fxDamages: {fileID: 3733151547735652407}
   rb: {fileID: 0}
   collider: {fileID: 631100557}
+  projectileHit: {fileID: 6142729410387526767}
   enemy: 2
   perleBlancheData: {fileID: 11400000, guid: 34f1a6c9fe4380041a9cfe5011b62c17, type: 2}
   perleRougeData: {fileID: 11400000, guid: eeb7f138b3a75974f82f62848420701d, type: 2}
@@ -137,6 +140,7 @@ MonoBehaviour:
   charaMat:
   - {fileID: 2100000, guid: 1e097ecdeb03af84da6b8595eec439c7, type: 2}
   - {fileID: 2100000, guid: c31acb6c0fd6f7b4db5a19a52528b3cf, type: 2}
+  shadow: {fileID: 5574657312545055203}
   audioSource: {fileID: 6317117506898410478}
   maxPV: 5
   pv: 0
@@ -169,6 +173,102 @@ MonoBehaviour:
   scriptCrevette: {fileID: 0}
   scriptCanonnier: {fileID: 631100555}
   scriptBoss: {fileID: 0}
+--- !u!82 &6743584103371623
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65909973824017759}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.11111111
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &6317117506898410478
 AudioSource:
   m_ObjectHideFlags: 0

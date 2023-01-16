@@ -42,10 +42,11 @@ public class AudioList : MonoBehaviour
 
     [Header("Player")]
     public AudioClip basicAttack;
-    public AudioClip stepSound;
 
     [Header("Enemy")]
     public AudioClip enemyDeath;
+    public AudioClip urchinLaunch;
+    public AudioClip urchinLanding;
 
     private void Awake()
     {

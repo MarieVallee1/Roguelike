@@ -36,6 +36,9 @@ namespace Ennemy
     
     //Activation
     [SerializeField] private Collider2D projectileHit;
+    
+    //Audio
+    [SerializeField] private AudioSource audioSource;
     private void Start()
     {
         target = PlayerController.Instance.gameObject.transform.GetChild(6);
@@ -89,6 +92,7 @@ namespace Ennemy
     {
         if (spawnPointList.Count >= 1)
         {
+            audioSource.PlayOneShot(AudioList.Instance.urchinLaunch);
             usedOursin.CannonierShooting(spawnPointList[0]);
             spawnPointList.Remove(spawnPointList[0]);
             idleBetweenAttacksCount = 0;
@@ -99,6 +103,7 @@ namespace Ennemy
     {
         if (spawnPointList.Count >= 1)
         {
+            audioSource.PlayOneShot(AudioList.Instance.urchinLaunch);
             int x = Random.Range(0, spawnPointList.Count);
             usedOursin.CannonierShooting(spawnPointList[x]);
             spawnPointList.Remove(spawnPointList[x]);
