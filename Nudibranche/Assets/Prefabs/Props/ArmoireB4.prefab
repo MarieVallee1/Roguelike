@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 4.096, y: 4.096}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!114 &1247690350734359761
@@ -336,12 +336,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a8d9248291787041ab8b8546d1ff213, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c39a34b4ba2a5bc429c96134524ff972, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.096, y: 4.096}
+  m_Size: {x: 3.2156863, y: 3.2156863}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -360,9 +360,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 2a8d9248291787041ab8b8546d1ff213, type: 3}
-  - {fileID: 21300000, guid: 1ed36f9b136529a4b8e71cd80f98b78e, type: 3}
-  - {fileID: 21300000, guid: cbb5cfe3932fbe54aa425230de772cfe, type: 3}
+  - {fileID: 21300000, guid: c39a34b4ba2a5bc429c96134524ff972, type: 3}
+  - {fileID: 21300000, guid: f96e012b7fc7f544bb8331b20d5981b4, type: 3}
+  - {fileID: 21300000, guid: 5ee81e83bf65a2248adf1827d2ae49d3, type: 3}
 --- !u!61 &2006512456846704928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -379,9 +379,9 @@ BoxCollider2D:
   m_Offset: {x: 0.0032465458, y: -0.35225487}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.3}
+    pivot: {x: 0.5, y: 0.2}
     oldSize: {x: 3.2156863, y: 3.2156863}
-    newSize: {x: 4.096, y: 4.096}
+    newSize: {x: 3.2156863, y: 3.2156863}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -436,6 +436,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a01661bbe4ec6ba4989591e115578dce,
         type: 3}
+    - target: {fileID: 681085928621644011, guid: c92362f9090a13042804e7b9402da1ac,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 681085928621644011, guid: c92362f9090a13042804e7b9402da1ac,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
