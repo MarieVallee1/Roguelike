@@ -5,7 +5,7 @@ namespace Objects.PassiveObject
 {
     public class Avarice : Reward
     {
-        [SerializeField] private int redPearlBonus = 1;
+        [SerializeField] private float redPearlBonus = 0.3f;
 
         public override void OnAcquire()
         {
