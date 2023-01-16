@@ -167,7 +167,7 @@ namespace Narration
                 UIManager.instance.UpdateSkillInfo();
             }
 
-            CloseDialogue();
+            CloseDialogue(dialogue);
             PlayerController.Instance.enabled = true;
         }
         
@@ -180,40 +180,48 @@ namespace Narration
                     npc[0].SetActive(true);
                     npc[1].SetActive(false);
                     npc[2].SetActive(false); 
+                    txtBox[3].SetActive(false); 
                     
                     txtBox[0].SetActive(true);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(false); 
+                    txtBox[3].SetActive(false); 
                     break;
                 
                 case 1: 
                     npc[0].SetActive(false);
                     npc[1].SetActive(true);
                     npc[2].SetActive(false); 
+                    txtBox[3].SetActive(false); 
                     
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(true);
                     txtBox[2].SetActive(false); 
+                    txtBox[3].SetActive(false); 
                     break;
                 
                 case 2: 
                     npc[0].SetActive(false);
                     npc[1].SetActive(false);
                     npc[2].SetActive(true); 
+                    npc[3].SetActive(false); 
                     
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(true); 
+                    txtBox[3].SetActive(false); 
                     break;
                 
                 case 3 :
                     npc[0].SetActive(false);
                     npc[1].SetActive(false);
-                    npc[2].SetActive(true); 
+                    npc[2].SetActive(false); 
+                    npc[3].SetActive(true); 
                     
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(false);
-                    txtBox[2].SetActive(true); 
+                    txtBox[2].SetActive(false); 
+                    txtBox[3].SetActive(true); 
                     break;
                 
                 default: print("no skill index read");
@@ -229,7 +237,7 @@ namespace Narration
 
             blackBackground.DOFade(0.5f, 1f);
         }
-        private void CloseDialogue()
+        private void CloseDialogue(Dialogue dialogue)
         {
             Cursor.visible = true;
             TargetCursor.instance.enabled = true;
@@ -238,6 +246,11 @@ namespace Narration
 
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
+
+            if (dialogue.noChoiceDialogue)
+            {
+                
+            }
         }
         
         

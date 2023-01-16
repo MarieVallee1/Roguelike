@@ -21,6 +21,7 @@ namespace System
 
         [Header("State")]
         public bool inCombat;
+        public bool inBossCutscene;
 
         public TMP_Text pearlAmountText;
         
@@ -39,6 +40,7 @@ namespace System
         public Vector3 hubPos;
         public Vector3 shopPos;
         public Vector3 bossPos;
+        public Vector3 bossCinematicPos;
         void Awake()
         {
             if (instance != null && instance != this)

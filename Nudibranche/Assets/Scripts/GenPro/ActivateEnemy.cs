@@ -42,7 +42,9 @@ namespace GenPro
                     scriptCanonnier.enabled = true;
                     break;
                 case Enemy.boss:
-                    scriptBoss.enabled = true;
+                    BossCinematicTrigger.instance.bossScript = scriptBoss;
+                    BossCinematicTrigger.instance.CoroutineLauncher();
+                    GameManager.instance.bossCinematicPos = transform.position;
                     break;
             }
         }
