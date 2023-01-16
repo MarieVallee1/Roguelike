@@ -105,6 +105,10 @@ namespace Character
 
         #endregion
 
+        //Audio
+        [SerializeField] private AudioSource audioSource;
+        private bool _canDash = true;
+        
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -215,7 +219,7 @@ namespace Character
             HandleSpriteRotation();
             ParryCooldown();
             AttackCooldown();
-            DashCooldown();
+            if (!_canDash) DashCooldown();
             BlastReload();
             HandleSkillUse();
             DashExtra();
@@ -233,10 +237,11 @@ namespace Character
                 BlastCooldown(_blastCooldown);
             }
             
-            if (DashCooldown())
+            if (_canDash)
             {
                 if (characterInputs.Character.Dash.triggered && CanDash())
                 {
+                    _canDash = false;
                     StartCoroutine(HandleDashUse());
                 }
             }
@@ -525,6 +530,9 @@ namespace Character
         }
         private IEnumerator HandleDashUse()
         {
+            //Audio
+            audioSource.PlayOneShot(AudioList.Instance.playerDash);
+            
             //Cooldown
             nextTimeDash = Time.time + dashCooldown;
             
@@ -606,11 +614,15 @@ namespace Character
             if(Time.time > nextTimeShoot) return true;
             return false;
         }
-        private bool DashCooldown()
+        private void DashCooldown()
         {
             //Handles the cooldown of the basic attack
-            if(Time.time > nextTimeDash) return true;
-            return false;
+            if (Time.time > nextTimeDash)
+            {
+                _canDash = true;
+                var sound = AudioList.Instance;
+                sound.PlayOneShot(sound.uiClick,0.08f);
+            }
         }
         private void BlastCooldown(float nextTimeBlast)
         {
