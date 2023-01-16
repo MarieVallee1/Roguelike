@@ -17,7 +17,7 @@ namespace UI
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private RectTransform cursor;
         [SerializeField] private GameObject mainMenu;
-        private CanvasGroup _mainMenuCanvas;
+        [SerializeField] private CanvasGroup mainMenuCanvas;
         [SerializeField] private GameObject optionMenu;
         [SerializeField] private CanvasGroup optionMenuCanvas;
         [SerializeField] private GameObject scoreMenu;
@@ -48,12 +48,11 @@ namespace UI
             _event = EventSystem.current;
 
             DOTween.KillAll();
-            _mainMenuCanvas = mainMenu.GetComponent<CanvasGroup>();
-            optionMenuCanvas = optionMenu.GetComponent<CanvasGroup>();
-            
+
             //Manages the first black screen
             blackScreenAnim.SetBool("Faded", false);
         }
+        
         private void OnEnable()
         {
             //Activates the UI Inputs
@@ -126,7 +125,7 @@ namespace UI
             PlayClickAudio();
             
             //Fades one menu to let the other appear
-            _mainMenuCanvas.DOFade(0, 0.5f).onComplete = DisableMainMenu;
+            mainMenuCanvas.DOFade(0, 0.5f).onComplete = DisableMainMenu;
             optionMenu.SetActive(true);
             optionMenuCanvas.DOFade(1, 0.5f);
             optionMenuOpen = true;
@@ -142,7 +141,7 @@ namespace UI
             PlayClickAudio();
             
             //Fades one menu to let the other appear
-            _mainMenuCanvas.DOFade(0, 0.5f).onComplete = DisableMainMenu;
+            mainMenuCanvas.DOFade(0, 0.5f).onComplete = DisableMainMenu;
             scoreMenu.SetActive(true);
             scoreMenuCanvas.DOFade(1, 0.5f);
             scoreMenuOpen = true;
@@ -185,21 +184,19 @@ namespace UI
             //Fades one menu to let the other appear
             scoreMenuCanvas.DOFade(0, 0.5f).onComplete = DisableScoreMenu;
             mainMenu.SetActive(true);
-            _mainMenuCanvas.DOFade(1, 0.5f);
+            mainMenuCanvas.DOFade(1, 0.5f);
             mainMenuOpen = true;
         }
         
         public void CloseOptionMenu()
         {
-            DOTween.KillAll();
             PlayClickAudio();
             
             //Fades one menu to let the other appear
             optionMenuCanvas.DOFade(0, 0.5f).onComplete = DisableOptionsMenu;
             mainMenu.SetActive(true);
-            _mainMenuCanvas.DOFade(1, 0.5f);
+            mainMenuCanvas.DOFade(1, 0.5f);
             mainMenuOpen = true;
-            Debug.Log(2);
         }
 
         
@@ -268,6 +265,7 @@ namespace UI
             playButton.GetComponent<Button>().interactable = false;
             optionButton.GetComponent<Button>().interactable = false;
             quitButton.GetComponent<Button>().interactable = false;
+            scoreButton.GetComponent<Button>().interactable = false;
         }
         private void EnableButtonFunction()
         {
