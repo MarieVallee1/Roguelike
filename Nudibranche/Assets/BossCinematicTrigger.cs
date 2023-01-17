@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Character;
 using Narration;
 using UnityEngine;
@@ -10,28 +9,24 @@ public class BossCinematicTrigger : MonoBehaviour
     public static BossCinematicTrigger instance;
     
     [SerializeField] private Dialogue dialogue;
+    
     private Camera _cam;
-    private bool _inZone;
     public Boss bossScript;
+    
+    private bool _inZone;
 
+    
     private void Awake()
     {
         if(instance != null && instance != this) Destroy(this);
         instance = this;
     }
-
     private void Start()
     {
         _cam = Camera.current;
     }
-
     private void Update()
     {
-        Debug.Log(PlayerController.Instance.characterInputs.UI.enabled);
-        Debug.Log(PlayerController.Instance.characterInputs.Character.enabled);
-        
-        if (PlayerController.Instance.characterInputs.UI.Interact.triggered) print("ITworks");
-        
         if (PlayerController.Instance.characterInputs.UI.Interact.triggered && _inZone)
         {
             DialogueManager.instance.ContinueDialogue(dialogue);
@@ -62,7 +57,14 @@ public class BossCinematicTrigger : MonoBehaviour
         DialogueManager.instance.StartDialogue(dialogue);
         _inZone = true;
     }
-    
+    public IEnumerator StartBossFight()
+    {
+        GameManager.instance.inBossCutscene = false;
+        
+        yield return new WaitForSeconds(1f);
+        
+        bossScript.enabled = true;
+    }
     
     
 }

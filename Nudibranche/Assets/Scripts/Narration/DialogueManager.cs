@@ -147,21 +147,21 @@ namespace Narration
         {
             if (_branchTaken == 1)
             {
-                switch (dialogue.skillIndex)
+                switch (dialogue.npcIndex)
                 {
                     case 0:
                     {
-                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.skillIndex;
+                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.npcIndex;
                     }
                         break;
                     case 1 :
                     {
-                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.skillIndex;
+                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.npcIndex;
                     }
                         break;
                     case 2 :
                     {
-                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.skillIndex;
+                        PlayerController.Instance.skillIndex = PlayerController.Instance.skillIndex = dialogue.npcIndex;
                     }
                         break;
                 }
@@ -178,7 +178,7 @@ namespace Narration
         
         private void OpenDialogue(Dialogue dialogue)
         {
-            switch (dialogue.skillIndex)
+            switch (dialogue.npcIndex)
             {
                 case 0 :
                     npc[0].SetActive(true);
@@ -250,6 +250,11 @@ namespace Narration
 
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
+
+            if (dialogue.npcIndex == 3)
+            {
+                StartCoroutine(BossCinematicTrigger.instance.StartBossFight());
+            }
         }
         
         

@@ -9,6 +9,7 @@ namespace Narration
         public new string name;
         [Space]
         public bool noChoiceDialogue;
+        
         [TextArea(3, 10)]
         public string[] sentences;
         [TextArea(3, 10)]
@@ -17,9 +18,9 @@ namespace Narration
         public string[] choice2Branch;
         public string[] choices;
 
-        [Header("PnJ Skill")]
-        [Tooltip("0 : Sirène de coeur || 1 : Scie Rano || 2 : Shellock || 3+ : Null ")]
-        public int skillIndex;
+        [Header("Npc Index")]
+        [Tooltip("0 : Sirène de coeur || 1 : Scie Rano || 2 : Shellock || 3 : Boss Princess || 4+ : Null ")]
+        public int npcIndex;
         
     }
 }
