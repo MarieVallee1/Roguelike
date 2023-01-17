@@ -279,6 +279,7 @@ namespace Character
             {
                 if (vulnerable)
                 {
+                    audioSource.PlayOneShot(AudioList.Instance.playerHit,AudioList.Instance.playerHitVolume);
                     //Make the character invulnerable for a certain time
                     StartCoroutine(InvulnerabilityFrame(characterData.invulnerabilityDuration));
                     

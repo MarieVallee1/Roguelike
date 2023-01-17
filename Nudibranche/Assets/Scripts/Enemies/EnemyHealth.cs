@@ -28,7 +28,8 @@ namespace Enemies
         [SerializeField] private SpriteRenderer shadow;
         
         //Audio
-        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioSource audioSource1;
+        [SerializeField] private AudioSource audioSource2;
 
         private enum Enemy
         {
@@ -85,6 +86,8 @@ namespace Enemies
 
         private IEnumerator HitFeedback()
         {
+            audioSource2.PlayOneShot(AudioList.Instance.enemyHit);
+            
             for (int i = 0; i < sprites.Length; i++)
             {
                 sprites[i].material = charaMat[1];
@@ -115,7 +118,7 @@ namespace Enemies
 
         private IEnumerator Death()
         {
-            audioSource.PlayOneShot(AudioList.Instance.enemyDeath);
+            audioSource1.PlayOneShot(AudioList.Instance.enemyDeath);
             
             for (int i = 0; i < sprites.Length; i++)
             {

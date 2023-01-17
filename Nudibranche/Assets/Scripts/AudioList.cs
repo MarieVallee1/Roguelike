@@ -46,11 +46,14 @@ public class AudioList : MonoBehaviour
     public AudioClip playerDash;
 
     [Header("Enemy")]
+    public AudioClip enemyHit;
     public AudioClip enemyDeath;
     public AudioClip urchinLaunch;
     public AudioClip urchinLanding;
 
     [Header("Non-spatialize")]
+    public AudioClip playerHit;
+    [Range(0, 1)] public float playerHitVolume;
     public AudioClip buyInShop;
     [Range(0, 1)] public float buyInShopVolume;
 
