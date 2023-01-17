@@ -19,7 +19,7 @@ namespace Narration
         public string[] choices;
 
         [Header("Npc Index")]
-        [Tooltip("0 : Sirène de coeur || 1 : Scie Rano || 2 : Shellock || 3 : Boss Princess || 4+ : Null ")]
+        [Tooltip("0 : Sirène de coeur || 1 : Scie Rano || 2 : Shellock || 3 : Boss Princess || 4 : Grollum ||5+ : Null ")]
         public int npcIndex;
         
     }

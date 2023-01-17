@@ -184,24 +184,28 @@ namespace Narration
                     npc[0].SetActive(true);
                     npc[1].SetActive(false);
                     npc[2].SetActive(false); 
-                    txtBox[3].SetActive(false); 
+                    npc[3].SetActive(false); 
+                    npc[4].SetActive(false); 
                     
                     txtBox[0].SetActive(true);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(false); 
                     txtBox[3].SetActive(false); 
+                    txtBox[4].SetActive(false); 
                     break;
                 
                 case 1: 
                     npc[0].SetActive(false);
                     npc[1].SetActive(true);
                     npc[2].SetActive(false); 
-                    txtBox[3].SetActive(false); 
+                    npc[3].SetActive(false); 
+                    npc[4].SetActive(false); 
                     
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(true);
                     txtBox[2].SetActive(false); 
                     txtBox[3].SetActive(false); 
+                    txtBox[4].SetActive(false); 
                     break;
                 
                 case 2: 
@@ -209,11 +213,13 @@ namespace Narration
                     npc[1].SetActive(false);
                     npc[2].SetActive(true); 
                     npc[3].SetActive(false); 
+                    npc[4].SetActive(false); 
                     
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(true); 
                     txtBox[3].SetActive(false); 
+                    txtBox[4].SetActive(false); 
                     break;
                 
                 case 3 :
@@ -221,11 +227,27 @@ namespace Narration
                     npc[1].SetActive(false);
                     npc[2].SetActive(false); 
                     npc[3].SetActive(true); 
+                    npc[4].SetActive(false); 
                     
                     txtBox[0].SetActive(false);
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(false); 
                     txtBox[3].SetActive(true); 
+                    txtBox[4].SetActive(false); 
+                    break;
+                
+                case 4 :
+                    npc[0].SetActive(false);
+                    npc[1].SetActive(false);
+                    npc[2].SetActive(false); 
+                    npc[3].SetActive(false); 
+                    npc[4].SetActive(true); 
+                    
+                    txtBox[0].SetActive(false);
+                    txtBox[1].SetActive(false);
+                    txtBox[2].SetActive(false); 
+                    txtBox[3].SetActive(false); 
+                    txtBox[4].SetActive(true); 
                     break;
                 
                 default: print("no skill index read");
@@ -251,6 +273,7 @@ namespace Narration
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
 
+            //End of the boss dialogue => Boss Fight
             if (dialogue.npcIndex == 3)
             {
                 StartCoroutine(BossCinematicTrigger.instance.StartBossFight());
@@ -283,8 +306,5 @@ namespace Narration
             string sentence = _sentences2.Dequeue();
             dialogueTxt.text = sentence;
         }
-        
-        
-        
     }
 }

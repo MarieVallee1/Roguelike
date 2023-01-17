@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 524779818}
   - component: {fileID: 1951215584578119472}
   - component: {fileID: 2071291500}
+  - component: {fileID: 2071291501}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   cheatDeath: 0
   pearlAmount: 0
   inCombat: 0
+  inBossCutscene: 0
   pearlAmountText: {fileID: 0}
   canonnierPearlDrop: 3
   moulePearlDrop: 2
@@ -109,6 +111,7 @@ MonoBehaviour:
   hubPos: {x: 0, y: 0, z: 0}
   shopPos: {x: 0, y: 0, z: 0}
   bossPos: {x: 0, y: 0, z: 0}
+  bossCinematicPos: {x: 0, y: 0, z: 0}
   roomScore: 0
   startRoom: {fileID: 0}
   shopRoom: {fileID: 0}
@@ -139,7 +142,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   txtBox:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -311,3 +316,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   allScore: 
+--- !u!114 &2071291501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072053401284253054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b26369770add4cac20764794861f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 51f33406e26e4a94b8e785891ca4cfbd, type: 2}
+  bossScript: {fileID: 0}
