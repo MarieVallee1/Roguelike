@@ -131,6 +131,7 @@ namespace Character
             remainingProjectile = characterData.usedProjectile[characterData.projectileIndex].blastLenght;
             _blastCooldown = characterData.usedProjectile[characterData.projectileIndex].blastCooldown;
             tpMat.enabled = false;
+            isDead = false;
 
             for (int i = 0; i < visuals.Count; i++)
             {
