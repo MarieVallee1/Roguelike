@@ -73,6 +73,12 @@ public class Boss : MonoBehaviour
     
     //Activation
     [SerializeField] private Collider2D projectileHit;
+    
+    //Audio
+    [SerializeField] private AudioSource princessHit;
+    [SerializeField] private AudioSource urchinLaunch;
+    [SerializeField] private AudioSource princessDash;
+    [SerializeField] private AudioSource princessSwing;
 
     private void Start()
     {
@@ -173,7 +179,7 @@ public class Boss : MonoBehaviour
             {
                 animators[i].SetBool("Ruée", true);
             }
-            Vector2 force = (rushTarget - (Vector2)princessFeet.transform.position).normalized * rushSpeed * Time.deltaTime;
+            Vector2 force = (rushTarget - (Vector2)princessFeet.transform.position).normalized * (rushSpeed * Time.deltaTime);
             rb.AddForce(force, ForceMode2D.Force);
 
             if (Vector2.Distance(rushTarget, princessFeet.position) <= 1 )
@@ -249,6 +255,8 @@ public class Boss : MonoBehaviour
 
     public void SpawnOursins()
     {
+        urchinLaunch.PlayOneShot(AudioList.Instance.urchinLaunch);
+        
         oursinsWave += 1;
         if (oursinsWave == 1)
         {
@@ -398,6 +406,8 @@ public class Boss : MonoBehaviour
     
     private IEnumerator HitFeedback()
     {
+        princessHit.PlayOneShot(AudioList.Instance.enemyHit);
+        
         for (int i = 0; i < sprites.Length; i++)
         {
             sprites[i].material = charaMat[1];
