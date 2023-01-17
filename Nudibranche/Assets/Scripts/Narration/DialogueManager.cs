@@ -56,8 +56,10 @@ namespace Narration
 
         public void StartDialogue(Dialogue dialogue)
         {
+            PlayerController.Instance.DisableInputs();
+            PlayerController.Instance.FreezeCharacter();
+            
             _branchTaken = 0;
-            PlayerController.Instance.enabled = false;
             OpenDialogue(dialogue);
             
             _sentences = new Queue<string>();    
@@ -168,7 +170,9 @@ namespace Narration
             }
 
             CloseDialogue(dialogue);
-            PlayerController.Instance.enabled = true;
+            
+            PlayerController.Instance.EnableInputs();
+            PlayerController.Instance.UnfreezeCharacter();
         }
         
         
@@ -246,11 +250,6 @@ namespace Narration
 
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
             hearts.DOFade(1, 0.8f);
-
-            if (dialogue.noChoiceDialogue)
-            {
-                
-            }
         }
         
         

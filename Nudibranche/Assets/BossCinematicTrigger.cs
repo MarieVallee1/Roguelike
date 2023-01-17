@@ -27,7 +27,12 @@ public class BossCinematicTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerController.Instance.characterInputs.Character.Interact.triggered && _inZone)
+        Debug.Log(PlayerController.Instance.characterInputs.UI.enabled);
+        Debug.Log(PlayerController.Instance.characterInputs.Character.enabled);
+        
+        if (PlayerController.Instance.characterInputs.UI.Interact.triggered) print("ITworks");
+        
+        if (PlayerController.Instance.characterInputs.UI.Interact.triggered && _inZone)
         {
             DialogueManager.instance.ContinueDialogue(dialogue);
         }
@@ -46,16 +51,18 @@ public class BossCinematicTrigger : MonoBehaviour
         bossScript.enabled = false;
         
         PlayerController.Instance.DisableInputs();
+        yield return new WaitForSeconds(.5f);
         PlayerController.Instance.FreezeCharacter();
         
         //Allow the lookahead to know when to perform the camera translation
         GameManager.instance.inBossCutscene = true;
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         
-        _inZone = true;
         DialogueManager.instance.StartDialogue(dialogue);
+        _inZone = true;
     }
+    
     
     
 }

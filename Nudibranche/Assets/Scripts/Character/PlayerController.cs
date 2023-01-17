@@ -3,13 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Character.Skills;
 using DG.Tweening;
-using Objects;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.UIElements;
 using UnityEngine.VFX;
 
 namespace Character
@@ -91,6 +87,7 @@ namespace Character
         public bool gamepadOn;
         [Space]
         public bool vulnerable;
+        public bool stopPlayerMovement;
         public bool onShoot;
         public bool onParry;
         public bool onBuff;
@@ -266,7 +263,7 @@ namespace Character
                 bookAnim.SetBool("isShooting", false);
             }
             
-            HandleMovement();
+            if(!stopPlayerMovement)HandleMovement();
         }
         
         
@@ -346,7 +343,6 @@ namespace Character
             vulnerable = true;
             PostProcessing.Instance._chromaticAberration.intensity.value = 0;
         }
-
         private IEnumerator PlayerDeath()
         {
             print("I'm Dead");
@@ -366,6 +362,7 @@ namespace Character
             yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Scene_Main");
         }
+        
         
         private void HandleMovement()
         {
@@ -396,13 +393,11 @@ namespace Character
                 }
             }
         }
-
         private void HandleBuffFeedback()
         {
             if(onBuff) buffVFX.SetActive(true);
             else buffVFX.SetActive(false);
         }
-
         private void HandleMouseLook()
         {
             if (!gamepadOn)
@@ -467,8 +462,6 @@ namespace Character
         {
             if (onParry)
             {
-                
-
                 //Handle the parry animation for all faces
                 for (int i = 0; i < animator.Length; i++)
                 {
@@ -509,7 +502,6 @@ namespace Character
         }
         private void HandleSkillUse()
         {
-            
             if(characterInputs.Character.Skill.triggered && skillCountdown > skillCooldown)
             {
                 
@@ -578,7 +570,6 @@ namespace Character
             
             return true;
         }
-
         private void DashExtra()
         {
             if (dissolveDuration < 1)
@@ -673,12 +664,12 @@ namespace Character
         }
         public void FreezeCharacter()
         {
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            stopPlayerMovement = true;
+            movementPressed = false;
         }
         public void UnfreezeCharacter()
         {
-            _rb.constraints = RigidbodyConstraints2D.None;
-            _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            stopPlayerMovement = false;
         }
         private void RestrictMousePos()
         {
