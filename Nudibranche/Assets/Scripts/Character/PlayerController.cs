@@ -279,6 +279,9 @@ namespace Character
             {
                 if (vulnerable)
                 {
+                    //Hit feedback
+                    VideoManager.instance.PlayVideo(0,0);
+                    
                     //Make the character invulnerable for a certain time
                     StartCoroutine(InvulnerabilityFrame(characterData.invulnerabilityDuration));
                     
@@ -354,9 +357,12 @@ namespace Character
                 animator[i].SetBool("isDead", true);
             }
             yield return new WaitForSeconds(0.5f);
+            VideoManager.instance.PlayVideo(0,1);
+            yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
             yield return new WaitForSeconds(1f);
             UIManager.instance.OpenDeathScreen();
+            GameManager.instance.TpHub();
             ScoreManager.instance.UpdateAllScore();
             yield return new WaitForSeconds(4f);
             UIManager.instance.CloseDeathScreen();
