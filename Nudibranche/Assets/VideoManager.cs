@@ -16,7 +16,6 @@ public class VideoManager : MonoBehaviour
         if(instance != null && instance != this) Destroy(this);
         instance = this;
     }
-    
 
 
     public void PlayVideo(int videoDisplayIndex,int videoPlayerIndex, int videoClipIndex)

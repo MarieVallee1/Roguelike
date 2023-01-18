@@ -118,11 +118,8 @@ namespace UI
             DisableButtonFunction();
             
            _videoManager.PlayVideo(0,0,0);
-            
-            //Fades to black before launching the game
-            //blackScreenAnim.SetBool("Faded", true);
 
-            _inputActions.Disable();
+           _inputActions.Disable();
             
             StartCoroutine(LaunchGame());
         }
@@ -163,7 +160,13 @@ namespace UI
 
         private IEnumerator LaunchGame()
         {
+            yield return new WaitForSeconds(3f);
+            
+            //Fades to black before launching the game
+            //blackScreenAnim.SetBool("Faded", true);
+            
             yield return new WaitForSeconds(1f);
+            
             //Launches the game
             SceneManager.LoadScene("Scene_Main");
         }
