@@ -57,7 +57,7 @@ namespace GenPro
             {
                 linkedRoom.ResetTriggers();
                 linkedRoom.Deactivate();
-                linkedRoom.IsCharacter(false);
+                if(!AudioList.Instance.inCombat) linkedRoom.IsCharacter(false);
             }
             else
             {

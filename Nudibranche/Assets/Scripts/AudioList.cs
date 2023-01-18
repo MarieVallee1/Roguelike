@@ -21,6 +21,7 @@ public class AudioList : MonoBehaviour
     [SerializeField] private AudioSource audioSourceOneShot;
     [SerializeField] private float fadeDuration;
     private bool _playOn1, _notFirstCall;
+    [HideInInspector] public bool inCombat;
     private float _targetVolume;
     private AudioSource _currentSource;
 
@@ -100,6 +101,7 @@ public class AudioList : MonoBehaviour
             case Music.combat:
                 _currentSource.clip = combatTheme;
                 _targetVolume = combatVolume;
+                inCombat = true;
                 break;
             case Music.character:
                 _currentSource.clip = characterTheme;
