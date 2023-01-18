@@ -276,6 +276,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1494999457}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &499550743 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4095947260029459648, guid: cd18ec86a6643e44ab86010ebe9538dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1229530896}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &520769156 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3614156071777257934, guid: 06e06f63567c62c4cb29e0eca6c50934,
@@ -1132,6 +1138,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 698743843, guid: cd18ec86a6643e44ab86010ebe9538dd, type: 3}
+      propertyPath: cardLaserVFX
+      value: 
+      objectReference: {fileID: 499550743}
     - target: {fileID: 2767891642506191952, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
       propertyPath: m_RootOrder
@@ -1217,10 +1227,55 @@ PrefabInstance:
       propertyPath: hearts.Array.data[4]
       value: 
       objectReference: {fileID: 450824898}
+    - target: {fileID: 2767891642506191957, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: skillIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2767891642506191963, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3212601393109434292, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095947260029459648, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270194581740633491, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270194581740633491, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270194581740633491, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270194581740633491, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.maxCurve.m_Curve.Array.data[1].value
+      value: 0.4679029
+      objectReference: {fileID: 0}
+    - target: {fileID: 5569831606755154576, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309924843699740940, guid: cd18ec86a6643e44ab86010ebe9538dd,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd18ec86a6643e44ab86010ebe9538dd, type: 3}

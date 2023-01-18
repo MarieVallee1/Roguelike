@@ -15,6 +15,7 @@ namespace Character.Skills
         private ContactFilter2D _filter;
     
         [SerializeField] private GameObject bait;
+        [SerializeField] private  ParticleSystem cardLaserVFX;
 
         private void Awake()
         { 
@@ -92,10 +93,14 @@ namespace Character.Skills
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
         { 
+            cardLaserVFX.Play();
+            BookPosition.Instance.onLaserCardUse = true;
             PlayerController.Instance.vulnerable = false;
             PlayerController.Instance.FreezeCharacter();
             PlayerController.Instance.DisableInputs();
             
+            yield return new WaitForSeconds(1);
+
             Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(3,3), BookPosition.Instance.directionAngle,PlayerController.Instance.aim, _filter, _hit);
 
 
@@ -104,14 +109,18 @@ namespace Character.Skills
                 _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
             }
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
         
             PlayerController.Instance.UnfreezeCharacter();
             PlayerController.Instance.EnableInputs();
-            PlayerController.Instance.vulnerable = true;
-        
+            BookPosition.Instance.onLaserCardUse = false;
+
             PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.cardLaserCooldown/cooldownReduction;
             PlayerController.Instance.skillCountdown = 0;
+            
+            yield return new WaitForSeconds(3);
+
+            PlayerController.Instance.vulnerable = true;
         }
     }
 }

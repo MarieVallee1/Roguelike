@@ -16,6 +16,7 @@ namespace Character
         private Vector3 _characterPosition;
 
         public float directionAngle;
+        public bool onLaserCardUse;
 
         private void Awake()
         {
@@ -34,14 +35,30 @@ namespace Character
         {
             if (!PlayerController.Instance.gamepadOn)
             {
-                float angle = Mathf.Atan2( PlayerController.Instance.aim.x ,PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
-                transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
+                if (!onLaserCardUse)
+                {
+                    float angle = Mathf.Atan2( PlayerController.Instance.aim.x ,PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
+                    transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
+                }
+                else
+                {
+                    float angle = Mathf.Atan2( PlayerController.Instance.aim.x ,PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
+                    transform.DORotate(new Vector3(0, 0, -angle), 25f);
+                }
             }
             //Same but with the gamepad
             if(PlayerController.Instance.gamepadOn)
             {
-                float angle = Mathf.Atan2(PlayerController.Instance.aim.x, PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
-                transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
+                if (!onLaserCardUse)
+                {
+                    float angle = Mathf.Atan2(PlayerController.Instance.aim.x, PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
+                    transform.DORotate(new Vector3(0, 0, -angle), 0.5f);
+                }
+                else
+                {
+                    float angle = Mathf.Atan2(PlayerController.Instance.aim.x, PlayerController.Instance.aim.y) * Mathf.Rad2Deg;
+                    transform.DORotate(new Vector3(0, 0, -angle), 25f);
+                }
             }
         }
 

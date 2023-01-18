@@ -23,16 +23,5 @@ public class VideoManager : MonoBehaviour
         videoPlayer[videoPlayerIndex].clip = videoClip[videoClipIndex];
         videoDisplay[videoDisplayIndex].SetActive(true);
         videoPlayer[videoPlayerIndex].Play();
-        
-        VideoDisplayDeactivation(videoDisplayIndex,videoPlayerIndex);
     }
-
-    private void VideoDisplayDeactivation(int videoDisplayIndex,int videoPlayerIndex)
-    {
-        if (videoPlayer[videoPlayerIndex].isPlaying)
-        {
-            Debug.Log("It works 1");
-        }
-    }
-
 }
