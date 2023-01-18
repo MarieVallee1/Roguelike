@@ -113,6 +113,8 @@ namespace UI
 
         public void StartButton()
         {
+            AudioList.Instance.cinematicPlayed = false;
+            
             PlayClickAudio();
             
             DisableButtonFunction();

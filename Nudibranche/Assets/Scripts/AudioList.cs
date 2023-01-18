@@ -59,6 +59,9 @@ public class AudioList : MonoBehaviour
     [Range(0, 1)] public float buyInShopVolume;
     public AudioClip pageFlip;
     [Range(0, 1)] public float pageFlipVolume;
+    
+    // Bool pour éviter de rejouer la cinématique
+    [HideInInspector] public bool cinematicPlayed;
 
     private void Awake()
     {

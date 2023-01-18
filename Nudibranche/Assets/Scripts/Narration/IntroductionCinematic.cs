@@ -22,10 +22,18 @@ public class IntroductionCinematic : MonoBehaviour
 
     private void Start()
     {
-        blackScreen.DOFade(0, 1);
-        PlayerController.Instance.DisableInputs();
-        StartCoroutine(startCinematic());
-        AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
+        if (!AudioList.Instance.cinematicPlayed)
+        {
+            AudioList.Instance.cinematicPlayed = true;
+            blackScreen.DOFade(0, 1);
+            PlayerController.Instance.DisableInputs();
+            StartCoroutine(startCinematic());
+            AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
     void DisplayImage(int imageIndex)
     {

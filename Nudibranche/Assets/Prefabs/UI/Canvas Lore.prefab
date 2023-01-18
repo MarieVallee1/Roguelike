@@ -548,7 +548,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5933516332350018850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -705,7 +705,6 @@ GameObject:
   - component: {fileID: 5933516332594928744}
   - component: {fileID: 5933516332594928749}
   - component: {fileID: 5933516332594928746}
-  - component: {fileID: 5933516332594928747}
   m_Layer: 5
   m_Name: Black screen
   m_TagString: Untagged
@@ -754,7 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -771,18 +770,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &5933516332594928747
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5933516332594928745}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &5933516332770436480
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,8 +806,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.87, y: -401.04}
-  m_SizeDelta: {x: 1628.46, y: 56.5}
+  m_AnchoredPosition: {x: -0.14509, y: -401.04}
+  m_SizeDelta: {x: 1460.87, y: 56.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5933516332770436485
 CanvasRenderer:
@@ -1207,7 +1194,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &5933516332875156953
 GameObject:
