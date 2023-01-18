@@ -24,7 +24,7 @@ public class IntroductionCinematic : MonoBehaviour
     {
         DisplayImage(step);
         DisplayText(step);
-        //retirer contrôle du joueur
+        PlayerController.Instance.DisableInputs();
         AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
     }
     void DisplayImage(int imageIndex)
@@ -39,7 +39,7 @@ public class IntroductionCinematic : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerController.Instance.characterInputs.Character.Interact.triggered)
+        if(PlayerController.Instance.characterInputs.UI.Interact.triggered)
         {
             step += 1;
 
@@ -72,7 +72,7 @@ public class IntroductionCinematic : MonoBehaviour
             {
                 narratorTxt.DOFade(0, 1);
                 eToInteract.DOFade(0, 1);
-                //donner contrôle du joueur
+                PlayerController.Instance.EnableInputs();
             }
         }
     }
