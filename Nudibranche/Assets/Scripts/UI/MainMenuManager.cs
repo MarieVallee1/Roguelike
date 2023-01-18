@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,6 +30,8 @@ namespace UI
 
 
         [SerializeField] private Animator blackScreenAnim;
+
+        private VideoManager _videoManager;
         
         private string _selectedButtons;
     
@@ -94,6 +95,8 @@ namespace UI
         }
         void Start()
         {
+            _videoManager = VideoManager.instance;
+            
             EnableButtonFunction();
 
             mainMenuOpen = true;
@@ -113,8 +116,11 @@ namespace UI
             PlayClickAudio();
             
             DisableButtonFunction();
+            
+           _videoManager.PlayVideo(0,0,0);
+            
             //Fades to black before launching the game
-            blackScreenAnim.SetBool("Faded", true);
+            //blackScreenAnim.SetBool("Faded", true);
 
             _inputActions.Disable();
             
