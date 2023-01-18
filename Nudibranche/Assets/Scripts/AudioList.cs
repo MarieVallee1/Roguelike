@@ -56,6 +56,8 @@ public class AudioList : MonoBehaviour
     [Range(0, 1)] public float playerHitVolume;
     public AudioClip buyInShop;
     [Range(0, 1)] public float buyInShopVolume;
+    public AudioClip pageFlip;
+    [Range(0, 1)] public float pageFlipVolume;
 
     private void Awake()
     {

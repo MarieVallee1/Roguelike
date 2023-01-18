@@ -256,7 +256,7 @@ public class Boss : MonoBehaviour
     public void SpawnOursins()
     {
         urchinLaunch.PlayOneShot(AudioList.Instance.urchinLaunch);
-        
+
         oursinsWave += 1;
         if (oursinsWave == 1)
         {
