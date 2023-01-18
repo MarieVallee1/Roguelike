@@ -16,7 +16,7 @@ namespace Character
         public static PlayerController Instance;
         
         [Header("Character System Related")]
-        private Rigidbody2D _rb;
+        [HideInInspector]public Rigidbody2D _rb;
         private Transform _tr;
         public PlayerInputActions characterInputs;
         public CharacterData characterData;

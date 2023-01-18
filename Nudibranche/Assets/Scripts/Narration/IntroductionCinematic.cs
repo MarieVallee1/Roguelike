@@ -13,23 +13,19 @@ public class IntroductionCinematic : MonoBehaviour
     public Image[] images;
     [TextArea(3, 10)]
     public string[] narratorSentences;
-
     public TextMeshProUGUI narratorTxt;
-
     public CanvasGroup imagesGroup;
     public VideoPlayer videoPlayer;
-
+    public Image blackScreen;
     private int step;
-
-   /* If(PlayerController.instance.characterinput.character.interact.triggered && PlayerController.instance.characterinput.UI.interact.triggered)
-    {
-        
-    } */
+    public Image eToInteract;
 
     private void Start()
     {
         DisplayImage(step);
         DisplayText(step);
+        //retirer contrôle du joueur
+        AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
     }
     void DisplayImage(int imageIndex)
     {
@@ -66,6 +62,18 @@ public class IntroductionCinematic : MonoBehaviour
             {
                 StartCoroutine(NextSlide(2, 3, 4, 3));
             }
+
+            if (step == 5)
+            {
+                StartCoroutine(endCinematic());
+            }
+            
+            if (step == 6)
+            {
+                narratorTxt.DOFade(0, 1);
+                eToInteract.DOFade(0, 1);
+                //donner contrôle du joueur
+            }
         }
     }
     IEnumerator NextSlide(int firstPicture, int secondPicture, int pictureIndex, int textIndex)
@@ -73,6 +81,7 @@ public class IntroductionCinematic : MonoBehaviour
         images[firstPicture].DOFade(0, 1);
         images[secondPicture].DOFade(0, 1);
         narratorTxt.DOFade(0, 1);
+        AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
         yield return new WaitForSeconds(1);
         DisplayImage(pictureIndex);
         DisplayText(textIndex);
@@ -99,8 +108,21 @@ public class IntroductionCinematic : MonoBehaviour
         yield return new WaitForSeconds(1);
         images[5].DOFade(0,1);
         DisplayImage(6);
-        yield return new WaitForSeconds(2);
-        videoPlayer.gameObject.SetActive(true);
+    }
+
+    IEnumerator endCinematic()
+    {
         videoPlayer.Play();
+        yield return new WaitForSeconds(0.2f);
+        videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        yield return new WaitForSeconds((float)videoPlayer.clip.length);
+        blackScreen.DOFade(1, 0);
+        AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
+        yield return new WaitForSeconds(1);
+        videoPlayer.gameObject.SetActive(false);
+        imagesGroup.gameObject.SetActive(false);
+        narratorTxt.DOFade(0, 0);
+        blackScreen.DOFade(0, 1);
+        DisplayText(4);
     }
 }
