@@ -90,6 +90,7 @@ namespace GenPro
             roomIsCleared = true;
             SetArrows();
             AudioList.Instance.StartMusic(AudioList.Music.main,true);
+            AudioList.Instance.inCombat = false;
         }
 
         public void SummonDoor()
