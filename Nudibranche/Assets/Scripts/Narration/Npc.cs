@@ -36,6 +36,7 @@ namespace Narration
             {
                 DialogueManager.instance.StartDialogue(dialogue);
                 PlayerController.Instance.DisableInputs();
+                interactLogo.DOFade(0, 0.3f);
             }
             
             if (PlayerController.Instance.characterInputs.UI.Interact.triggered)
