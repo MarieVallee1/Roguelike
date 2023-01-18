@@ -22,9 +22,9 @@ public class IntroductionCinematic : MonoBehaviour
 
     private void Start()
     {
-        DisplayImage(step);
-        DisplayText(step);
+        blackScreen.DOFade(0, 1);
         PlayerController.Instance.DisableInputs();
+        StartCoroutine(startCinematic());
         AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
     }
     void DisplayImage(int imageIndex)
@@ -75,6 +75,13 @@ public class IntroductionCinematic : MonoBehaviour
                 PlayerController.Instance.EnableInputs();
             }
         }
+    }
+
+    IEnumerator startCinematic()
+    {
+        yield return new WaitForSeconds(1);
+        DisplayImage(step);
+        DisplayText(step);
     }
     IEnumerator NextSlide(int firstPicture, int secondPicture, int pictureIndex, int textIndex)
     {
