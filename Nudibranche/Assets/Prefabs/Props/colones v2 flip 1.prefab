@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7505165548650239823}
   - component: {fileID: 8505910174263866798}
-  - component: {fileID: 4047035849981660849}
-  m_Layer: 0
+  - component: {fileID: 7992738718949055620}
+  m_Layer: 8
   m_Name: colones v2 flip 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,20 +85,33 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!65 &4047035849981660849
-BoxCollider:
+  m_SpriteSortPoint: 1
+--- !u!61 &7992738718949055620
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003302711741585093}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009142578, y: -0.04368782}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.2, y: 0.1}
+    oldSize: {x: 2.6673138, y: 4.211765}
+    newSize: {x: 2.6673138, y: 4.211765}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7203318, y: 0.52140296, z: 0}
-  m_Center: {x: 0.012413919, y: -0.08707291, z: 0}
+  m_Size: {x: 0.73844874, y: 0.5815959}
+  m_EdgeRadius: 0
 --- !u!1 &8968717019555817984
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,8 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8619561664190653450}
   - component: {fileID: 6409637111500152654}
-  - component: {fileID: 7482616196546068058}
-  m_Layer: 0
+  - component: {fileID: 8897173655233025239}
+  m_Layer: 8
   m_Name: colones v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,17 +196,30 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!65 &7482616196546068058
-BoxCollider:
+  m_SpriteSortPoint: 1
+--- !u!61 &8897173655233025239
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8968717019555817984}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.055875182, y: -0.011178553}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.8, y: 0.1}
+    oldSize: {x: 2.6673138, y: 4.211765}
+    newSize: {x: 2.6673138, y: 4.211765}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.76859725, y: 0.50933623, z: 0}
-  m_Center: {x: 0.039652526, y: -0.045172334, z: 0}
+  m_Size: {x: 0.7601211, y: 0.5599233}
+  m_EdgeRadius: 0
