@@ -142,6 +142,7 @@ MonoBehaviour:
   - {fileID: 1264859349178160826}
   - {fileID: 2967290751611649889}
   - {fileID: 7066838736862067373}
+  backgroundSouth: {fileID: 0}
   door: {fileID: 2996863895338876458}
   pearlStack: {fileID: 7066838736862067373}
   minimapIcon: {fileID: 2925155643940625261}
@@ -246,6 +247,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PearlStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639935068861632931, guid: f4ce8260131affc448599f1f45ec285a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8828455193575193433, guid: f4ce8260131affc448599f1f45ec285a,
         type: 3}
@@ -938,6 +944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744077138650032387, guid: 48df06034e98f1d47807a2219aeced71,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48df06034e98f1d47807a2219aeced71, type: 3}
