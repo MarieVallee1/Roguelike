@@ -33,6 +33,7 @@ namespace Ennemy
     // Animator //
     public Animator animator;
     private float randomStartTiming;
+    public Animator exclamationAnimator;
     
     //Activation
     [SerializeField] private Collider2D projectileHit;
@@ -58,11 +59,13 @@ namespace Ennemy
     {
         if (Vector2.Distance(transform.position, target.transform.position) <= hiddenDistance)
         {
+            exclamationAnimator.SetBool("Seen", true);
             animator.SetBool("Hidden", true);
             hidden = true;
         }
         else
         {
+            exclamationAnimator.SetBool("Seen", false);
             animator.SetBool("Hidden", false);
             hidden = false;
         }
