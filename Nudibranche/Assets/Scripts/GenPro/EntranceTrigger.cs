@@ -19,19 +19,19 @@ namespace GenPro
             {
                 case Side.Up:
                     trigger.offset = new Vector2(0,-Offset);
-                    transform.localScale = new Vector3(1.8f, 4);
+                    transform.localScale = new Vector3(2.5f, 4);
                     break;
                 case Side.Right:
                     trigger.offset = new Vector2(-Offset,0);
-                    transform.localScale = new Vector3(4, 1.8f);
+                    transform.localScale = new Vector3(4, 2.5f);
                     break;
                 case Side.Down:
                     trigger.offset = new Vector2(0,Offset);
-                    transform.localScale = new Vector3(1.8f, 4);
+                    transform.localScale = new Vector3(2.5f, 4);
                     break;
                 case Side.Left:
                     trigger.offset = new Vector2(Offset,0);
-                    transform.localScale = new Vector3(4, 1.8f);
+                    transform.localScale = new Vector3(4, 2.5f);
                     break;
             }
         }
