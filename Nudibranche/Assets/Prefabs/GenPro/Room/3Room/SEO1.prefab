@@ -263,6 +263,7 @@ Transform:
   - {fileID: 4550193559191418805}
   - {fileID: 8989710765833096359}
   - {fileID: 4736794421759010548}
+  - {fileID: 8835578711844020693}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -300,6 +301,7 @@ MonoBehaviour:
   - {fileID: 2357248100441371280}
   - {fileID: 5387720964078370435}
   - {fileID: 8188125067814430301}
+  backgroundSouth: {fileID: 8835578711844020692}
   door: {fileID: 3147093635722448472}
   pearlStack: {fileID: 8188125067814430301}
   minimapIcon: {fileID: 2775974181897396088}
@@ -309,6 +311,92 @@ MonoBehaviour:
   - {fileID: 5167477672241019896}
   - {fileID: 3930857508627548595}
   - {fileID: 6227279785924927823}
+--- !u!1001 &236198397512874630
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1448626075917169022}
+    m_Modifications:
+    - target: {fileID: 8780169028912159570, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_Name
+      value: mur shlag du bas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159570, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 448750362ee4ab342a3174f908b6dce9, type: 3}
+--- !u!1 &8835578711844020692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8780169028912159570, guid: 448750362ee4ab342a3174f908b6dce9,
+    type: 3}
+  m_PrefabInstance: {fileID: 236198397512874630}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8835578711844020693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8780169028912159571, guid: 448750362ee4ab342a3174f908b6dce9,
+    type: 3}
+  m_PrefabInstance: {fileID: 236198397512874630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &450572445771416052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,6 +494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PearlStack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639935068861632931, guid: f4ce8260131affc448599f1f45ec285a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8828455193575193433, guid: f4ce8260131affc448599f1f45ec285a,
         type: 3}
@@ -821,6 +914,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 2358853782133481009, guid: 2df89d03b7dd1664889d27b05e21fd1b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8799035146269568060, guid: 2df89d03b7dd1664889d27b05e21fd1b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1078,6 +1176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744077138650032387, guid: 48df06034e98f1d47807a2219aeced71,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7209415536522790242, guid: 48df06034e98f1d47807a2219aeced71,
         type: 3}
