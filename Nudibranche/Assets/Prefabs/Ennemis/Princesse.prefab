@@ -282,7 +282,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
@@ -378,7 +378,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.28
   m_Pitch: 1
   Loop: 0
@@ -474,7 +474,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -570,7 +570,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -747,7 +747,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: bd5a46654dcee144389881a45b946d06,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: bd5a46654dcee144389881a45b946d06,
         type: 3}
@@ -887,6 +887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 5242538878400419347}
   tornade: {fileID: 0}
+  slash: {fileID: 0}
 --- !u!4 &1906000557686917949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: bd5a46654dcee144389881a45b946d06,
@@ -1150,6 +1151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 5242538878400419347}
   tornade: {fileID: 0}
+  slash: {fileID: 0}
 --- !u!1 &6289670547740398830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5189428501626550357, guid: a59b26100b573bd448aad40abf5be9a7,
@@ -1200,7 +1202,7 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8208751903171576316, guid: f0bcd0f85540c4d44b2c804d02719fdf,
         type: 3}
@@ -1401,6 +1403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: {fileID: 5242538878400419347}
   tornade: {fileID: 0}
+  slash: {fileID: 0}
 --- !u!1001 &5564851859799016467
 PrefabInstance:
   m_ObjectHideFlags: 0
