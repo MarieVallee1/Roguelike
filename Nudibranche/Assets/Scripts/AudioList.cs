@@ -51,6 +51,8 @@ public class AudioList : MonoBehaviour
     public AudioClip enemyDeath;
     public AudioClip urchinLaunch;
     public AudioClip urchinLanding;
+    public AudioClip crevetteDash;
+    public AudioClip crevetteShot;
 
     [Header("Non-spatialize")]
     public AudioClip playerHit;

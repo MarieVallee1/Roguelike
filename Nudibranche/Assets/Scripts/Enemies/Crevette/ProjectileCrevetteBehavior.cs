@@ -12,6 +12,9 @@ public class ProjectileCrevetteBehavior : MonoBehaviour
 
     private float _countdown;
     public float projectileLifeTime;
+    
+    //Audio
+    [SerializeField] private AudioSource crevetteShot;
 
     private void Update()
     {
@@ -21,6 +24,7 @@ public class ProjectileCrevetteBehavior : MonoBehaviour
     private void OnEnable()
     {
         _countdown = 0f;
+        crevetteShot.PlayOneShot(AudioList.Instance.crevetteShot);
     }
 
     private void OnTriggerEnter2D(Collider2D col)

@@ -30,7 +30,7 @@ namespace Ennemy
     private bool isWalking;
     private Camera mainCam;
     private bool isVisible;
-
+    
     private bool StopPathfinding
     {
         get { return stopPathfinding; }
@@ -64,7 +64,7 @@ namespace Ennemy
 
     //Activation
     [SerializeField] private Collider2D projectileHit;
-
+    
     private void OnEnable()
     {
         projectileHit.enabled = true;
