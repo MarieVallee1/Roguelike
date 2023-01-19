@@ -59,12 +59,14 @@ public class PerleBehaviour : MonoBehaviour
             {
                 GameManager.instance.pearlAmount += 1;
                 GameManager.instance.pearlAmountText.text = GameManager.instance.pearlAmount + "";
+                AudioList.Instance.PlayOneShot(AudioList.Instance.pearlCollect,AudioList.Instance.pearlCollectVolume);
             }
             else
             {
                 if (PlayerController.Instance.health < Health.instance.numberOfHearts)
                 {
                     Health.instance.SetHealth(PlayerController.Instance.health += 1);
+                    AudioList.Instance.PlayOneShot(AudioList.Instance.playerHeal,AudioList.Instance.playerHealVolume);
                 }
             }
             gameObject.SetActive(false);
