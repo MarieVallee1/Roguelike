@@ -40,6 +40,9 @@ public class IAMoule : MonoBehaviour
     
     //Activation
     [SerializeField] private Collider2D projectileHit;
+    
+    //Audio
+    [SerializeField] private AudioSource mouleSword;
 
     private void Start()
     {
@@ -264,6 +267,7 @@ public class IAMoule : MonoBehaviour
     }
     public void PlayAttackVFX()
     {
+        mouleSword.PlayOneShot(AudioList.Instance.mouleSword);
         for (int i = 0; i < attackVFX.Length; i++)
         {
             attackVFX[i].Play();

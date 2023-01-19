@@ -51,8 +51,8 @@ public class AudioList : MonoBehaviour
     public AudioClip enemyDeath;
     public AudioClip urchinLaunch;
     public AudioClip urchinLanding;
-    public AudioClip crevetteDash;
     public AudioClip crevetteShot;
+    public AudioClip mouleSword;
 
     [Header("Non-spatialize")]
     public AudioClip playerHit;
@@ -61,6 +61,10 @@ public class AudioList : MonoBehaviour
     [Range(0, 1)] public float buyInShopVolume;
     public AudioClip pageFlip;
     [Range(0, 1)] public float pageFlipVolume;
+    public AudioClip playerHeal;
+    [Range(0, 1)] public float playerHealVolume;
+    public AudioClip pearlCollect;
+    [Range(0, 1)] public float pearlCollectVolume;
     
     // Bool pour éviter de rejouer la cinématique
     [HideInInspector] public bool cinematicPlayed;

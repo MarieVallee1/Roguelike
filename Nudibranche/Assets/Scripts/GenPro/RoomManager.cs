@@ -15,7 +15,7 @@ namespace GenPro
         [SerializeField] private bool isBig, character, characterMusic;
         [SerializeField] private GameObject[] levelDesign;
         [SerializeField] private GameObject[] deactivate;
-        [SerializeField] private GameObject[] shaderCouloir;
+        [SerializeField] private GameObject backgroundSouth;
         [SerializeField] private GameObject door;
         public GameObject pearlStack;
         public SpriteRenderer minimapIcon;
@@ -63,6 +63,7 @@ namespace GenPro
             {
                 item.SetActive(false);
             }
+            if(backgroundSouth!=default) backgroundSouth.SetActive(false);
             activated = false;
         }
 
@@ -96,6 +97,12 @@ namespace GenPro
         public void SummonDoor()
         {
             Minimap.Minimap.Instance.MinimapUpdate(transform);
+            
+            //Afficher fond et sprite de mur transparent ICI
+            //Tous les objets supplémentaires doivent être ajouté à Deactivate[] dans le prefab de Room
+            
+            if(backgroundSouth!=default) backgroundSouth.SetActive(true);
+            
             if (roomIsCleared) return;
             
             GameManager.instance.AddScore();

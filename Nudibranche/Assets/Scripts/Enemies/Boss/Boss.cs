@@ -422,4 +422,16 @@ public class Boss : MonoBehaviour
             
         yield return new WaitForSeconds(0.1f);
     }
+
+    public void PlayDashSound()
+    {
+        Debug.Log("Dash");
+        princessDash.PlayOneShot(AudioList.Instance.basicAttack);
+    }
+
+    public void PlaySlashSound()
+    {
+        Debug.Log("Slash");
+        princessSwing.PlayOneShot(AudioList.Instance.mouleSword);
+    }
 }

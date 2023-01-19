@@ -14,15 +14,24 @@ public class BackgroundInteraction : MonoBehaviour
     [SerializeField] private Interaction interaction;
     [SerializeField] private GameObject textBox;
     [SerializeField] private TextMeshProUGUI interactionTxt;
+    [SerializeField] private SpriteRenderer eToInteract;
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player")) _inZone = true;
+        if (other.CompareTag("Player"))
+        {
+            _inZone = true;
+            eToInteract.DOFade(1, 0.3f);
+        }
     }  
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Player")) _inZone = false;
+        if (other.CompareTag("Player"))
+        {
+            _inZone = false;
+            eToInteract.DOFade(0, 0.3f);
+        }
     }
     
     private void Update()
@@ -37,6 +46,7 @@ public class BackgroundInteraction : MonoBehaviour
     {
         if (PlayerController.Instance.characterInputs.Character.Interact.triggered)
         {
+            eToInteract.DOFade(0, 0.3f);
             StartDialogue(interaction);
             PlayerController.Instance.DisableInputs();
         }
