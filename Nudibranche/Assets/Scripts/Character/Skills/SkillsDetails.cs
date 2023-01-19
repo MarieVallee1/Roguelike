@@ -40,17 +40,24 @@ namespace Character.Skills
         
             enemyDetection.enabled = true;
             StartCoroutine(UIManager.instance.ScieRanoSlash());
+            
             yield return new WaitForSeconds(0.5f);
-        
+            
+            AudioList.Instance.PlayOneShot(AudioList.Instance.scierano,AudioList.Instance.scieranoVolume);
+
             _enemiesInSight = EnemyDetection.instance.enemiesInSight;
             enemyDetection.enabled = false;
             yield return new WaitForSeconds(0.5f);
+            AudioList.Instance.PlayOneShot(AudioList.Instance.mouleSword,AudioList.Instance.scieranoVolume);
         
             for (int i = 0; i < _enemiesInSight.Count; i++)
             {
                 _enemiesInSight[i].takeDamage(PlayerController.Instance.characterData.swordSlashDamages);
             }
-            yield return new WaitForSeconds(0.6f);
+            
+            yield return new WaitForSeconds(0.4f);
+            AudioList.Instance.PlayOneShot(AudioList.Instance.scieranoEnd,AudioList.Instance.scieranoEndVolume);
+            yield return new WaitForSeconds(0.2f);
         
             PlayerController.Instance.onSkillUse = false;
             PlayerController.Instance.skillCooldown = PlayerController.Instance.characterData.swordSlashCooldown/cooldownReduction;
@@ -62,6 +69,8 @@ namespace Character.Skills
         }
         public void WrongTrack(Vector3 playerPos)
         {
+            AudioList.Instance.PlayOneShot(AudioList.Instance.shellock,AudioList.Instance.shellockVolume);
+            
             string baitRef = bait.name;
             GameObject usedProjectile = PoolingSystem.instance.GetObject(baitRef);
             Transform baitTransform;
@@ -100,6 +109,8 @@ namespace Character.Skills
             PlayerController.Instance.DisableInputs();
             
             yield return new WaitForSeconds(1);
+            
+            AudioList.Instance.PlayOneShot(AudioList.Instance.sireineDeCoeur,AudioList.Instance.sireineDeCoeurVolume);
 
             Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(3,3), BookPosition.Instance.directionAngle,PlayerController.Instance.aim, _filter, _hit);
 

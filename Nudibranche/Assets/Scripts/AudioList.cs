@@ -65,6 +65,14 @@ public class AudioList : MonoBehaviour
     [Range(0, 1)] public float playerHealVolume;
     public AudioClip pearlCollect;
     [Range(0, 1)] public float pearlCollectVolume;
+    public AudioClip scierano;
+    [Range(0, 1)] public float scieranoVolume;
+    public AudioClip scieranoEnd;
+    [Range(0, 1)] public float scieranoEndVolume;
+    public AudioClip sireineDeCoeur;
+    [Range(0, 1)] public float sireineDeCoeurVolume;
+    public AudioClip shellock;
+    [Range(0, 1)] public float shellockVolume;
     
     // Bool pour éviter de rejouer la cinématique
     [HideInInspector] public bool cinematicPlayed;
