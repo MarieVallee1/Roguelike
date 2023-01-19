@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2056641652804145678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 11, z: 0}
-  m_LocalScale: {x: 2, y: 1.8, z: 1}
+  m_LocalScale: {x: 3, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6366420846202613723}
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedRoom: {fileID: 2818139996046379826}
   side: 0
+  trigger: {fileID: 0}
 --- !u!61 &8361021535785706087
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,6 +132,7 @@ MonoBehaviour:
   roomIsCleared: 0
   isBig: 0
   character: 0
+  characterMusic: 0
   levelDesign:
   - {fileID: 8589694480168721442, guid: 686428bebbf709042880004445171b95, type: 3}
   deactivate:
@@ -140,7 +142,6 @@ MonoBehaviour:
   - {fileID: 1264859349178160826}
   - {fileID: 2967290751611649889}
   - {fileID: 7066838736862067373}
-  shaderCouloir: []
   door: {fileID: 2996863895338876458}
   pearlStack: {fileID: 7066838736862067373}
   minimapIcon: {fileID: 2925155643940625261}
