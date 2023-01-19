@@ -102,6 +102,8 @@ namespace Character.Skills
         }
         public IEnumerator CardLaser(Vector3 bookPos, Vector2 dir)
         { 
+            AudioList.Instance.PlayOneShot(AudioList.Instance.basicAttack,AudioList.Instance.sireineDeCoeurVolume*0.75f);
+            
             cardLaserVFX.Play();
             BookPosition.Instance.onLaserCardUse = true;
             PlayerController.Instance.vulnerable = false;
