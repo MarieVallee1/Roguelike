@@ -7,6 +7,7 @@ public class PrincessEventManager : MonoBehaviour
 {
     [SerializeField] private Boss boss;
     [SerializeField] private VisualEffect tornade;
+    [SerializeField] private ParticleSystem slash;
 
     public void CreateSpawnList()
     {
@@ -29,5 +30,15 @@ public class PrincessEventManager : MonoBehaviour
         {
             tornade.Play();
         }
+    }
+
+    public void Slash()
+    {
+        boss.PlaySlashSound();
+    }
+
+    public void Dash()
+    {
+        boss.PlayDashSound();
     }
 }
