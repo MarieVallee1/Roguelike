@@ -78,7 +78,6 @@ namespace System
         {
             var endTime = Time.time - _startTime;
             _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
-            _score += 10000;
             return _score;
         }
 

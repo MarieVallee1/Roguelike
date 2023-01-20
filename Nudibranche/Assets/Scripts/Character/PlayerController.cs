@@ -359,6 +359,7 @@ namespace Character
             yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
             yield return new WaitForSeconds(1f);
+            GameManager.instance.TpHub();
             UIManager.instance.OpenDeathScreen();
             ScoreManager.instance.UpdateAllScore();
             yield return new WaitForSeconds(4f);
