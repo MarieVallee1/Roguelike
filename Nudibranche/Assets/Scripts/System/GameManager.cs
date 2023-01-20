@@ -140,5 +140,21 @@ namespace System
             PlayerController.Instance.transform.position = bossPos;
         }
         
+        public void SkillSelectedScierano()
+        {
+            PlayerController.Instance.skillIndex = 0;
+            UIManager.instance.UpdateSkillInfo();
+        }
+        public void SkillSelectedShellock()
+        {
+            PlayerController.Instance.skillIndex = 1;
+            UIManager.instance.UpdateSkillInfo();
+        }
+        public void SkillSelectedSireine()
+        {
+            PlayerController.Instance.skillIndex = 2;
+            UIManager.instance.UpdateSkillInfo();
+        }
+        
     }
 }

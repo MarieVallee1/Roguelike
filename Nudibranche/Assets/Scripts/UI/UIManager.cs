@@ -25,9 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject cheatButton;
     [SerializeField] private GameObject optionButton;
     [SerializeField] private GameObject quitButton;
-    [SerializeField] private GameObject hubButton;
-    [SerializeField] private GameObject shopButton;
-    [SerializeField] private GameObject bossButton;
+    [SerializeField] private GameObject destinationHeader;
     [SerializeField] private GameObject moneyButton;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject invulnerabilityButton;
@@ -275,29 +273,19 @@ public class UIManager : MonoBehaviour
                 cursor.DOAnchorPosY(90, 0.5f).SetUpdate(true);
             }
                 break;
-            case "TpHubButton":
+            case "Destination":
             {
-                cursor.DOAnchorPosY(128, 0.5f).SetUpdate(true);
-            }
-                break;
-            case "TpShop":
-            {
-                cursor.DOAnchorPosY(86, 0.5f).SetUpdate(true);
-            }
-                break;
-            case "TpBoss":
-            {
-                cursor.DOAnchorPosY(42, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(109, 0.5f).SetUpdate(true);
             }
                 break;
             case "Money":
             {
-                cursor.DOAnchorPosY(-17, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(-11, 0.5f).SetUpdate(true);
             }
                 break;
             case "Invulnerability":
             {
-                cursor.DOAnchorPosY(-71, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(-50, 0.5f).SetUpdate(true);
             }
                 break;
         }
@@ -319,18 +307,9 @@ public class UIManager : MonoBehaviour
     {
         _event.SetSelectedGameObject(quitButton);
     }
-    
-    public void HubButtonIsSelected()
+    public void DestinationButtonIsSelected()
     {
-        _event.SetSelectedGameObject(hubButton);
-    }
-    public void ShopButtonIsSelected()
-    {
-        _event.SetSelectedGameObject(shopButton);
-    }
-    public void BossButtonIsSelected()
-    {
-        _event.SetSelectedGameObject(bossButton);
+        _event.SetSelectedGameObject(destinationHeader);
     }
     public void MoneyButtonIsSelected()
     {
