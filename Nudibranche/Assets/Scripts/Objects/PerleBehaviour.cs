@@ -15,6 +15,7 @@ public class PerleBehaviour : MonoBehaviour
     private Transform target;
     public float speedTowardPlayer = 10;
     private bool getPearl;
+    [SerializeField] private Collider2D collider;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class PerleBehaviour : MonoBehaviour
         randomDirection = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10)).normalized;
         rb.AddForce(randomDirection*speed, ForceMode2D.Impulse);
         getPearl = false;
+        collider.enabled = true;
     }
 
     private void Update()
@@ -51,6 +53,7 @@ public class PerleBehaviour : MonoBehaviour
 
     private void MoveTowardPlayer()
     {
+        collider.enabled = false;
         transform.position = Vector3.MoveTowards(transform.position, target.position, speedTowardPlayer * Time.deltaTime);
         if (Vector2.Distance(transform.position, target.position) <= 0.2)
         {
