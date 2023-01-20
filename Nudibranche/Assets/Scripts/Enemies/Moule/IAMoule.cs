@@ -47,7 +47,7 @@ public class IAMoule : MonoBehaviour
     private void Start()
     {
         seeker = GetComponent<Seeker>();
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
         characterData = PlayerController.Instance.characterData;
         InvokeRepeating("UpdatePath", 0, .5f);  
         pathUpdated = true;
@@ -283,7 +283,7 @@ public class IAMoule : MonoBehaviour
     {
         target = baitTransform;
         yield return new WaitForSeconds(characterData.baitDuration);
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
     }
 
     public void PlaySlashVFX()
