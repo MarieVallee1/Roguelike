@@ -35,6 +35,7 @@ namespace Character
         [Header("Parry Related")]
         [SerializeField] private Transform parryCooldown;
         [SerializeField] private ParticleSystem parryFeedback;
+        [SerializeField] private ParticleSystem parryHitFeedback;
         [SerializeField] private VisualEffect parryActivationVFX;
         [SerializeField] private ParryRepulsion parryRepulsion;
         [SerializeField] private GameObject buffVFX;
@@ -443,6 +444,9 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            AudioList.Instance.PlayOneShot(AudioList.Instance.enemyHit,0.8f);
+            parryHitFeedback.Play();
+            
             vulnerable = false;
             //Detect enemies near
             parryRepulsion.enabled = true;
@@ -482,10 +486,10 @@ namespace Character
             if (_parryLifeTime < 0f)
             {
                 //Reset the position of the parry cooldown feedback
-                parryCooldown.localScale = new Vector3(1, 1, 1);
-
-                //Scale down the parry cooldown feedback
-                parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
+                // parryCooldown.localScale = new Vector3(1, 1, 1);
+                //
+                // //Scale down the parry cooldown feedback
+                // parryCooldown.DOScale(new Vector3(0, 0, 1),characterData.parryCooldown);
                 
                 //Reset the countdown between 2 parry
                 _nextTimeParry = Time.time + characterData.parryCooldown;
