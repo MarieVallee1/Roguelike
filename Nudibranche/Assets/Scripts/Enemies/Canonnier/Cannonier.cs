@@ -30,6 +30,7 @@ namespace Ennemy
     private bool hidden = true;
     public EnemyHealth enemyHealth;
     public GameObject surprise;
+    public Transform center;
 
     // Animator //
     public Animator animator;
@@ -59,7 +60,7 @@ namespace Ennemy
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, target.transform.position) <= hiddenDistance)
+        if (Vector2.Distance(center.position, target.transform.position) <= hiddenDistance)
         {
             exclamationAnimator.SetBool("Seen", true);
             animator.SetBool("Hidden", true);
