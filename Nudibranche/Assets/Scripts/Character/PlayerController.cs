@@ -528,7 +528,7 @@ namespace Character
             audioSource.PlayOneShot(AudioList.Instance.playerDash);
             
             //Cooldown
-            nextTimeDash = Time.time + dashCooldown;
+            nextTimeDash = 0;
             
             //Rigged Sprite deactivation
             characterVisualsTr.SetActive(false);
@@ -610,12 +610,13 @@ namespace Character
         private void DashCooldown()
         {
             //Handles the cooldown of the basic attack
-            if (Time.time > nextTimeDash)
+            if (nextTimeDash > dashCooldown)
             {
                 _canDash = true;
                 var sound = AudioList.Instance;
                 sound.PlayOneShot(sound.uiClick,0.08f);
             }
+            else nextTimeDash += Time.deltaTime;
         }
         private void BlastCooldown(float nextTimeBlast)
         {
