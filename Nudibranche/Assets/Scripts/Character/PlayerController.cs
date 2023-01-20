@@ -24,6 +24,7 @@ namespace Character
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform startRoomTp;
         [SerializeField] private Transform dashPosition;
+        [SerializeField] private Transform feetPosition;
         [SerializeField] private SpriteRenderer tpMat;
         [SerializeField] private Material[] charaMat;
         
@@ -358,6 +359,7 @@ namespace Character
             yield return new WaitForSeconds(0.5f);
             UIManager.instance.BlackScreenFadeOut();
             yield return new WaitForSeconds(1f);
+            GameManager.instance.TpHub();
             UIManager.instance.OpenDeathScreen();
             ScoreManager.instance.UpdateAllScore();
             yield return new WaitForSeconds(4f);
@@ -444,7 +446,7 @@ namespace Character
         }
         private IEnumerator Parry()
         {
-            AudioList.Instance.PlayOneShot(AudioList.Instance.enemyHit,0.8f);
+            AudioList.Instance.PlayOneShot(AudioList.Instance.enemyHit,1);
             parryHitFeedback.Play();
             
             vulnerable = false;
@@ -567,7 +569,7 @@ namespace Character
 
         private bool CanDash()
         {
-            RaycastHit2D hit = Physics2D.Raycast(characterPos, movementDirection, Vector3.Distance(characterPos, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
+            RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, movementDirection, Vector3.Distance(feetPosition.position, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
             if (hit)
             {
                 Debug.Log(hit.collider.name);
