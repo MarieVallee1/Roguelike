@@ -75,7 +75,7 @@ namespace Ennemy
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
         characterData = PlayerController.Instance.characterData;
         
         InvokeRepeating("UpdatePath", 0, .5f);
@@ -291,7 +291,7 @@ namespace Ennemy
     {
         target = baitTransform;
         yield return new WaitForSeconds(characterData.baitDuration);
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
     }
 }
 }

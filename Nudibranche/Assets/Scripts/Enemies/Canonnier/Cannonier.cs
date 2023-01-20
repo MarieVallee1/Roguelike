@@ -29,6 +29,7 @@ namespace Ennemy
     private bool enableAttack;
     private bool hidden = true;
     public EnemyHealth enemyHealth;
+    public GameObject surprise;
 
     // Animator //
     public Animator animator;
@@ -40,9 +41,10 @@ namespace Ennemy
     
     //Audio
     [SerializeField] private AudioSource audioSource;
+    
     private void Start()
     {
-        target = PlayerController.Instance.gameObject.transform.GetChild(6);
+        target = PlayerController.Instance.gameObject.transform.GetChild(5);
         characterData = PlayerController.Instance.characterData;
         radius = usedOursin.radius;
         enemyHealth = GetComponent<EnemyHealth>();
@@ -68,6 +70,11 @@ namespace Ennemy
             exclamationAnimator.SetBool("Seen", false);
             animator.SetBool("Hidden", false);
             hidden = false;
+        }
+
+        if (enemyHealth.dead)
+        {
+            HideSurprise();
         }
     }
 
@@ -137,7 +144,12 @@ namespace Ennemy
     {
         target = baitTransform;
         yield return new WaitForSeconds(characterData.baitDuration);
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
+    }
+
+    void HideSurprise()
+    {
+        surprise.SetActive(false);
     }
 }
 
