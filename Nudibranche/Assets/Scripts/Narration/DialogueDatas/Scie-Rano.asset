@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Scie-Rano
   m_EditorClassIdentifier: 
   name: Scie-Rano
+  noChoiceDialogue: 0
   sentences:
   - Monseigneur. Je suis ravi de faire votre connaissance.
   - "Des \xEAtres obscurs sont venus entacher la grandeur de ce lieu de savoir. Leur
@@ -22,10 +23,10 @@ MonoBehaviour:
     Accepteriez vous mon aide ?\r\n"
   choice1Branch:
   - "Parfait, nous nous battrons avec panache et \xE9liminerons l\u2019envahisseur
-    !"
+    !\n\n(A pour utiliser capacit\xE9)"
   choice2Branch:
   - Je vous fais confiance alors. Je monterais la garde ici dans ce cas.
   choices:
   - J'accepte.
   - "Peut-\xEAtre plus tard."
-  skillIndex: 0
+  npcIndex: 0
