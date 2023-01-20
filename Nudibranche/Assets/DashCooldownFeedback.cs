@@ -14,9 +14,12 @@ public class DashCooldownFeedback : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.time / PlayerController.Instance.nextTimeDash);
-        Debug.Log(Time.time);
-        Debug.Log( PlayerController.Instance.nextTimeDash);
-        _barre.fillAmount = Time.time / PlayerController.Instance.nextTimeDash;
+        if (PlayerController.Instance.nextTimeDash > PlayerController.Instance.dashCooldown)
+        {
+            _barre.enabled = false;
+        }
+        else _barre.enabled = true;
+        
+        _barre.fillAmount = PlayerController.Instance.nextTimeDash/PlayerController.Instance.dashCooldown;
     }
 }
