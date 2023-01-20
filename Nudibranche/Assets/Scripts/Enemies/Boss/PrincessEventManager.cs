@@ -35,6 +35,7 @@ public class PrincessEventManager : MonoBehaviour
     public void Slash()
     {
         boss.PlaySlashSound();
+        slash.Play();
     }
 
     public void Dash()
