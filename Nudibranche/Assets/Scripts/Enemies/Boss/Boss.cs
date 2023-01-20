@@ -83,7 +83,7 @@ public class Boss : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
         characterData = PlayerController.Instance.characterData;
         rb = GetComponent<Rigidbody2D>();
     }
@@ -401,7 +401,7 @@ public class Boss : MonoBehaviour
     {
         target = baitTransform;
         yield return new WaitForSeconds(characterData.baitDuration);
-        target = PlayerController.Instance.transform.GetChild(6);
+        target = PlayerController.Instance.transform.GetChild(5);
     }
     
     private IEnumerator HitFeedback()

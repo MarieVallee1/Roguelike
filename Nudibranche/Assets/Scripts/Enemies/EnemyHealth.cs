@@ -23,7 +23,7 @@ namespace Enemies
         private float shaderDissolveValue = 1;
         private float shaderShadowValue = 0.33f;
         public float dissolveDuration = 1;
-        private bool dead;
+        [HideInInspector]public bool dead;
         [SerializeField] private Material[] charaMat;
         [SerializeField] private SpriteRenderer shadow;
         
