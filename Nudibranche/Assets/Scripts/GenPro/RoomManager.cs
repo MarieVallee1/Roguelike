@@ -63,8 +63,12 @@ namespace GenPro
             {
                 item.SetActive(false);
             }
-            if(backgroundSouth!=default) backgroundSouth.SetActive(false);
             activated = false;
+        }
+
+        public void DeactivateBackground()
+        {
+            if(backgroundSouth!=default) backgroundSouth.SetActive(false);
         }
 
         public void AddEnemyToList(ActivateEnemy enemy)

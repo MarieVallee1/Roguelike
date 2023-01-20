@@ -47,6 +47,7 @@ namespace GenPro
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.layer != 6) return;
+            linkedRoom.DeactivateBackground();
             if (!linkedRoom.activated) linkedRoom.Activate();
         }
 
