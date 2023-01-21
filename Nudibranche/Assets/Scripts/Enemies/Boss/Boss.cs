@@ -63,7 +63,8 @@ public class Boss : MonoBehaviour
     private float shaderDissolveValue = 1;
     public float dissolveDuration = 5;
     private bool dead;
-    
+    [HideInInspector] public bool vulnerable;
+
     [Header("Visuels")] 
     [SerializeField] private Animator[] animators;
     [SerializeField] private GameObject[] visuals;
@@ -101,6 +102,7 @@ public class Boss : MonoBehaviour
         healthGauge.maxValue = maxHealth;
         healthGauge.value = Single.MaxValue;
         dead = false;
+        vulnerable = true;
     }
 
     private void Update()
@@ -301,33 +303,37 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        StartCoroutine(HitFeedback());
-        
-        health -= damage;
-        vfxDamage.Play();
-        healthGauge.value = health;
-
-        tourbillonCount += 1;
-
-        if (!dead)
+        if (vulnerable)
         {
-            if (health <= 0)
-            {
-                healthGauge.gameObject.SetActive(false);
-                dead = true;
-                DeathBeginning();
-            }
-        }
+            StartCoroutine(HitFeedback());
         
-        if (tourbillonCount == tourbillonEveryXDamages)
-        {
-            canTourbillon = true;
-            behaviour = Behaviour.oursins;
-            for (int i = 0; i < animators.Length; i++)
+            health -= damage;
+            vfxDamage.Play();
+            healthGauge.value = health;
+
+            tourbillonCount += 1;
+
+            if (!dead)
             {
-                animators[i].SetBool("Ruée", false);
+                if (health <= 0)
+                {
+                    healthGauge.gameObject.SetActive(false);
+                    dead = true;
+                    vulnerable = false;
+                    DeathBeginning();
+                }
             }
-            tourbillonCount = 0;
+        
+            if (tourbillonCount == tourbillonEveryXDamages)
+            {
+                canTourbillon = true;
+                behaviour = Behaviour.oursins;
+                for (int i = 0; i < animators.Length; i++)
+                {
+                    animators[i].SetBool("Ruée", false);
+                }
+                tourbillonCount = 0;
+            }
         }
     }
     
@@ -367,6 +373,11 @@ public class Boss : MonoBehaviour
 
     private void DeathBeginning()
     {
+        PlayerController.Instance.DisableInputs();
+        PlayerController.Instance._rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        PlayerController.Instance.movementPressed = false;
+        GameManager.instance.bossCinematicPos = transform.position;
+        GameManager.instance.inBossCutscene = true;
         AudioList.Instance.StartMusic(AudioList.Music.ending,false);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         visuals[0].SetActive(false);
@@ -383,13 +394,8 @@ public class Boss : MonoBehaviour
         }
         
         DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
-        yield return new WaitForSeconds(dissolveDuration);
-        
-        //Return to Main Menu
-        SceneManager.LoadScene("Scene_MainMenu");
-        
-        gameObject.SetActive(false);
-        SceneManager.LoadScene("Scene_MainMenu");
+        yield return new WaitForSeconds(dissolveDuration-3);
+        ConclusionCinematic.instance.StartConclusionCinematic();
     }
     
     public void StartCoroutineTarget(Transform baitTransform)
