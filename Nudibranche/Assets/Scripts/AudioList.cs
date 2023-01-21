@@ -166,7 +166,7 @@ public class AudioList : MonoBehaviour
     private IEnumerator PearlCollectBuffer()
     {
         _onBuffer = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         _onBuffer = false;
     }
 }
