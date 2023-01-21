@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,7 +29,14 @@ namespace UI
         [SerializeField] private GameObject quitButton;
         [SerializeField] private GameObject firstOptionSelected;
 
-
+        [SerializeField] private AudioMixer mixer;
+        [SerializeField] private Slider mainVolumeSlider;
+        [SerializeField] private Slider musicVolumeSlider;
+        [SerializeField] private Slider sfxVolumeSlider;
+        private const string MIXER_MAIN = "MainVolume";
+        private const string MIXER_MUSIC = "MusicVolume";
+        private const string MIXER_SFX = "SFXVolume";
+        
         [SerializeField] private Animator blackScreenAnim;
 
         private VideoManager _videoManager;
@@ -48,8 +56,16 @@ namespace UI
             _inputActions = new PlayerInputActions();
             _event = EventSystem.current;
 
+            mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+            
             DOTween.KillAll();
 
+            mainVolumeSlider.onValueChanged.AddListener(SetMainVolume);
+            musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
+            sfxVolumeSlider.onValueChanged.AddListener(SetSfxVolume);
+            
             //Manages the first black screen
             blackScreenAnim.SetBool("Faded", false);
         }
@@ -298,6 +314,22 @@ namespace UI
         private void PlayClickAudio()
         {
             audioSource.PlayOneShot(AudioList.Instance.uiClick);
+        }
+        
+        private void SetMainVolume(float value)
+        {
+            mixer.SetFloat(MIXER_MAIN, Mathf.Log10(value)*20);
+            PlayerPrefs.SetFloat("MainVolume", Mathf.Log10(value)*20);
+        }
+        private void SetMusicVolume(float value)
+        {
+            mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value)*20);
+            PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(value)*20);
+        }
+        private void SetSfxVolume(float value)
+        {
+            mixer.SetFloat(MIXER_SFX, Mathf.Log10(value)*20);
+            PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(value)*20);
         }
     }
 }
