@@ -141,9 +141,6 @@ public class IntroductionCinematic : MonoBehaviour
         imagesGroup.gameObject.SetActive(false);
         narratorTxt.DOFade(0, 0);
         blackScreen.DOFade(0, 1);
-        if (step == 5)
-        {
-            DisplayText(4);
-        }
+        videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
 }

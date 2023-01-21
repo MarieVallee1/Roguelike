@@ -7,7 +7,6 @@ public class PrincessEventManager : MonoBehaviour
 {
     [SerializeField] private Boss boss;
     [SerializeField] private VisualEffect tornade;
-    [SerializeField] private ParticleSystem slash;
 
     public void CreateSpawnList()
     {
@@ -35,11 +34,21 @@ public class PrincessEventManager : MonoBehaviour
     public void Slash()
     {
         boss.PlaySlashSound();
-        slash.Play();
     }
 
     public void Dash()
     {
         boss.PlayDashSound();
+    }
+
+    public void Vulnerable()
+    {
+        boss.vulnerable = true;
+        Debug.Log("vulnerable");
+    }
+    
+    public void Invulnerable()
+    {
+        boss.vulnerable = false;
     }
 }
