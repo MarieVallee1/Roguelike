@@ -1708,6 +1708,85 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5935839145223466156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1866994656
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737822630520298049, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 802853745639091260, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: maxHealth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057050327266104315, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_Name
+      value: Salle Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057050327266104315, guid: 937d26f5b1aee3143a26eb4894a5844f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 937d26f5b1aee3143a26eb4894a5844f, type: 3}
 --- !u!1 &1878718438 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1131149613210972664, guid: aa95fd219ca73f244a435b3f5d9590c6,
@@ -2106,15 +2185,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 463612698, guid: f397b364d0c8c2c4785e2b9b4a901c4e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5933516332096077152, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
         type: 3}
       propertyPath: m_Name
       value: Canvas Lore
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933516332096077152, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5933516332096077156, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
         type: 3}
@@ -2226,10 +2304,20 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2112354590}
-    - target: {fileID: 5933516332096077159, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
+    - target: {fileID: 5933516332096077157, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
         type: 3}
-      propertyPath: narratorSentences.Array.data[2]
-      value: En voulant le consulter, le nudibranche fit chuter le livre.
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933516332096077157, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933516332555144580, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f397b364d0c8c2c4785e2b9b4a901c4e, type: 3}
@@ -2913,7 +3001,7 @@ PrefabInstance:
     - target: {fileID: 277582353017794507, guid: 548aa528cdefdd14fbaa6ba57a8daf97,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4104940976652697192, guid: 548aa528cdefdd14fbaa6ba57a8daf97,
         type: 3}
