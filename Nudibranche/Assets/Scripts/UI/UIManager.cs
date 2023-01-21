@@ -82,6 +82,7 @@ public class UIManager : MonoBehaviour
             if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
             if(PlayerController.Instance.characterInputs.UI.Escape.triggered && pauseMenuOn && !cheatMenuOn) ClosePauseMenu();
             if(PlayerController.Instance.characterInputs.UI.Escape.triggered && cheatMenuOn) CloseCheatMenuButton();
+            if(PlayerController.Instance.characterInputs.UI.Escape.triggered && optionMenuOn) CloseOptionsMenu();
             if(pauseMenuOn)HandleSelectedButtons();
         }
         
@@ -208,6 +209,15 @@ public class UIManager : MonoBehaviour
         //pauseButtons.DOFade(0, 0.5f).onComplete = OpenCheat;
         OpenCheat();
     }
+    
+    public void OptionsButton()
+    {
+        PlayClickAudio();
+        
+        //Fades one menu to let the other appear
+        //pauseButtons.DOFade(0, 0.5f).onComplete = OpenCheat;
+        OpenOptions();
+    }
 
     public void OpenDeathScreen()
     {
@@ -260,13 +270,32 @@ public class UIManager : MonoBehaviour
         cheatButtons.alpha = 0;
         CloseCheatMenu();
     }
-    
+
     private void CloseCheatMenu()
     {
         PlayClickAudio();
         
         cheatMenu.SetActive(false);
         cheatMenuOn = false;
+        pauseButtonGroup.SetActive(true);
+        pauseButtons.alpha = 1;
+        //pauseButtons.DOFade(1, 0.5f);
+    }
+    
+    private void OpenOptions()
+    {
+        pauseButtonGroup.SetActive(false);
+        optionMenuOn = true;
+        optionMenu.SetActive(true);
+        optionButtons.alpha = 1;
+    }
+    
+    public void CloseOptionsMenu()
+    {
+        PlayClickAudio();
+        
+        optionMenu.SetActive(false);
+        optionMenuOn = false;
         pauseButtonGroup.SetActive(true);
         pauseButtons.alpha = 1;
         //pauseButtons.DOFade(1, 0.5f);
@@ -279,7 +308,7 @@ public class UIManager : MonoBehaviour
         {
             case "ContinueButton":
             {
-                cursor.DOAnchorPosY(145, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(129, 0.5f).SetUpdate(true);
             }
                 break;
             
