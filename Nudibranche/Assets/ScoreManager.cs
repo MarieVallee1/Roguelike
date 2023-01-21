@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
 
     public TextMeshProUGUI[] scoreTxt;
+    public TextMeshProUGUI timer;
+    public TextMeshProUGUI finalScore;
     public List<int> allScore;
     
     private void Awake()
@@ -39,6 +41,12 @@ public class ScoreManager : MonoBehaviour
         }
     }
     public void UpdateScoreUI()
+    {
+        finalScore.text = "" + GameManager.instance.FinalScore();
+        timer.text = "" + GameManager.instance.endTime;
+    }
+    
+    public void ScoreboardUI()
     {
         for (int i = 0; i < 5; i++)
         {

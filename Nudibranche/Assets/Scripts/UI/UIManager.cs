@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<Image> mouleScore;
     [SerializeField] private List<Image> crevetteScore;
     [SerializeField] private List<Image> cannonierScore;
-    [SerializeField] private Image bossScore;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject cheatButton;
@@ -237,8 +236,6 @@ public class UIManager : MonoBehaviour
             cannonierScore[i].enabled = true;
             yield return new WaitForSeconds(0.3f);
         }
-
-        if (GameManager.instance.bossKilled) bossScore.enabled = true;
     }
     
     public void CloseDeathScreen()
