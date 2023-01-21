@@ -69,6 +69,10 @@ namespace System
         private float _startTime;
         private int _clearedRoomAmount;
         
+        public int mouleKilled;
+        public int crevetteKilled;
+        public int cannonierKilled;
+        public bool bossKilled;
         public void AddScore()
         {
             _score += roomScore;
@@ -76,8 +80,13 @@ namespace System
 
         public int FinalScore()
         {
+            // var endTime = Time.time - _startTime;
+            // _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
+            // return _score;
+            
             var endTime = Time.time - _startTime;
-            _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
+            _score = (int)((_clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
+                            crevetteKilled * 15 + cannonierKilled * 10) *endTime);
             return _score;
         }
 

@@ -51,6 +51,23 @@ namespace GenPro
 
         public void Die()
         {
+            //Increase the kill counter in the GameManager
+            switch (enemy)
+            {
+                case Enemy.moule:
+                    GameManager.instance.mouleKilled += 1;
+                    break;
+                case Enemy.crevette:
+                    GameManager.instance.crevetteKilled += 1;
+                    break;
+                case Enemy.canonnier:
+                    GameManager.instance.cannonierKilled += 1;
+                    break;
+                case Enemy.boss:
+                    GameManager.instance.bossKilled = true;
+                    break;
+            }
+            
             if(_isSet)_levelDesign.linkedRoom.RemoveEnemy(this);
         }
 

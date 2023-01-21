@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private List<GameObject> portraitsOver;
     [SerializeField] private List<GameObject> portraitsCooldown;
+    [SerializeField] private List<Image> mouleScore;
+    [SerializeField] private List<Image> crevetteScore;
+    [SerializeField] private List<Image> cannonierScore;
+    [SerializeField] private Image bossScore;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject continueButton;
     [SerializeField] private GameObject cheatButton;
@@ -210,7 +214,33 @@ public class UIManager : MonoBehaviour
     {
         deathScreen.SetActive(true);
         deathScreenAlpha.DOFade(1, 1f);
+        StartCoroutine(ScoreScreenCalculation());
     }
+
+    private IEnumerator ScoreScreenCalculation()
+    {
+        //Allow the enemies to appear on the score screen
+        for (int i = 0; i < GameManager.instance.mouleKilled; i++)
+        {
+            mouleScore[i].enabled = true;
+            yield return new WaitForSeconds(0.3f);
+        }
+        
+        for (int i = 0; i < GameManager.instance.crevetteKilled; i++)
+        {
+            crevetteScore[i].enabled = true;
+            yield return new WaitForSeconds(0.3f);
+        }
+        
+        for (int i = 0; i < GameManager.instance.cannonierKilled; i++)
+        {
+            cannonierScore[i].enabled = true;
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        if (GameManager.instance.bossKilled) bossScore.enabled = true;
+    }
+    
     public void CloseDeathScreen()
     {
         deathScreenAlpha.DOFade(0, 1f);
