@@ -78,6 +78,8 @@ public class UIManager : MonoBehaviour
         mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
         musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+
+        Debug.Log(PlayerPrefs.GetFloat("SFXVolume"));
         
         DOTween.KillAll();
         
@@ -90,10 +92,16 @@ public class UIManager : MonoBehaviour
     {
         UpdateSkillInfo();
         pauseMenuOn = false;
+        
+        mixer.SetFloat(MIXER_MAIN, Mathf.Log10(PlayerPrefs.GetFloat("MainVolume"))*20);
+        mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume"))*20);
+        mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat("SFXVolume"))*20);
     }
 
     private void Update()
     {
+        Debug.Log(PlayerPrefs.GetFloat("SFXVolume"));
+        
         if (!PlayerController.Instance.isDead)
         {
             if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();
@@ -402,16 +410,17 @@ public class UIManager : MonoBehaviour
     private void SetMainVolume(float value)
     {
         mixer.SetFloat(MIXER_MAIN, Mathf.Log10(value)*20);
-        PlayerPrefs.SetFloat("MainVolume", Mathf.Log10(value)*20);
+        PlayerPrefs.SetFloat("MainVolume", value);
     }
     private void SetMusicVolume(float value)
     {
         mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value)*20);
-        PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(value)*20);
+        PlayerPrefs.SetFloat("MusicVolume", value);
+        
     }
     private void SetSfxVolume(float value)
     {
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(value)*20);
-        PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(value)*20);
+        PlayerPrefs.SetFloat("SFXVolume", value);
     }
 }

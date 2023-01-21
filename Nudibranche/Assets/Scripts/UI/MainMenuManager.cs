@@ -59,7 +59,7 @@ namespace UI
             mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
             musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
             sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-            
+
             DOTween.KillAll();
 
             mainVolumeSlider.onValueChanged.AddListener(SetMainVolume);
@@ -111,6 +111,10 @@ namespace UI
         }
         void Start()
         {
+            mixer.SetFloat(MIXER_MAIN, Mathf.Log10(PlayerPrefs.GetFloat("MainVolume"))*20);
+            mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume"))*20);
+            mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat("SFXVolume"))*20);
+            
             _videoManager = VideoManager.instance;
             
             EnableButtonFunction();
@@ -319,17 +323,17 @@ namespace UI
         private void SetMainVolume(float value)
         {
             mixer.SetFloat(MIXER_MAIN, Mathf.Log10(value)*20);
-            PlayerPrefs.SetFloat("MainVolume", Mathf.Log10(value)*20);
+            PlayerPrefs.SetFloat("MainVolume", value);
         }
         private void SetMusicVolume(float value)
         {
             mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(value)*20);
-            PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(value)*20);
+            PlayerPrefs.SetFloat("MusicVolume", value);
         }
         private void SetSfxVolume(float value)
         {
             mixer.SetFloat(MIXER_SFX, Mathf.Log10(value)*20);
-            PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(value)*20);
+            PlayerPrefs.SetFloat("SFXVolume", value);
         }
     }
 }
