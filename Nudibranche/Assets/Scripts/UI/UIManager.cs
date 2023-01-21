@@ -308,7 +308,7 @@ public class UIManager : MonoBehaviour
         {
             case "ContinueButton":
             {
-                cursor.DOAnchorPosY(145, 0.5f).SetUpdate(true);
+                cursor.DOAnchorPosY(129, 0.5f).SetUpdate(true);
             }
                 break;
             
