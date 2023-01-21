@@ -87,7 +87,7 @@ namespace System
             
             endTime = (Time.time - _startTime);
             _score = (int)((_clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
-                            crevetteKilled * 15 + cannonierKilled * 10) *endTime);
+                            crevetteKilled * 15 + cannonierKilled * 10) * endTime);
             return _score;
         }
 
