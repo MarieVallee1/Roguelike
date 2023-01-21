@@ -131,7 +131,7 @@ public class IntroductionCinematic : MonoBehaviour
     {
         videoPlayer.Play();
         yield return new WaitForSeconds(0.2f);
-        videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        videoPlayer.gameObject.GetComponent<RawImage>().enabled = true;
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
         blackScreen.DOFade(1, 0);
         eToInteract.DOFade(0, 1);
@@ -141,6 +141,6 @@ public class IntroductionCinematic : MonoBehaviour
         imagesGroup.gameObject.SetActive(false);
         narratorTxt.DOFade(0, 0);
         blackScreen.DOFade(0, 1);
-        videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        videoPlayer.gameObject.GetComponent<RawImage>().enabled = false;
     }
 }
