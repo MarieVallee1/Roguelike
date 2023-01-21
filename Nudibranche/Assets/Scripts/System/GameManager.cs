@@ -85,7 +85,7 @@ namespace System
             // _score = (int)((_clearedRoomAmount * 1500 + pearlAmount*20)-15*endTime);
             // return _score;
             
-            endTime = Time.time - _startTime;
+            endTime = (Time.time - _startTime);
             _score = (int)((_clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
                             crevetteKilled * 15 + cannonierKilled * 10) *endTime);
             return _score;

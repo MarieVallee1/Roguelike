@@ -28,13 +28,13 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateAllScore()
     {
+        UpdateScoreUI();
         for (int i = 0; i < allScore.Count; i++)
         {
             if (GameManager.instance.FinalScore() > allScore[i])
             {
                 allScore[i] = GameManager.instance.FinalScore();
                 PlayerPrefs.SetInt("score " + i, allScore[i]);
-                UpdateScoreUI();
 
                 break;
             }
@@ -43,7 +43,9 @@ public class ScoreManager : MonoBehaviour
     public void UpdateScoreUI()
     {
         finalScore.text = "" + GameManager.instance.FinalScore();
-        timer.text = "" + GameManager.instance.endTime;
+      
+        TimeSpan timeSpan = TimeSpan.FromSeconds(GameManager.instance.endTime);
+        timer.text = $"{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
     }
     
     public void ScoreboardUI()
