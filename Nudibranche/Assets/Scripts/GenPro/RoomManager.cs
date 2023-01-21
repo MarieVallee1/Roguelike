@@ -157,5 +157,16 @@ namespace GenPro
             if (!characterMusic) return;
             AudioList.Instance.StartMusic(inside ? AudioList.Music.character : AudioList.Music.main, true);
         }
+        
+        //For TP
+        public void ResetRoom()
+        {
+            ResetTriggers();
+            foreach (var enemy in _enemyList)
+            {
+                enemy.Deactivate();
+            }
+            door.SetActive(false);
+        }
     }
 }

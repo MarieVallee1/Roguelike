@@ -86,10 +86,8 @@ namespace System
             // return _score;
             
             endTime = (Time.time - _startTime);
-            endTime = Mathf.Max(3600 - (int)endTime, 0);
-            Debug.Log(endTime);
             _score = (int)((_clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
-                            crevetteKilled * 15 + cannonierKilled * 10) + endTime);
+                            crevetteKilled * 15 + cannonierKilled * 10) + Mathf.Max(3600 - (int)endTime, 0));
             return _score;
         }
 
@@ -102,12 +100,14 @@ namespace System
 
         public void ReloadStart()
         {
+            currentRoom.ResetRoom();
             currentRoom.Deactivate();
             startRoom.Activate();
             currentRoom = startRoom;
         }
         public void ReloadShop()
         {
+            currentRoom.ResetRoom();
             currentRoom.Deactivate();
             shopRoom.Activate();
             AudioList.Instance.StartMusic(AudioList.Music.character,true);
@@ -115,7 +115,7 @@ namespace System
         }
         public void ReloadBoss()
         {
-            Debug.Log(bossRoom);
+            currentRoom.ResetRoom();
             currentRoom.Deactivate();
             bossRoom.Activate();
             currentRoom = bossRoom;

@@ -89,5 +89,25 @@ namespace GenPro
                     break;
             }
         }
+        
+        //For TP
+        public void Deactivate()
+        {
+            switch (enemy)
+            {
+                case Enemy.moule:
+                    scriptMoule.enabled = false;
+                    break;
+                case Enemy.crevette:
+                    scriptCrevette.enabled = false;
+                    break;
+                case Enemy.canonnier:
+                    scriptCanonnier.enabled = false;
+                    break;
+                case Enemy.boss:
+                    scriptBoss.enabled = false;
+                    break;
+            }
+        }
     }
 }
