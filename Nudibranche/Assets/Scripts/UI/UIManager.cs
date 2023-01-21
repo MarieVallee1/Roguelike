@@ -222,19 +222,19 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < GameManager.instance.mouleKilled; i++)
         {
             mouleScore[i].enabled = true;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
         
         for (int i = 0; i < GameManager.instance.crevetteKilled; i++)
         {
             crevetteScore[i].enabled = true;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
         
         for (int i = 0; i < GameManager.instance.cannonierKilled; i++)
         {
             cannonierScore[i].enabled = true;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
     

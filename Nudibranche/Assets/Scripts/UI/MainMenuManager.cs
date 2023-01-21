@@ -102,6 +102,8 @@ namespace UI
             mainMenuOpen = true;
             optionMenuOpen = false;
             scoreMenuOpen = false;
+            
+            ScoreManager.instance.ScoreboardUI();
         }
         private void Update()
         {
@@ -140,7 +142,7 @@ namespace UI
         
         public void OpenScoreButton()
         {
-            ScoreManager.instance.UpdateScoreUI();
+            
             DOTween.KillAll();
             
             PlayClickAudio();
