@@ -188,6 +188,7 @@ Transform:
   - {fileID: 2574602616738253300}
   - {fileID: 8174995243030925323}
   - {fileID: 2275695049607308795}
+  - {fileID: 4454801954876957293}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -234,6 +235,8 @@ MonoBehaviour:
   - {fileID: 9117757277980456961}
   - {fileID: 756859212478891138}
   - {fileID: 8939826466211609329}
+  - {fileID: 3644370355649994922}
+  backgroundSouth: {fileID: 0}
   door: {fileID: 2017851381862238000}
   pearlStack: {fileID: 8939826466211609329}
   minimapIcon: {fileID: 8696064087302102135}
@@ -776,6 +779,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1250535757073692370, guid: 9c27ad74b0002d1459910f32a9d318b7,
     type: 3}
   m_PrefabInstance: {fileID: 4726280732383604275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5753296398430308032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1448626075917169022}
+    m_Modifications:
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026540832731326058, guid: 32183f889da51c243974ec0b3da814d8,
+        type: 3}
+      propertyPath: m_Name
+      value: Mur du bas sans porte grande salle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32183f889da51c243974ec0b3da814d8, type: 3}
+--- !u!1 &3644370355649994922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9026540832731326058, guid: 32183f889da51c243974ec0b3da814d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5753296398430308032}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4454801954876957293 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8216098787740951725, guid: 32183f889da51c243974ec0b3da814d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5753296398430308032}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5951914764033048615
 PrefabInstance:
