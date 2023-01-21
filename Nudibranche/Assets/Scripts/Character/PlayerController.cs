@@ -191,6 +191,8 @@ namespace Character
             {
                 if (ParryCooldown() && !onParry)
                 {
+                    AudioList.Instance.PlayOneShot(AudioList.Instance.playerParry,AudioList.Instance.playerParryVolume);
+                    
                     //Plays a VFX when you parry
                     parryActivationVFX.Play();
                     
