@@ -63,7 +63,7 @@ public class IntroductionCinematic : MonoBehaviour
 
             if (step == 3)
             {
-                StartCoroutine(StepThree());
+                StartCoroutine(StepThree(2));
             }
 
             if (step == 4)
@@ -73,13 +73,12 @@ public class IntroductionCinematic : MonoBehaviour
 
             if (step == 5)
             {
-                StartCoroutine(endCinematic());
+                StartCoroutine(StepThree(4));
             }
             
             if (step == 6)
             {
-                narratorTxt.DOFade(0, 1);
-                eToInteract.DOFade(0, 1);
+                StartCoroutine(endCinematic());
                 PlayerController.Instance.EnableInputs();
             }
         }
@@ -107,12 +106,15 @@ public class IntroductionCinematic : MonoBehaviour
         }
     }
 
-    IEnumerator StepThree()
+    IEnumerator StepThree(int textIndex)
     {
         narratorTxt.DOFade(0, 1);
         yield return new WaitForSeconds(1);
-        DisplayImage(3);
-        DisplayText(2);
+        if (step == 3)
+        {
+            DisplayImage(3);
+        }
+        DisplayText(textIndex);
     }
 
     IEnumerator BookFall()
@@ -132,6 +134,7 @@ public class IntroductionCinematic : MonoBehaviour
         videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = true;
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
         blackScreen.DOFade(1, 0);
+        eToInteract.DOFade(0, 1);
         AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
         yield return new WaitForSeconds(1);
         videoPlayer.gameObject.SetActive(false);
