@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -150,5 +151,22 @@ public class AudioList : MonoBehaviour
     public void PlayOneShot(AudioClip clip, float volumeScale)
     {
         audioSourceOneShot.PlayOneShot(clip,volumeScale);
+    }
+
+    //PearlBuffer
+    private bool _onBuffer;
+    
+    public void PlayPearlCollect()
+    {
+        if (_onBuffer) return;
+        audioSourceOneShot.PlayOneShot(pearlCollect,pearlCollectVolume);
+        StartCoroutine(PearlCollectBuffer());
+    }
+
+    private IEnumerator PearlCollectBuffer()
+    {
+        _onBuffer = true;
+        yield return new WaitForSeconds(0.5f);
+        _onBuffer = false;
     }
 }

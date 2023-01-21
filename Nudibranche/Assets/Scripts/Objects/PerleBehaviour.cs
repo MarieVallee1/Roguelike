@@ -62,7 +62,7 @@ public class PerleBehaviour : MonoBehaviour
             {
                 GameManager.instance.pearlAmount += 1;
                 GameManager.instance.pearlAmountText.text = GameManager.instance.pearlAmount + "";
-                AudioList.Instance.PlayOneShot(AudioList.Instance.pearlCollect,AudioList.Instance.pearlCollectVolume);
+                AudioList.Instance.PlayPearlCollect();
             }
             else
             {
