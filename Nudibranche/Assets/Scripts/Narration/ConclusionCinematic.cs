@@ -45,6 +45,7 @@ public class ConclusionCinematic : MonoBehaviour
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
         blackscreen.DOFade(1, 0);
         paperBackground.DOFade(1, 0);
+        AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
         yield return new WaitForSeconds(1);
         videoPlayer.gameObject.SetActive(false);
         blackscreen.DOFade(0, 1);
