@@ -100,12 +100,14 @@ namespace System
 
         public void ReloadStart()
         {
+            currentRoom.ResetRoom();
             currentRoom.Deactivate();
             startRoom.Activate();
             currentRoom = startRoom;
         }
         public void ReloadShop()
         {
+            currentRoom.ResetRoom();
             currentRoom.Deactivate();
             shopRoom.Activate();
             AudioList.Instance.StartMusic(AudioList.Music.character,true);
@@ -113,7 +115,7 @@ namespace System
         }
         public void ReloadBoss()
         {
-            Debug.Log(bossRoom);
+            currentRoom.ResetRoom();
             currentRoom.Deactivate();
             bossRoom.Activate();
             currentRoom = bossRoom;
