@@ -19,7 +19,6 @@ public class ConclusionCinematic : MonoBehaviour
     public TextMeshProUGUI narratorTxt;
     public VideoPlayer videoPlayer;
     public Image blackscreen;
-    
     //crédits
     //score
 
@@ -41,7 +40,7 @@ public class ConclusionCinematic : MonoBehaviour
         videoPlayer.gameObject.SetActive(true);
         videoPlayer.Play();
         yield return new WaitForSeconds(0.2f);
-        videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        videoPlayer.gameObject.GetComponent<RawImage>().enabled = true;
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
         blackscreen.DOFade(1, 0);
         paperBackground.DOFade(1, 0);
@@ -59,7 +58,7 @@ public class ConclusionCinematic : MonoBehaviour
         StartCoroutine(NextText(2));
         yield return new WaitForSeconds(3);
         Debug.Log("crédits");
-        SceneManager.LoadScene("Scene_MainMenu");
+        //SceneManager.LoadScene("Scene_MainMenu");
     }
 
     IEnumerator NextText(int textIndex)
