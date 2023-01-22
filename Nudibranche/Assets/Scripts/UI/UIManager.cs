@@ -100,8 +100,6 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(PlayerPrefs.GetFloat("SFXVolume"));
-        
         if (!PlayerController.Instance.isDead)
         {
             if(PlayerController.Instance.characterInputs.Character.Pause.triggered && !pauseMenuOn) OpenPauseMenu();

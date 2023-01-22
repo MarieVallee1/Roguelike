@@ -112,13 +112,14 @@ namespace Enemies
                     sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
                 }
                 
-                shadow.material.SetFloat("_Force", shaderShadowValue);
+                //shadow.material.SetFloat("_Force", shaderShadowValue);
             }
         }
 
         private IEnumerator Death()
         {
             audioSource1.PlayOneShot(AudioList.Instance.enemyDeath);
+            shadow.gameObject.SetActive(false);
             
             for (int i = 0; i < sprites.Length; i++)
             {
@@ -137,7 +138,7 @@ namespace Enemies
             DropLoot();
             
             DOTween.To(()=> shaderDissolveValue, x=> shaderDissolveValue = x, -1, dissolveDuration);
-            DOTween.To(()=> shaderShadowValue, x=> shaderShadowValue = x, 1, dissolveDuration);
+            //DOTween.To(()=> shaderShadowValue, x=> shaderShadowValue = x, 1, dissolveDuration);
             yield return new WaitForSeconds(dissolveDuration);
             GetComponent<ActivateEnemy>().Die();
             gameObject.SetActive(false);
