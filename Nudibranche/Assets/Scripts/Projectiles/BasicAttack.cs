@@ -8,9 +8,10 @@ namespace Projectiles
     public class BasicAttack : MonoBehaviour
     {
         [SerializeField] private AudioSource audioSource;
-        
-        private SpriteRenderer _ren;
-        // private TrailRenderer _trail;
+
+        [SerializeField] private GameObject normalProjectile;
+        [SerializeField] private GameObject buffedProjectile;
+   
         private Rigidbody2D _rb;
         private CharacterData _characterData;
         
@@ -25,8 +26,6 @@ namespace Projectiles
 
         private void Awake()
         {
-            _ren = GetComponent<SpriteRenderer>();
-            //_trail = GetComponent<TrailRenderer>();
             _rb = GetComponent<Rigidbody2D>();
             _characterData = PlayerController.Instance.characterData;
         }
@@ -46,11 +45,13 @@ namespace Projectiles
             if (PlayerController.Instance.onBuff)
             {
                 _damages *= _characterData.usedProjectile[_characterData.projectileIndex].damageMultiplier;
-                _ren.color = Color.red;
+                buffedProjectile.SetActive(true);
+                normalProjectile.SetActive(false);
             }
             else
             {
-                _ren.color = Color.white;
+                buffedProjectile.SetActive(false);
+                normalProjectile.SetActive(true);
             }
             
             direction = PlayerController.Instance.shootDir;
