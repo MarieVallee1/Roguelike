@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character;
 using DG.Tweening;
+using GenPro;
 using Narration;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class BackgroundInteraction : MonoBehaviour
     [SerializeField] private GameObject textBox;
     [SerializeField] private TextMeshProUGUI interactionTxt;
     [SerializeField] private SpriteRenderer eToInteract;
+    private Collider2D collider;
+
+    private void Start()
+    {
+        collider = gameObject.GetComponent<Collider2D>();
+    }
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,6 +36,7 @@ public class BackgroundInteraction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("trigger");
             _inZone = false;
             eToInteract.DOFade(0, 0.3f);
         }
@@ -39,6 +47,16 @@ public class BackgroundInteraction : MonoBehaviour
         if (_inZone)
         {
             InteractionZone();
+        }
+
+        if (GameManager.instance.inCombat)
+        {
+            collider.enabled = false;
+        }
+        
+        if (!GameManager.instance.inCombat)
+        {
+            collider.enabled = true;
         }
     }
     
