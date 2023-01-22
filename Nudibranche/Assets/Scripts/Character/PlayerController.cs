@@ -142,6 +142,8 @@ namespace Character
 
             //Set the skill to null
             //skillIndex = 0;
+
+            nextTimeDash = dashCooldown;
         }
 
         

@@ -13,6 +13,7 @@ public class OursinBehavior : MonoBehaviour
     private GameObject target;
     private PlayerController _playerController;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject shadow;
 
     private void Start()
     {
@@ -35,6 +36,11 @@ public class OursinBehavior : MonoBehaviour
     {
         dangerous = false;
         gameObject.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void MakeShadowDisappear()
+    {
+        shadow.SetActive(false);
     }
 
     private void OnTriggerStay2D(Collider2D other)
