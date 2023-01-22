@@ -19,6 +19,8 @@ public class ConclusionCinematic : MonoBehaviour
     public TextMeshProUGUI narratorTxt;
     public VideoPlayer videoPlayer;
     public Image blackscreen;
+    [SerializeField] private Image victoryScreen;
+    [SerializeField] private Sprite victorySprite;
     
     //crédits
     //score
@@ -41,7 +43,7 @@ public class ConclusionCinematic : MonoBehaviour
         videoPlayer.gameObject.SetActive(true);
         videoPlayer.Play();
         yield return new WaitForSeconds(0.2f);
-        videoPlayer.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        videoPlayer.gameObject.GetComponent<RawImage>().enabled = true;
         yield return new WaitForSeconds((float)videoPlayer.clip.length);
         blackscreen.DOFade(1, 0);
         paperBackground.DOFade(1, 0);
@@ -59,7 +61,22 @@ public class ConclusionCinematic : MonoBehaviour
         StartCoroutine(NextText(2));
         yield return new WaitForSeconds(3);
         Debug.Log("crédits");
+        
+        //Score Screen
+        ChangeDeathToVictoryScreen();
+        ScoreManager.instance.UpdateAllScore();
+        UIManager.instance.OpenDeathScreen();
+        conclusionImage.DOFade(0, 0.5f);
+        narratorTxt.DOFade(0, 0.5f);
+        paperBackground.DOFade(0, 0.5f);
+
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Scene_MainMenu");
+    }
+
+    private void ChangeDeathToVictoryScreen()
+    {
+        victoryScreen.sprite = victorySprite;
     }
 
     IEnumerator NextText(int textIndex)
