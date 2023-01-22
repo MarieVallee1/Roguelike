@@ -457,4 +457,10 @@ public class UIManager : MonoBehaviour
         mixer.SetFloat(MIXER_SFX, Mathf.Log10(value)*20);
         PlayerPrefs.SetFloat("SFXVolume", value);
     }
+    
+    public void Fullscreen()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+
 }
