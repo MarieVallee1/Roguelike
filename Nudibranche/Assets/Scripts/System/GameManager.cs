@@ -2,6 +2,7 @@ using Character;
 using GenPro;
 using UnityEngine;
 using TMPro;
+using UI;
 using UnityEngine.UI;
 
 namespace System
@@ -121,6 +122,13 @@ namespace System
             currentRoom.Deactivate();
             bossRoom.Activate();
             currentRoom = bossRoom;
+            
+            //LaunchRoom
+            currentRoom.SetTriggers();
+            currentRoom.SummonDoor();
+            if(currentRoom.roomIsCleared) currentRoom.SetArrows();
+            else ArrowManager.Instance.MaskEntries();
+            currentRoom.IsCharacter(true);
         }
         
         //Cheat Codes

@@ -22,7 +22,7 @@ public class AudioList : MonoBehaviour
     [SerializeField] private AudioSource audioSourceOneShot;
     [SerializeField] private float fadeDuration;
     private bool _playOn1, _notFirstCall;
-    [HideInInspector] public bool inCombat;
+    [HideInInspector] public bool inCombat, bossKilled;
     private float _targetVolume;
     private AudioSource _currentSource;
 
@@ -92,8 +92,6 @@ public class AudioList : MonoBehaviour
 
     private void Start()
     {
-        //Test
-        StartMusic(Music.menu,true);
         _notFirstCall = true;
     }
 
