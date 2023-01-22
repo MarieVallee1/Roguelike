@@ -40,7 +40,7 @@ public class PostProcessing : MonoBehaviour
 
     private void PlayerShootFeedback()
     {
-        if (PlayerController.Instance.onShoot && _chromaticAberration.intensity.value < 0.1f)
+        if (PlayerController.Instance.onShoot && _chromaticAberration.intensity.value < 0.5f)
         {
             _chromaticAberration.intensity.value += Time.deltaTime;
         }

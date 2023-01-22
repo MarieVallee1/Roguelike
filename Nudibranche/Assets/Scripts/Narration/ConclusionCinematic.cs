@@ -24,6 +24,7 @@ public class ConclusionCinematic : MonoBehaviour
     public GameObject credits;
     public float creditsSpeed;
     public float creditsYPosEnd;
+    private CanvasGroup loreCanvas;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class ConclusionCinematic : MonoBehaviour
             Destroy(gameObject);
  
         instance = this;
+
+        loreCanvas = GetComponent<CanvasGroup>();
     }
 
     public void StartConclusionCinematic()
@@ -71,6 +74,7 @@ public class ConclusionCinematic : MonoBehaviour
         conclusionImage.DOFade(0, 0.5f);
         narratorTxt.DOFade(0, 0.5f);
         paperBackground.DOFade(0, 0.5f);
+        loreCanvas.DOFade(0, 0.5f);
 
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Scene_MainMenu");
