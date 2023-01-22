@@ -127,6 +127,8 @@ namespace UI
             scoreMenuOpen = false;
             
             ScoreManager.instance.ScoreboardUI();
+            
+            if(!AudioList.Instance.bossKilled) AudioList.Instance.StartMusic(AudioList.Music.menu,true);
         }
         private void Update()
         {
@@ -139,6 +141,7 @@ namespace UI
         public void StartButton()
         {
             AudioList.Instance.cinematicPlayed = false;
+            AudioList.Instance.bossKilled = false;
             
             PlayClickAudio();
             

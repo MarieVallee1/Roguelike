@@ -108,6 +108,9 @@ namespace Character
         [SerializeField] private AudioSource audioSource;
         private bool _canDash = true;
         
+        //FixParryBuff
+        private int _parryCounter;
+        
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -450,6 +453,8 @@ namespace Character
         }
         private IEnumerator Parry()
         {
+            _parryCounter++;
+            var currentParry = _parryCounter;
             AudioList.Instance.PlayOneShot(AudioList.Instance.enemyHit,1);
             parryHitFeedback.Play();
             
@@ -468,7 +473,11 @@ namespace Character
             yield return new WaitForSeconds(2f);
             vulnerable = true;
             yield return new WaitForSeconds(characterData.buffDuration);
-            onBuff = false;
+            if (currentParry == _parryCounter)
+            {
+                onBuff = false;
+                _parryCounter = 0;
+            }
         }
         private void HandleParry()
         {

@@ -221,7 +221,6 @@ public class UIManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         PlayClickAudio();
-        AudioList.Instance.StartMusic(AudioList.Music.menu,true);
         SceneManager.LoadScene("Scene_MainMenu");
     }
     
