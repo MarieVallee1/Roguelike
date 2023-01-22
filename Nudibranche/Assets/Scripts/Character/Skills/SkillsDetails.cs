@@ -49,12 +49,19 @@ namespace Character.Skills
             enemyDetection.enabled = false;
             yield return new WaitForSeconds(0.5f);
             AudioList.Instance.PlayOneShot(AudioList.Instance.mouleSword,AudioList.Instance.scieranoVolume);
-        
-            for (int i = 0; i < _enemiesInSight.Count; i++)
+
+            if (GameManager.instance.bossFightOn)
             {
-                _enemiesInSight[i].takeDamage(PlayerController.Instance.characterData.swordSlashDamages);
+                GameManager.instance.bossScript.TakeDamage(PlayerController.Instance.characterData.swordSlashDamages);
             }
-            
+            else
+            {
+                for (int i = 0; i < _enemiesInSight.Count; i++)
+                {
+                    _enemiesInSight[i].takeDamage(PlayerController.Instance.characterData.swordSlashDamages);
+                }
+            }
+
             yield return new WaitForSeconds(0.4f);
             AudioList.Instance.PlayOneShot(AudioList.Instance.scieranoEnd,AudioList.Instance.scieranoEndVolume);
             yield return new WaitForSeconds(0.2f);
@@ -116,10 +123,16 @@ namespace Character.Skills
 
             Physics2D.BoxCast(PlayerController.Instance.characterPos, new Vector2(3,3), BookPosition.Instance.directionAngle,PlayerController.Instance.aim, _filter, _hit);
 
-
-            for (int i = 0; i < _hit.Count; i++)
+            if (GameManager.instance.bossFightOn)
             {
-                _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
+                GameManager.instance.bossScript.TakeDamage(PlayerController.Instance.characterData.cardLaserDamages);
+            }
+            else
+            {
+                for (int i = 0; i < _hit.Count; i++)
+                {
+                    _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
+                }
             }
 
             yield return new WaitForSeconds(2);
