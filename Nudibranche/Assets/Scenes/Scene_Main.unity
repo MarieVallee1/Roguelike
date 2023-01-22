@@ -870,6 +870,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 171694038}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: pearlPanelVFX
+      value: 
+      objectReference: {fileID: 870807944}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: continueButton
       value: 
       objectReference: {fileID: 458583912}
@@ -1161,6 +1165,14 @@ PrefabInstance:
       propertyPath: finalScore
       value: 
       objectReference: {fileID: 1153575870}
+    - target: {fileID: 2071291506, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: reset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071291506, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: display
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4072053401284252992, guid: 516edef37cccac54c8fb96600ff19bdf,
         type: 3}
       propertyPath: m_RootOrder
@@ -1449,6 +1461,12 @@ GameObject:
 --- !u!225 &816739853 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5935839144347847440, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &870807944 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8907166715248960050, guid: 052a7db688c5afb4e9c680e40790bdca,
     type: 3}
   m_PrefabInstance: {fileID: 1634932140}
   m_PrefabAsset: {fileID: 0}
@@ -1785,6 +1803,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1637761005, guid: cd18ec86a6643e44ab86010ebe9538dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2767891642506191952, guid: cd18ec86a6643e44ab86010ebe9538dd,
         type: 3}
       propertyPath: m_RootOrder
@@ -2849,6 +2871,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0.021626912
+      objectReference: {fileID: 0}
+    - target: {fileID: 2219634737184203492, guid: 8c0a97dfc139ee94ea5b42f730dab689,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 1572831
       objectReference: {fileID: 0}
     - target: {fileID: 2219634737184203493, guid: 8c0a97dfc139ee94ea5b42f730dab689,
         type: 3}

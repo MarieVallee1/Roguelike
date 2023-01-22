@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider sfxVolumeSlider;
     private EventSystem _event;
     private static readonly int FadeIt = Animator.StringToHash("FadeIt");
-    
+
 
     public bool pauseMenuOn;
     public bool optionMenuOn;
@@ -253,23 +253,58 @@ public class UIManager : MonoBehaviour
     private IEnumerator ScoreScreenCalculation()
     {
         //Allow the enemies to appear on the score screen
-        for (int i = 0; i < GameManager.instance.mouleKilled; i++)
+        
+        if (GameManager.instance.mouleKilled <= mouleScore.Count)
         {
-            mouleScore[i].enabled = true;
-            yield return new WaitForSeconds(0.1f);
+            for (int i = 0; i < GameManager.instance.mouleKilled; i++)
+            {
+                mouleScore[i].enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < mouleScore.Count; i++)
+            {
+                mouleScore[i].enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
         }
         
-        for (int i = 0; i < GameManager.instance.crevetteKilled; i++)
+        if (GameManager.instance.crevetteKilled <= crevetteScore.Count)
         {
-            crevetteScore[i].enabled = true;
-            yield return new WaitForSeconds(0.1f);
+            for (int i = 0; i < GameManager.instance.crevetteKilled; i++)
+            {
+                crevetteScore[i].enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < crevetteScore.Count; i++)
+            {
+                crevetteScore[i].enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
         }
         
-        for (int i = 0; i < GameManager.instance.cannonierKilled; i++)
+        if (GameManager.instance.cannonierKilled <= cannonierScore.Count)
         {
-            cannonierScore[i].enabled = true;
-            yield return new WaitForSeconds(0.1f);
+            for (int i = 0; i < GameManager.instance.cannonierKilled; i++)
+            {
+                cannonierScore[i].enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
         }
+        else
+        {
+            for (int i = 0; i < cannonierScore.Count; i++)
+            {
+                cannonierScore[i].enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
+
     }
     
     public void CloseDeathScreen()
