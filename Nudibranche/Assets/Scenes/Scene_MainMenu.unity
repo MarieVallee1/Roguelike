@@ -224,12 +224,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!1 &110637246 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8134370523724499500, guid: 98422824a4b1651488ce95d7b9efb718,
-    type: 3}
-  m_PrefabInstance: {fileID: 8134370523768027794}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &248132467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8134370523864091105, guid: 98422824a4b1651488ce95d7b9efb718,
@@ -280,7 +274,11 @@ MonoBehaviour:
   playButton: {fileID: 1850577104}
   scoreButton: {fileID: 469344454}
   quitButton: {fileID: 1657674400}
-  firstOptionSelected: {fileID: 110637246}
+  firstOptionSelected: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 52be03714cb6e234c802a58df923980f, type: 2}
+  mainVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  sfxVolumeSlider: {fileID: 0}
   blackScreenAnim: {fileID: 1748959839}
   mainMenuOpen: 0
   optionMenuOpen: 0
@@ -894,11 +892,6 @@ PrefabInstance:
     - target: {fileID: 8134370523335649863, guid: 98422824a4b1651488ce95d7b9efb718,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 256592822}
-    - target: {fileID: 8134370523724499538, guid: 98422824a4b1651488ce95d7b9efb718,
-        type: 3}
-      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 256592822}
     - target: {fileID: 8134370523864091111, guid: 98422824a4b1651488ce95d7b9efb718,
