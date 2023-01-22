@@ -21,9 +21,9 @@ public class ConclusionCinematic : MonoBehaviour
     public Image blackscreen;
     [SerializeField] private Image victoryScreen;
     [SerializeField] private Sprite victorySprite;
-    
-    //crédits
-    //score
+    public GameObject credits;
+    public float creditsSpeed;
+    public float creditsYPosEnd;
 
     private void Awake()
     {
@@ -60,7 +60,9 @@ public class ConclusionCinematic : MonoBehaviour
         yield return new WaitForSeconds(4);
         StartCoroutine(NextText(2));
         yield return new WaitForSeconds(3);
-        Debug.Log("crédits");
+
+        credits.transform.DOLocalMoveY(creditsYPosEnd, creditsSpeed);
+        yield return new WaitForSeconds(creditsSpeed + 1);
         
         //Score Screen
         ChangeDeathToVictoryScreen();
