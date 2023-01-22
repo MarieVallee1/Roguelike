@@ -8,6 +8,7 @@ namespace System
 {
     public class GameManager : MonoBehaviour
     {
+        public Boss bossScript;
         public float screenWidth = Screen.width;
         public float screenHeight = Screen.height;
         public static GameManager instance;
@@ -22,6 +23,7 @@ namespace System
         [Header("State")]
         public bool inCombat;
         public bool inBossCutscene;
+        public bool bossFightOn;
 
         public TMP_Text pearlAmountText;
         

@@ -83,6 +83,8 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.bossFightOn = true;
+        GameManager.instance.bossScript = this;
         health = maxHealth;
         target = PlayerController.Instance.transform.GetChild(5);
         characterData = PlayerController.Instance.characterData;
@@ -109,6 +111,7 @@ public class Boss : MonoBehaviour
     {
         if (dead)
         {
+            GameManager.instance.bossFightOn = false;
             for (int i = 0; i < sprites.Length; i++)
             {
                 sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
