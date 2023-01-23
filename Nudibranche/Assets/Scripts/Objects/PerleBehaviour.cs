@@ -68,8 +68,11 @@ public class PerleBehaviour : MonoBehaviour
             {
                 if (PlayerController.Instance.health < Health.instance.numberOfHearts)
                 {
-                    Health.instance.SetHealth(PlayerController.Instance.health += 1);
-                    AudioList.Instance.PlayOneShot(AudioList.Instance.playerHeal,AudioList.Instance.playerHealVolume);
+                    if (PlayerController.Instance.health > 0)
+                    {
+                        Health.instance.SetHealth(PlayerController.Instance.health += 1);
+                        AudioList.Instance.PlayOneShot(AudioList.Instance.playerHeal,AudioList.Instance.playerHealVolume);
+                    }
                 }
             }
             gameObject.SetActive(false);
