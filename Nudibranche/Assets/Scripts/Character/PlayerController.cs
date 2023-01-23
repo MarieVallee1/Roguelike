@@ -357,7 +357,9 @@ namespace Character
         private IEnumerator PlayerDeath()
         {
             print("I'm Dead");
+            GameManager.instance.currentRoom.ResetRoom();
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            vulnerable = false;
 
             for (int i = 0; i < animator.Length; i++)
             {
@@ -372,6 +374,7 @@ namespace Character
             yield return new WaitForSeconds(10f);
             UIManager.instance.CloseDeathScreen();
             yield return new WaitForSeconds(1f);
+            vulnerable = true;
             SceneManager.LoadScene("Scene_Main");
         }
         
