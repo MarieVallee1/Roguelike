@@ -8252,6 +8252,7 @@ GameObject:
   - component: {fileID: 5933516332096077155}
   - component: {fileID: 5933516332096077159}
   - component: {fileID: 5933516332555144580}
+  - component: {fileID: 1385818415}
   m_Layer: 5
   m_Name: Canvas Lore
   m_TagString: Untagged
@@ -8369,13 +8370,13 @@ MonoBehaviour:
   narratorSentences:
   - "Il \xE9tait une fois dans une cit\xE9 sous-marine, un jeune nudibranche d\xE9sireux
     de se perfectionner en magie."
-  - "La biblioth\xE8que de la cit\xE9 recelait de nombreux ouvrages mais un en particulier
+  - "La biblioth\xE8que de la cit\xE9 recelait de nombreux ouvrages, mais un en particulier
     attira l\u2019attention de notre h\xE9ros."
   - En voulant le consulter, le nudibranche fit chuter le livre.
   - "Une sombre magie s\u2019en \xE9chappa, secouant les lieux et \xE9veillant des
     \xEAtres auparavant confin\xE9s entre les pages."
   - "Ramener l\u2019ordre devint alors la mission de notre h\xE9ros. Et en vitesse
-    je vous prie, on dirait que Moby Dick est pass\xE9e par l\xE0!"
+    je vous prie, on dirait que Moby Dick est pass\xE9 par l\xE0!"
   narratorTxt: {fileID: 5933516332770436482}
   imagesGroup: {fileID: 5933516332813540761}
   videoPlayer: {fileID: 5933516332350018853}
@@ -8404,10 +8405,22 @@ MonoBehaviour:
   videoPlayer: {fileID: 5933516332350018853}
   blackscreen: {fileID: 5933516332594928746}
   victoryScreen: {fileID: 0}
-  victorySprite: {fileID: 0}
+  victorySprite: {fileID: 21300000, guid: 0396ab4249434cc48ae0bf383ae74d38, type: 3}
   credits: {fileID: 1188916275}
   creditsSpeed: 30
   creditsYPosEnd: 1195
+--- !u!225 &1385818415
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933516332096077152}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5933516332099007013
 GameObject:
   m_ObjectHideFlags: 0
