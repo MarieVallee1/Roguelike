@@ -32,9 +32,11 @@ public class IntroductionCinematic : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            blackScreen.DOFade(0, 1);
+            imagesGroup.alpha = 0;
         }
     }
+    
     void DisplayImage(int imageIndex)
     {
         images[imageIndex].DOFade(1, 1);
