@@ -320,7 +320,7 @@ public class UIManager : MonoBehaviour
         //cheatButtons.DOFade(1, 0.5f);
     }
 
-    private void CloseCheatMenuButton()
+    public void CloseCheatMenuButton()
     {
         PlayClickAudio();
         
@@ -403,6 +403,12 @@ public class UIManager : MonoBehaviour
             }
                 break;
         }
+    }
+    
+    public void RestartGame()
+    {
+        PlayClickAudio();
+        SceneManager.LoadScene("Scene_Main");
     }
     
     public void PlayButtonIsSelected()

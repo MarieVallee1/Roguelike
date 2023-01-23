@@ -40,7 +40,8 @@ public class ScoreManager : MonoBehaviour
             }
         }
     }
-    public void UpdateScoreUI()
+
+    private void UpdateScoreUI()
     {
         finalScore.text = "" + GameManager.instance.FinalScore();
       

@@ -2052,6 +2052,46 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2071291496}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseCheatMenuButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689783653634307874, guid: 06e06f63567c62c4cb29e0eca6c50934,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1744449102434764246, guid: 06e06f63567c62c4cb29e0eca6c50934,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2222,7 +2262,8 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2071291492}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3797219667857868415, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 06e06f63567c62c4cb29e0eca6c50934, type: 3}
 --- !u!114 &1510082121 stripped
 MonoBehaviour:
@@ -2363,6 +2404,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Astar
       objectReference: {fileID: 0}
+    - target: {fileID: 581532215271714697, guid: 2901068f8ba611b49bf1b5095dfcee54,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 581532215271714703, guid: 2901068f8ba611b49bf1b5095dfcee54,
         type: 3}
       propertyPath: data.dataString
@@ -2407,6 +2453,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1887681846, guid: 052a7db688c5afb4e9c680e40790bdca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
     - target: {fileID: 932255607457708400, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
@@ -2417,6 +2467,11 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 1600997221113026512, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2071291492}
     - target: {fileID: 2258826095062245026, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2447,11 +2502,6 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
-    - target: {fileID: 5601609139652386723, guid: 052a7db688c5afb4e9c680e40790bdca,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5935839144125131723, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2500,11 +2550,6 @@ PrefabInstance:
     - target: {fileID: 5935839145272465506, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5935839145329044547, guid: 052a7db688c5afb4e9c680e40790bdca,
-        type: 3}
-      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5935839145700049764, guid: 052a7db688c5afb4e9c680e40790bdca,

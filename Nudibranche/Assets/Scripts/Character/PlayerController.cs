@@ -369,10 +369,6 @@ namespace Character
             GameManager.instance.TpHub();
             UIManager.instance.OpenDeathScreen();
             ScoreManager.instance.UpdateAllScore();
-            yield return new WaitForSeconds(10f);
-            UIManager.instance.CloseDeathScreen();
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Scene_Main");
         }
         
         
