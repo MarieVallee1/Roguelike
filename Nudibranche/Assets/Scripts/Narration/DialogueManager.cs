@@ -16,7 +16,7 @@ namespace Narration
         [Header("Boxes")]
         [SerializeField] private GameObject dialogueBox;
         [SerializeField] private CanvasGroup choicesBox;
-        [SerializeField] private CanvasGroup hearts;
+        [SerializeField] private CanvasGroup hud;
         
         [Header("Images")]
         [SerializeField] private Image blackBackground;
@@ -257,7 +257,7 @@ namespace Narration
             Cursor.visible = true;
             TargetCursor.instance.enabled = false;
             
-            hearts.DOFade(0, 0.8f);
+            hud.DOFade(0, 0.8f);
             
             dialogueBox.transform.DOLocalMoveY(0, 0.8f);
 
@@ -271,7 +271,7 @@ namespace Narration
             dialogueBox.transform.DOLocalMoveY(-1100, 0.8f);
 
             blackBackground.DOFade(0.5f, 1f).endValue = new Color(0,0,0,0);
-            hearts.DOFade(1, 0.8f);
+            hud.DOFade(1, 0.8f);
 
             //End of the boss dialogue => Boss Fight
             if (dialogue.npcIndex == 3)

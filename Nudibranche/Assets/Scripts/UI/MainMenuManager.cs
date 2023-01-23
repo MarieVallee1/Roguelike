@@ -51,6 +51,8 @@ namespace UI
     
         private void Awake()
         {
+            
+            
             Time.timeScale = 1;
             
             _inputActions = new PlayerInputActions();
@@ -114,6 +116,8 @@ namespace UI
         }
         void Start()
         {
+            Cursor.visible = true;
+            
             mixer.SetFloat(MIXER_MAIN, Mathf.Log10(PlayerPrefs.GetFloat("MainVolume"))*20);
             mixer.SetFloat(MIXER_MUSIC, Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume"))*20);
             mixer.SetFloat(MIXER_SFX, Mathf.Log10(PlayerPrefs.GetFloat("SFXVolume"))*20);
