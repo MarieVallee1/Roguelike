@@ -71,8 +71,8 @@ namespace System
         private int _score;
         private float _startTime;
         public float endTime;
-        private int _clearedRoomAmount;
         
+        public int clearedRoomAmount;
         public int mouleKilled;
         public int crevetteKilled;
         public int cannonierKilled;
@@ -89,8 +89,16 @@ namespace System
             // return _score;
             
             endTime = (Time.time - _startTime);
-            _score = (int)((_clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
-                            crevetteKilled * 15 + cannonierKilled * 10) + Mathf.Max(3600 - (int)endTime, 0));
+            if (bossKilled)
+            {
+                _score = (int)(clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
+                                crevetteKilled * 15 + cannonierKilled * 10 + Mathf.Max(3600 - (int)endTime, 0));
+            }
+            else
+            {
+                _score = (int)(clearedRoomAmount * 30 + pearlAmount + mouleKilled * 5 +
+                                crevetteKilled * 15 + cannonierKilled * 10);
+            }
             return _score;
         }
 

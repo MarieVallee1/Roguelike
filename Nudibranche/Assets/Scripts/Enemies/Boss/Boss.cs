@@ -381,6 +381,7 @@ public class Boss : MonoBehaviour
         PlayerController.Instance.movementPressed = false;
         GameManager.instance.bossCinematicPos = transform.position;
         GameManager.instance.inBossCutscene = true;
+        GameManager.instance.bossKilled = true;
         AudioList.Instance.bossKilled = true;
         AudioList.Instance.StartMusic(AudioList.Music.ending,true);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;

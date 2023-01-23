@@ -91,6 +91,7 @@ namespace GenPro
             
             if (_enemyList.Count != 0) return;
             GameManager.instance.inCombat = false;
+            GameManager.instance.clearedRoomAmount++;
             door.SetActive(false);
             roomIsCleared = true;
             SetArrows();
@@ -112,7 +113,11 @@ namespace GenPro
             GameManager.instance.AddScore();
             minimapIcon.gameObject.SetActive(true);
 
-            if (_enemyList.Count ==0) roomIsCleared = true;
+            if (_enemyList.Count == 0)
+            {
+                roomIsCleared = true;
+                GameManager.instance.clearedRoomAmount++;
+            }
             else
             {
                 AudioList.Instance.StartMusic(_enemyList[0].enemy==ActivateEnemy.Enemy.boss?AudioList.Music.boss : AudioList.Music.combat,true);
