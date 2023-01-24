@@ -273,6 +273,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas Lore
       objectReference: {fileID: 0}
+    - target: {fileID: 5933516332096077152, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5933516332096077156, guid: f397b364d0c8c2c4785e2b9b4a901c4e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -945,6 +950,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 564181914}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: inputHandler.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: portraits.Array.data[0]
       value: 
       objectReference: {fileID: 809422861}
@@ -1044,6 +1053,18 @@ PrefabInstance:
       propertyPath: mouleScore.Array.data[21]
       value: 
       objectReference: {fileID: 1914842050}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: inputHandler.Array.data[0]
+      value: 
+      objectReference: {fileID: 755424301}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: inputHandler.Array.data[1]
+      value: 
+      objectReference: {fileID: 1655879004}
+    - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
+      propertyPath: inputHandler.Array.data[2]
+      value: 
+      objectReference: {fileID: 1125885844}
     - target: {fileID: 524779818, guid: 516edef37cccac54c8fb96600ff19bdf, type: 3}
       propertyPath: crevetteScore.Array.data[0]
       value: 
@@ -1457,6 +1478,12 @@ MonoBehaviour:
   _lensDistortion: {fileID: 0}
   gotHit: 0
   dashing: 0
+--- !u!1 &755424301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5928142744360404062, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &783191030 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5935839144347847448, guid: 052a7db688c5afb4e9c680e40790bdca,
@@ -1705,6 +1732,12 @@ GameObject:
 --- !u!225 &1121450391 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5935839144347847441, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1125885844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8703182313405378625, guid: 052a7db688c5afb4e9c680e40790bdca,
     type: 3}
   m_PrefabInstance: {fileID: 1634932140}
   m_PrefabAsset: {fileID: 0}
@@ -2476,6 +2509,16 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 1137048782339854087, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287193598271672336, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1600997221113026512, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2506,11 +2549,26 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 3473899846545752679, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.699997
+      objectReference: {fileID: 0}
     - target: {fileID: 3532227265284809414, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 4524835908993025751, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537186446973194396, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5935839144125131723, guid: 052a7db688c5afb4e9c680e40790bdca,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2751,6 +2809,11 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 1517852783}
+    - target: {fileID: 8778739853164839046, guid: 052a7db688c5afb4e9c680e40790bdca,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 9.699997
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 052a7db688c5afb4e9c680e40790bdca, type: 3}
 --- !u!1 &1634932141 stripped
@@ -2762,6 +2825,12 @@ GameObject:
 --- !u!1 &1634932142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 500636615, guid: 052a7db688c5afb4e9c680e40790bdca,
+    type: 3}
+  m_PrefabInstance: {fileID: 1634932140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1655879004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5981472061671727541, guid: 052a7db688c5afb4e9c680e40790bdca,
     type: 3}
   m_PrefabInstance: {fileID: 1634932140}
   m_PrefabAsset: {fileID: 0}
