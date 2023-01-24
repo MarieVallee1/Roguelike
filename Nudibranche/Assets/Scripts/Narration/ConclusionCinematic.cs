@@ -58,11 +58,11 @@ public class ConclusionCinematic : MonoBehaviour
         conclusionImage.DOFade(1, 1);
         narratorTxt.text = narratorSentences[0];
         narratorTxt.DOFade(1, 1);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         StartCoroutine(NextText(1));
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         StartCoroutine(NextText(2));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         credits.transform.DOLocalMoveY(creditsYPosEnd, creditsSpeed);
         yield return new WaitForSeconds(creditsSpeed + 1);
