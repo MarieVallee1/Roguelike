@@ -221,7 +221,7 @@ namespace Character
         
         private void Update()
         {
-            Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
+            Debug.DrawRay(characterPos,aim.normalized*3,Color.red);
             
             
             HandleParry();
@@ -598,7 +598,7 @@ namespace Character
 
         private bool CanDash()
         {
-            RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, movementDirection, Vector3.Distance(feetPosition.position, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
+            RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, movementDirection, 3f,layerMask:LayerMask.GetMask("Mur"));
             if (hit)
             {
                 Debug.Log(hit.collider.name);
