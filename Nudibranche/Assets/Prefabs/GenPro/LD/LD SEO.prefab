@@ -933,7 +933,29 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 7006962392503051274}
+    m_ColliderPaths:
+    - - X: -9943233
+        Y: -29886240
+      - X: -99973032
+        Y: -29886240
+      - X: -99973032
+        Y: -39958064
+      - X: -19955456
+        Y: -39958064
+      - X: -19955456
+        Y: -49948756
+      - X: -9943233
+        Y: -49948756
+    - - X: 0
+        Y: -50000000
+      - X: -20000000
+        Y: -50000000
+      - X: -20000000
+        Y: -60000000
+      - X: 0
+        Y: -60000000
   m_CompositePaths:
     m_Paths:
     - - {x: -0.99435264, y: -4.9948754}
@@ -3213,12 +3235,12 @@ PrefabInstance:
     - target: {fileID: 5162442954544237195, guid: 44f499b9f69538d4bae38134979fc5ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.88
+      value: 6.35
       objectReference: {fileID: 0}
     - target: {fileID: 5162442954544237195, guid: 44f499b9f69538d4bae38134979fc5ef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.03
+      value: -7.06
       objectReference: {fileID: 0}
     - target: {fileID: 5162442954544237195, guid: 44f499b9f69538d4bae38134979fc5ef,
         type: 3}
@@ -5747,6 +5769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056176596089551126, guid: 44f499b9f69538d4bae38134979fc5ef,
+        type: 3}
+      propertyPath: sprites.Array.size
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f499b9f69538d4bae38134979fc5ef, type: 3}
