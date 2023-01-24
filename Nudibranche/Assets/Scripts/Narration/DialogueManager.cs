@@ -20,6 +20,11 @@ namespace Narration
         
         [Header("Images")]
         [SerializeField] private Image blackBackground;
+        [SerializeField] private Image choiceBox2;
+        [SerializeField] private Image choiceBox1;
+        [SerializeField] private Sprite scieranoChoice;
+        [SerializeField] private Sprite shellockChoice;
+        [SerializeField] private Sprite sireneChoice;
         
         [Header("Texts")]
         [SerializeField] private TextMeshProUGUI dialogueTxt;
@@ -191,7 +196,10 @@ namespace Narration
                     txtBox[1].SetActive(false);
                     txtBox[2].SetActive(false); 
                     txtBox[3].SetActive(false); 
-                    txtBox[4].SetActive(false); 
+                    txtBox[4].SetActive(false);
+
+                    choiceBox1.sprite = scieranoChoice;
+                    choiceBox2.sprite = scieranoChoice;
                     break;
                 
                 case 1: 
@@ -206,6 +214,9 @@ namespace Narration
                     txtBox[2].SetActive(false); 
                     txtBox[3].SetActive(false); 
                     txtBox[4].SetActive(false); 
+                    
+                    choiceBox1.sprite = shellockChoice;
+                    choiceBox2.sprite = shellockChoice;
                     break;
                 
                 case 2: 
@@ -220,6 +231,9 @@ namespace Narration
                     txtBox[2].SetActive(true); 
                     txtBox[3].SetActive(false); 
                     txtBox[4].SetActive(false); 
+                    
+                    choiceBox1.sprite = sireneChoice;
+                    choiceBox2.sprite = sireneChoice;
                     break;
                 
                 case 3 :
@@ -283,6 +297,8 @@ namespace Narration
         
         private void OpenChoices()
         {
+
+
             choices.SetActive(true);
             choicesBox.DOFade(1f, 1f);
         }
