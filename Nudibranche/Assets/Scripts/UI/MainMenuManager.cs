@@ -14,6 +14,8 @@ namespace UI
         private EventSystem _event;
 
         [Header("Menu References")]
+        [SerializeField] private GameObject splashart;
+        [SerializeField] private CanvasGroup splashCanvasGroup;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private RectTransform cursor;
         [SerializeField] private GameObject mainMenu;
@@ -70,9 +72,25 @@ namespace UI
             mainVolumeSlider.onValueChanged.AddListener(SetMainVolume);
             musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
             sfxVolumeSlider.onValueChanged.AddListener(SetSfxVolume);
-            
+
+
+            StartCoroutine(Begin());
             //Manages the first black screen
-            blackScreenAnim.SetBool("Faded", false);
+            //blackScreenAnim.SetBool("Faded", false);
+        }
+        
+        private IEnumerator Begin()
+        {
+        splashart.SetActive(true);
+        yield return new WaitForSeconds(6f);
+
+        splashCanvasGroup.DOFade(0, 0.5f);
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        splashart.SetActive(false);
+        blackScreenAnim.SetBool("Faded", false);
+        
         }
         
         private void OnEnable()
