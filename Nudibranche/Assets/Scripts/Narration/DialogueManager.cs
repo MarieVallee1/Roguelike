@@ -297,8 +297,6 @@ namespace Narration
         
         private void OpenChoices()
         {
-
-
             choices.SetActive(true);
             choicesBox.DOFade(1f, 1f);
         }

@@ -244,6 +244,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenDeathScreen()
     {
+        Cursor.visible = true;
         deathScreen.SetActive(true);
         deathScreenAlpha.DOFade(1, 1f);
         StartCoroutine(ScoreScreenCalculation());
