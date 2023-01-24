@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private List<GameObject> portraits;
     [SerializeField] private List<GameObject> portraitsOver;
     [SerializeField] private List<GameObject> portraitsCooldown;
+    [SerializeField] private List<GameObject> inputHandler;
     [SerializeField] private List<Image> mouleScore;
     [SerializeField] private List<Image> crevetteScore;
     [SerializeField] private List<Image> cannonierScore;
@@ -131,48 +132,60 @@ public class UIManager : MonoBehaviour
                 portraits[0].SetActive(true);
                 portraitsCooldown[0].SetActive(true);
                 portraitsOver[0].SetActive(true);
+                inputHandler[0].SetActive(true);
                 portraits[1].SetActive(false);
                 portraitsCooldown[1].SetActive(false);
                 portraitsOver[1].SetActive(false);
+                inputHandler[1].SetActive(false);
                 portraits[2].SetActive(false);
                 portraitsCooldown[2].SetActive(false);
                 portraitsOver[2].SetActive(false);
+                inputHandler[2].SetActive(false);
                 break;
             
             case 1: 
                 portraits[0].SetActive(false);
                 portraitsCooldown[0].SetActive(false);
                 portraitsOver[0].SetActive(false);
+                inputHandler[0].SetActive(false);
                 portraits[1].SetActive(true);
                 portraitsCooldown[1].SetActive(true);
                 portraitsOver[1].SetActive(true);
+                inputHandler[1].SetActive(true);
                 portraits[2].SetActive(false);
                 portraitsCooldown[2].SetActive(false);
                 portraitsOver[2].SetActive(false);
+                inputHandler[2].SetActive(false);
                 break;
             
             case 2:
                 portraits[0].SetActive(false);
                 portraitsCooldown[0].SetActive(false);
                 portraitsOver[0].SetActive(false);
+                inputHandler[0].SetActive(false);
                 portraits[1].SetActive(false);
                 portraitsCooldown[1].SetActive(false);
                 portraitsOver[1].SetActive(false);
+                inputHandler[1].SetActive(false);
                 portraits[2].SetActive(true);
                 portraitsCooldown[2].SetActive(true);
                 portraitsOver[2].SetActive(true);
+                inputHandler[2].SetActive(true);
                 break;
             
             default:
                 portraits[0].SetActive(false);
                 portraitsCooldown[0].SetActive(false);
                 portraitsOver[0].SetActive(false);
+                inputHandler[0].SetActive(false);
                 portraits[1].SetActive(false);
                 portraitsCooldown[1].SetActive(false);
                 portraitsOver[1].SetActive(false);
+                inputHandler[1].SetActive(false);
                 portraits[2].SetActive(false);
                 portraitsCooldown[2].SetActive(false);
                 portraitsOver[2].SetActive(false);
+                inputHandler[2].SetActive(false);
                 break;
         }
     }

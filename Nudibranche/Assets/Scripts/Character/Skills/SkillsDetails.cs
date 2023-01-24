@@ -131,7 +131,9 @@ namespace Character.Skills
             {
                 for (int i = 0; i < _hit.Count; i++)
                 {
-                    _hit[i].transform.GetComponent<EnemyHealth>().takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
+                    var script = _hit[i].transform.GetComponent<EnemyHealth>();
+                    if(script.projectileHit.enabled) 
+                        script.takeDamage(PlayerController.Instance.characterData.cardLaserDamages);
                 }
             }
 

@@ -14,7 +14,7 @@ namespace Enemies
         public ParticleSystem fxDamages;
         public Rigidbody2D rb;
         public Collider2D collider;
-        [SerializeField] private Collider2D projectileHit;
+        public Collider2D projectileHit;
         [SerializeField] private Enemy enemy;
         [SerializeField] private Perle perleBlancheData;
         [SerializeField] private Perle perleRougeData;
