@@ -28,14 +28,14 @@ public class IntroductionCinematic : MonoBehaviour
         if (!AudioList.Instance.cinematicPlayed)
         {
             AudioList.Instance.cinematicPlayed = true;
-            blackScreen.DOFade(0, 1);
+            blackScreen.DOFade(0, 0.5f);
             PlayerController.Instance.DisableInputs();
             StartCoroutine(startCinematic());
             AudioList.Instance.PlayOneShot(AudioList.Instance.pageFlip,AudioList.Instance.pageFlipVolume);
         }
         else
         {
-            _blackScreenTween = blackScreen.DOFade(0, 1);
+            _blackScreenTween = blackScreen.DOFade(0, 0.5f);
             imagesGroup.alpha = 0;
         }
     }
@@ -86,7 +86,7 @@ public class IntroductionCinematic : MonoBehaviour
                 StartCoroutine(StepThree(4));
             }
             
-            if (step == 6)
+            if (step <= 6)
             {
                 StartCoroutine(endCinematic());
                 PlayerController.Instance.EnableInputs();
@@ -96,7 +96,7 @@ public class IntroductionCinematic : MonoBehaviour
 
     IEnumerator startCinematic()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         DisplayImage(step);
         DisplayText(step);
     }
