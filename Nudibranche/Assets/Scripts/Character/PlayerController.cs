@@ -44,7 +44,9 @@ namespace Character
         [Header("Character Visuals Related")]
         [SerializeField] private GameObject characterVisualsTr;
         [SerializeField] private GameObject dashVFX;
-        [SerializeField] private GameObject[] characterFaces;
+        [SerializeField] private SpriteRenderer[] characterFront;
+        [SerializeField] private SpriteRenderer[] characterSide;
+        [SerializeField] private SpriteRenderer[] characterBack;
         [SerializeField] private Animator[] animator;
         public List<SpriteRenderer> visuals;
 
@@ -110,6 +112,9 @@ namespace Character
         
         //FixParryBuff
         private int _parryCounter;
+        
+        //FixBugCape
+        private bool _inDash;
         
         private void Awake()
         {
@@ -542,6 +547,9 @@ namespace Character
         }
         private IEnumerator HandleDashUse()
         {
+            //FixCape
+            _inDash = true;
+            
             //Audio
             audioSource.PlayOneShot(AudioList.Instance.playerDash);
             
@@ -582,6 +590,9 @@ namespace Character
             
             //Dissolve Material deactivation
             tpMat.enabled = false;
+            
+            //FixCape
+            _inDash = false;
         }
         
 
@@ -705,6 +716,9 @@ namespace Character
         }
         private void HandleSpriteRotation()
         {
+            //FixCape
+            if (_inDash) return;
+            
             // get the raw angle, in radians
             float radians = Mathf.Atan2 (aim.x, aim.y);
  
@@ -714,43 +728,91 @@ namespace Character
             if(degrees > 55 && degrees < 145)
             {
                 isFacingLeft = false;
-                characterFaces[0].SetActive(true);
-                characterFaces[1].SetActive(false);
-                characterFaces[2].SetActive(false);
+                
+                foreach (var part in characterSide)
+                {
+                    part.enabled = true;
+                }
+                foreach (var part in characterBack)
+                {
+                    part.enabled = false;
+                }
+                foreach (var part in characterFront)
+                {
+                    part.enabled = false;
+                }
             }
 
             if(degrees > 145 || degrees < -145)
             {
                 isFacingLeft = true;
-                characterFaces[0].SetActive(false);
-                characterFaces[1].SetActive(false);
-                characterFaces[2].SetActive(true);
+                
+                foreach (var part in characterSide)
+                {
+                    part.enabled = false;
+                }
+                foreach (var part in characterBack)
+                {
+                    part.enabled = false;
+                }
+                foreach (var part in characterFront)
+                {
+                    part.enabled = true;
+                }
             }
 
             if (degrees > -145 && degrees < -125)
             {
-                
                 isFacingLeft = true;
-                characterFaces[0].SetActive(true);
-                characterFaces[1].SetActive(false);
-                characterFaces[2].SetActive(false);
+                
+                foreach (var part in characterSide)
+                {
+                    part.enabled = true;
+                }
+                foreach (var part in characterBack)
+                {
+                    part.enabled = false;
+                }
+                foreach (var part in characterFront)
+                {
+                    part.enabled = false;
+                }
             }
 
             if (degrees > -125 && degrees < -55)
             {
-               
                 isFacingLeft = true;
-                characterFaces[0].SetActive(true);
-                characterFaces[1].SetActive(false);
-                characterFaces[2].SetActive(false);
+                
+                foreach (var part in characterSide)
+                {
+                    part.enabled = true;
+                }
+                foreach (var part in characterBack)
+                {
+                    part.enabled = false;
+                }
+                foreach (var part in characterFront)
+                {
+                    part.enabled = false;
+                }
             }
 
             if (degrees > -55 && degrees < 35)
             {
                 isFacingLeft = false;
-                characterFaces[0].SetActive(false);
-                characterFaces[1].SetActive(true);
-                characterFaces[2].SetActive(false);
+                
+                foreach (var part in characterSide)
+                {
+                    part.enabled = false;
+                }
+                foreach (var part in characterBack)
+                {
+                    part.enabled = true;
+                }
+                foreach (var part in characterFront)
+                {
+                    part.enabled = false;
+                }
             }
         }
     }
