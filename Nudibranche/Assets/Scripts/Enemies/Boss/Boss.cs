@@ -122,9 +122,10 @@ public class Boss : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (dead) return;
         Timer();
         
-        if (behaviour == Behaviour.walk && !dead)
+        if (behaviour == Behaviour.walk)
         {
             Vector2 force = (target.transform.position - princessFeet.transform.position).normalized * (speed * Time.deltaTime);
             rb.AddForce(force, ForceMode2D.Force);
@@ -136,7 +137,7 @@ public class Boss : MonoBehaviour
             PlacementForShootOursin();
         }
         
-        if (behaviour == Behaviour.walk && !dead)
+        if (behaviour == Behaviour.walk)
         {
             if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timerForRush >= rushTimer)
             {
@@ -152,7 +153,7 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if (behaviour == Behaviour.hit && !dead)
+        if (behaviour == Behaviour.hit)
         {
             for (int i = 0; i < animators.Length; i++)
             {
