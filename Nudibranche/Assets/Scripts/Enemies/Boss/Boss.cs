@@ -116,6 +116,7 @@ public class Boss : MonoBehaviour
             {
                 sprites[i].material.SetFloat("_Dissolve", shaderDissolveValue);
             }
+            PlayerController.Instance.vulnerable = false;
         }
     }
 
@@ -135,7 +136,7 @@ public class Boss : MonoBehaviour
             PlacementForShootOursin();
         }
         
-        if (behaviour == Behaviour.walk)
+        if (behaviour == Behaviour.walk && !dead)
         {
             if (Vector2.Distance(target.position, princessFeet.position) >= rushRange && timerForRush >= rushTimer)
             {
@@ -151,7 +152,7 @@ public class Boss : MonoBehaviour
             }
         }
 
-        if (behaviour == Behaviour.hit)
+        if (behaviour == Behaviour.hit && !dead)
         {
             for (int i = 0; i < animators.Length; i++)
             {
