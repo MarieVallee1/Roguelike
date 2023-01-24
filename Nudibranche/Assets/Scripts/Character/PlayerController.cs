@@ -23,7 +23,6 @@ namespace Character
         public SkillsDetails skills;
         [SerializeField] private GameObject cursor;
         [SerializeField] private Transform startRoomTp;
-        [SerializeField] private Transform dashPosition;
         [SerializeField] private Transform feetPosition;
         [SerializeField] private SpriteRenderer tpMat;
         [SerializeField] private Material[] charaMat;
@@ -221,9 +220,6 @@ namespace Character
         
         private void Update()
         {
-            Debug.DrawRay(characterPos,aim.normalized*Vector3.Distance(characterPos, dashPosition.position),Color.red);
-            
-            
             HandleParry();
             HandleMouseLook();
             RestrictMousePos();
@@ -251,7 +247,7 @@ namespace Character
             
             if (_canDash)
             {
-                if (characterInputs.Character.Dash.triggered && CanDash())
+                if (characterInputs.Character.Dash.triggered)
                 {
                     _canDash = false;
                     StartCoroutine(HandleDashUse());
@@ -578,7 +574,9 @@ namespace Character
             
             yield return new WaitForSeconds(0.1f);
             //Teleportation
-            _tr.position = dashPosition.position;
+            RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, movementDirection, 3f,layerMask:LayerMask.GetMask("Mur"));
+            var tpDistance = hit ? hit.distance - 0.2f : 2.8f;
+            _tr.position += (Vector3)movementDirection.normalized*tpDistance;
 
             yield return new WaitForSeconds(0.4f);
             
@@ -595,18 +593,6 @@ namespace Character
             _inDash = false;
         }
         
-
-        private bool CanDash()
-        {
-            RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, movementDirection, Vector3.Distance(feetPosition.position, dashPosition.position),layerMask:LayerMask.GetMask("Mur"));
-            if (hit)
-            {
-                Debug.Log(hit.collider.name);
-                return false;
-            }
-            
-            return true;
-        }
         private void DashExtra()
         {
             if (dissolveDuration < 1)
