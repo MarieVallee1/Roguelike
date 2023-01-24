@@ -37,6 +37,7 @@ public class IntroductionCinematic : MonoBehaviour
         {
             _blackScreenTween = blackScreen.DOFade(0, 0.5f);
             imagesGroup.alpha = 0;
+            this.enabled = false;
         }
     }
     
@@ -90,6 +91,7 @@ public class IntroductionCinematic : MonoBehaviour
             {
                 StartCoroutine(endCinematic());
                 PlayerController.Instance.EnableInputs();
+                this.enabled = false;
             }
         }
     }
