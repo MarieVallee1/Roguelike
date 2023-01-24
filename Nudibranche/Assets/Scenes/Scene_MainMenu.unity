@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 256592824}
   - component: {fileID: 256592825}
   - component: {fileID: 256592826}
+  - component: {fileID: 256592827}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -309,7 +310,8 @@ AudioSource:
   m_GameObject: {fileID: 256592821}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2212832005484868196, guid: 52be03714cb6e234c802a58df923980f,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.3
@@ -436,6 +438,21 @@ MonoBehaviour:
   videoClip:
   - {fileID: 32900000, guid: 328bab22acb85e84988c5a11891bf8a2, type: 3}
   - {fileID: 32900000, guid: 3b1ecd9fda860214d9f3d0c9d648476d, type: 3}
+--- !u!114 &256592827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256592821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5331d8873a15d924e848a2eafd7efc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  display: 0
+  reset: 0
+  scoreList: 0000000000000000000000000000000000000000
 --- !u!1 &469344454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8134370524217236052, guid: 98422824a4b1651488ce95d7b9efb718,

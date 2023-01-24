@@ -53,19 +53,17 @@ namespace UI
     
         private void Awake()
         {
-            
-            
             Time.timeScale = 1;
             
             _inputActions = new PlayerInputActions();
             _event = EventSystem.current;
 
             mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
-            if (mainVolumeSlider.value < 0.01f) mainVolumeSlider.value = 1;
+            //if (mainVolumeSlider.value < 0.01f) mainVolumeSlider.value = 1;
             musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-            if (musicVolumeSlider.value < 0.01f) musicVolumeSlider.value = 1;
+            //if (musicVolumeSlider.value < 0.01f) musicVolumeSlider.value = 1;
             sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
-            if (sfxVolumeSlider.value < 0.01f) sfxVolumeSlider.value = 1;
+            //if (sfxVolumeSlider.value < 0.01f) sfxVolumeSlider.value = 1;
 
             DOTween.KillAll();
 
