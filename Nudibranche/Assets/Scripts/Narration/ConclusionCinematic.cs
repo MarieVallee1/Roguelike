@@ -71,6 +71,7 @@ public class ConclusionCinematic : MonoBehaviour
         ChangeDeathToVictoryScreen();
         ScoreManager.instance.UpdateAllScore();
         UIManager.instance.OpenDeathScreen();
+        UIManager.instance.BlackScreenFadeOut();
         conclusionImage.DOFade(0, 0.5f);
         narratorTxt.DOFade(0, 0.5f);
         paperBackground.DOFade(0, 0.5f);
