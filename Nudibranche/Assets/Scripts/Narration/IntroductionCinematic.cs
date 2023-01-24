@@ -19,6 +19,9 @@ public class IntroductionCinematic : MonoBehaviour
     public Image blackScreen;
     private int step;
     public Image eToInteract;
+    
+    //Fix Intro
+    private Tween _blackScreenTween;
 
     private void Start()
     {
@@ -32,7 +35,7 @@ public class IntroductionCinematic : MonoBehaviour
         }
         else
         {
-            blackScreen.DOFade(0, 1);
+            _blackScreenTween = blackScreen.DOFade(0, 1);
             imagesGroup.alpha = 0;
         }
     }
@@ -55,6 +58,11 @@ public class IntroductionCinematic : MonoBehaviour
 
             if (step == 1)
             {
+                _blackScreenTween.Kill();
+                var value = blackScreen.color;
+                value = new Color(value.r,value.g,value.b,0f);
+                blackScreen.color = value;
+                images[0].DOFade(1, 0.1f);
                 DisplayImage(1);
             }
 
