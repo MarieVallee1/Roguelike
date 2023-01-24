@@ -87,7 +87,7 @@ public class IntroductionCinematic : MonoBehaviour
                 StartCoroutine(StepThree(4));
             }
             
-            if (step <= 6)
+            if (step >= 6)
             {
                 StartCoroutine(endCinematic());
                 PlayerController.Instance.EnableInputs();
