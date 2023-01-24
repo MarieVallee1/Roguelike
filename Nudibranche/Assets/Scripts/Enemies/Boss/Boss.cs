@@ -320,6 +320,7 @@ public class Boss : MonoBehaviour
             {
                 if (health <= 0)
                 {
+                    PlayerController.Instance.vulnerable = false;
                     healthGauge.gameObject.SetActive(false);
                     dead = true;
                     vulnerable = false;
