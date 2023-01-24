@@ -75,9 +75,6 @@ public class ConclusionCinematic : MonoBehaviour
         narratorTxt.DOFade(0, 0.5f);
         paperBackground.DOFade(0, 0.5f);
         loreCanvas.DOFade(0, 0.5f);
-
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene("Scene_MainMenu");
     }
 
     private void ChangeDeathToVictoryScreen()
