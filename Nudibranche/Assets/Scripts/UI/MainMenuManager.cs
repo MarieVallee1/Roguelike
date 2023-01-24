@@ -59,11 +59,11 @@ namespace UI
             _inputActions = new PlayerInputActions();
             _event = EventSystem.current;
 
-            mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume");
+            mainVolumeSlider.value = PlayerPrefs.GetFloat("MainVolume", 1);
             //if (mainVolumeSlider.value < 0.01f) mainVolumeSlider.value = 1;
-            musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume",1);
             //if (musicVolumeSlider.value < 0.01f) musicVolumeSlider.value = 1;
-            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+            sfxVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolume",1);
             //if (sfxVolumeSlider.value < 0.01f) sfxVolumeSlider.value = 1;
 
             DOTween.KillAll();

@@ -20,7 +20,7 @@ public class ScoreManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            allScore.Add(PlayerPrefs.GetInt("score " + i));
+            allScore.Add(PlayerPrefs.GetInt("score " + i,0));
         }
         
     }
