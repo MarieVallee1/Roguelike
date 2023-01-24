@@ -549,7 +549,10 @@ namespace Character
             nextTimeDash = 0;
             
             //Rigged Sprite deactivation
-            characterVisualsTr.SetActive(false);
+            foreach (var part in visuals)
+            {
+                part.enabled = false;
+            }
             
             //VFX Previous position
             Instantiate(dashVFX, characterPos, quaternion.identity);
@@ -572,7 +575,10 @@ namespace Character
             yield return new WaitForSeconds(0.4f);
             
             //Rigged Sprite activation
-            characterVisualsTr.SetActive(true);
+            foreach (var part in visuals)
+            {
+                part.enabled = true;
+            }
             
             //Dissolve Material deactivation
             tpMat.enabled = false;
