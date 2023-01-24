@@ -90,14 +90,13 @@ namespace UI
         
         splashart.SetActive(false);
         blackScreenAnim.SetBool("Faded", false);
-        
+        _inputActions.UI.Enable();
         }
         
         private void OnEnable()
         {
             //Activates the UI Inputs
             _inputActions.Character.Disable();
-            _inputActions.UI.Enable();
 
             _inputActions.UI.Interact.performed += ctx =>
             {

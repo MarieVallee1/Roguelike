@@ -56,5 +56,5 @@ public class ScoreManager : MonoBehaviour
             scoreTxt[i].text = "" + PlayerPrefs.GetInt("score " + i);
         }
     }
-    
+
 }
