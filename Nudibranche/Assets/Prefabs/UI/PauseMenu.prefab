@@ -276,7 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 0fdd471ab2f434543b8cb1035b06abe5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -777,8 +777,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 88b57d953fde5e34ea25d49c45a67ad5, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1406,7 +1406,6 @@ GameObject:
   - component: {fileID: 2413866698857917535}
   - component: {fileID: 157648328453263020}
   - component: {fileID: 1689783653634307874}
-  - component: {fileID: 3797219667857868415}
   m_Layer: 5
   m_Name: Return
   m_TagString: Untagged
@@ -1494,11 +1493,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0.78431374}
     m_HighlightedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
-    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.78431374}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1518,8 +1517,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: System.GameManager, Assembly-CSharp
-        m_MethodName: MoreMoney
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: CloseCheatMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1529,35 +1528,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3797219667857868415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2672358893906610843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-          m_MethodName: MoneyButtonIsSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2675340723688901176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,7 +1863,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: Reprendre
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2e3d3b0389fc664b81fa194827be675, type: 2}
   m_sharedMaterial: {fileID: -5567957752902488290, guid: d2e3d3b0389fc664b81fa194827be675,
@@ -2060,7 +2030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3614156070216873502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4852,17 +4822,17 @@ PrefabInstance:
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4637612528141542048, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
@@ -4972,12 +4942,12 @@ PrefabInstance:
     - target: {fileID: 7751039861756817559, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7751039861756817559, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6447c20cbb752f742921c2765b8440d7, type: 3}
@@ -5012,17 +4982,17 @@ PrefabInstance:
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4637612528141542048, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
@@ -5132,12 +5102,12 @@ PrefabInstance:
     - target: {fileID: 7751039861756817559, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7751039861756817559, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6447c20cbb752f742921c2765b8440d7, type: 3}
@@ -5302,17 +5272,17 @@ PrefabInstance:
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
-        type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
-      propertyPath: m_AnchorMin.x
+      propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726556252637180812, guid: 6447c20cbb752f742921c2765b8440d7,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4637612528141542048, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
@@ -5422,12 +5392,12 @@ PrefabInstance:
     - target: {fileID: 7751039861756817559, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7751039861756817559, guid: 6447c20cbb752f742921c2765b8440d7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6447c20cbb752f742921c2765b8440d7, type: 3}
